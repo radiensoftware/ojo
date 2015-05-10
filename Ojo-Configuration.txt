@@ -1,0 +1,15 @@
+Hardware Configuration
+----------------------
+
+Role			Name		OS		DNS FQDN
+-------------------------------------------------------------------------------
+Access Box		access		Linux		access.ojo.net
+Windows Box		windows		Windows 	windows.ojo.net
+OpenStack Controller	control		Linux		control.ojo.net
+OpenStack Network	network		Linux		network.ojo.net
+OpenStack Compute1	c1		Linux		c1.ojo.net
+
+Linux = CentOS 7 64 bit
+Windows = Microsoft Windows 7 64 bit
+
+All Root Passwords should be "ojohakr"
