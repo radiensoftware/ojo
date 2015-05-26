@@ -1,5 +1,5 @@
 #!/bin/bash
 cd $HOME
 PKG=wget
-. YUMOPTS
+. /home/hadoop/ojo/YUMOPTS
 sudo yum -y $YUMOPTS install $PKG
