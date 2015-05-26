@@ -393,3 +393,10 @@ drwxr-xr-x. 63 root root  4096 May 26 04:38 share
 drwxr-xr-x.  4 root root  4096 May 25 10:04 src
 lrwxrwxrwx.  1 root root    10 May 25 10:04 tmp
 
+1. Install Hadoop 1.2.1
+
+cd ~
+wget ftp://10.10.10.10/pub/hadoop/hadoop-1.2.1-bin.tar.gz
+tar zxvf hadoop-1.2.1-bin.tar.gz
+ls
+cd hadoop-1.2.1
