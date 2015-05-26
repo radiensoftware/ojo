@@ -1,0 +1,7 @@
+[daddylabs]
+comment="DaddyLabs Anonymous FTP Service"
+name=CentOS-$releasever - Base
+baseurl=ftp://10.10.10.10/pub/centos/$releasever/os/$basearch/
+gpgcheck=0
+enabled=1
+
