@@ -36,3 +36,145 @@ Project India1 ("One")
 
 		p1p1		p1p1		p1p1		p1p1
 		10.20.30.51	10.20.30.52	10.20.30.53	10.20.30.54
+
+
+
+1. install centos on m1, m2, m3, m4
+
+1. configure networking
+
+	edit ipv4 configuration 
+	edit gateway configuration
+	enable networking
+	reboot and verify that networking and gateway and routes are set 
+
+1. disable selinux
+
+	verify selinux status
+	edit selinux configuration
+	reboot and verify that selinux is disabled
+x1. disable firewall
+
+	save firewall rules
+	stop firewall currently
+	off ipv4 firewall from starting in future
+	reboot and verify firewall is disabled
+
+	repeat for ipv6 firewall
+1. yum update
+
+	disable fastestmirror yum plugin
+	yum update
+
+1. configure dns 
+
+	point to local resolver with appropriate domain name
+
+1. configure ntp
+
+	point to local ntp server
+
+1. configure password less ssh root access from m1 to m1, m2, m3, and m4
+
+	create ssh keypair using the rsa algorithm 
+	copy the public key to all machines 
+	verify you can login to all machines without a password
+
+	do this on all machines (it is a good exercise)
+
+	so now we can ssh to any machine from any machine without a password
+
+1. add hadoop account on all machines
+	
+	add user hadoop with password hadoop as part of group hadoop and wheel
+	with userid 1000 and group 1000
+
+	verify above by logging in 
+
+1. configure hadoop account to have sudo permissions without a password
+
+	enable wheel group to use sudo without a password
+
+1.	Networking configuration
+	set ip address :10.10.10.*
+	set gateway: 10.10.10.10
+	Subnet mask:255.255.255.0
+	
+	ifconfig -a
+
+	netstat -rn
+
+	service network start
+
+	cd /etc/sysconfig/network-scripts/
+	vi ifcfg-em1
+		//Edit the configuration file
+	cd /etc/sysconfig/
+	vi network
+		//edit gateway
+	cd /etc/
+	vi resolv.conf
+		//Edit nameserver
+
+	service network restart
+	
+	ping ip addr
+	ping gateway
+	ping 8.8.8.8
+	ping krishna.com
+
+	reboot and verify
+
+2.	selinux status
+	vi /etc/selinux.conf	********
+		//set selinux= disabled
+		//save and quit
+	reboot and verify by
+	getenforce
+
+3.	service iptables save
+	service iptables stop
+	chkconfig iptables --list
+	chkconfig iptables off
+	chkconfig iptables --list
+	service iptables save
+
+	service ip6tables save
+	service ip6tables stop
+	chkconfig ip6tables --list
+	chkconfig ip6tables off
+	chkconfig ip6tables --list
+	service ip6tables save
+	
+	reboot
+4.	yum -y --disableplugin=fastestmirror update
+		yum update /*nothing to update*/
+	
+	reboot
+5	service ntp start
+	chkconfig ntpd --list
+	chkconfig ntpd on
+	chkconfig ntpd --list
+	cd /etc/
+	vi ntpd.conf
+		edit server
+	ntpq -pn
+	ntpq -p
+	service ntp restart
+	ntpq -pn
+	reboot
+
+6.	adduser dinesh -p dinesh -G wheel
+	
+	visudo
+		//edit Wheel
+		/*remove % symbol from that file*/
+	login dinesh accout
+		id
+		sudoid
+	login mojo accout
+		id
+		sudoid
+
+7.	
+
