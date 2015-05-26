@@ -151,30 +151,53 @@ x1. disable firewall
 		yum update /*nothing to update*/
 	
 	reboot
-5	service ntp start
+5	
+	yum -y --disableplugin=fastestmirror install ntp
+	yum -y --disableplugin=fastestmirror install git
+
+	vi /etc/ntp.conf
+	server 10.10.10.10 iburst # remove other servers
+	service ntpd status
+	service ntpd start
+	service ntpd status
+
 	chkconfig ntpd --list
 	chkconfig ntpd on
 	chkconfig ntpd --list
-	cd /etc/
-	vi ntpd.conf
-		edit server
-	ntpq -pn
-	ntpq -p
-	service ntp restart
-	ntpq -pn
-	reboot
 
-6.	adduser dinesh -p dinesh -G wheel
-	
-	visudo
-		//edit Wheel
-		/*remove % symbol from that file*/
+	ntpq -pn
+
+	reboot and verify
+
+6.	adduser dinesh 
+		--user-group
+		--uid 1001
+		--groups wheel
+		--create-home
+
+	passwd dinesh
+		dinesh
+
+7. 	echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 	login dinesh accout
 		id
 		sudoid
-	login mojo accout
-		id
-		sudoid
 
-7.	
 
+
+
+
+
+Hadoop Stuff
+
+0.  adduser hadoop
+	--user-group
+	--uid 2001
+	--groups wheel
+	--create-home
+
+    password hadoop
+	hadoop
+
+1. enabled password less ssh
