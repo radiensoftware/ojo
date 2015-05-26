@@ -200,4 +200,21 @@ Hadoop Stuff
     password hadoop
 	hadoop
 
+   on another console verify you can login as hadoop with password id
+
+   verify you are logged in as hadoop
+
+   whoami
+
+   you can also run 
+
+   id
+ 
+   note that wheel is your secondary group
+
+   verify you can run super user command using sudo without specifying the password
+
+   sudo id
+   sudo service iptables status
+
 1. enabled password less ssh
