@@ -4,3 +4,4 @@ cp -f hadoop-env.sh   /home/hadoop/hadoop-1.2.1/conf
 cp -f core-site.xml   /home/hadoop/hadoop-1.2.1/conf
 cp -f mapred-site.xml /home/hadoop/hadoop-1.2.1/conf
 cp -f hdfs-site.xml   /home/hadoop/hadoop-1.2.1/conf
+mkdir /home/hadoop/tmp
