@@ -448,4 +448,7 @@ exec bash
    5000  100000
 
 8. run the command top and observe the system load
-   
+  
+	./200-epel-repo-install.sh
+	./300-atop-install.sh 
+
