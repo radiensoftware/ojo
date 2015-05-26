@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+set timeout 20
+spawn /usr/bin/ssh-copy-id hadoop@[lindex $argv 0]
+
+expect 	"continue connecting (yes/no)?" 	{ send "yes\r" }	
+expect	"assword:"				{ send "hadoop\r" }
+
