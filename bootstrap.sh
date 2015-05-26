@@ -12,3 +12,5 @@ echo 'baseurl=ftp://10.10.10.10/pub/centos/$releasever/os/$basearch/'	>> $PATHNA
 echo 'gpgcheck=0'					>> $PATHNAME
 echo 'enabled=1'					>> $PATHNAME
 /usr/bin/yum -y --disablerepo=base --disablerepo=updates --disableplugin=fastestmirror install git wget named ntp
+echo '' 				>> /etc/sudoers
+echo '%wheel ALL=(ALL) NOPASSWD: ALL'	>> /etc/sudoers
