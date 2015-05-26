@@ -400,3 +400,52 @@ wget ftp://10.10.10.10/pub/hadoop/hadoop-1.2.1-bin.tar.gz
 tar zxvf hadoop-1.2.1-bin.tar.gz
 ls
 cd hadoop-1.2.1
+
+
+2. Install configuration files
+
+cd 
+cd ~/ojo
+chmod +x ./100-hadoop-configuration-install
+./100-hadoop-configuration-install
+exec bash
+
+3. On following consoles 
+   Ctl-F1 login as hadoop and less $HADOOP_LOGS/*namenode*.log and press shift F
+   Ctl-F2 login as hadoop and less $HADOOP_LOGS/*datanode*.log and press shift F
+   Ctl-F3 login as hadoop and less $HADOOP_LOGS/*jobtracker*.log and press shift F
+   Ctl-F4 login as hadoop and less $HADOOP_LOGS/*tasktracker*.log and press shift F
+
+   On Ctl F5 login as hadoop 
+
+4. cd $HADOOP
+   stop-all.sh
+   view the various logs
+   start-all.sh 
+   view the various logs
+
+   repeat the stop and start twice and view the changes in the logs
+
+5. access the namenode gui
+   http://m1.daddylabs.com:50070
+
+   browse every link
+
+6. access the job tracker gui at 
+   http://m1.daddylabs.com:50030
+
+   browse every link
+
+7. run the following jobs
+
+   cd $HADOOP
+   hadoop jar hadoop*examples* pi 5 100
+
+   repeat for the following arguments
+
+   50    1000
+   500   10000
+   5000  100000
+
+8. run the command top and observe the system load
+   
