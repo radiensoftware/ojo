@@ -218,3 +218,107 @@ Hadoop Stuff
    sudo service iptables status
 
 1. enabled password less ssh
+
+[hadoop@m1 ~]$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/hadoop/.ssh/id_rsa): 
+Created directory '/home/hadoop/.ssh'.
+Enter passphrase (empty for no passphrase): <ENTER>
+Enter same passphrase again: <ENTER>
+Your identification has been saved in /home/hadoop/.ssh/id_rsa.
+Your public key has been saved in /home/hadoop/.ssh/id_rsa.pub.
+The key fingerprint is:
+29:82:31:39:b5:bd:89:f7:c5:d4:44:f7:30:59:3f:53 hadoop@m1.daddylabs.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|    .      .o +oE|
+|   o o     o ..+o|
+|  = . .   . .  oo|
+|   = . o +      o|
+|  . o = S o      |
+|     o o .       |
+|        .        |
+|                 |
+|                 |
++-----------------+
+[hadoop@m1 ~]$ 
+
+2. enable password-less ssh logins to host m1
+
+
+[hadoop@m1 ~]$ ping m1.daddylabs.com
+PING m1.daddylabs.com (10.10.10.51) 56(84) bytes of data.
+64 bytes from 10.10.10.51: icmp_seq=1 ttl=64 time=0.006 ms
+64 bytes from 10.10.10.51: icmp_seq=2 ttl=64 time=0.014 ms
+64 bytes from 10.10.10.51: icmp_seq=3 ttl=64 time=0.014 ms
+^C
+--- m1.daddylabs.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2758ms
+rtt min/avg/max/mdev = 0.006/0.011/0.014/0.004 ms
+[hadoop@m1 ~]$ ssh-copy-id 10.10.10.10
+hadoop@10.10.10.10's password: 
+[hadoop@m1 ~]$ ssh-copy-id 10.10.10.51
+The authenticity of host '10.10.10.51 (10.10.10.51)' can't be established.
+RSA key fingerprint is d9:6e:8e:39:18:da:cd:57:c1:fe:33:3b:9b:a2:74:45.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.10.10.51' (RSA) to the list of known hosts.
+hadoop@10.10.10.51's password: 
+Now try logging into the machine, with "ssh '10.10.10.51'", and check in:
+
+  .ssh/authorized_keys
+
+to make sure we haven't added extra keys that you weren't expecting.
+
+[hadoop@m1 ~]$ ssh 10.10.10.51
+Last login: Tue May 26 04:51:56 2015
+[hadoop@m1 ~]$ logout
+Connection to 10.10.10.51 closed.
+[hadoop@m1 ~]$ ssh 10.10.10.51 hostname
+m1.daddylabs.com
+[hadoop@m1 ~]$ ssh m1.daddylabs.com
+Last login: Tue May 26 04:57:08 2015 from 10.10.10.51
+[hadoop@m1 ~]$ logout
+Connection to m1.daddylabs.com closed.
+[hadoop@m1 ~]$ ssh m1.daddylabs.com hostname
+m1.daddylabs.com
+[hadoop@m1 ~]$ ssh m1 date
+Tue May 26 04:57:34 UTC 2015
+[hadoop@m1 ~]$ 
+
+3. on host m1 enable password less ssh logins into hosts m2, m3 and m4
+
+for i in 51 52 53 54
+do
+	ip=10.10.10.$i
+	ssh-copy-id $ip
+done
+
+for h in m1 m2 m3 m4
+do
+	ssh-copy-id $h
+done
+
+for h in m1 m2 m3 m4
+do
+	ssh-copy-id $h.daddylabs.com
+done
+
+verify the following work without asking for a password
+
+
+for i in 51 52 53 54
+do
+	ip=10.10.10.$i
+	ssh $ip date
+done
+
+for i in 51 52 53 54
+do
+	ip=10.10.10.$i
+	ssh $ip date
+done
+
+for h in m1 m2 m3 m4
+do
+	ssh $h.daddylabs.com date
+done
