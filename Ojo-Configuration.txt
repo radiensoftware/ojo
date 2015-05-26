@@ -322,3 +322,74 @@ for h in m1 m2 m3 m4
 do
 	ssh $h.daddylabs.com date
 done
+
+
+1. install wget to download java
+
+	yum -y --disableplugin=fastestmirror wget
+
+
+1. install java from lab ftp server
+
+[hadoop@m1 ~]$ wget ftp://10.10.10.10/pub/java/jdk-6u45-linux-x64-rpm.bin
+--2015-05-26 05:30:20--  ftp://10.10.10.10/pub/java/jdk-6u45-linux-x64-rpm.bin
+           => “jdk-6u45-linux-x64-rpm.bin”
+Connecting to 10.10.10.10:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /pub/java ... done.
+==> SIZE jdk-6u45-linux-x64-rpm.bin ... 68881069
+==> PASV ... done.    ==> RETR jdk-6u45-linux-x64-rpm.bin ... done.
+
+2015-05-26 05:30:26 (11.2 MB/s) - “jdk-6u45-linux-x64-rpm.bin” saved [68881069]
+
+[hadoop@m1 ~]$ chmod +x jdk-6u45-linux-x64-rpm.bin 
+[hadoop@m1 ~]$ sudo ./jdk-6u45-linux-x64-rpm.bin
+Unpacking...
+Checksumming...
+Extracting...
+UnZipSFX 5.50 of 17 February 2002, by Info-ZIP (Zip-Bugs@lists.wku.edu).
+  inflating: jdk-6u45-linux-amd64.rpm  
+  inflating: sun-javadb-common-10.6.2-1.1.i386.rpm  
+  inflating: sun-javadb-core-10.6.2-1.1.i386.rpm  
+  inflating: sun-javadb-client-10.6.2-1.1.i386.rpm  
+  inflating: sun-javadb-demo-10.6.2-1.1.i386.rpm  
+  inflating: sun-javadb-docs-10.6.2-1.1.i386.rpm  
+  inflating: sun-javadb-javadoc-10.6.2-1.1.i386.rpm  
+Unpacking JAR files...
+	rt.jar...
+	jsse.jar...
+	charsets.jar...
+	tools.jar...
+	localedata.jar...
+	plugin.jar...
+	javaws.jar...
+	deploy.jar...
+Installing JavaDB
+ 
+Done.
+[hadoop@m1 ~]$ type java
+java is /usr/bin/java
+[hadoop@m1 ~]$ which java
+/usr/bin/java
+[hadoop@m1 ~]$ whereis java
+java: /usr/bin/java
+[hadoop@m1 ~]$ ls -l /usr/bin/java
+lrwxrwxrwx 1 root root 26 May 26 05:31 /usr/bin/java /usr/java/default/bin/java
+
+[hadoop@m1 ~]$ ls -l /usr
+total 64
+dr-xr-xr-x.  2 root root 12288 May 26 05:31 bin
+drwxr-xr-x.  2 root root  4096 Sep 23  2011 etc
+drwxr-xr-x.  2 root root  4096 Sep 23  2011 mgames
+drwxr-xr-x.  3 root root  4096 May 25 10:05 include
+drwxr-xr-x   3 root root  4096 May 26 05:31 java
+dr-xr-xr-x.  9 root root  4096 May 25 10:05 lib
+dr-xr-xr-x. 25 root root 12288 May 26 04:38 lib64
+drwxr-xr-x. 10 root root  4096 May 26 04:38 libexec
+drwxr-xr-x. 12 root root  4096 May 25 10:04 local
+dr-xr-xr-x.  2 root root  4096 May 26 04:29 sbin
+drwxr-xr-x. 63 root root  4096 May 26 04:38 share
+drwxr-xr-x.  4 root root  4096 May 25 10:04 src
+lrwxrwxrwx.  1 root root    10 May 25 10:04 tmp
+
