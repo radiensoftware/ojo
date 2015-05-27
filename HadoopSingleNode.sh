@@ -1,5 +1,7 @@
 #!/bin/bash
 export PATH=$PATH:.
+
+040-rpmforge-htop-git-install.sh
 059-expect-package-install.sh
 060-ssh-key-generate.sh
 095-java-package-install.sh
