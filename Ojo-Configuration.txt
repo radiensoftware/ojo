@@ -452,3 +452,31 @@ exec bash
 	./200-epel-repo-install.sh
 	./300-atop-install.sh 
 
+
+
+
+BLAH BLAH
+----------------------------------------------------------------
+Hadoop Single Node
+
+login as root
+cd /root
+curl
+https://raw.githubusercontent.com/radiensoftware/ojo/master/bootstrap.sh
+-o bootstrap.sh
+chmod +x ./bootstrap.sh
+./bootstrap.sh
+su - hadoop
+cd ojo
+./hadoop-create.sh
+exec bash
+./hadoop-initialise.sh
+./hadoop-status.sh
+./hadoop-start.sh
+./hadoop-status.sh
+./hadoop-pizza.sh
+
+That is all.
+
+Dinesh
+
