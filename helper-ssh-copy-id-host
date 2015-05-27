@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+set timeout 30
+spawn /usr/bin/ssh-copy-id hadoop@[lindex $argv 0]
+
+expect 	{
+	".*?(yes/no)?" 	{ send "yes\r" 
+	expect ".*?assword:"	{ send "hadoop\r" }
+	}	
+	".*?assword:"	{ send "hadoop\r" }
+}
+sleep 1
+

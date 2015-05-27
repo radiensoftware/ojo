@@ -1,0 +1,2 @@
+#!/bin/bash 
+ifconfig -a | grep "inet addr" | sed -e 's/^.*inet addr://' | awk '{ print $1; }'
