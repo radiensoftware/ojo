@@ -8,7 +8,6 @@ URL=$URL0/$FILE
 /bin/rm -f $FILE
 wget $URL
 rpm -K $FILE
-sudo yum -y --disablerepo=base,updates localinstall ./$FILE
-sudo yum -y --disablerepo=base,updates --enablerepo=rpmforge-extras --disableplugin=fastestmirror install htop
-sudo yum -y erase git
-sudo yum -y --enablerepo=rpmforge,rpmforge-extras --disableplugin=fastestmirror install git
+sudo yum -y localinstall ./$FILE
+sudo yum -y --enablerepo=daddylabs,rpmforge-extras --disableplugin=fastestmirror install htop
+sudo yum -y --enablerepo=daddylabs,rpmforge,rpmforge-extras --disableplugin=fastestmirror update git
