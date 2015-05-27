@@ -12,3 +12,5 @@ export PATH=$PATH:.
 100-hadoop-configuration-install.sh
 200-epel-repo-install.sh
 300-atop-install.sh
+
+echo "Run "exec bash" to pick up update environment variables"
