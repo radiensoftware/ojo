@@ -13,4 +13,4 @@ export HADOOP_LOGS=$HADOOP_HOME/logs
 export HADOOP_CONF=$HADOOP_HOME/conf
 export JAVA_HOME=/usr/java/default
 export JAVA_BIN=$JAVA_HOME/bin
-export PATH=$PATH:$JAVA_BIN:$HADOOP_BIN
+export PATH=$JAVA_BIN:$HADOOP_BIN:$PATH
