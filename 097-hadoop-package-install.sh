@@ -6,8 +6,9 @@ FILE=$DIR$SUFFIX
 URL0=ftp://10.10.10.10/hadoop
 URL=$URL0/$FILE
 /bin rm -f $DIR $FILE $FILE.[0-9]*
-wget $URL
-tar xvf $FILE
-ls
+/usr/bin/wget $URL
+sleep 1
+/bin/tar xvf $FILE
+/bin/ls
 cd $DIR
-ls -l /usr/java/default
+/bin/ls -l /usr/java/default
