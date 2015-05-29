@@ -11,4 +11,4 @@ sleep 1
 /bin/tar xvf $FILE
 /bin/ls
 cd $DIR
-/bin/ls -l /usr/java/default
+# /bin/ls -l /usr/java/default
