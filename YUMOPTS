@@ -1,1 +1,1 @@
-YUMOPTS="-y --disableplugin=fastestmirror --disablerepo=base --disablerepo=updates"
+YUMOPTS="-y --disableplugin=fastestmirror"
