@@ -120,13 +120,20 @@ if [ "$CONFIG_FOR" = "16GB" ]; then
   vm_slave_cpu[3]=1
   vm_slave_cpu[4]=1
   vm_slave_cpu[5]=1
+
 elif [ "$CONFIG_FOR" = "12GB" ]; then
   vm_slave_cpu_default=1
-
   vm_slave_cpu[1]=1
   vm_slave_cpu[2]=1
   vm_slave_cpu[3]=1
   vm_slave_cpu[4]=1
+
+elif [ "$CONFIG_FOR" = "10GB" ]; then
+  vm_slave_cpu_default=1
+  vm_slave_cpu[1]=1
+  vm_slave_cpu[2]=1
+  vm_slave_cpu[3]=1
+
 elif [ "$CONFIG_FOR" = "8GB" ]; then
   vm_slave_cpu_default=1
 
@@ -168,19 +175,26 @@ if [ "$CONFIG_FOR" = "16GB" ]; then
   vm_slave_memory_mb[3]=2048
   vm_slave_memory_mb[4]=2048
   vm_slave_memory_mb[5]=2048
+
 elif [ "$CONFIG_FOR" = "12GB" ]; then
   vm_slave_memory_default=1536
-
   vm_slave_memory_mb[1]=2048
   vm_slave_memory_mb[2]=2048
   vm_slave_memory_mb[3]=2048
   vm_slave_memory_mb[4]=2048
+
+elif [ "$CONFIG_FOR" = "10GB" ]; then
+  vm_slave_memory_default=1024
+  vm_slave_memory_mb[1]=1536
+  vm_slave_memory_mb[2]=1536
+  vm_slave_memory_mb[3]=6144
+
 elif [ "$CONFIG_FOR" = "8GB" ]; then
   vm_slave_memory_default=1024
-
   vm_slave_memory_mb[1]=1536
   vm_slave_memory_mb[2]=1536
   vm_slave_memory_mb[3]=4096
+
 elif [ "$CONFIG_FOR" = "4GB" ]; then
   vm_slave_memory_default=1024
 
