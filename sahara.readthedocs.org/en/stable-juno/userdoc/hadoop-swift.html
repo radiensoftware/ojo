@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Swift Integration &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Building Images for Vanilla Plugin" href="diskimagebuilder.html" />
+    <link rel="prev" title="Requirements for Guests" href="guest-requirements.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/hadoop-swift.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/hadoop-swift",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/hadoop-swift";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="swift-integration">
+<span id="swift-integration-label"></span><h1>Swift Integration<a class="headerlink" href="#swift-integration" title="Permalink to this headline">¶</a></h1>
+<p>Hadoop and Swift integration are the essential continuation of the
+Hadoop/OpenStack marriage. The key component to making this marriage work is
+the Hadoop Swift filesystem implementation. Although this implementation has
+been merged into the upstream Hadoop project, Sahara maintains a version with
+the most current features enabled.</p>
+<ul class="simple">
+<li>The original Hadoop patch can be found at
+<a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-8545">https://issues.apache.org/jira/browse/HADOOP-8545</a></li>
+<li>The most current Sahara maintained version of this patch can be found in the
+Sahara Extra repository <a class="reference external" href="https://github.com/openstack/sahara-extra">https://github.com/openstack/sahara-extra</a></li>
+<li>The latest compiled version of the jar for this component can be downloaded
+from <a class="reference external" href="http://sahara-files.mirantis.com/hadoop-swift/hadoop-swift-latest.jar">http://sahara-files.mirantis.com/hadoop-swift/hadoop-swift-latest.jar</a></li>
+</ul>
+<div class="section" id="hadoop-patching">
+<h2>Hadoop patching<a class="headerlink" href="#hadoop-patching" title="Permalink to this headline">¶</a></h2>
+<p>You may build the jar file yourself by choosing the latest patch from the
+Sahara Extra repository and using Maven to build with the pom.xml file
+provided. Or you may get the latest jar pre-built from the CDN at
+<a class="reference external" href="http://sahara-files.mirantis.com/hadoop-swift/hadoop-swift-latest.jar">http://sahara-files.mirantis.com/hadoop-swift/hadoop-swift-latest.jar</a></p>
+<p>You will need to put this file into the hadoop libraries
+(e.g. /usr/lib/share/hadoop/lib) on each job-tracker and task-tracker node
+for Hadoop 1.x, or each ResourceManager and NodeManager node for Hadoop 2.x
+in the cluster.</p>
+</div>
+<div class="section" id="hadoop-configurations">
+<h2>Hadoop configurations<a class="headerlink" href="#hadoop-configurations" title="Permalink to this headline">¶</a></h2>
+<p>In general, when Sahara runs a job on a cluster it will handle configuring the
+Hadoop installation. In cases where a user might require more in-depth
+configuration all the data is set in the <tt class="docutils literal"><span class="pre">core-site.xml</span></tt> file on the cluster
+instances using this template:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;property&gt;</span>
+    <span class="nt">&lt;name&gt;</span>${name} + ${config}<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;value&gt;</span>${value}<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;description&gt;</span>${not mandatory description}<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</pre></div>
+</div>
+<p>There are two types of configs here:</p>
+<ol class="arabic">
+<li><p class="first">General. The <tt class="docutils literal"><span class="pre">${name}</span></tt> in this case equals to <tt class="docutils literal"><span class="pre">fs.swift</span></tt>. Here is the list of <tt class="docutils literal"><span class="pre">${config}</span></tt>:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">.impl</span></tt> - Swift FileSystem implementation. The ${value} is <tt class="docutils literal"><span class="pre">org.apache.hadoop.fs.swift.snative.SwiftNativeFileSystem</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.connect.timeout</span></tt> - timeout for all connections by default: 15000</li>
+<li><tt class="docutils literal"><span class="pre">.socket.timeout</span></tt> - how long the connection waits for responses from servers. by default: 60000</li>
+<li><tt class="docutils literal"><span class="pre">.connect.retry.count</span></tt> - connection retry count for all connections. by default: 3</li>
+<li><tt class="docutils literal"><span class="pre">.connect.throttle.delay</span></tt> - delay in millis between bulk (delete, rename, copy operations). by default: 0</li>
+<li><tt class="docutils literal"><span class="pre">.blocksize</span></tt> - blocksize for filesystem. By default: 32Mb</li>
+<li><tt class="docutils literal"><span class="pre">.partsize</span></tt> - the partition size for uploads. By default: 4608*1024Kb</li>
+<li><tt class="docutils literal"><span class="pre">.requestsize</span></tt> - request size for reads in KB. By default: 64Kb</li>
+</ul>
+</li>
+<li><p class="first">Provider-specific. The patch for Hadoop supports different cloud providers.
+The <tt class="docutils literal"><span class="pre">${name}</span></tt> in this case equals to <tt class="docutils literal"><span class="pre">fs.swift.service.${provider}</span></tt>.</p>
+<p>Here is the list of <tt class="docutils literal"><span class="pre">${config}</span></tt>:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">.auth.url</span></tt> - authorization URL</li>
+<li><tt class="docutils literal"><span class="pre">.tenant</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.username</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.password</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.domain.name</span></tt> - Domains can be used to specify users who are not in
+the tenant specified.</li>
+<li><tt class="docutils literal"><span class="pre">.trust.id</span></tt> - Trusts are optionally  used to scope the authentication
+tokens of the supplied user.</li>
+<li><tt class="docutils literal"><span class="pre">.http.port</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.https.port</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.region</span></tt> - Swift region is used when cloud has more than one Swift
+installation. If region param is not set first region from Keystone endpoint
+list will be chosen. If region param not found exception will be thrown.</li>
+<li><tt class="docutils literal"><span class="pre">.location-aware</span></tt> - turn On location awareness. Is false by default</li>
+<li><tt class="docutils literal"><span class="pre">.apikey</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">.public</span></tt></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For this example it is assumed that you have setup a Hadoop instance with
+a valid configuration and the Swift filesystem component. Furthermore there is
+assumed to be a Swift container named <tt class="docutils literal"><span class="pre">integration</span></tt> holding an object named
+<tt class="docutils literal"><span class="pre">temp</span></tt>, as well as a Keystone user named <tt class="docutils literal"><span class="pre">admin</span></tt> with a password of
+<tt class="docutils literal"><span class="pre">swordfish</span></tt>.</p>
+<p>The following example illustrates how to copy an object to a new location in
+the same container. We will use Hadoop&#8217;s <tt class="docutils literal"><span class="pre">distcp</span></tt> command
+(<a class="reference external" href="http://hadoop.apache.org/docs/r0.19.0/distcp.html">http://hadoop.apache.org/docs/r0.19.0/distcp.html</a>) to accomplish the copy.
+Note that the service provider for our Swift access is <tt class="docutils literal"><span class="pre">sahara</span></tt>, and that
+we will not need to specify the project of our Swift container as it will
+be provided in the Hadoop configuration.</p>
+<p>Swift paths are expressed in Hadoop according to the following template:
+<tt class="docutils literal"><span class="pre">swift://${container}.${provider}/${object}</span></tt>. For our example source this
+will appear as <tt class="docutils literal"><span class="pre">swift://integration.sahara/temp</span></tt>.</p>
+<p>Let&#8217;s run the job:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hadoop distcp -D fs.swift.service.sahara.username<span class="o">=</span>admin <span class="se">\</span>
+<span class="go"> -D fs.swift.service.sahara.password=swordfish \</span>
+<span class="go"> swift://integration.sahara/temp swift://integration.sahara/temp1</span>
+</pre></div>
+</div>
+<p>After that just confirm that <tt class="docutils literal"><span class="pre">temp1</span></tt> has been created in our <tt class="docutils literal"><span class="pre">integration</span></tt>
+container.</p>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note:</strong> Please note that container names should be a valid URI.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Swift Integration</a><ul>
+<li><a class="reference internal" href="#hadoop-patching">Hadoop patching</a></li>
+<li><a class="reference internal" href="#hadoop-configurations">Hadoop configurations</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="guest-requirements.html"
+                        title="previous chapter">Requirements for Guests</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="diskimagebuilder.html"
+                        title="next chapter">Building Images for Vanilla Plugin</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/hadoop-swift.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="diskimagebuilder.html" title="Building Images for Vanilla Plugin"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="guest-requirements.html" title="Requirements for Guests"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

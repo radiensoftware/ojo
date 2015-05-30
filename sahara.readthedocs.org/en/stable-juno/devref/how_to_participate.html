@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Participate &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="How to build Oozie" href="how_to_build_oozie.html" />
+    <link rel="prev" title="Quickstart guide" href="quickstart.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/how_to_participate.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/how_to_participate",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/how_to_participate";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="how-to-participate">
+<h1>How to Participate<a class="headerlink" href="#how-to-participate" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create account on <a class="reference external" href="https://github.com/openstack/sahara">Github</a>
+(if you don&#8217;t have one)<ul>
+<li>Make sure that your local git is properly configured by executing
+<tt class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--list</span></tt>. If not, configure <tt class="docutils literal"><span class="pre">user.name</span></tt>, <tt class="docutils literal"><span class="pre">user.email</span></tt></li>
+</ul>
+</li>
+<li>Create account on <a class="reference external" href="https://launchpad.net/sahara">Launchpad</a>
+(if you don&#8217;t have one)</li>
+<li>Subscribe to <a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack">OpenStack general mail-list</a></li>
+<li>Subscribe to <a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-dev">OpenStack development mail-list</a></li>
+<li>Create <a class="reference external" href="https://www.openstack.org/profile/">OpenStack profile</a></li>
+<li>Login to <a class="reference external" href="https://review.openstack.org/">OpenStack Gerrit</a> with your
+Launchpad id<ul>
+<li>Sign <a class="reference external" href="https://review.openstack.org/#/settings/agreements">OpenStack Individual Contributor License Agreement</a></li>
+<li>Make sure that your email is listed in <a class="reference external" href="https://review.openstack.org/#/settings/web-identities">identities</a></li>
+</ul>
+</li>
+<li>Subscribe to code-reviews. Go to your settings on <a class="reference external" href="http://review.openstack.org">http://review.openstack.org</a><ul>
+<li>Go to <tt class="docutils literal"><span class="pre">watched</span> <span class="pre">projects</span></tt></li>
+<li>Add <tt class="docutils literal"><span class="pre">openstack/sahara</span></tt>, <tt class="docutils literal"><span class="pre">openstack/sahara-dashboard</span></tt>,
+<tt class="docutils literal"><span class="pre">openstack/sahara-extra</span></tt>, <tt class="docutils literal"><span class="pre">openstack/python-saharaclient</span></tt>,
+<tt class="docutils literal"><span class="pre">openstack/sahara-image-elements</span></tt></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-stay-in-touch-with-the-community">
+<h2>How to stay in touch with the community?<a class="headerlink" href="#how-to-stay-in-touch-with-the-community" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>If you have something to discuss use
+<a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-dev">OpenStack development mail-list</a>.
+Prefix mail subject with <tt class="docutils literal"><span class="pre">[Sahara]</span></tt></li>
+<li>Join <tt class="docutils literal"><span class="pre">#openstack-sahara</span></tt> IRC channel on <a class="reference external" href="http://freenode.net/">freenode</a></li>
+<li>Join public weekly meetings on <em>Thursdays at 18:00 UTC</em> on
+<tt class="docutils literal"><span class="pre">#openstack-meeting-alt</span></tt> IRC channel</li>
+</ul>
+</div>
+<div class="section" id="how-to-send-your-first-patch-on-review">
+<h2>How to send your first patch on review?<a class="headerlink" href="#how-to-send-your-first-patch-on-review" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Checkout Sahara code from <a class="reference external" href="https://github.com/openstack/sahara">Github</a></li>
+<li>Carefully read <a class="reference external" href="https://wiki.openstack.org/wiki/Gerrit_Workflow">https://wiki.openstack.org/wiki/Gerrit_Workflow</a><ul>
+<li>Pay special attention to <a class="reference external" href="https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes">https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes</a></li>
+</ul>
+</li>
+<li>Apply and commit your changes</li>
+<li>Make sure that your code passes <tt class="docutils literal"><span class="pre">PEP8</span></tt> checks and unit-tests.
+See <a class="reference internal" href="development.guidelines.html"><em>Development Guidelines</em></a></li>
+<li>Send your patch on review</li>
+<li>Monitor status of your patch review on <a class="reference external" href="https://review.openstack.org/#/">https://review.openstack.org/#/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to Participate</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#how-to-stay-in-touch-with-the-community">How to stay in touch with the community?</a></li>
+<li><a class="reference internal" href="#how-to-send-your-first-patch-on-review">How to send your first patch on review?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="previous chapter">Quickstart guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="how_to_build_oozie.html"
+                        title="next chapter">How to build Oozie</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/how_to_participate.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="how_to_build_oozie.html" title="How to build Oozie"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quickstart guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

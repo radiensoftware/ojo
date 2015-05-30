@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Setting Up a Development Environment &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara UI Dev Environment Setup" href="../horizon/dev.environment.guide.html" />
+    <link rel="prev" title="Development Guidelines" href="development.guidelines.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/development.environment.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/development.environment",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/development.environment";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="setting-up-a-development-environment">
+<h1>Setting Up a Development Environment<a class="headerlink" href="#setting-up-a-development-environment" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how to setup a Sahara development environment by either
+installing it as a part of DevStack or pointing a local running instance at an
+external OpenStack. You should be able to debug and test your changes without
+having to deploy Sahara.</p>
+<div class="section" id="setup-a-local-environment-with-sahara-inside-devstack">
+<h2>Setup a Local Environment with Sahara inside DevStack<a class="headerlink" href="#setup-a-local-environment-with-sahara-inside-devstack" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="devstack.html"><em>the main article</em></a>.</p>
+</div>
+<div class="section" id="setup-a-local-environment-with-an-external-openstack">
+<h2>Setup a Local Environment with an external OpenStack<a class="headerlink" href="#setup-a-local-environment-with-an-external-openstack" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Install prerequisites</li>
+</ol>
+<p>On OS X Systems:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> we actually need pip, which is part of python package
+<span class="gp">$</span> brew install python mysql postgresql
+<span class="gp">$</span> pip install virtualenv tox
+</pre></div>
+</div>
+<p>On Ubuntu:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get update
+<span class="gp">$</span> sudo apt-get install git-core python-dev python-virtualenv gcc libpq-dev libmysqlclient-dev python-pip
+<span class="gp">$</span> sudo pip install tox
+</pre></div>
+</div>
+<p>On Fedora-based distributions (e.g., Fedora/RHEL/CentOS/Scientific Linux):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo yum install git-core python-devel python-virtualenv gcc python-pip mariadb-devel postgresql-devel
+<span class="gp">$</span> sudo pip install tox
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Grab the code from GitHub:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone git://github.com/openstack/sahara.git
+<span class="gp">$</span> <span class="nb">cd </span>sahara
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Create config file from the sample:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> cp ./etc/sahara/sahara.conf.sample-basic ./etc/sahara/sahara.conf
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Look through the sahara.conf and modify parameter values as needed.
+For details see
+<a class="reference internal" href="../userdoc/configuration.guide.html"><em>Sahara Configuration Guide</em></a></li>
+<li>Create database schema:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tox -e venv -- sahara-db-manage --config-file etc/sahara/sahara.conf upgrade head
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>To start Sahara call:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tox -e venv -- sahara-all --config-file etc/sahara/sahara.conf --debug
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-local-openstack-dashboard-with-sahara-plugin">
+<h2>Setup local OpenStack dashboard with Sahara plugin<a class="headerlink" href="#setup-local-openstack-dashboard-with-sahara-plugin" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../horizon/dev.environment.guide.html">Sahara UI Dev Environment Setup</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="tips-and-tricks-for-dev-environment">
+<h2>Tips and tricks for dev environment<a class="headerlink" href="#tips-and-tricks-for-dev-environment" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Pip speedup</li>
+</ol>
+<p>Add the following lines to ~/.pip/pip.conf</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="k">[global]</span>
+<span class="na">download-cache</span> <span class="o">=</span> <span class="s">/home/&lt;username&gt;/.pip/cache</span>
+<span class="na">index-url</span> <span class="o">=</span> <span class="s">&lt;mirror url&gt;</span>
+</pre></div>
+</div>
+<p>Note that the <tt class="docutils literal"><span class="pre">~/.pip/cache</span></tt> folder should be created manually.</p>
+<ol class="arabic simple" start="2">
+<li>Git hook for fast checks</li>
+</ol>
+<p>Just add the following lines to .git/hooks/pre-commit and do chmod +x for it.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span>!/bin/sh
+<span class="gp">#</span> Run fast checks <span class="o">(</span>PEP8 style check and PyFlakes fast static analysis<span class="o">)</span>
+<span class="go">tools/run_fast_checks</span>
+</pre></div>
+</div>
+<p>You can added the same check for pre-push, for example, run_tests and run_pylint.</p>
+<ol class="arabic simple" start="3">
+<li>Running static analysis (PyLint)</li>
+</ol>
+<p>Just run the following command</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">tools/run_pylint</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Setting Up a Development Environment</a><ul>
+<li><a class="reference internal" href="#setup-a-local-environment-with-sahara-inside-devstack">Setup a Local Environment with Sahara inside DevStack</a></li>
+<li><a class="reference internal" href="#setup-a-local-environment-with-an-external-openstack">Setup a Local Environment with an external OpenStack</a></li>
+<li><a class="reference internal" href="#setup-local-openstack-dashboard-with-sahara-plugin">Setup local OpenStack dashboard with Sahara plugin</a></li>
+<li><a class="reference internal" href="#tips-and-tricks-for-dev-environment">Tips and tricks for dev environment</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="development.guidelines.html"
+                        title="previous chapter">Development Guidelines</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../horizon/dev.environment.guide.html"
+                        title="next chapter">Sahara UI Dev Environment Setup</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/development.environment.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dev.environment.guide.html" title="Sahara UI Dev Environment Setup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="development.guidelines.html" title="Development Guidelines"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

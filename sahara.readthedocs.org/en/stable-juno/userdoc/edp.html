@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Elastic Data Processing (EDP) &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara REST API docs" href="../restapi/index.html" />
+    <link rel="prev" title="Spark Plugin" href="spark_plugin.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/edp.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/edp",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/edp";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="elastic-data-processing-edp">
+<h1>Elastic Data Processing (EDP)<a class="headerlink" href="#elastic-data-processing-edp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Sahara&#8217;s Elastic Data Processing facility or <em class="dfn">EDP</em> allows the execution of jobs on clusters created from Sahara. EDP supports:</p>
+<ul class="simple">
+<li>Hive, Pig, MapReduce, MapReduce.Streaming and Java job types on Hadoop clusters</li>
+<li>Spark jobs on Spark standalone clusters</li>
+<li>storage of job binaries in Swift or Sahara&#8217;s own database</li>
+<li>access to input and output data sources in<ul>
+<li>HDFS for all job types</li>
+<li>Swift for all types excluding Spark and Hive</li>
+</ul>
+</li>
+<li>configuration of jobs at submission time</li>
+<li>execution of jobs on existing clusters or transient clusters</li>
+</ul>
+</div>
+<div class="section" id="interfaces">
+<h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h2>
+<p>The EDP features can be used from the Sahara web UI which is described in the <a class="reference internal" href="../horizon/dashboard.user.guide.html"><em>Sahara (Data Processing) UI User Guide</em></a>.</p>
+<p>The EDP features also can be used directly by a client through the <a class="reference internal" href="../restapi/rest_api_v1.1_EDP.html"><em>Sahara REST API v1.1 (EDP)</em></a>.</p>
+</div>
+<div class="section" id="edp-concepts">
+<h2>EDP Concepts<a class="headerlink" href="#edp-concepts" title="Permalink to this headline">¶</a></h2>
+<p>Sahara EDP uses a collection of simple objects to define and execute jobs. These objects are stored in the Sahara database when they
+are created, allowing them to be reused.  This modular approach with database persistence allows code and data to be reused across multiple jobs.</p>
+<p>The essential components of a job are:</p>
+<ul class="simple">
+<li>executable code to run</li>
+<li>input data to process</li>
+<li>an output data location</li>
+<li>any additional configuration values needed for the job run</li>
+</ul>
+<p>These components are supplied through the objects described below.</p>
+<div class="section" id="job-binaries">
+<h3>Job Binaries<a class="headerlink" href="#job-binaries" title="Permalink to this headline">¶</a></h3>
+<p>A <em class="dfn">Job Binary</em> object stores a URL to a single script or Jar file and any credentials needed to retrieve the file.  The file itself may be stored in the Sahara internal database or in Swift.</p>
+<p>Files in the Sahara database are stored as raw bytes in a <em class="dfn">Job Binary Internal</em> object.  This object&#8217;s sole purpose is to store a file for later retrieval.  No extra credentials need to be supplied for files stored internally.</p>
+<p>Sahara requires credentials (username and password) to access files stored in Swift unless Swift proxy users are configured as described in <a class="reference internal" href="advanced.configuration.guide.html"><em>Sahara Advanced Configuration Guide</em></a>. The Swift service must be running in the same OpenStack installation referenced by Sahara.</p>
+<p>There is a configurable limit on the size of a single job binary that may be retrieved by Sahara.  This limit is 5MB and may be set with the <em>job_binary_max_KB</em> setting in the <tt class="file docutils literal"><span class="pre">sahara.conf</span></tt> configuration file.</p>
+</div>
+<div class="section" id="jobs">
+<h3>Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h3>
+<p>A <em class="dfn">Job</em> object specifies the type of the job and lists all of the individual Job Binary objects that are required for execution. An individual Job Binary may be referenced by multiple Jobs.  A Job object specifies a main binary and/or supporting libraries depending on its type:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="27%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Job type</th>
+<th class="head">Main binary</th>
+<th class="head">Libraries</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Hive</span></tt></td>
+<td>required</td>
+<td>optional</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Pig</span></tt></td>
+<td>required</td>
+<td>optional</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">MapReduce</span></tt></td>
+<td>not used</td>
+<td>required</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">MapReduce.Streaming</span></tt></td>
+<td>not used</td>
+<td>optional</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Java</span></tt></td>
+<td>not used</td>
+<td>required</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Spark</span></tt></td>
+<td>required</td>
+<td>optional</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="data-sources">
+<h3>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+<p>A <em class="dfn">Data Source</em> object stores a URL which designates the location of input or output data and any credentials needed to access the location.</p>
+<p>Sahara supports data sources in Swift. The Swift service must be running in the same OpenStack installation referenced by Sahara.</p>
+<p>Sahara also supports data sources in HDFS. Any HDFS instance running on a Sahara cluster in the same OpenStack installation is accessible without manual configuration. Other instances of HDFS may be used as well provided that the URL is resolvable from the node executing the job.</p>
+</div>
+<div class="section" id="job-execution">
+<h3>Job Execution<a class="headerlink" href="#job-execution" title="Permalink to this headline">¶</a></h3>
+<p>Job objects must be <em>launched</em> or <em>executed</em> in order for them to run on the cluster. During job launch, a user specifies execution details including data sources, configuration values, and program arguments. The relevant details will vary by job type. The launch will create a <em class="dfn">Job Execution</em> object in Sahara which is used to monitor and manage the job.</p>
+<p>To execute Hadoop jobs, Sahara generates an Oozie workflow and submits it to the Oozie server running on the cluster. Familiarity with Oozie is not necessary for using Sahara but it may be beneficial to the user.  A link to the Oozie web console can be found in the Sahara web UI in the cluster details.</p>
+<p>For Spark jobs, Sahara uses the <em>spark-submit</em> shell script and executes the Spark job from the master node. Logs of spark jobs run by Sahara can be found on the master node under the <em>/tmp/spark-edp</em> directory.</p>
+</div>
+</div>
+<div class="section" id="general-workflow">
+<span id="edp-workflow"></span><h2>General Workflow<a class="headerlink" href="#general-workflow" title="Permalink to this headline">¶</a></h2>
+<p>The general workflow for defining and executing a job in Sahara is essentially the same whether using the web UI or the REST API.</p>
+<ol class="arabic simple">
+<li>Launch a cluster from Sahara if there is not one already available</li>
+<li>Create all of the Job Binaries needed to run the job, stored in the Sahara database or in Swift<ul>
+<li>When using the REST API and internal storage of job binaries, there is an extra step here to first create the Job Binary Internal objects</li>
+<li>Once the Job Binary Internal objects are created, Job Binary objects may be created which refer to them by URL</li>
+</ul>
+</li>
+<li>Create a Job object which references the Job Binaries created in step 2</li>
+<li>Create an input Data Source which points to the data you wish to process</li>
+<li>Create an output Data Source which points to the location for output data</li>
+</ol>
+<p>(Steps 4 and 5 do not apply to Java or Spark job types. See <a class="reference internal" href="#additional-details-for-java-jobs">Additional Details for Java jobs</a> and <a class="reference internal" href="#additional-details-for-spark-jobs">Additional Details for Spark jobs</a>)</p>
+<ol class="arabic simple" start="6">
+<li>Create a Job Execution object specifying the cluster and Job object plus relevant data sources, configuration values, and program arguments<ul>
+<li>When using the web UI this is done with the <em class="guilabel">Launch On Existing Cluster</em> or <em class="guilabel">Launch on New Cluster</em> buttons on the Jobs tab</li>
+<li>When using the REST API this is done via the <em>/jobs/&lt;job_id&gt;/execute</em> method</li>
+</ul>
+</li>
+</ol>
+<p>The workflow is simpler when using existing objects.  For example, to construct a new job which uses existing binaries and input data a user may only need to perform steps 3, 5, and 6 above.  Of course, to repeat the same job multiple times a user would need only step 6.</p>
+<div class="section" id="specifying-configuration-values-parameters-and-arguments">
+<h3>Specifying Configuration Values, Parameters, and Arguments<a class="headerlink" href="#specifying-configuration-values-parameters-and-arguments" title="Permalink to this headline">¶</a></h3>
+<p>Jobs can be configured at launch. The job type determines the kinds of values that may be set:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="22%" />
+<col width="19%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Job type</th>
+<th class="head">Configration
+Values</th>
+<th class="head">Parameters</th>
+<th class="head">Arguments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Hive</span></tt></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Pig</span></tt></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">MapReduce</span></tt></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">MapReduce.Streaming</span></tt></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Java</span></tt></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Spark</span></tt></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul class="simple">
+<li><em class="dfn">Configuration values</em> are key/value pairs.<ul>
+<li>The EDP configuration values have names beginning with <em>edp.</em> and are consumed by Sahara</li>
+<li>Other configuration values may be read at runtime by Hadoop jobs</li>
+<li>Currently additional configuration values are not available to Spark jobs at runtime</li>
+</ul>
+</li>
+<li><em class="dfn">Parameters</em> are key/value pairs. They supply values for the Hive and Pig parameter substitution mechanisms.</li>
+<li><em class="dfn">Arguments</em> are strings passed as command line arguments to a shell or main program</li>
+</ul>
+<p>These values can be set on the <em class="guilabel">Configure</em> tab during job launch through the web UI or through the <em>job_configs</em> parameter when using the  <em>/jobs/&lt;job_id&gt;/execute</em> REST method.</p>
+<p>In some cases Sahara generates configuration values or parameters automatically. Values set explicitly by the user during launch will override those generated by Sahara.</p>
+</div>
+<div class="section" id="generation-of-swift-properties-for-data-sources">
+<h3>Generation of Swift Properties for Data Sources<a class="headerlink" href="#generation-of-swift-properties-for-data-sources" title="Permalink to this headline">¶</a></h3>
+<p>If Swift proxy users are not configured (see <a class="reference internal" href="advanced.configuration.guide.html"><em>Sahara Advanced Configuration Guide</em></a>) and a job is run with data sources in Swift, Sahara will automatically generate Swift username and password configuration values based on the credentials in the data sources.  If the input and output data sources are both in Swift, it is expected that they specify the same credentials.</p>
+<p>The Swift credentials can be set explicitly with the following configuration values:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>fs.swift.service.sahara.username</td>
+</tr>
+<tr class="row-odd"><td>fs.swift.service.sahara.password</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="additional-details-for-hive-jobs">
+<h3>Additional Details for Hive jobs<a class="headerlink" href="#additional-details-for-hive-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Sahara will automatically generate values for the <tt class="docutils literal"><span class="pre">INPUT</span></tt> and <tt class="docutils literal"><span class="pre">OUTPUT</span></tt> parameters required by Hive based on the specified data sources.</p>
+</div>
+<div class="section" id="additional-details-for-pig-jobs">
+<h3>Additional Details for Pig jobs<a class="headerlink" href="#additional-details-for-pig-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Sahara will automatically generate values for the <tt class="docutils literal"><span class="pre">INPUT</span></tt> and <tt class="docutils literal"><span class="pre">OUTPUT</span></tt> parameters required by Pig based on the specified data sources.</p>
+<p>For Pig jobs, <tt class="docutils literal"><span class="pre">arguments</span></tt> should be thought of as command line arguments separated by spaces and passed to the <tt class="docutils literal"><span class="pre">pig</span></tt> shell.</p>
+<p><tt class="docutils literal"><span class="pre">Parameters</span></tt> are a shorthand and are actually translated to the arguments <tt class="docutils literal"><span class="pre">-param</span> <span class="pre">name=value</span></tt></p>
+</div>
+<div class="section" id="additional-details-for-mapreduce-jobs">
+<h3>Additional Details for MapReduce jobs<a class="headerlink" href="#additional-details-for-mapreduce-jobs" title="Permalink to this headline">¶</a></h3>
+<p><strong>Important!</strong></p>
+<p>If the job type is MapReduce, the mapper and reducer classes <em>must</em> be specified as configuration values.
+Note, the UI will not prompt the user for these required values, they must be added manually with the <tt class="docutils literal"><span class="pre">Configure</span></tt> tab.
+Make sure to add these values with the correct names:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Example Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>mapred.mapper.class</td>
+<td>org.apache.oozie.example.SampleMapper</td>
+</tr>
+<tr class="row-odd"><td>mapred.reducer.class</td>
+<td>org.apache.oozie.example.SampleReducer</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="additional-details-for-mapreduce-streaming-jobs">
+<h3>Additional Details for MapReduce.Streaming jobs<a class="headerlink" href="#additional-details-for-mapreduce-streaming-jobs" title="Permalink to this headline">¶</a></h3>
+<p><strong>Important!</strong></p>
+<p>If the job type is MapReduce.Streaming, the streaming mapper and reducer classes <em>must</em> be specified.</p>
+<p>In this case, the UI <em>will</em> prompt the user to enter mapper and reducer values on the form and will take care of
+adding them to the job configuration with the appropriate names. If using the python client, however, be certain
+to add these values to the job configuration manually with the correct names:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Example Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>edp.streaming.mapper</td>
+<td>/bin/cat</td>
+</tr>
+<tr class="row-odd"><td>edp.streaming.reducer</td>
+<td>/usr/bin/wc</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="additional-details-for-java-jobs">
+<h3>Additional Details for Java jobs<a class="headerlink" href="#additional-details-for-java-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Java jobs use two special configuration values:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">edp.java.main_class</span></tt> (required) Specifies the class containing <tt class="docutils literal"><span class="pre">main(String[]</span> <span class="pre">args)</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">edp.java.java_opts</span></tt> (optional) Specifies configuration values for the JVM</li>
+</ul>
+<p>A Java job will execute the <tt class="docutils literal"><span class="pre">main(String[]</span> <span class="pre">args)</span></tt> method of the specified main class.  There are two methods of passing
+values to the <tt class="docutils literal"><span class="pre">main</span></tt> method:</p>
+<ul>
+<li><p class="first">Passing values as arguments</p>
+<p>Arguments set during job launch will be passed in the <tt class="docutils literal"><span class="pre">String[]</span> <span class="pre">args</span></tt> array.</p>
+</li>
+<li><p class="first">Setting configuration values</p>
+<p>Any configuration values that are set can be read from a special file created by Oozie.</p>
+</li>
+</ul>
+<p>Data Source objects are not used with Java job types. Instead, any input or output paths must be passed to the <tt class="docutils literal"><span class="pre">main</span></tt> method
+using one of the above two methods. Furthermore, if Swift data sources are used the configuration values listed in <a class="reference internal" href="#generation-of-swift-properties-for-data-sources">Generation of Swift Properties for Data Sources</a>  must be passed with one of the above two methods and set in the configuration by <tt class="docutils literal"><span class="pre">main</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">edp-wordcount</span></tt> example bundled with Sahara shows how to use configuration values, arguments, and Swift data paths in a Java job type.</p>
+</div>
+<div class="section" id="additional-details-for-spark-jobs">
+<h3>Additional Details for Spark jobs<a class="headerlink" href="#additional-details-for-spark-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Spark jobs use a special configuration value:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">edp.java.main_class</span></tt> (required) Specifies the class containing the Java or Scala main method:<ul>
+<li><tt class="docutils literal"><span class="pre">main(String[]</span> <span class="pre">args)</span></tt> for Java</li>
+<li><tt class="docutils literal"><span class="pre">main(args:</span> <span class="pre">Array[String]</span></tt> for Scala</li>
+</ul>
+</li>
+</ul>
+<p>A Spark job will execute the <tt class="docutils literal"><span class="pre">main</span></tt> method of the specified main class. Values may be passed to
+the main method through the <tt class="docutils literal"><span class="pre">args</span></tt> array. Any arguments set during job launch will be passed to the
+program as commandline arguments by <em>spark-submit</em>.</p>
+<p>Data Source objects are not used with Spark job types. Instead, any input or output paths must be passed to the <tt class="docutils literal"><span class="pre">main</span></tt> method
+as arguments. Remember that Swift paths are not supported for Spark jobs currently.</p>
+<p>The <tt class="docutils literal"><span class="pre">edp-spark</span></tt> example bundled with Sahara contains a Spark program for estimating Pi.</p>
+</div>
+</div>
+<div class="section" id="special-sahara-urls">
+<h2>Special Sahara URLs<a class="headerlink" href="#special-sahara-urls" title="Permalink to this headline">¶</a></h2>
+<p>Sahara uses custom URLs to refer to objects stored in Swift or the Sahara internal database.  These URLs are not meant to be used
+outside of Sahara.</p>
+<p>Sahara Swift URLs passed to running jobs as input or output sources include a &#8221;.sahara&#8221; suffix on the container, for example:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">swift://container.sahara/object</span></tt></div></blockquote>
+<p>You may notice these Swift URLs in job logs, however, you do not need to add the suffix to the containers
+yourself. Sahara will add the suffix if necessary, so when using the UI or the python client you may write the above URL simply as:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">swift://container/object</span></tt></div></blockquote>
+<p>Sahara internal database URLs have the form:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">internal-db://sahara-generated-uuid</span></tt></div></blockquote>
+<p>This indicates a file object in the Sahara database which has the given uuid as a key</p>
+</div>
+</div>
+<div class="section" id="edp-requirements">
+<h1>EDP Requirements<a class="headerlink" href="#edp-requirements" title="Permalink to this headline">¶</a></h1>
+<p>The OpenStack installation and the cluster launched from Sahara must meet the following minimum requirements in order for EDP to function:</p>
+<div class="section" id="openstack-services">
+<h2>OpenStack Services<a class="headerlink" href="#openstack-services" title="Permalink to this headline">¶</a></h2>
+<p>When a Hadoop job is executed, binaries are first uploaded to a cluster node and then moved from the node local filesystem to HDFS. Therefore, there must be an instance of HDFS available to the nodes in the Sahara cluster.</p>
+<p>If the Swift service <em>is not</em> running in the OpenStack installation</p>
+<blockquote>
+<div><ul class="simple">
+<li>Job binaries may only be stored in the Sahara internal database</li>
+<li>Data sources require a long-running HDFS</li>
+</ul>
+</div></blockquote>
+<p>If the Swift service <em>is</em> running in the OpenStack installation</p>
+<blockquote>
+<div><ul class="simple">
+<li>Job binaries may be stored in Swift or the Sahara internal database</li>
+<li>Data sources may be in Swift or a long-running HDFS</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="cluster-processes">
+<h2>Cluster Processes<a class="headerlink" href="#cluster-processes" title="Permalink to this headline">¶</a></h2>
+<p>Requirements for EDP support depend on the EDP job type and plugin used for the cluster.
+For example a Vanilla Sahara cluster must run at least one instance of these processes
+to support EDP:</p>
+<ul class="simple">
+<li>For Hadoop version 1:<ul>
+<li>jobtracker</li>
+<li>namenode</li>
+<li>oozie</li>
+<li>tasktracker</li>
+<li>datanode</li>
+</ul>
+</li>
+<li>For Hadoop version 2:<ul>
+<li>namenode</li>
+<li>datanode</li>
+<li>resourcemanager</li>
+<li>nodemanager</li>
+<li>historyserver</li>
+<li>oozie</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="edp-technical-considerations">
+<h1>EDP Technical Considerations<a class="headerlink" href="#edp-technical-considerations" title="Permalink to this headline">¶</a></h1>
+<p>There are a several things in EDP which require attention in order
+to work properly. They are listed on this page.</p>
+<div class="section" id="transient-clusters">
+<h2>Transient Clusters<a class="headerlink" href="#transient-clusters" title="Permalink to this headline">¶</a></h2>
+<p>EDP allows running jobs on transient clusters. In this case the cluster is created
+specifically for the job and is shut down automatically once the job is
+finished.</p>
+<p>Two config parameters control the behaviour of periodic clusters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>periodic_enable - if set to &#8216;False&#8217;, Sahara will do nothing to a transient
+cluster once the job it was created for is completed. If it is set to
+&#8216;True&#8217;, then the behaviour depends on the value of the next parameter.</li>
+<li>use_identity_api_v3 - set it to &#8216;False&#8217; if your OpenStack installation
+does not provide Keystone API v3. In that case Sahara will not terminate
+unneeded clusters. Instead it will set their state to &#8216;AwaitingTermination&#8217;
+meaning that they could be manually deleted by a user. If the parameter is
+set to &#8216;True&#8217;, Sahara will itself terminate the cluster. The limitation is
+caused by lack of &#8216;trusts&#8217; feature in Keystone API older than v3.</li>
+</ul>
+</div></blockquote>
+<p>If both parameters are set to &#8216;True&#8217;, Sahara works with transient clusters in
+the following manner:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>When a user requests for a job to be executed on a transient cluster,
+Sahara creates such a cluster.</li>
+<li>Sahara drops the user&#8217;s credentials once the cluster is created but
+prior to that it creates a trust allowing it to operate with the
+cluster instances in the future without user credentials.</li>
+<li>Once a cluster is not needed, Sahara terminates its instances using the
+stored trust. Sahara drops the trust after that.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Elastic Data Processing (EDP)</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#interfaces">Interfaces</a></li>
+<li><a class="reference internal" href="#edp-concepts">EDP Concepts</a><ul>
+<li><a class="reference internal" href="#job-binaries">Job Binaries</a></li>
+<li><a class="reference internal" href="#jobs">Jobs</a></li>
+<li><a class="reference internal" href="#data-sources">Data Sources</a></li>
+<li><a class="reference internal" href="#job-execution">Job Execution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#general-workflow">General Workflow</a><ul>
+<li><a class="reference internal" href="#specifying-configuration-values-parameters-and-arguments">Specifying Configuration Values, Parameters, and Arguments</a></li>
+<li><a class="reference internal" href="#generation-of-swift-properties-for-data-sources">Generation of Swift Properties for Data Sources</a></li>
+<li><a class="reference internal" href="#additional-details-for-hive-jobs">Additional Details for Hive jobs</a></li>
+<li><a class="reference internal" href="#additional-details-for-pig-jobs">Additional Details for Pig jobs</a></li>
+<li><a class="reference internal" href="#additional-details-for-mapreduce-jobs">Additional Details for MapReduce jobs</a></li>
+<li><a class="reference internal" href="#additional-details-for-mapreduce-streaming-jobs">Additional Details for MapReduce.Streaming jobs</a></li>
+<li><a class="reference internal" href="#additional-details-for-java-jobs">Additional Details for Java jobs</a></li>
+<li><a class="reference internal" href="#additional-details-for-spark-jobs">Additional Details for Spark jobs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#special-sahara-urls">Special Sahara URLs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edp-requirements">EDP Requirements</a><ul>
+<li><a class="reference internal" href="#openstack-services">OpenStack Services</a></li>
+<li><a class="reference internal" href="#cluster-processes">Cluster Processes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edp-technical-considerations">EDP Technical Considerations</a><ul>
+<li><a class="reference internal" href="#transient-clusters">Transient Clusters</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spark_plugin.html"
+                        title="previous chapter">Spark Plugin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../restapi/index.html"
+                        title="next chapter">Sahara REST API docs</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/edp.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../restapi/index.html" title="Sahara REST API docs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spark_plugin.html" title="Spark Plugin"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

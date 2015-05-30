@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sahara Configuration Guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara Advanced Configuration Guide" href="advanced.configuration.guide.html" />
+    <link rel="prev" title="Sahara Installation Guide" href="installation.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/configuration.guide.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/configuration.guide",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/configuration.guide";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sahara-configuration-guide">
+<h1>Sahara Configuration Guide<a class="headerlink" href="#sahara-configuration-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide covers steps for basic configuration of Sahara.
+It will help you to configure the service in the most simple manner.</p>
+<p>Let&#8217;s start by configuring Sahara server. The server is packaged
+with two sample config files: <tt class="docutils literal"><span class="pre">sahara.conf.sample-basic</span></tt> and
+<tt class="docutils literal"><span class="pre">sahara.conf.sample</span></tt>. The former contains all essential parameters,
+while the later contains the full list. We recommend to create your config
+based on the basic sample, as most probably changing parameters listed here
+will be enough.</p>
+<p>First, edit <tt class="docutils literal"><span class="pre">connection</span></tt> parameter in the <tt class="docutils literal"><span class="pre">[database]</span></tt> section. The URL
+provided here should point to an empty database. For instance, connection
+string for mysql database will be:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">connection</span><span class="o">=</span><span class="s">mysql://username:password@host:port/database</span>
+</pre></div>
+</div>
+<p>Switch to the <tt class="docutils literal"><span class="pre">[keystone_authtoken]</span></tt> section. The <tt class="docutils literal"><span class="pre">auth_uri</span></tt> parameter
+should point to the public Identity API endpoint. <tt class="docutils literal"><span class="pre">identity_uri</span></tt> should
+point to the admin Identity API endpoint. For example:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">auth_uri</span><span class="o">=</span><span class="s">http://127.0.0.1:5000/v2.0/</span>
+<span class="na">identity_uri</span><span class="o">=</span><span class="s">http://127.0.0.1:35357/</span>
+</pre></div>
+</div>
+<p>Next specify <tt class="docutils literal"><span class="pre">admin_user</span></tt>, <tt class="docutils literal"><span class="pre">admin_password</span></tt> and
+<tt class="docutils literal"><span class="pre">admin_tenant_name</span></tt>. These parameters must specify a keystone user
+which has the <tt class="docutils literal"><span class="pre">admin</span></tt> role in the given tenant. These credentials allow
+Sahara to authenticate and authorize its users.</p>
+<p>Switch to the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.  Proceed to the networking parameters.
+If you are using Neutron for networking, then set</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">use_neutron</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Otherwise if you are using Nova-Network set the given parameter to false.</p>
+<p>That should be enough for the first run. If you want to increase logging
+level for troubleshooting, there are two parameters in the config:
+<tt class="docutils literal"><span class="pre">verbose</span></tt> and <tt class="docutils literal"><span class="pre">debug</span></tt>. If the former is set to true, Sahara will start
+to write logs of INFO level and above. If <tt class="docutils literal"><span class="pre">debug</span></tt> is set to true,
+Sahara will write all the logs, including the DEBUG ones.</p>
+<div class="section" id="sahara-notifications-configuration">
+<h2>Sahara notifications configuration<a class="headerlink" href="#sahara-notifications-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Sahara can send notifications to Ceilometer, if it&#8217;s enabled.
+If you want to enable notifications you should switch to <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt>
+section and set:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">enable_notifications</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">notification_driver</span> <span class="o">=</span> <span class="s">messaging</span>
+</pre></div>
+</div>
+<p>The current default for Sahara is to use the backend that utilizes RabbitMQ
+as the message broker. You should configure your backend. It&#8217;s recommended to use
+Rabbit or Qpid.</p>
+<p>If you are using Rabbit as a backend, then you should set:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">rpc_backend</span> <span class="o">=</span> <span class="s">rabbit</span>
+</pre></div>
+</div>
+<p>And after that you should specify following options:
+<tt class="docutils literal"><span class="pre">rabbit_host</span></tt>, <tt class="docutils literal"><span class="pre">rabbit_port</span></tt>, <tt class="docutils literal"><span class="pre">rabbit_userid</span></tt>,
+<tt class="docutils literal"><span class="pre">rabbit_password</span></tt>, <tt class="docutils literal"><span class="pre">rabbit_virtual_host</span></tt> and <tt class="docutils literal"><span class="pre">rabbit_hosts</span></tt>.</p>
+<p>As example you can see default values of these options:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">rabbit_host</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">rabbit_port</span><span class="o">=</span><span class="s">5672</span>
+<span class="na">rabbit_hosts</span><span class="o">=</span><span class="s">$rabbit_host:$rabbit_port</span>
+<span class="na">rabbit_userid</span><span class="o">=</span><span class="s">guest</span>
+<span class="na">rabbit_password</span><span class="o">=</span><span class="s">guest</span>
+<span class="na">rabbit_virtual_host</span><span class="o">=</span><span class="s">/</span>
+</pre></div>
+</div>
+<p>If you are using Qpid as backend, then you should set:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">rpc_backend</span> <span class="o">=</span> <span class="s">qpid</span>
+</pre></div>
+</div>
+<p>And after that you should specify following options:
+<tt class="docutils literal"><span class="pre">qpid_hostname</span></tt>, <tt class="docutils literal"><span class="pre">qpid_port</span></tt>, <tt class="docutils literal"><span class="pre">qpid_username</span></tt>,
+<tt class="docutils literal"><span class="pre">qpid_password</span></tt> and <tt class="docutils literal"><span class="pre">qpid_hosts</span></tt>.</p>
+<p>As example you can see default values of these options:</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">qpid_hostname</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">qpid_port</span><span class="o">=</span><span class="s">5672</span>
+<span class="na">qpid_hosts</span><span class="o">=</span><span class="s">$qpid_hostname:$qpid_port</span>
+<span class="na">qpid_username</span><span class="o">=</span>
+<span class="na">qpid_password</span><span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sahara Configuration Guide</a><ul>
+<li><a class="reference internal" href="#sahara-notifications-configuration">Sahara notifications configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.guide.html"
+                        title="previous chapter">Sahara Installation Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="advanced.configuration.guide.html"
+                        title="next chapter">Sahara Advanced Configuration Guide</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/configuration.guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="advanced.configuration.guide.html" title="Sahara Advanced Configuration Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.guide.html" title="Sahara Installation Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Setup DevStack &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara UI Dev Environment Setup" href="../horizon/dev.environment.guide.html" />
+    <link rel="prev" title="Sahara UI Dev Environment Setup" href="../horizon/dev.environment.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/devstack.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/devstack",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/devstack";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="setup-devstack">
+<h1>Setup DevStack<a class="headerlink" href="#setup-devstack" title="Permalink to this headline">¶</a></h1>
+<p>The DevStack could be installed on Fedora, Ubuntu and CentOS. For supported
+versions see <a class="reference external" href="http://devstack.org">DevStack documentation</a></p>
+<p>We recommend to install DevStack not into your main system, but run it in
+a VM instead. That way you may avoid contamination of your system
+with various stuff. You may find hypervisor and VM requirements in the
+the next section. If you still want to install DevStack on top of your
+main system, just skip the next section and read further.</p>
+<div class="section" id="start-vm-and-set-up-os">
+<h2>Start VM and set up OS<a class="headerlink" href="#start-vm-and-set-up-os" title="Permalink to this headline">¶</a></h2>
+<p>In order to run DevStack in a local VM, you need to start by installing
+a guest with Ubuntu 12.04 server. Download an image file from
+<a class="reference external" href="http://www.ubuntu.com/download/server">Ubuntu&#8217;s web site</a> and create
+a new guest from it. Virtualization solution must support
+nested virtualization. Without nested virtualization VMs running inside
+the DevStack will be extremely slow lacking hardware acceleration, i.e.
+you will run QEMU VMs without KVM.</p>
+<p>On Linux QEMU/KVM supports nested virtualization, on Mac OS - VMware Fusion.
+VMware Fusion requires adjustments to run VM with fixed IP. You may find
+instructions which can help <a class="reference internal" href="#fusion-fixed-ip"><em>below</em></a>.</p>
+<p>Start a new VM with Ubuntu Server 12.04. Recommended settings:</p>
+<ul class="simple">
+<li>Processor - at least 2 cores</li>
+<li>Memory - at least 8GB</li>
+<li>Hard Drive - at least 60GB</li>
+</ul>
+<p>When allocating CPUs and RAM to the DevStack, assess how big clusters you
+want to run. A single Hadoop VM needs at least 1 cpu and 1G of RAM to run.
+While it is possible for several VMs to share a single cpu core, remember
+that they can&#8217;t share the RAM.</p>
+<p>After you installed the VM, connect to it via SSH and proceed with the
+instructions below.</p>
+</div>
+<div class="section" id="install-devstack">
+<h2>Install DevStack<a class="headerlink" href="#install-devstack" title="Permalink to this headline">¶</a></h2>
+<p>The instructions assume that you&#8217;ve decided to install DevStack into
+Ubuntu 12.04 system.</p>
+<ol class="arabic simple">
+<li>Clone DevStack:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install git-core
+<span class="gp">$</span> git clone https://github.com/openstack-dev/devstack.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Create file <tt class="docutils literal"><span class="pre">local.conf</span></tt> in devstack directory with the following content:</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">[[</span><span class="nb">local</span>|localrc<span class="o">]]</span>
+<span class="nv">ADMIN_PASSWORD</span><span class="o">=</span>nova
+<span class="nv">MYSQL_PASSWORD</span><span class="o">=</span>nova
+<span class="nv">RABBIT_PASSWORD</span><span class="o">=</span>nova
+<span class="nv">SERVICE_PASSWORD</span><span class="o">=</span><span class="nv">$ADMIN_PASSWORD</span>
+<span class="nv">SERVICE_TOKEN</span><span class="o">=</span>nova
+
+<span class="c"># Enable Swift</span>
+enable_service s-proxy s-object s-container s-account
+
+<span class="nv">SWIFT_HASH</span><span class="o">=</span>66a3d6b56c1f479c8b4e70ab5c2000f5
+<span class="nv">SWIFT_REPLICAS</span><span class="o">=</span>1
+<span class="nv">SWIFT_DATA_DIR</span><span class="o">=</span><span class="nv">$DEST</span>/data
+
+<span class="c"># Force checkout prerequsites</span>
+<span class="c"># FORCE_PREREQ=1</span>
+
+<span class="c"># keystone is now configured by default to use PKI as the token format which produces huge tokens.</span>
+<span class="c"># set UUID as keystone token format which is much shorter and easier to work with.</span>
+<span class="nv">KEYSTONE_TOKEN_FORMAT</span><span class="o">=</span>UUID
+
+<span class="c"># Change the FLOATING_RANGE to whatever IPs VM is working in.</span>
+<span class="c"># In NAT mode it is subnet VMware Fusion provides, in bridged mode it is your local network.</span>
+<span class="c"># But only use the top end of the network by using a /27 and starting at the 224 octet.</span>
+<span class="nv">FLOATING_RANGE</span><span class="o">=</span>192.168.55.224/27
+
+<span class="c"># Enable auto assignment of floating IPs. By default Sahara expects this setting to be enabled</span>
+<span class="nv">EXTRA_OPTS</span><span class="o">=(</span><span class="nv">auto_assign_floating_ip</span><span class="o">=</span>True<span class="o">)</span>
+
+<span class="c"># Enable logging</span>
+<span class="nv">SCREEN_LOGDIR</span><span class="o">=</span><span class="nv">$DEST</span>/logs/screen
+
+<span class="c"># Set ``OFFLINE`` to ``True`` to configure ``stack.sh`` to run cleanly without</span>
+<span class="c"># Internet access. ``stack.sh`` must have been previously run with Internet</span>
+<span class="c"># access to install prerequisites and fetch repositories.</span>
+<span class="c"># OFFLINE=True</span>
+
+<span class="c"># Enable Sahara</span>
+enable_service sahara
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Sahara can send notifications to Ceilometer, if Ceilometer is enabled.
+If you want to enable Ceilometer add the following lines to <tt class="docutils literal"><span class="pre">local.conf</span></tt> file:</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre>enable_service ceilometer-acompute ceilometer-acentral ceilometer-anotification ceilometer-collector
+enable_service ceilometer-alarm-evaluator,ceilometer-alarm-notifier
+enable_service ceilometer-api
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Start DevStack:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./stack.sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Once previous step is finished Devstack will print Horizon URL. Navigate to
+this URL and login with login &#8220;admin&#8221; and password from <tt class="docutils literal"><span class="pre">local.conf</span></tt>.</li>
+<li>Congratulations! You have OpenStack running in your VM and ready to launch VMs inside that VM :)</li>
+</ol>
+</div>
+<div class="section" id="managing-sahara-in-devstack">
+<h2>Managing Sahara in DevStack<a class="headerlink" href="#managing-sahara-in-devstack" title="Permalink to this headline">¶</a></h2>
+<p>If you install DevStack with Sahara included you can rejoin screen with
+<tt class="docutils literal"><span class="pre">rejoin-stack.sh</span></tt> command and switch to <tt class="docutils literal"><span class="pre">sahara</span></tt> tab. Here you can manage
+the Sahara service as other OpenStack services. Sahara source code is located
+at <tt class="docutils literal"><span class="pre">$DEST/sahara</span></tt> which is usually <tt class="docutils literal"><span class="pre">/opt/stack/sahara</span></tt>.</p>
+</div>
+<div class="section" id="setting-fixed-ip-address-for-vmware-fusion-vm">
+<span id="fusion-fixed-ip"></span><h2>Setting fixed IP address for VMware Fusion VM<a class="headerlink" href="#setting-fixed-ip-address-for-vmware-fusion-vm" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Open file <tt class="docutils literal"><span class="pre">/Library/Preferences/VMware</span> <span class="pre">Fusion/vmnet8/dhcpd.conf</span></tt></li>
+<li>There is a block named &#8220;subnet&#8221;. It might look like this:</li>
+</ol>
+<div class="highlight-text"><div class="highlight"><pre>subnet 192.168.55.0 netmask 255.255.255.0 {
+        range 192.168.55.128 192.168.55.254;
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>You need to pick an IP address outside of that range. For example - <tt class="docutils literal"><span class="pre">192.168.55.20</span></tt></li>
+<li>Copy VM MAC address from VM settings-&gt;Network-&gt;Advanced</li>
+<li>Append the following block to file <tt class="docutils literal"><span class="pre">dhcpd.conf</span></tt> (don&#8217;t forget to replace <tt class="docutils literal"><span class="pre">VM_HOSTNAME</span></tt> and <tt class="docutils literal"><span class="pre">VM_MAC_ADDRESS</span></tt> with actual values):</li>
+</ol>
+<div class="highlight-text"><div class="highlight"><pre>host VM_HOSTNAME {
+        hardware ethernet VM_MAC_ADDRESS;
+        fixed-address 192.168.55.20;
+}
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>Now quit all the VmWare Fusion applications and restart vmnet:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo /Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmnet-cli --stop
+<span class="gp">$</span> sudo /Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmnet-cli --start
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li>Now start your VM, it should have new fixed IP address</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Setup DevStack</a><ul>
+<li><a class="reference internal" href="#start-vm-and-set-up-os">Start VM and set up OS</a></li>
+<li><a class="reference internal" href="#install-devstack">Install DevStack</a></li>
+<li><a class="reference internal" href="#managing-sahara-in-devstack">Managing Sahara in DevStack</a></li>
+<li><a class="reference internal" href="#setting-fixed-ip-address-for-vmware-fusion-vm">Setting fixed IP address for VMware Fusion VM</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../horizon/dev.environment.guide.html"
+                        title="previous chapter">Sahara UI Dev Environment Setup</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../horizon/dev.environment.guide.html"
+                        title="next chapter">Sahara UI Dev Environment Setup</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/devstack.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dev.environment.guide.html" title="Sahara UI Dev Environment Setup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dev.environment.guide.html" title="Sahara UI Dev Environment Setup"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

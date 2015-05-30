@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Features Overview &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Registering an Image" href="registering_image.html" />
+    <link rel="prev" title="Sahara (Data Processing) UI User Guide" href="../horizon/dashboard.user.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/features.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/features",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/features";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="features-overview">
+<h1>Features Overview<a class="headerlink" href="#features-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cluster-scaling">
+<h2>Cluster Scaling<a class="headerlink" href="#cluster-scaling" title="Permalink to this headline">¶</a></h2>
+<p>The mechanism of cluster scaling is designed to enable user to change the
+number of running instances without creating a new cluster.
+User may change number of instances in existing Node Groups or add new Node
+Groups.</p>
+<p>If cluster fails to scale properly, all changes will be rolled back.</p>
+</div>
+<div class="section" id="swift-integration">
+<h2>Swift Integration<a class="headerlink" href="#swift-integration" title="Permalink to this headline">¶</a></h2>
+<p>In order to leverage Swift within Hadoop, including using Swift data sources
+from within EDP, Hadoop requires the application of a patch.
+For additional information about using Swift with Sahara, including patching
+Hadoop and configuring Sahara, please refer to the <a class="reference internal" href="hadoop-swift.html"><em>Swift Integration</em></a>
+documentation.</p>
+</div>
+<div class="section" id="cinder-support">
+<h2>Cinder support<a class="headerlink" href="#cinder-support" title="Permalink to this headline">¶</a></h2>
+<p>Cinder is a block storage service that can be used as an alternative for an
+ephemeral drive. Using Cinder volumes increases reliability of data which is
+important for HDFS service.</p>
+<p>User can set how many volumes will be attached to each node in a Node Group
+and the size of each volume.</p>
+<p>All volumes are attached during Cluster creation/scaling operations.</p>
+</div>
+<div class="section" id="neutron-and-nova-network-support">
+<h2>Neutron and Nova Network support<a class="headerlink" href="#neutron-and-nova-network-support" title="Permalink to this headline">¶</a></h2>
+<p>OpenStack Cluster may use Nova Network or Neutron as a networking service.
+Sahara supports both, but when deployed,
+a special configuration for networking should be set explicitly. By default
+Sahara will behave as if Nova Network is used.
+If OpenStack Cluster uses Neutron, then <tt class="docutils literal"><span class="pre">use_neutron</span></tt> option should be set
+to <tt class="docutils literal"><span class="pre">True</span></tt> in Sahara configuration file.  In
+addition, if the OpenStack Cluster supports network namespaces, set the
+<tt class="docutils literal"><span class="pre">use_namespaces</span></tt> option to <tt class="docutils literal"><span class="pre">True</span></tt></p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">use_neutron</span><span class="o">=</span><span class="s">True</span>
+<span class="na">use_namespaces</span><span class="o">=</span><span class="s">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="floating-ip-management">
+<h2>Floating IP Management<a class="headerlink" href="#floating-ip-management" title="Permalink to this headline">¶</a></h2>
+<p>Sahara needs to access instances through ssh during a Cluster setup. To
+establish a connection Sahara may
+use both: fixed and floating IP of an Instance. By default
+<tt class="docutils literal"><span class="pre">use_floating_ips</span></tt> parameter is set to <tt class="docutils literal"><span class="pre">True</span></tt>, so
+Sahara will use Floating IP of an Instance to connect. In this case, user has
+two options for how to make all instances
+get a floating IP:</p>
+<ul class="simple">
+<li>Nova Network may be configured to assign floating IPs automatically by
+setting <tt class="docutils literal"><span class="pre">auto_assign_floating_ip</span></tt> to <tt class="docutils literal"><span class="pre">True</span></tt> in <tt class="docutils literal"><span class="pre">nova.conf</span></tt></li>
+<li>User may specify a floating IP pool for each Node Group directly.</li>
+</ul>
+<p>Note: When using floating IPs for management (<tt class="docutils literal"><span class="pre">use_floating_ip=True</span></tt>)
+<strong>every</strong> instance in the Cluster should have a floating IP,
+otherwise Sahara will not be able to work with it.</p>
+<p>If <tt class="docutils literal"><span class="pre">use_floating_ips</span></tt> parameter is set to <tt class="docutils literal"><span class="pre">False</span></tt> Sahara will use
+Instances&#8217; fixed IPs for management. In this case
+the node where Sahara is running should have access to Instances&#8217; fixed IP
+network. When OpenStack uses Neutron for
+networking, user will be able to choose fixed IP network for all instances
+in a Cluster.</p>
+</div>
+<div class="section" id="anti-affinity">
+<h2>Anti-affinity<a class="headerlink" href="#anti-affinity" title="Permalink to this headline">¶</a></h2>
+<p>One of the problems in Hadoop running on OpenStack is that there is no
+ability to control where machine is actually running.
+We cannot be sure that two new virtual machines are started on different
+physical machines. As a result, any replication with cluster
+is not reliable because all replicas may turn up on one physical machine.
+Anti-affinity feature provides an ability to explicitly tell Sahara to run
+specified processes on different compute nodes. This
+is especially useful for Hadoop datanode process to make HDFS replicas
+reliable.</p>
+<p>Starting with Juno release Sahara creates server groups with
+<tt class="docutils literal"><span class="pre">anti-affinity</span></tt> policy to enable anti affinity feature. Sahara creates one
+server group per cluster and assigns all instances with affected processes to
+this server group. Refer to Nova documentation on how server groups work.</p>
+<p>This feature is supported by all plugins out of the box.</p>
+</div>
+<div class="section" id="data-locality">
+<h2>Data-locality<a class="headerlink" href="#data-locality" title="Permalink to this headline">¶</a></h2>
+<p>It is extremely important for data processing to do locally (on the same rack,
+openstack compute node or even VM) as much work as
+possible. Hadoop supports data-locality feature and can schedule jobs to
+tasktracker nodes that are local for input stream. In this case tasktracker
+could communicate directly with local data node.</p>
+<p>Sahara supports topology configuration for HDFS and Swift data sources.</p>
+<p>To enable data-locality set <tt class="docutils literal"><span class="pre">enable_data_locality</span></tt> parameter to <tt class="docutils literal"><span class="pre">True</span></tt> in
+Sahara configuration file</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="na">enable_data_locality</span><span class="o">=</span><span class="s">True</span>
+</pre></div>
+</div>
+<p>In this case two files with topology must be provided to Sahara.
+Options <tt class="docutils literal"><span class="pre">compute_topology_file</span></tt> and <tt class="docutils literal"><span class="pre">swift_topology_file</span></tt> parameters
+control location of files with compute and swift nodes topology descriptions
+correspondingly.</p>
+<p><tt class="docutils literal"><span class="pre">compute_topology_file</span></tt> should contain mapping between compute nodes and
+racks in the following format:</p>
+<div class="highlight-cfg"><div class="highlight"><pre>compute1 /rack1
+compute1 /rack2
+compute1 /rack2
+</pre></div>
+</div>
+<p>Note that compute node name must be exactly the same as configured in
+openstack (<tt class="docutils literal"><span class="pre">host</span></tt> column in admin list for instances).</p>
+<p><tt class="docutils literal"><span class="pre">swift_topology_file</span></tt> should contain mapping between swift nodes and
+racks in the following format:</p>
+<div class="highlight-cfg"><div class="highlight"><pre>node1 /rack1
+node2 /rack2
+node3 /rack2
+</pre></div>
+</div>
+<p>Note that swift node must be exactly the same as configures in object.builder
+swift ring. Also make sure that VMs with tasktracker service has direct access
+to swift nodes.</p>
+<p>Hadoop versions after 1.2.0 support four-layer topology
+(<a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-8468">https://issues.apache.org/jira/browse/HADOOP-8468</a>). To enable this feature
+set <tt class="docutils literal"><span class="pre">enable_hypervisor_awareness</span></tt> option to <tt class="docutils literal"><span class="pre">True</span></tt> in Sahara configuration
+file. In this case Sahara will add compute node ID as a second level of
+topology for Virtual Machines.</p>
+</div>
+<div class="section" id="security-group-management">
+<h2>Security group management<a class="headerlink" href="#security-group-management" title="Permalink to this headline">¶</a></h2>
+<p>Sahara allows you to control which security groups will be used for created
+instances. This can be done by providing the <tt class="docutils literal"><span class="pre">security_groups</span></tt> parameter for
+the Node Group or Node Group Template. By default an empty list is used that
+will result in using the default security group.</p>
+<p>Sahara may also create a security group for instances in node group
+automatically. This security group will only have open ports which are
+required by instance processes or the Sahara engine. This option is useful
+for development and secured from outside environments, but for production
+environments it is recommended to control security group policy manually.</p>
+</div>
+<div class="section" id="heat-integration">
+<h2>Heat Integration<a class="headerlink" href="#heat-integration" title="Permalink to this headline">¶</a></h2>
+<p>Sahara may use
+<a class="reference external" href="https://wiki.openstack.org/wiki/Heat">OpenStack Orchestration engine</a>
+(aka Heat) to provision nodes for Hadoop cluster.
+To make Sahara work with Heat the following steps are required:</p>
+<ul class="simple">
+<li>Your OpenStack installation must have &#8216;orchestration&#8217; service up and running</li>
+<li>Sahara must contain the following configuration parameter in <em>sahara.conf</em>:</li>
+</ul>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="c1"># An engine which will be used to provision infrastructure for Hadoop cluster. (string value)</span>
+<span class="na">infrastructure_engine</span><span class="o">=</span><span class="s">heat</span>
+</pre></div>
+</div>
+<p>There is a feature parity between direct and heat infrastructure engines. It is
+recommended to use heat engine since direct engine will be deprecated at some
+point.</p>
+</div>
+<div class="section" id="plugin-capabilities">
+<h2>Plugin Capabilities<a class="headerlink" href="#plugin-capabilities" title="Permalink to this headline">¶</a></h2>
+<p>The below tables provides a plugin capability matrix:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="15%" />
+<col width="16%" />
+<col width="16%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">Feature</th>
+<th class="head" colspan="4">Plugin</th>
+</tr>
+<tr class="row-even"><th class="head">Vanilla</th>
+<th class="head">HDP</th>
+<th class="head">Cloudera</th>
+<th class="head">Spark</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>Nova and Neutron network</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>Cluster Scaling</td>
+<td>x</td>
+<td>Scale Up</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>Swift Integration</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Cinder Support</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>Data Locality</td>
+<td>x</td>
+<td>x</td>
+<td>N/A</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>EDP</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="running-sahara-in-distributed-mode">
+<h2>Running Sahara in Distributed Mode<a class="headerlink" href="#running-sahara-in-distributed-mode" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently distributed mode for Sahara is in alpha state. We do not
+recommend using it in production environment.</p>
+</div>
+<p>The <a class="reference external" href="installation.guide.html">installation guide</a> suggests to launch
+Sahara as a single &#8216;sahara-all&#8217; process. It is also possible to run Sahara
+in distributed mode with &#8216;sahara-api&#8217; and &#8216;sahara-engine&#8217; processes running
+on several machines simultaneously.</p>
+<p>Sahara-api works as a frontend and serves users&#8217; requests. It
+offloads &#8216;heavy&#8217; tasks to sahara-engine via RPC mechanism. While
+sahara-engine could be loaded, sahara-api by design stays free
+and hence may quickly respond on user queries.</p>
+<p>If Sahara runs on several machines, the API requests could be
+balanced between several sahara-api instances using a load balancer.
+It is not required to balance load between different sahara-engine
+instances, as that will be automatically done via a message queue.</p>
+<p>If a single machine goes down, others will continue serving
+users&#8217; requests. Hence a better scalability is achieved and some
+fault tolerance as well. Note that the proposed solution is not
+a true High Availability. While failure of a single machine does not
+affect work of other machines, all of the operations running on
+the failed machine will stop. For example, if a cluster
+scaling is interrupted, the cluster will be stuck in a half-scaled state.
+The cluster will probably continue working, but it will be impossible
+to scale it further or run jobs on it via EDP.</p>
+<p>To run Sahara in distributed mode pick several machines on which
+you want to run Sahara services and follow these steps:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">On each machine install and configure Sahara using the
+<a class="reference external" href="../installation.guide.html">installation guide</a>
+except:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Do not run &#8216;sahara-db-manage&#8217; or launch Sahara with &#8216;sahara-all&#8217;</li>
+<li>Make sure sahara.conf provides database connection string to a
+single database on all machines.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Run &#8216;sahara-db-manage&#8217; as described in the installation guide,
+but only on a single (arbitrarily picked) machine.</p>
+</li>
+<li><p class="first">sahara-api and sahara-engine processes use oslo.messaging to
+communicate with each other. You need to configure it properly on
+each node (see below).</p>
+</li>
+<li><p class="first">run sahara-api and sahara-engine on the desired nodes. On a node
+you can run both sahara-api and sahara-engine or you can run them on
+separate nodes. It does not matter as long as they are configured
+to use the same message broker and database.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>To configure oslo.messaging, first you need to pick the driver you are
+going to use. Right now three drivers are provided: Rabbit MQ, Qpid or Zmq.
+To use Rabbit MQ or Qpid driver, you will have to setup messaging broker.
+The picked driver must be supplied in <tt class="docutils literal"><span class="pre">sahara.conf</span></tt> in
+<tt class="docutils literal"><span class="pre">[DEFAULT]/rpc_backend</span></tt> parameter. Use one the following values:
+<tt class="docutils literal"><span class="pre">rabbit</span></tt>, <tt class="docutils literal"><span class="pre">qpid</span></tt> or <tt class="docutils literal"><span class="pre">zmq</span></tt>. Next you have to supply
+driver-specific options.</p>
+<p>Unfortunately, right now there is no documentation with description of
+drivers&#8217; configuration. The options are available only in source code.</p>
+<blockquote>
+<div><ul class="simple">
+<li>For Rabbit MQ see<ul>
+<li>rabbit_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/impl_rabbit.py?id=1.4.0#n38">impl_rabbit.py</a></li>
+<li>amqp_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/amqp.py?id=1.4.0#n37">amqp.py</a></li>
+</ul>
+</li>
+<li>For Qpid see<ul>
+<li>qpid_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/impl_qpid.py?id=1.4.0#n40">impl_qpid.py</a></li>
+<li>amqp_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/amqp.py?id=1.4.0#n37">amqp.py</a></li>
+</ul>
+</li>
+<li>For Zmq see<ul>
+<li>zmq_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/impl_zmq.py?id=1.4.0#n49">impl_zmq.py</a></li>
+<li>matchmaker_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/matchmaker.py?id=1.4.0#n27">matchmaker.py</a></li>
+<li>matchmaker_redis_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/matchmaker_redis.py?id=1.4.0#n26">matchmaker_redis.py</a></li>
+<li>matchmaker_opts variable in <a class="reference external" href="https://git.openstack.org/cgit/openstack/oslo.messaging/tree/oslo/messaging/_drivers/matchmaker_ring.py?id=1.4.0#n27">matchmaker_ring.py</a></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>You can find the same options defined in <tt class="docutils literal"><span class="pre">sahara.conf.sample</span></tt>. You can use
+it to find section names for each option (matchmaker options are
+defined not in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt>)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Features Overview</a><ul>
+<li><a class="reference internal" href="#cluster-scaling">Cluster Scaling</a></li>
+<li><a class="reference internal" href="#swift-integration">Swift Integration</a></li>
+<li><a class="reference internal" href="#cinder-support">Cinder support</a></li>
+<li><a class="reference internal" href="#neutron-and-nova-network-support">Neutron and Nova Network support</a></li>
+<li><a class="reference internal" href="#floating-ip-management">Floating IP Management</a></li>
+<li><a class="reference internal" href="#anti-affinity">Anti-affinity</a></li>
+<li><a class="reference internal" href="#data-locality">Data-locality</a></li>
+<li><a class="reference internal" href="#security-group-management">Security group management</a></li>
+<li><a class="reference internal" href="#heat-integration">Heat Integration</a></li>
+<li><a class="reference internal" href="#plugin-capabilities">Plugin Capabilities</a></li>
+<li><a class="reference internal" href="#running-sahara-in-distributed-mode">Running Sahara in Distributed Mode</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../horizon/dashboard.user.guide.html"
+                        title="previous chapter">Sahara (Data Processing) UI User Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="registering_image.html"
+                        title="next chapter">Registering an Image</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/features.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="registering_image.html" title="Registering an Image"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dashboard.user.guide.html" title="Sahara (Data Processing) UI User Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

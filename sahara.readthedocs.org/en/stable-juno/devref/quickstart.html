@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quickstart guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="How to Participate" href="how_to_participate.html" />
+    <link rel="prev" title="Sahara UI Dev Environment Setup" href="../horizon/dev.environment.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/quickstart.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/quickstart",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/quickstart";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="quickstart-guide">
+<h1>Quickstart guide<a class="headerlink" href="#quickstart-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide will help you to setup vanilla Hadoop cluster using
+<a class="reference internal" href="../restapi/rest_api_v1.0.html"><em>Sahara REST API v1.0</em></a>.</p>
+<div class="section" id="install-sahara">
+<h2>1. Install Sahara<a class="headerlink" href="#install-sahara" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>If you want to hack the code follow <a class="reference internal" href="development.environment.html"><em>Setting Up a Development Environment</em></a>.</li>
+<li>If you just want to install and use Sahara follow <a class="reference internal" href="../userdoc/installation.guide.html"><em>Sahara Installation Guide</em></a>.</li>
+</ul>
+</div>
+<div class="section" id="keystone-endpoints-setup">
+<h2>2. Keystone endpoints setup<a class="headerlink" href="#keystone-endpoints-setup" title="Permalink to this headline">¶</a></h2>
+<p>To use CLI tools, such as OpenStack&#8217;s python clients, we should specify
+environment variables with addresses and credentials. Let&#8217;s mind that we have
+keystone at <tt class="docutils literal"><span class="pre">127.0.0.1:5000</span></tt> with tenant <tt class="docutils literal"><span class="pre">admin</span></tt>, credentials <tt class="docutils literal"><span class="pre">admin:nova</span></tt>
+and Sahara API at <tt class="docutils literal"><span class="pre">127.0.0.1:8386</span></tt>. Here is a list of commands to set env:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">export </span><span class="nv">OS_AUTH_URL</span><span class="o">=</span>http://127.0.0.1:5000/v2.0/
+<span class="gp">$</span> <span class="nb">export </span><span class="nv">OS_TENANT_NAME</span><span class="o">=</span>admin
+<span class="gp">$</span> <span class="nb">export </span><span class="nv">OS_USERNAME</span><span class="o">=</span>admin
+<span class="gp">$</span> <span class="nb">export </span><span class="nv">OS_PASSWORD</span><span class="o">=</span>nova
+</pre></div>
+</div>
+<p>You can append these lines to the <tt class="docutils literal"><span class="pre">.bashrc</span></tt> and execute <tt class="docutils literal"><span class="pre">source</span> <span class="pre">.bashrc</span></tt>.
+Now you can get authentication token from OpenStack Keystone service.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> keystone token-get
+</pre></div>
+</div>
+<p>If authentication succeed, output will be as follows:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">+-----------+----------------------------------+</span>
+<span class="go">|  Property |              Value               |</span>
+<span class="go">+-----------+----------------------------------+</span>
+<span class="go">|  expires  |       2013-07-08T15:21:18Z       |</span>
+<span class="go">|     id    | dd92e3cdb4e1462690cd444d6b01b746 |</span>
+<span class="go">| tenant_id | 62bd2046841e4e94a87b4a22aa886c13 |</span>
+<span class="go">|  user_id  | 720fb87141a14fd0b204f977f5f02512 |</span>
+<span class="go">+-----------+----------------------------------+</span>
+</pre></div>
+</div>
+<p>Save <tt class="docutils literal"><span class="pre">tenant_id</span></tt> which is obviously your Tenant ID and <tt class="docutils literal"><span class="pre">id</span></tt> which is your
+authentication token (X-Auth-Token):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">export </span><span class="nv">AUTH_TOKEN</span><span class="o">=</span><span class="s2">&quot;dd92e3cdb4e1462690cd444d6b01b746&quot;</span>
+<span class="gp">$</span> <span class="nb">export </span><span class="nv">TENANT_ID</span><span class="o">=</span><span class="s2">&quot;62bd2046841e4e94a87b4a22aa886c13&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="upload-image-to-glance">
+<h2>3. Upload image to Glance<a class="headerlink" href="#upload-image-to-glance" title="Permalink to this headline">¶</a></h2>
+<p>You can download pre-built images with vanilla Apache Hadoop or build this
+images yourself:</p>
+<ul class="simple">
+<li>Download and install pre-built image with Ubuntu 13.10</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ssh user@hostname
+<span class="gp">$</span> wget http://sahara-files.mirantis.com/sahara-icehouse-vanilla-1.2.1-ubuntu-13.10.qcow2
+<span class="gp">$</span> glance image-create --name<span class="o">=</span>sahara-icehouse-vanilla-1.2.1-ubuntu-13.10 <span class="se">\</span>
+<span class="go">  --disk-format=qcow2 --container-format=bare &lt; ./sahara-icehouse-vanilla-1.2.1-ubuntu-13.10.qcow2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>OR with Fedora 20</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ssh user@hostname
+<span class="gp">$</span> wget http://sahara-files.mirantis.com/sahara-icehouse-vanilla-1.2.1-fedora-20.qcow2
+<span class="gp">$</span> glance image-create --name<span class="o">=</span>sahara-icehouse-vanilla-1.2.1-fedora-20 <span class="se">\</span>
+<span class="go">  --disk-format=qcow2 --container-format=bare &lt; ./sahara-icehouse-vanilla-1.2.1-fedora-20.qcow2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>OR build image using <a class="reference internal" href="../userdoc/diskimagebuilder.html"><em>Building Images for Vanilla Plugin</em></a>.</li>
+</ul>
+<p>Save image id. You can get image id from command <tt class="docutils literal"><span class="pre">glance</span> <span class="pre">image-list</span></tt>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> glance image-list --name sahara-icehouse-vanilla-1.2.1-ubuntu-13.10
+<span class="go">+--------------------------------------+---------------------------------------------+</span>
+<span class="go">| ID                                   | Name                                        |</span>
+<span class="go">+--------------------------------------+---------------------------------------------+</span>
+<span class="go">| 3f9fc974-b484-4756-82a4-bff9e116919b | sahara-icehouse-vanilla-1.2.1-ubuntu-13.10  |</span>
+<span class="go">+--------------------------------------+---------------------------------------------+</span>
+
+<span class="gp">$</span> <span class="nb">export </span><span class="nv">IMAGE_ID</span><span class="o">=</span><span class="s2">&quot;3f9fc974-b484-4756-82a4-bff9e116919b&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="register-image-in-image-registry">
+<h2>4. Register image in Image Registry<a class="headerlink" href="#register-image-in-image-registry" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Now we will actually start to interact with Sahara.</li>
+<li>Register the image with username <tt class="docutils literal"><span class="pre">ubuntu</span></tt>.</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sahara image-register --image-id <span class="nv">$IMAGE_ID</span> --username ubuntu
+</pre></div>
+</div>
+<ul class="simple">
+<li>Tag the image:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sahara image-add-tag --image-id <span class="nv">$IMAGE_ID</span> --tag vanilla
+<span class="gp">$</span> sahara image-add-tag --image-id <span class="nv">$IMAGE_ID</span> --tag 1.2.1
+</pre></div>
+</div>
+<ul class="simple">
+<li>Make sure that image is registered correctly:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sahara image-list
+</pre></div>
+</div>
+<ul class="simple">
+<li>Output should look like:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sahara image-list
+<span class="go">+----------------+---------------+----------+----------------+-------------+</span>
+<span class="go">| name           | id            | username | tags           | description |</span>
+<span class="go">+----------------+---------------+----------+----------------+-------------+</span>
+<span class="go">| sahara-iceh... | 3f9fc...6919b | ubuntu   | vanilla, 1.2.1 | None        |</span>
+<span class="go">+----------------+---------------+----------+----------------+-------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-nodegroup-templates">
+<h2>5. Setup NodeGroup templates<a class="headerlink" href="#setup-nodegroup-templates" title="Permalink to this headline">¶</a></h2>
+<p>Create file with name <tt class="docutils literal"><span class="pre">ng_master_template_create.json</span></tt> and fill it with the
+following content:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &quot;name&quot;: &quot;test-master-tmpl&quot;,
+    &quot;flavor_id&quot;: &quot;2&quot;,
+    &quot;plugin_name&quot;: &quot;vanilla&quot;,
+    &quot;hadoop_version&quot;: &quot;1.2.1&quot;,
+    &quot;node_processes&quot;: [&quot;jobtracker&quot;, &quot;namenode&quot;],
+    &quot;auto_security_group&quot;: True
+}
+</pre></div>
+</div>
+<p>Create file with name <tt class="docutils literal"><span class="pre">ng_worker_template_create.json</span></tt> and fill it with the
+following content:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &quot;name&quot;: &quot;test-worker-tmpl&quot;,
+    &quot;flavor_id&quot;: &quot;2&quot;,
+    &quot;plugin_name&quot;: &quot;vanilla&quot;,
+    &quot;hadoop_version&quot;: &quot;1.2.1&quot;,
+    &quot;node_processes&quot;: [&quot;tasktracker&quot;, &quot;datanode&quot;],
+    &quot;auto_security_group&quot;: True
+}
+</pre></div>
+</div>
+<p>Send POST requests to Sahara API to upload NodeGroup templates:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> http <span class="nv">$SAHARA_URL</span>/node-group-templates X-Auth-Token:<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+<span class="go"> &lt; ng_master_template_create.json</span>
+
+<span class="gp">$</span> http <span class="nv">$SAHARA_URL</span>/node-group-templates X-Auth-Token:<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+<span class="go"> &lt; ng_worker_template_create.json</span>
+</pre></div>
+</div>
+<p>You can list available NodeGroup templates by sending the following request to
+Sahara API:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> http <span class="nv">$SAHARA_URL</span>/node-group-templates X-Auth-Token:<span class="nv">$AUTH_TOKEN</span>
+</pre></div>
+</div>
+<p>Output should look like:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &quot;node_group_templates&quot;: [
+        {
+            &quot;created&quot;: &quot;2013-07-07T18:53:55&quot;,
+            &quot;flavor_id&quot;: &quot;2&quot;,
+            &quot;hadoop_version&quot;: &quot;1.2.1&quot;,
+            &quot;id&quot;: &quot;b38227dc-64fe-42bf-8792-d1456b453ef3&quot;,
+            &quot;name&quot;: &quot;demo-master&quot;,
+            &quot;node_configs&quot;: {},
+            &quot;node_processes&quot;: [
+                &quot;jobtracker&quot;,
+                &quot;namenode&quot;
+            ],
+            &quot;plugin_name&quot;: &quot;vanilla&quot;,
+            &quot;updated&quot;: &quot;2013-07-07T18:53:55&quot;,
+            &quot;volume_mount_prefix&quot;: &quot;/volumes/disk&quot;,
+            &quot;volumes_per_node&quot;: 0,
+            &quot;volumes_size&quot;: 10,
+            &quot;security_groups&quot;: [],
+            &quot;auto_security_group&quot;: True
+        },
+        {
+            &quot;created&quot;: &quot;2013-07-07T18:54:00&quot;,
+            &quot;flavor_id&quot;: &quot;2&quot;,
+            &quot;hadoop_version&quot;: &quot;1.2.1&quot;,
+            &quot;id&quot;: &quot;634827b9-6a18-4837-ae15-5371d6ecf02c&quot;,
+            &quot;name&quot;: &quot;demo-worker&quot;,
+            &quot;node_configs&quot;: {},
+            &quot;node_processes&quot;: [
+                &quot;tasktracker&quot;,
+                &quot;datanode&quot;
+            ],
+            &quot;plugin_name&quot;: &quot;vanilla&quot;,
+            &quot;updated&quot;: &quot;2013-07-07T18:54:00&quot;,
+            &quot;volume_mount_prefix&quot;: &quot;/volumes/disk&quot;,
+            &quot;volumes_per_node&quot;: 0,
+            &quot;volumes_size&quot;: 10,
+            &quot;security_groups&quot;: [],
+            &quot;auto_security_group&quot;: True
+        }
+    ]
+}
+</pre></div>
+</div>
+<p>Save id for the master and worker NodeGroup templates. For example:</p>
+<ul class="simple">
+<li>Master NodeGroup template id: <tt class="docutils literal"><span class="pre">b38227dc-64fe-42bf-8792-d1456b453ef3</span></tt></li>
+<li>Worker NodeGroup template id: <tt class="docutils literal"><span class="pre">634827b9-6a18-4837-ae15-5371d6ecf02c</span></tt></li>
+</ul>
+</div>
+<div class="section" id="setup-cluster-template">
+<h2>6. Setup Cluster Template<a class="headerlink" href="#setup-cluster-template" title="Permalink to this headline">¶</a></h2>
+<p>Create file with name <tt class="docutils literal"><span class="pre">cluster_template_create.json</span></tt> and fill it with the
+following content:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;demo-cluster-template&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin_name&quot;</span><span class="p">:</span> <span class="s2">&quot;vanilla&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;hadoop_version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;node_groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;node_group_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b1ac3f04-c67f-445f-b06c-fb722736ccc6&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;workers&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;node_group_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;dbc6147e-4020-4695-8b5d-04f2efa978c5&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Send POST request to Sahara API to upload Cluster template:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> http <span class="nv">$SAHARA_URL</span>/cluster-templates X-Auth-Token:<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+<span class="go"> &lt; cluster_template_create.json</span>
+</pre></div>
+</div>
+<p>Save template id. For example <tt class="docutils literal"><span class="pre">ce897df2-1610-4caa-bdb8-408ef90561cf</span></tt>.</p>
+</div>
+<div class="section" id="create-cluster">
+<h2>7. Create cluster<a class="headerlink" href="#create-cluster" title="Permalink to this headline">¶</a></h2>
+<p>Create file with name <tt class="docutils literal"><span class="pre">cluster_create.json</span></tt> and fill it with the
+following content:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster-1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin_name&quot;</span><span class="p">:</span> <span class="s2">&quot;vanilla&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;hadoop_version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cluster_template_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;ce897df2-1610-4caa-bdb8-408ef90561cf&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user_keypair_id&quot;</span><span class="p">:</span> <span class="s2">&quot;stack&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;default_image_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3f9fc974-b484-4756-82a4-bff9e116919b&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There is a parameter <tt class="docutils literal"><span class="pre">user_keypair_id</span></tt> with value <tt class="docutils literal"><span class="pre">stack</span></tt>. You can create
+your own keypair in in Horizon UI, or using the command line client:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">nova keypair-add stack --pub-key $PATH_TO_PUBLIC_KEY</span>
+</pre></div>
+</div>
+<p>Send POST request to Sahara API to create and start the cluster:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> http <span class="nv">$SAHARA_URL</span>/clusters X-Auth-Token:<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+<span class="go"> &lt; cluster_create.json</span>
+</pre></div>
+</div>
+<p>Once cluster started, you&#8217;ll get similar output:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &quot;clusters&quot;: [
+        {
+            &quot;anti_affinity&quot;: [],
+            &quot;cluster_configs&quot;: {},
+            &quot;cluster_template_id&quot;: &quot;ce897df2-1610-4caa-bdb8-408ef90561cf&quot;,
+            &quot;created&quot;: &quot;2013-07-07T19:01:51&quot;,
+            &quot;default_image_id&quot;: &quot;3f9fc974-b484-4756-82a4-bff9e116919b&quot;,
+            &quot;hadoop_version&quot;: &quot;1.2.1&quot;,
+            &quot;id&quot;: &quot;c5e755a2-b3f9-417b-948b-e99ed7fbf1e3&quot;,
+            &quot;info&quot;: {
+                &quot;HDFS&quot;: {
+                    &quot;Web UI&quot;: &quot;http://172.24.4.225:50070&quot;
+                },
+                &quot;MapReduce&quot;: {
+                    &quot;Web UI&quot;: &quot;http://172.24.4.225:50030&quot;
+                }
+            },
+            &quot;name&quot;: &quot;cluster-1&quot;,
+            &quot;node_groups&quot;: [
+                {
+                    &quot;count&quot;: 1,
+                    &quot;created&quot;: &quot;2013-07-07T19:01:51&quot;,
+                    &quot;flavor_id&quot;: &quot;999&quot;,
+                    &quot;instances&quot;: [
+                        {
+                            &quot;created&quot;: &quot;2013-07-07T19:01:51&quot;,
+                            &quot;instance_id&quot;: &quot;4f6dc715-9c65-4d74-bddd-5f1820e6ce02&quot;,
+                            &quot;instance_name&quot;: &quot;cluster-1-master-001&quot;,
+                            &quot;internal_ip&quot;: &quot;10.0.0.5&quot;,
+                            &quot;management_ip&quot;: &quot;172.24.4.225&quot;,
+                            &quot;updated&quot;: &quot;2013-07-07T19:06:07&quot;,
+                            &quot;volumes&quot;: []
+                        }
+                    ],
+                    &quot;name&quot;: &quot;master&quot;,
+                    &quot;node_configs&quot;: {},
+                    &quot;node_group_template_id&quot;: &quot;b38227dc-64fe-42bf-8792-d1456b453ef3&quot;,
+                    &quot;node_processes&quot;: [
+                        &quot;jobtracker&quot;,
+                        &quot;namenode&quot;
+                    ],
+                    &quot;updated&quot;: &quot;2013-07-07T19:01:51&quot;,
+                    &quot;volume_mount_prefix&quot;: &quot;/volumes/disk&quot;,
+                    &quot;volumes_per_node&quot;: 0,
+                    &quot;volumes_size&quot;: 10,
+                    &quot;security_groups&quot;: [&quot;a314895b-d2ee-431d-a26b-7c37b45894c9&quot;],
+                    &quot;auto_security_group&quot;: True
+                },
+                {
+                    &quot;count&quot;: 2,
+                    &quot;created&quot;: &quot;2013-07-07T19:01:51&quot;,
+                    &quot;flavor_id&quot;: &quot;999&quot;,
+                    &quot;instances&quot;: [
+                        {
+                            &quot;created&quot;: &quot;2013-07-07T19:01:52&quot;,
+                            &quot;instance_id&quot;: &quot;11089dd0-8832-4473-a835-d3dd36bc3d00&quot;,
+                            &quot;instance_name&quot;: &quot;cluster-1-workers-001&quot;,
+                            &quot;internal_ip&quot;: &quot;10.0.0.6&quot;,
+                            &quot;management_ip&quot;: &quot;172.24.4.227&quot;,
+                            &quot;updated&quot;: &quot;2013-07-07T19:06:07&quot;,
+                            &quot;volumes&quot;: []
+                        },
+                        {
+                            &quot;created&quot;: &quot;2013-07-07T19:01:52&quot;,
+                            &quot;instance_id&quot;: &quot;d59ee54f-19e6-401b-8662-04a156ba811f&quot;,
+                            &quot;instance_name&quot;: &quot;cluster-1-workers-002&quot;,
+                            &quot;internal_ip&quot;: &quot;10.0.0.7&quot;,
+                            &quot;management_ip&quot;: &quot;172.24.4.226&quot;,
+                            &quot;updated&quot;: &quot;2013-07-07T19:06:07&quot;,
+                            &quot;volumes&quot;: []
+                        }
+                    ],
+                    &quot;name&quot;: &quot;workers&quot;,
+                    &quot;node_configs&quot;: {},
+                    &quot;node_group_template_id&quot;: &quot;634827b9-6a18-4837-ae15-5371d6ecf02c&quot;,
+                    &quot;node_processes&quot;: [
+                        &quot;tasktracker&quot;,
+                        &quot;datanode&quot;
+                    ],
+                    &quot;updated&quot;: &quot;2013-07-07T19:01:51&quot;,
+                    &quot;volume_mount_prefix&quot;: &quot;/volumes/disk&quot;,
+                    &quot;volumes_per_node&quot;: 0,
+                    &quot;volumes_size&quot;: 10,
+                    &quot;security_groups&quot;: [&quot;b260407f-a566-43bf-a010-7e8b23953dc6&quot;],
+                    &quot;auto_security_group&quot;: True
+                }
+            ],
+            &quot;plugin_name&quot;: &quot;vanilla&quot;,
+            &quot;status&quot;: &quot;Active&quot;,
+            &quot;updated&quot;: &quot;2013-07-07T19:06:24&quot;,
+            &quot;user_keypair_id&quot;: &quot;stack&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-mapreduce-job">
+<h2>8. Run MapReduce job<a class="headerlink" href="#run-mapreduce-job" title="Permalink to this headline">¶</a></h2>
+<p>To check that your Hadoop installation works correctly:</p>
+<ul class="simple">
+<li>Go to NameNode via ssh:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ssh ubuntu@&lt;namenode_ip&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>Switch to hadoop user:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo su hadoop
+</pre></div>
+</div>
+<ul class="simple">
+<li>Go to hadoop home directory and run the simpliest MapReduce example:</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> /usr/share/hadoop
+<span class="gp">$</span> hadoop jar hadoop-examples-1.2.1.jar pi 10 100
+</pre></div>
+</div>
+<p>Congratulations! Now you have Hadoop cluster ready on the OpenStack cloud!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quickstart guide</a><ul>
+<li><a class="reference internal" href="#install-sahara">1. Install Sahara</a></li>
+<li><a class="reference internal" href="#keystone-endpoints-setup">2. Keystone endpoints setup</a></li>
+<li><a class="reference internal" href="#upload-image-to-glance">3. Upload image to Glance</a></li>
+<li><a class="reference internal" href="#register-image-in-image-registry">4. Register image in Image Registry</a></li>
+<li><a class="reference internal" href="#setup-nodegroup-templates">5. Setup NodeGroup templates</a></li>
+<li><a class="reference internal" href="#setup-cluster-template">6. Setup Cluster Template</a></li>
+<li><a class="reference internal" href="#create-cluster">7. Create cluster</a></li>
+<li><a class="reference internal" href="#run-mapreduce-job">8. Run MapReduce job</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../horizon/dev.environment.guide.html"
+                        title="previous chapter">Sahara UI Dev Environment Setup</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="how_to_participate.html"
+                        title="next chapter">How to Participate</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/quickstart.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="how_to_participate.html" title="How to Participate"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dev.environment.guide.html" title="Sahara UI Dev Environment Setup"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

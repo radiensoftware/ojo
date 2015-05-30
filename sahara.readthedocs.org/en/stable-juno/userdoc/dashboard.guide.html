@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>OpenStack Dashboard Configuration Guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/dashboard.guide.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/dashboard.guide",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/dashboard.guide";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="openstack-dashboard-configuration-guide">
+<h1>OpenStack Dashboard Configuration Guide<a class="headerlink" href="#openstack-dashboard-configuration-guide" title="Permalink to this headline">¶</a></h1>
+<p>Sahara UI panels are integrated into the OpenStack Dashboard repository. No
+additional steps are required to enable Sahara UI in OpenStack Dashboard.
+However there are a few configurations that should be made to configure
+OpenStack Dashboard.</p>
+<p>Dashboard configurations are applied through the local_settings.py file.
+The sample configuration file is available <a class="reference external" href="https://github.com/openstack/horizon/blob/master/openstack_dashboard/local/local_settings.py.example">here.</a></p>
+<div class="section" id="networking">
+<h2>1. Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the Networking backend (Nova Network or Neutron) used in the cloud,
+Sahara panels will determine automatically which input fields should be
+displayed.</p>
+<p>While using Nova Network backend the cloud may be configured to automatically
+assign floating IPs to instances. If Sahara service is configured to use those
+automatically assigned floating IPs the same configuration should be done to
+the dashboard through the <tt class="docutils literal"><span class="pre">SAHARA_AUTO_IP_ALLOCATION_ENABLED</span></tt> parameter.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">SAHARA_AUTO_IP_ALLOCATION_ENABLED</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="different-endpoint">
+<h2>2. Different endpoint<a class="headerlink" href="#different-endpoint" title="Permalink to this headline">¶</a></h2>
+<p>Sahara UI panels normally use <tt class="docutils literal"><span class="pre">data_processing</span></tt> endpoint from Keystone to
+talk to Sahara service. In some cases it may be useful to switch to another
+endpoint, for example use locally installed Sahara instead of the one on the
+OpenStack controller.</p>
+<p>To switch the UI to another endpoint the endpoint should be registered in the
+first place.</p>
+<p>Local endpoint example:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">keystone service-create --name sahara_local --type data_processing_local \</span>
+<span class="go">    --description &quot;Sahara Data Processing (local installation)&quot;</span>
+
+<span class="go">keystone endpoint-create --service sahara_local --region RegionOne \</span>
+<span class="go">    --publicurl &quot;http://127.0.0.1:8386/v1.1/%(tenant_id)s&quot; \</span>
+<span class="go">    --adminurl &quot;http://127.0.0.1:8386/v1.1/%(tenant_id)s&quot; \</span>
+<span class="go">    --internalurl &quot;http://127.0.0.1:8386/v1.1/%(tenant_id)s&quot;</span>
+</pre></div>
+</div>
+<p>Then the endpoint name should be changed in <tt class="docutils literal"><span class="pre">sahara.py</span></tt> under the
+<a class="reference external" href="https://github.com/openstack/horizon/blob/master/openstack_dashboard/api/sahara.py">openstack_dashboard.api module.</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># &quot;type&quot; of Sahara service registered in keystone</span>
+<span class="n">SAHARA_SERVICE</span> <span class="o">=</span> <span class="s">&#39;data_processing_local&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">OpenStack Dashboard Configuration Guide</a><ul>
+<li><a class="reference internal" href="#networking">1. Networking</a></li>
+<li><a class="reference internal" href="#different-endpoint">2. Different endpoint</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/dashboard.guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

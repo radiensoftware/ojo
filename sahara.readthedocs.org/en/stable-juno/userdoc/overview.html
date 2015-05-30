@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara (Data Processing) UI User Guide" href="../horizon/dashboard.user.guide.html" />
+    <link rel="prev" title="Sahara Upgrade Guide" href="upgrade.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/overview.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/overview",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/overview";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="clusters">
+<h2>Clusters<a class="headerlink" href="#clusters" title="Permalink to this headline">¶</a></h2>
+<p>A cluster deployed by Sahara consists of node groups. Node groups vary by
+their role, parameters and number of machines. The picture below
+illustrates example of Hadoop cluster consisting of 3 node groups each having
+different role (set of processes).</p>
+<img alt="../_images/hadoop-cluster-example.jpg" src="../_images/hadoop-cluster-example.jpg" />
+<p>Node group parameters include Hadoop parameters like <cite>io.sort.mb</cite> or
+<cite>mapred.child.java.opts</cite>, and several infrastructure parameters like flavor
+for VMs or storage location (ephemeral drive or Cinder volume).</p>
+<p>A cluster is characterized by its node groups and its parameters. Like a node
+group, cluster has Hadoop and infrastructure parameters. An
+example of cluster-wide Hadoop parameter is <cite>dfs.replication</cite>. For
+infrastructure an example could be image which will be used to launch cluster
+VMs.</p>
+</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>In order to simplify cluster provisioning Sahara employs concept of templates.
+There are two kind of templates: node group template and cluster template. The
+former is used to create node groups, the later - clusters. Essentially
+templates have the very same parameters as corresponding entities. Their aim
+is to remove burden of specifying all the required parameters each time user
+wants to launch a cluster.</p>
+<p>In the REST interface templates have extended functionality. First you can
+specify node-scoped parameters here, they will work as a defaults for node
+groups. Also with REST interface during cluster creation user can override
+template parameters for both cluster and node groups.</p>
+</div>
+<div class="section" id="provisioning-plugins">
+<h2>Provisioning Plugins<a class="headerlink" href="#provisioning-plugins" title="Permalink to this headline">¶</a></h2>
+<p>A provisioning plugin is a component responsible for provisioning Hadoop
+cluster. Generally each plugin is capable of provisioning a specific Hadoop
+distribution. Also plugin can install management and/or monitoring tools for
+a cluster.</p>
+<p>Since Hadoop parameters vary depending on distribution and Hadoop version,
+templates are always plugin and Hadoop version specific. A template could not
+be used with plugin/Hadoop version different than ones it was created for.</p>
+<p>You may find the list of available plugins on that page: <a class="reference internal" href="plugins.html"><em>Provisioning Plugins</em></a></p>
+</div>
+<div class="section" id="image-registry">
+<h2>Image Registry<a class="headerlink" href="#image-registry" title="Permalink to this headline">¶</a></h2>
+<p>OpenStack starts VMs based on pre-built image with installed OS. The image
+requirements for Sahara depend on plugin and Hadoop version. Some plugins
+require just basic cloud image and install Hadoop on VMs from scratch. Some
+plugins might require images with pre-installed Hadoop.</p>
+<p>The Sahara Image Registry is a feature which helps filter out images during
+cluster creation. See <a class="reference internal" href="registering_image.html"><em>Registering an Image</em></a> for details on how to
+work with Image Registry.</p>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<p>Sahara has several interesting features. The full list could be found there:
+<a class="reference internal" href="features.html"><em>Features Overview</em></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#clusters">Clusters</a></li>
+<li><a class="reference internal" href="#templates">Templates</a></li>
+<li><a class="reference internal" href="#provisioning-plugins">Provisioning Plugins</a></li>
+<li><a class="reference internal" href="#image-registry">Image Registry</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="upgrade.guide.html"
+                        title="previous chapter">Sahara Upgrade Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../horizon/dashboard.user.guide.html"
+                        title="next chapter">Sahara (Data Processing) UI User Guide</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/overview.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../horizon/dashboard.user.guide.html" title="Sahara (Data Processing) UI User Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="upgrade.guide.html" title="Sahara Upgrade Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

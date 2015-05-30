@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sahara (Data Processing) UI User Guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Features Overview" href="../userdoc/features.html" />
+    <link rel="prev" title="Getting Started" href="../userdoc/overview.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/horizon/dashboard.user.guide.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "horizon/dashboard.user.guide",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "horizon/dashboard.user.guide";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sahara-data-processing-ui-user-guide">
+<h1>Sahara (Data Processing) UI User Guide<a class="headerlink" href="#sahara-data-processing-ui-user-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide assumes that you already have the Sahara service and Horizon
+dashboard up and running. Don&#8217;t forget to make sure that Sahara is registered in
+Keystone. If you require assistance with that, please see the
+<a class="reference external" href="../installation.guide.html">installation guide</a>.</p>
+<div class="section" id="launching-a-cluster-via-the-sahara-ui">
+<h2>Launching a cluster via the Sahara UI<a class="headerlink" href="#launching-a-cluster-via-the-sahara-ui" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="registering-an-image">
+<h2>Registering an Image<a class="headerlink" href="#registering-an-image" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate to the &#8220;Project&#8221; dashboard, then the &#8220;Data Processing&#8221; tab, then
+click on the &#8220;Image Registry&#8221; panel</li>
+<li>From that page, click on the &#8220;Register Image&#8221; button at the top right</li>
+<li>Choose the image that you&#8217;d like to register with Sahara</li>
+<li>Enter the username of the cloud-init user on the image</li>
+<li>Click on the tags that you want to add to the image. (A version ie: 1.2.1 and
+a type ie: vanilla are required for cluster functionality)</li>
+<li>Click the &#8220;Done&#8221; button to finish the registration</li>
+</ol>
+</div>
+<div class="section" id="create-node-group-templates">
+<h2>Create Node Group Templates<a class="headerlink" href="#create-node-group-templates" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate to the &#8220;Project&#8221; dashboard, then the &#8220;Data Processing&#8221; tab, then
+click on the &#8220;Node Group Templates&#8221; panel</li>
+<li>From that page, click on the &#8220;Create Template&#8221; button at the top right</li>
+<li>Choose your desired Plugin name and Version from the dropdowns and click
+&#8220;Create&#8221;</li>
+<li>Give your Node Group Template a name (description is optional)</li>
+<li>Choose a flavor for this template (based on your CPU/memory/disk needs)</li>
+<li>Choose the storage location for your instance, this can be either &#8220;Ephemeral
+Drive&#8221; or &#8220;Cinder Volume&#8221;.  If you choose &#8220;Cinder Volume&#8221;, you will need to add
+additional configuration</li>
+<li>Choose which processes should be run for any instances that are spawned from
+this Node Group Template</li>
+<li>Click on the &#8220;Create&#8221; button to finish creating your Node Group Template</li>
+</ol>
+</div>
+<div class="section" id="create-a-cluster-template">
+<h2>Create a Cluster Template<a class="headerlink" href="#create-a-cluster-template" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate to the &#8220;Project&#8221; dashboard, then the &#8220;Data Processing&#8221; tab, then
+click on the &#8220;Cluster Templates&#8221; panel</li>
+<li>From that page, click on the &#8220;Create Template&#8221; button at the top right</li>
+<li>Choose your desired Plugin name and Version from the dropdowns and click
+&#8220;Create&#8221;</li>
+<li>Under the &#8220;Details&#8221; tab, you must give your template a name</li>
+<li>Under the &#8220;Node Groups&#8221; tab, you should add one or more nodes that can be
+based on one or more templates</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>To do this, start by choosing a Node Group Template from the dropdown and
+click the &#8220;+&#8221; button</li>
+<li>You can adjust the number of nodes to be spawned for this node group via
+the text box or the &#8220;-&#8221; and &#8220;+&#8221; buttons</li>
+<li>Repeat these steps if you need nodes from additional node group templates</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li>Optionally, you can adjust your configuration further by using the &#8220;General
+Parameters&#8221;, &#8220;HDFS Parameters&#8221; and &#8220;MapReduce Parameters&#8221; tabs</li>
+<li>Click on the &#8220;Create&#8221; button to finish creating your Cluster Template</li>
+</ol>
+</div>
+<div class="section" id="launching-a-cluster">
+<h2>Launching a Cluster<a class="headerlink" href="#launching-a-cluster" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Navigate to the &#8220;Project&#8221; dashboard, then the &#8220;Data Processing&#8221; tab, then
+click on the &#8220;Clusters&#8221; panel</li>
+<li>Click on the &#8220;Launch Cluster&#8221; button at the top right</li>
+<li>Choose your desired Plugin name and Version from the dropdowns and click
+&#8220;Create&#8221;</li>
+<li>Give your cluster a name (required)</li>
+<li>Choose which cluster template should be used for your cluster</li>
+<li>Choose the image that should be used for your cluster (if you do not see any
+options here, see <a class="reference internal" href="#registering-an-image">Registering an Image</a> above)</li>
+<li>Optionally choose a keypair that can be used to authenticate to your cluster
+instances</li>
+<li>Click on the &#8220;Create&#8221; button to start your cluster</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Your cluster&#8217;s status will display on the Clusters table</li>
+<li>It will likely take several minutes to reach the &#8220;Active&#8221; state</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="scaling-a-cluster">
+<h2>Scaling a Cluster<a class="headerlink" href="#scaling-a-cluster" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>From the Data Processing/Clusters page, click on the &#8220;Scale Cluster&#8221; button
+of the row that contains the cluster that you want to scale</li>
+<li>You can adjust the numbers of instances for existing Node Group Templates</li>
+<li>You can also add a new Node Group Template and choose a number of instances
+to launch</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>This can be done by selecting your desired Node Group Template from the
+dropdown and clicking the &#8220;+&#8221; button</li>
+<li>Your new Node Group will appear below and you can adjust the number of
+instances via the text box or the &#8220;+&#8221; and &#8220;-&#8221; buttons</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>To confirm the scaling settings and trigger the spawning/deletion of
+instances, click on &#8220;Scale&#8221;</li>
+</ol>
+</div>
+<div class="section" id="elastic-data-processing-edp">
+<h2>Elastic Data Processing (EDP)<a class="headerlink" href="#elastic-data-processing-edp" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-sources">
+<h2>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h2>
+<p>Data Sources are where the input and output from your jobs are housed.</p>
+<ol class="arabic simple">
+<li>From the Data Processing/Data Sources page, click on the &#8220;Create Data Source&#8221;
+button at the top right</li>
+<li>Give your Data Source a name</li>
+<li>Enter the URL of the the Data Source</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>For a Swift object, enter &lt;container&gt;/&lt;path&gt; (ie: <em>mycontainer/inputfile</em>).
+Sahara will prepend <em>swift://</em> for you</li>
+<li>For an HDFS object, enter an absolute path, a relative path or a full URL:<ul>
+<li><em>/my/absolute/path</em> indicates an absolute path in the cluster HDFS</li>
+<li><em>my/path</em> indicates the path <em>/user/hadoop/my/path</em> in the cluster HDFS
+assuming the defined HDFS user is <em>hadoop</em></li>
+<li><em>hdfs://host:port/path</em> can be used to indicate any HDFS location</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Enter the username and password for the Data Source (also see
+<a class="reference internal" href="#additional-notes">Additional Notes</a>)</li>
+<li>Enter an optional description</li>
+<li>Click on &#8220;Create&#8221;</li>
+<li>Repeat for additional Data Sources</li>
+</ol>
+</div>
+<div class="section" id="job-binaries">
+<h2>Job Binaries<a class="headerlink" href="#job-binaries" title="Permalink to this headline">¶</a></h2>
+<p>Job Binaries are where you define/upload the source code (mains and libraries)
+for your job.</p>
+<ol class="arabic simple">
+<li>From the Data Processing/Job Binaries page, click on the &#8220;Create Job Binary&#8221;
+button at the top right</li>
+<li>Give your Job Binary a name (this can be different than the actual filename)</li>
+<li>Choose the type of storage for your Job Binary</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>For &#8220;Swift&#8221;, enter the URL of your binary (&lt;container&gt;/&lt;path&gt;) as well as
+the username and password (also see <a class="reference internal" href="#additional-notes">Additional Notes</a>)</li>
+<li>For &#8220;Internal database&#8221;, you can choose from &#8220;Create a script&#8221; or &#8220;Upload
+a new file&#8221;</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Enter an optional description</li>
+<li>Click on &#8220;Create&#8221;</li>
+<li>Repeat for additional Job Binaries</li>
+</ol>
+</div>
+<div class="section" id="jobs">
+<h2>Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h2>
+<p>Jobs are where you define the type of job you&#8217;d like to run as well as which
+&#8220;Job Binaries&#8221; are required</p>
+<ol class="arabic simple">
+<li>From the Data Processing/Jobs page, click on the &#8220;Create Job&#8221; button at the
+top right</li>
+<li>Give your Job a name</li>
+<li>Choose the type of job you&#8217;d like to run</li>
+<li>Choose the main binary from the dropdown<ul>
+<li>This is required for Hive, Pig, and Spark jobs</li>
+<li>Other job types do not use a main binary</li>
+</ul>
+</li>
+<li>Enter an optional description for your Job</li>
+<li>Click on the &#8220;Libs&#8221; tab and choose any libraries needed by your job<ul>
+<li>MapReduce and Java jobs require at least one library</li>
+<li>Other job types may optionally use libraries</li>
+</ul>
+</li>
+<li>Click on &#8220;Create&#8221;</li>
+</ol>
+</div>
+<div class="section" id="job-executions">
+<h2>Job Executions<a class="headerlink" href="#job-executions" title="Permalink to this headline">¶</a></h2>
+<p>Job Executions are what you get by &#8220;Launching&#8221; a job.  You can monitor the
+status of your job to see when it has completed its run</p>
+<ol class="arabic simple">
+<li>From the Data Processing/Jobs page, find the row that contains the job you
+want to launch and click on the &#8220;Launch Job&#8221; button at the right side of that
+row</li>
+<li>Choose the cluster (already running&#8211;see <a class="reference internal" href="#launching-a-cluster">Launching a Cluster</a> above) on
+which you would like the job to run</li>
+<li>Choose the Input and Output Data Sources (Data Sources defined above)</li>
+<li>If additional configuration is required, click on the &#8220;Configure&#8221; tab</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Additional configuration properties can be defined by clicking on the &#8220;Add&#8221;
+button</li>
+<li>An example configuration entry might be mapred.mapper.class for the Name and
+org.apache.oozie.example.SampleMapper for the Value</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Click on &#8220;Launch&#8221;.  To monitor the status of your job, you can navigate to
+the Sahara/Job Executions panel</li>
+<li>You can relaunch a Job Execution from the Job Executions page by using the
+&#8220;Relaunch on New Cluster&#8221; or &#8220;Relaunch on Existing Cluster&#8221; links</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Relaunch on New Cluster will take you through the forms to start a new
+cluster before letting you specify input/output Data Sources and job
+configuration</li>
+<li>Relaunch on Existing Cluster will prompt you for input/output Data Sources
+as well as allow you to change job configuration before launching the job</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="example-jobs">
+<h2>Example Jobs<a class="headerlink" href="#example-jobs" title="Permalink to this headline">¶</a></h2>
+<p>There are sample jobs located in the sahara repository. In this section, we
+will give a walkthrough on how to run those jobs via the Horizon UI. These steps
+assume that you already have a cluster up and running (in the &#8220;Active&#8221; state).</p>
+<ol class="arabic simple">
+<li>Sample Pig job -
+<a class="reference external" href="https://github.com/openstack/sahara/tree/master/etc/edp-examples/pig-job">https://github.com/openstack/sahara/tree/master/etc/edp-examples/pig-job</a></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Load the input data file from
+<a class="reference external" href="https://github.com/openstack/sahara/tree/master/etc/edp-examples/pig-job/data/input">https://github.com/openstack/sahara/tree/master/etc/edp-examples/pig-job/data/input</a>
+into swift<ul>
+<li>Click on Projet/Object Store/Containers and create a container with any
+name (&#8220;samplecontainer&#8221; for our purposes here)</li>
+<li>Click on Upload Object and give the object a name
+(&#8220;piginput&#8221; in this case)</li>
+</ul>
+</li>
+<li>Navigate to Data Processing/Data Sources, Click on Create Data Source<ul>
+<li>Name your Data Source (&#8220;pig-input-ds&#8221; in this sample)</li>
+<li>Type = Swift, URL samplecontainer/piginput, fill-in the Source
+username/password fields with your username/password and click &#8220;Create&#8221;</li>
+</ul>
+</li>
+<li>Create another Data Source to use as output for the job<ul>
+<li>Name = pig-output-ds, Type = Swift, URL = samplecontainer/pigoutput,
+Source username/password, &#8220;Create&#8221;</li>
+</ul>
+</li>
+<li>Store your Job Binaries in the Sahara database<ul>
+<li>Navigate to Data Processing/Job Binaries, Click on Create Job Binary</li>
+<li>Name = example.pig, Storage type = Internal database, click Browse and
+find example.pig wherever you checked out the sahara project
+&lt;sahara root&gt;/etc/edp-examples/pig-job</li>
+<li>Create another Job Binary:  Name = udf.jar, Storage type = Internal
+database, click Browse and find udf.jar wherever you checked out the
+sahara project &lt;sahara root&gt;/etc/edp-examples/pig-job</li>
+</ul>
+</li>
+<li>Create a Job<ul>
+<li>Navigate to Data Processing/Jobs, Click on Create Job</li>
+<li>Name = pigsample, Job Type = Pig, Choose &#8220;example.pig&#8221; as the main binary</li>
+<li>Click on the &#8220;Libs&#8221; tab and choose &#8220;udf.jar&#8221;, then hit the &#8220;Choose&#8221; button
+beneath the dropdown, then click on &#8220;Create&#8221;</li>
+</ul>
+</li>
+<li>Launch your job<ul>
+<li>To launch your job from the Jobs page, click on the down arrow at the far
+right of the screen and choose &#8220;Launch on Existing Cluster&#8221;</li>
+<li>For the input, choose &#8220;pig-input-ds&#8221;, for output choose &#8220;pig-output-ds&#8221;.
+Also choose whichever cluster you&#8217;d like to run the job on</li>
+<li>For this job, no additional configuration is necessary, so you can just
+click on &#8220;Launch&#8221;</li>
+<li>You will be taken to the &#8220;Job Executions&#8221; page where you can see your job
+progress through &#8220;PENDING, RUNNING, SUCCEEDED&#8221; phases</li>
+<li>When your job finishes with &#8220;SUCCEEDED&#8221;, you can navigate back to Object
+Store/Containers and browse to the samplecontainer to see your output.
+It should be in the &#8220;pigoutput&#8221; folder</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Sample Spark job -
+<a class="reference external" href="https://github.com/openstack/sahara/tree/master/etc/edp-examples/edp-spark">https://github.com/openstack/sahara/tree/master/etc/edp-examples/edp-spark</a></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Store the Job Binary in the Sahara database<ul>
+<li>Navigate to Data Processing/Job Binaries, Click on Create Job Binary</li>
+<li>Name = sparkexample.jar, Storage type = Internal database, Browse to the
+location &lt;sahara root&gt;/etc/edp-examples/edp-spark and choose
+spark-example.jar, Click &#8220;Create&#8221;</li>
+</ul>
+</li>
+<li>Create a Job<ul>
+<li>Name = sparkexamplejob, Job Type = Spark,
+Main binary = Choose sparkexample.jar, Click &#8220;Create&#8221;</li>
+</ul>
+</li>
+<li>Launch your job<ul>
+<li>To launch your job from the Jobs page, click on the down arrow at the far
+right of the screen and choose &#8220;Launch on Existing Cluster&#8221;</li>
+<li>Choose whichever cluster you&#8217;d like to run the job on</li>
+<li>Click on the &#8220;Configure&#8221; tab</li>
+<li>Set the main class to be:  org.apache.spark.examples.SparkPi</li>
+<li>Under Arguments, click Add and fill in the number of &#8220;Slices&#8221; you want to
+use for the job.  For this example, let&#8217;s use 100 as the value</li>
+<li>Click on Launch</li>
+<li>You will be taken to the &#8220;Job Executions&#8221; page where you can see your job
+progress through &#8220;PENDING, RUNNING, SUCCEEDED&#8221; phases</li>
+<li>When your job finishes with &#8220;SUCCEEDED&#8221;, you can see your results by
+sshing to the Spark &#8220;master&#8221; node</li>
+<li>The output is located at /tmp/spark-edp/&lt;name of job&gt;/&lt;job execution id&gt;.
+You can do <tt class="docutils literal"><span class="pre">cat</span> <span class="pre">stdout</span></tt> which should display something like
+&#8220;Pi is roughly 3.14156132&#8221;</li>
+<li>It should be noted that for more complex jobs, the input/output may be
+elsewhere. This particular job just writes to stdout, which is logged in
+the folder under /tmp</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="additional-notes">
+<h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Throughout the Sahara UI, you will find that if you try to delete an object
+that you will not be able to delete it if another object depends on it.
+An example of this would be trying to delete a Job that has an existing Job
+Execution.  In order to be able to delete that job, you would first need to
+delete any Job Executions that relate to that job.</li>
+<li>In the examples above, we mention adding your username/password for the Swift
+Data Sources. It should be noted that it is possible to configure Sahara such
+that the username/password credentials are <em>not</em> required. For more
+information on that, please refer to:
+<a class="reference internal" href="../userdoc/advanced.configuration.guide.html"><em>Sahara Advanced Configuration Guide</em></a></li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sahara (Data Processing) UI User Guide</a><ul>
+<li><a class="reference internal" href="#launching-a-cluster-via-the-sahara-ui">Launching a cluster via the Sahara UI</a></li>
+<li><a class="reference internal" href="#registering-an-image">Registering an Image</a></li>
+<li><a class="reference internal" href="#create-node-group-templates">Create Node Group Templates</a></li>
+<li><a class="reference internal" href="#create-a-cluster-template">Create a Cluster Template</a></li>
+<li><a class="reference internal" href="#launching-a-cluster">Launching a Cluster</a></li>
+<li><a class="reference internal" href="#scaling-a-cluster">Scaling a Cluster</a></li>
+<li><a class="reference internal" href="#elastic-data-processing-edp">Elastic Data Processing (EDP)</a></li>
+<li><a class="reference internal" href="#data-sources">Data Sources</a></li>
+<li><a class="reference internal" href="#job-binaries">Job Binaries</a></li>
+<li><a class="reference internal" href="#jobs">Jobs</a></li>
+<li><a class="reference internal" href="#job-executions">Job Executions</a></li>
+<li><a class="reference internal" href="#example-jobs">Example Jobs</a></li>
+<li><a class="reference internal" href="#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../userdoc/overview.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../userdoc/features.html"
+                        title="next chapter">Features Overview</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/horizon/dashboard.user.guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../userdoc/features.html" title="Features Overview"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../userdoc/overview.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

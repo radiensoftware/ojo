@@ -1,0 +1,1775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sahara REST API v1.1 (EDP) &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="up" title="Sahara REST API docs" href="index.html" />
+    <link rel="next" title="Requirements for Guests" href="../userdoc/guest-requirements.html" />
+    <link rel="prev" title="Sahara REST API v1.0" href="rest_api_v1.0.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/restapi/rest_api_v1.1_EDP.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "restapi/rest_api_v1.1_EDP",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "restapi/rest_api_v1.1_EDP";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sahara-rest-api-v1-1-edp">
+<h1>Sahara REST API v1.1 (EDP)<a class="headerlink" href="#sahara-rest-api-v1-1-edp" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">REST API v1.1 corresponds to Sahara v0.3.X and Sahara Icehouse release</p>
+</div>
+<div class="section" id="general-information">
+<h2>1. General information<a class="headerlink" href="#general-information" title="Permalink to this headline">¶</a></h2>
+<p>REST API v1.1 enhances the <a class="reference internal" href="rest_api_v1.0.html"><em>Sahara REST API v1.0</em></a> and includes all requests from v1.0.
+REST API V1.1 is <a class="reference internal" href="../userdoc/edp.html"><em>Elastic Data Processing (EDP)</em></a> REST API. It covers the majority of new functions related to creating job binaries and job objects on running Hadoop clusters.</p>
+</div>
+<div class="section" id="data-sources">
+<h2>2. Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>A Data Source object provides the location of input or output for MapReduce jobs and may reference different types of storage.
+Sahara doesn&#8217;t perform any validation checks for data source locations.</p>
+<p><strong>Data Source ops</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="49%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Verb</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/data-sources</td>
+<td>Lists all Data Sources</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/data-sources/&lt;data_source_id&gt;</td>
+<td>Shows information about specified Data Source by id</td>
+</tr>
+<tr class="row-even"><td>POST</td>
+<td>/v1.1/{tenant_id}/data-sources</td>
+<td>Create a new Data Source</td>
+</tr>
+<tr class="row-odd"><td>DELETE</td>
+<td>/v1.1/{tenant_id}/data-sources/&lt;data_source_id&gt;</td>
+<td>Removes specified Data Source</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<div class="section" id="list-all-data-sources">
+<h3>2.1 List all Data Sources<a class="headerlink" href="#list-all-data-sources" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-data-sources">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/data-sources</tt><a class="headerlink" href="#get--v1.1-tenant_id-data-sources" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the list of all created data sources.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/data-sources
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;data_sources&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is input&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container.sahara/text&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-09 12:37:19.295701&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;151d0c0c-464f-4724-96a6-4732d0ca62e1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;input&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is output&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container.sahara/result&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-09 12:37:58.155911&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;577e8bd8-b105-46f0-ace7-baee61e0adda&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is hdfs input&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs://test-master-node:8020/user/hadoop/input&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-01-23 12:37:24.720387&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;63e3d1e6-52d0-4d27-ab8a-f8e236ded200&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs_input&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-data-source">
+<h3>2.2 Show Data Source<a class="headerlink" href="#show-data-source" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-data-sources--data_source_id-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/data-sources/&lt;data_source_id&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-data-sources--data_source_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation shows information about a specified Data Source.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/data-sources/151d0c0c-464f-4724-96a6-4732d0ca62e1
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;data_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container.sahara/text&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-09 12:37:19.295701&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;151d0c0c-464f-4724-96a6-4732d0ca62e1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;input&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="create-data-source">
+<h3>2.3 Create Data Source<a class="headerlink" href="#create-data-source" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--v1.1-tenant_id-data-sources">
+<tt class="descname">POST </tt><tt class="descname">/v1.1/{tenant_id}/data-sources</tt><a class="headerlink" href="#post--v1.1-tenant_id-data-sources" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 202 (ACCEPTED)</p>
+<p>Errors: none</p>
+<p>This operation returns the created Data Source.</p>
+<p><strong>Example</strong>:</p>
+<blockquote>
+<div><p>This example creates a Swift data source.</p>
+<p><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/data-sources
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is input&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container.sahara/text&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;credentials&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;swordfish&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;data_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is input&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container.sahara/text&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 11:15:25.971886&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Example</strong>:</p>
+<blockquote>
+<div><p>This example creates an hdfs data source.</p>
+<p><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/e262c255a7de4a0ab0434bafd75660cd/data-sources
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is hdfs input&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs://test-master-node:8020/user/hadoop/input&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs_input&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;data_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is hdfs input&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs://test-master-node:8020/user/hadoop/input&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e262c255a7de4a0ab0434bafd75660cd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-01-23 12:37:24.720387&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;63e3d1e6-52d0-4d27-ab8a-f8e236ded200&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs_input&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="delete-data-source">
+<h3>2.4 Delete Data Source<a class="headerlink" href="#delete-data-source" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--v1.1-tenant_id-data-sources--data-source-id-">
+<tt class="descname">DELETE </tt><tt class="descname">/v1.1/{tenant_id}/data-sources/&lt;data-source-id&gt;</tt><a class="headerlink" href="#delete--v1.1-tenant_id-data-sources--data-source-id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 204 (NO CONTENT)</p>
+<p>Errors: none</p>
+<p>Removes Data Source</p>
+<p>This operation returns nothing.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>DELETE http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/data-sources/af7dc864-6331-4c30-80f5-63d74b667eaf
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">NO CONTENT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="job-binary-internals">
+<h2>3 Job Binary Internals<a class="headerlink" href="#job-binary-internals" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Job Binary Internals are objects for storing job binaries in the Sahara internal database.
+A Job Binary Internal contains raw data of executable Jar files, Pig or Hive scripts.</p>
+<p><strong>Job Binary Internal ops</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="50%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Verb</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binary-internals</td>
+<td>Lists all Job Binary Internals</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;</td>
+<td>Shows info about specified Job Binary Internal by id</td>
+</tr>
+<tr class="row-even"><td>PUT</td>
+<td>/v1.1/{tenant_id}/job-binary-internals/&lt;name&gt;</td>
+<td>Create a new Job Binary Internal with specified name</td>
+</tr>
+<tr class="row-odd"><td>DELETE</td>
+<td>/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;</td>
+<td>Removes specified Job Binary Internal</td>
+</tr>
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;/data</td>
+<td>Retrieves data of specified Job Binary Internal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<div class="section" id="list-all-job-binary-internals">
+<h3>3.1 List all Job Binary Internals<a class="headerlink" href="#list-all-job-binary-internals" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binary-internals">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binary-internals</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binary-internals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the list of all stored Job Binary Internals.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binary-internals
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;binaries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;example.pig&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:36:59.329034&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;datasize&quot;</span><span class="p">:</span> <span class="mi">161</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d2498cbf-4589-484a-a814-81436c18beb3&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;udf.jar&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:43:52.008620&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;datasize&quot;</span><span class="p">:</span> <span class="mi">3745</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;22f1d87a-23c8-483e-a0dd-cb4a16dde5f9&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-job-binary-internal">
+<h3>3.2 Show Job Binary Internal<a class="headerlink" href="#show-job-binary-internal" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binary-internals--job_binary_internal_id-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binary-internals--job_binary_internal_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation shows information about a specified Job Binary Internal.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binary-internals/d2498cbf-4589-484a-a814-81436c18beb3
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_binary_internal&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;example.pig&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:36:59.329034&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;datasize&quot;</span><span class="p">:</span> <span class="mi">161</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d2498cbf-4589-484a-a814-81436c18beb3&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="create-job-binary-internal">
+<h3>3.3 Create Job Binary Internal<a class="headerlink" href="#create-job-binary-internal" title="Permalink to this headline">¶</a></h3>
+<dl class="put">
+<dt id="put--v1.1-tenant_id-job-binary-internals--name-">
+<tt class="descname">PUT </tt><tt class="descname">/v1.1/{tenant_id}/job-binary-internals/&lt;name&gt;</tt><a class="headerlink" href="#put--v1.1-tenant_id-job-binary-internals--name-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 202 (ACCEPTED)</p>
+<p>Errors: none</p>
+<p>This operation shows information about the uploaded Job Binary Internal.</p>
+<p>The request body should contain raw data (file) or script text.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>PUT http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binary-internals/script.pig
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_binary_internal&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;script.pig&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 13:17:35.994466&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;datasize&quot;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4833dc4b-8682-4d5b-8a9f-2036b47a0996&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="delete-job-binary-internal">
+<h3>3.4 Delete Job Binary Internal<a class="headerlink" href="#delete-job-binary-internal" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--v1.1-tenant_id-job-binary-internals--job_binary_internal_id-">
+<tt class="descname">DELETE </tt><tt class="descname">/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;</tt><a class="headerlink" href="#delete--v1.1-tenant_id-job-binary-internals--job_binary_internal_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 204 (NO CONTENT)</p>
+<p>Errors: none</p>
+<p>Removes Job Binary Internal object from Sahara&#8217;s db</p>
+<p>This operation returns nothing.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>DELETE http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binary-internals/4833dc4b-8682-4d5b-8a9f-2036b47a0996
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">NO CONTENT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-job-binary-internal-data">
+<h3>3.5 Get Job Binary Internal data<a class="headerlink" href="#get-job-binary-internal-data" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binary-internals--job_binary_internal_id--data">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binary-internals/&lt;job_binary_internal_id&gt;/data</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binary-internals--job_binary_internal_id--data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>Retrieves data of specified Job Binary Internal object.</p>
+<p>This operation returns raw data.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binary-internals/4248975-3c82-4206-a58d-6e7fb3a563fd/data
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">161</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=utf-8</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="job-binaries">
+<h2>4. Job Binaries<a class="headerlink" href="#job-binaries" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Job Binaries objects are designed to create links to certain binaries stored either in the Sahara internal database or in Swift.</p>
+<p><strong>Job Binaries ops</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="49%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Verb</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binaries</td>
+<td>Lists all Job Binaries</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;</td>
+<td>Shows info about specified Job Binary by id</td>
+</tr>
+<tr class="row-even"><td>POST</td>
+<td>/v1.1/{tenant_id}/job-binaries</td>
+<td>Create a new Job Binary object</td>
+</tr>
+<tr class="row-odd"><td>DELETE</td>
+<td>/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;</td>
+<td>Removes specified Job Binary</td>
+</tr>
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;/data</td>
+<td>Retrieves data of specified Job Binary</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<div class="section" id="list-all-job-binaries">
+<h3>4.1 List all Job Binaries<a class="headerlink" href="#list-all-job-binaries" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binaries">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binaries</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binaries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the list of all created Job Binaries.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binaries
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;binaries&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://d2498cbf-4589-484a-a814-81436c18beb3&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:36:59.375060&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;84248975-3c82-4206-a58d-6e7fb3a563fd&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;example.pig&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://22f1d87a-23c8-483e-a0dd-cb4a16dde5f9&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:43:52.265899&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;508fc62d-1d58-4412-b603-bdab307bb926&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;udf.jar&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 14:25:04.970513&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;a716a9cd-9add-4b12-b1b6-cdb71aaef350&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-example.jar&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-job-binary">
+<h3>4.2 Show Job Binary<a class="headerlink" href="#show-job-binary" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binaries--job_binary_id-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binaries--job_binary_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation shows information about a specified Job Binary.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binaries/a716a9cd-9add-4b12-b1b6-cdb71aaef350
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_binary&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 14:25:04.970513&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;a716a9cd-9add-4b12-b1b6-cdb71aaef350&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-example.jar&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="create-job-binary">
+<h3>4.3 Create Job Binary<a class="headerlink" href="#create-job-binary" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--v1.1-tenant_id-job-binaries">
+<tt class="descname">POST </tt><tt class="descname">/v1.1/{tenant_id}/job-binaries</tt><a class="headerlink" href="#post--v1.1-tenant_id-job-binaries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 202 (ACCEPTED)</p>
+<p>Errors: none</p>
+<p>This operation shows information about the created Job Binary.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binaries
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-example.jar&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is job binary&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;extra&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;swordfish&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_binary&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is job binary&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 14:49:20.106452&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;07f86352-ee8a-4b08-b737-d705ded5ff9c&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-example.jar&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="delete-job-binary">
+<h3>4.4 Delete Job Binary<a class="headerlink" href="#delete-job-binary" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--v1.1-tenant_id-job-binaries--job_binary_id-">
+<tt class="descname">DELETE </tt><tt class="descname">/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;</tt><a class="headerlink" href="#delete--v1.1-tenant_id-job-binaries--job_binary_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 204 (NO CONTENT)</p>
+<p>Errors: none</p>
+<p>Removes Job Binary object</p>
+<p>This operation returns nothing.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>DELETE http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binaries/07f86352-ee8a-4b08-b737-d705ded5ff9c
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">NO CONTENT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-job-binary-data">
+<h3>4.5 Get Job Binary data<a class="headerlink" href="#get-job-binary-data" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-binaries--job_binary_id--data">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-binaries/&lt;job_binary_id&gt;/data</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-binaries--job_binary_id--data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>Retrieves data of specified Job Binary object.</p>
+<p>This operation returns raw data.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/job-binaries/84248975-3c82-4206-a58d-6e7fb3a563fd/data
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">161</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=utf-8</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="jobs">
+<h2>5. Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>Job objects represent Hadoop jobs.
+A Job object contains lists of all binaries needed for job execution.
+User should provide data sources and Job parameters to start job execution.
+A Job may be run on an existing cluster or a new transient cluster may be created for the Job run.</p>
+<p><strong>Job ops</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="49%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Verb</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/jobs</td>
+<td>Lists all created Jobs</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/jobs/&lt;job_id&gt;</td>
+<td>Shows info about specified Job by id</td>
+</tr>
+<tr class="row-even"><td>POST</td>
+<td>/v1.1/{tenant_id}/jobs</td>
+<td>Create a new Job object</td>
+</tr>
+<tr class="row-odd"><td>DELETE</td>
+<td>/v1.1/{tenant_id}/jobs/&lt;job_id&gt;</td>
+<td>Removes specified Job</td>
+</tr>
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/jobs/config-hints/&lt;job_type&gt;</td>
+<td>Shows default configuration by specified Job type</td>
+</tr>
+<tr class="row-odd"><td>POST</td>
+<td>/v1.1/{tenant_id}/jobs/&lt;job_id&gt;/execute</td>
+<td>Starts Job executing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<div class="section" id="list-all-jobs">
+<h3>5.1 List all Jobs<a class="headerlink" href="#list-all-jobs" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-jobs">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/jobs</tt><a class="headerlink" href="#get--v1.1-tenant_id-jobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the list of all created Jobs.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;jobs&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-16 11:26:54.109123&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;mains&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://d2498cbf-4589-484a-a814-81436c18beb3&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:36:59.375060&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;84248975-3c82-4206-a58d-6e7fb3a563fd&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;example.pig&quot;</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://22f1d87a-23c8-483e-a0dd-cb4a16dde5f9&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:43:52.265899&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;508fc62d-1d58-4412-b603-bdab307bb926&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;udf.jar&quot;</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pig&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;65afed9c-dad7-4658-9554-b7b4e1ca908f&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pig-job&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-16 11:29:55.008351&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;mains&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is job binary&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 16:03:37.979630&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8955b12f-ed32-4152-be39-5b7398c3d04c&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hadoopexamples.jar&quot;</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Jar&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7600373c-d262-45c6-845f-77f339f3e503&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-job&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-job">
+<h3>5.2 Show Job<a class="headerlink" href="#show-job" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-jobs--job_id-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/jobs/&lt;job_id&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-jobs--job_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the information about the specified Job.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs/7600373c-d262-45c6-845f-77f339f3e503
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-16 11:29:55.008351&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;mains&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is job binary&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;swift://container/jar-example.jar&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 16:03:37.979630&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8955b12f-ed32-4152-be39-5b7398c3d04c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hadoopexamples.jar&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Jar&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7600373c-d262-45c6-845f-77f339f3e503&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;jar-job&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="create-job">
+<h3>5.3 Create Job<a class="headerlink" href="#create-job" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--v1.1-tenant_id-jobs">
+<tt class="descname">POST </tt><tt class="descname">/v1.1/{tenant_id}/jobs</tt><a class="headerlink" href="#post--v1.1-tenant_id-jobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 202 (ACCEPTED)</p>
+<p>Errors: none</p>
+<p>This operation shows information about the created Job object.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is pig job example&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mains&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;84248975-3c82-4206-a58d-6e7fb3a563fd&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;508fc62d-1d58-4412-b603-bdab307bb926&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pig&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pig-job-example&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is pig job example&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 09:52:20.957275&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;mains&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://d2498cbf-4589-484a-a814-81436c18beb3&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:36:59.375060&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;84248975-3c82-4206-a58d-6e7fb3a563fd&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;example.pig&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-db://22f1d87a-23c8-483e-a0dd-cb4a16dde5f9&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-15 12:43:52.265899&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;508fc62d-1d58-4412-b603-bdab307bb926&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;udf.jar&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pig&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;3cb27eaa-2f88-4c75-ab81-a36e2ab58d4e&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pig-job-example&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="delete-job">
+<h3>5.4 Delete Job<a class="headerlink" href="#delete-job" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--v1.1-tenant_id-jobs--job_id-">
+<tt class="descname">DELETE </tt><tt class="descname">/v1.1/{tenant_id}/jobs/&lt;job_id&gt;</tt><a class="headerlink" href="#delete--v1.1-tenant_id-jobs--job_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 204 (NO CONTENT)</p>
+<p>Errors: none</p>
+<p>Removes the Job object</p>
+<p>This operation returns nothing.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>DELETE http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs/07f86352-ee8a-4b08-b737-d705ded5ff9c
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">NO CONTENT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-job-configuration-hints">
+<h3>5.5 Show Job Configuration Hints<a class="headerlink" href="#show-job-configuration-hints" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-jobs-config-hints--job-type-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/jobs/config-hints/&lt;job-type&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-jobs-config-hints--job-type-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns hints for configuration parameters which can be applied during job execution.</p>
+<p>This operation does not require a request body.</p>
+<p><strong>Note</strong>
+This REST call is used just for hints and doesn&#8217;t force the user to apply any of them.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara/v1.1/11587919cc534bcbb1027a161c82cf58/jobs/config-hints/MapReduce
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;configs&quot;</span><span class="p">:</span> <span class="p">[</span>
+             <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.reducer.new-api&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.mapper.new-api&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.input.dir&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.output.dir&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.mapoutput.key.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.mapoutput.value.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.output.key.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.output.value.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapreduce.map.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapreduce.reduce.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.mapper.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mapred.reducer.class&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="execute-job">
+<h3>5.6 Execute Job<a class="headerlink" href="#execute-job" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--v1.1-tenant_id-jobs--job_id--execute">
+<tt class="descname">POST </tt><tt class="descname">/v1.1/{tenant_id}/jobs/&lt;job_id&gt;/execute</tt><a class="headerlink" href="#post--v1.1-tenant_id-jobs--job_id--execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 202 (ACCEPTED)</p>
+<p>Errors: none</p>
+<p>This operation returns the created Job Execution object. Note that different job types support different combinations of <tt class="docutils literal"><span class="pre">configs</span></tt>, <tt class="docutils literal"><span class="pre">args</span></tt>, and <tt class="docutils literal"><span class="pre">params</span></tt>.  The <a class="reference internal" href="../userdoc/edp.html"><em>Elastic Data Processing (EDP)</em></a> document discusses these differences.</p>
+<dl class="docutils">
+<dt><strong>Example execution of a Pig job</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs/65afed9c-dad7-4658-9554-b7b4e1ca908f/execute
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;776e441b-5816-4d47-9e07-7ded58f9a5f6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b63780f3-13d7-4286-b731-88270fb204de&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;mapred.map.tasks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;mapred.reduce.tasks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;arg1&quot;</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;param2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_execution&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b63780f3-13d7-4286-b731-88270fb204de&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;PENDING&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;65afed9c-dad7-4658-9554-b7b4e1ca908f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 13:17:03.631362&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;776e441b-5816-4d47-9e07-7ded58f9a5f6&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;mapred.map.tasks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;mapred.reduce.tasks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;arg1&quot;</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;param2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;fb2ba667-1162-4f6d-ba77-662c04dfac35&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Example execution of a Java job</strong>:</p>
+<blockquote>
+<div><p>The main class is specified with <tt class="docutils literal"><span class="pre">edp.java.main_class</span></tt>.  The input/output paths are passed in <tt class="docutils literal"><span class="pre">args</span></tt> because Java jobs do not use data sources. Finally, the swift configs must be specified because the input/output paths are swift paths.</p>
+<p><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>POST http://sahara:8386/v1.1/11587919cc534bcbb1027a161c82cf58/jobs/65afed9c-dad7-4658-9554-b7b4e1ca908f/execute
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;776e441b-5816-4d47-9e07-7ded58f9a5f6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;fs.swift.service.sahara.username&quot;</span><span class="p">:</span> <span class="s2">&quot;myname&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;fs.swift.service.sahara.password&quot;</span><span class="p">:</span> <span class="s2">&quot;mypassword&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;edp.java.main_class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.apache.hadoop.examples.WordCount&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;swift://integration.sahara/demo/make_job.sh&quot;</span><span class="p">,</span> <span class="s2">&quot;swift://integration.sahara/friday&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_execution&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;PENDING&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8236b1b4-e1b8-46ef-9174-355cd4234b62&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;a4e4599e87e04bf1996862ae295f6f53&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-02-05 23:31:57.752897&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;466a2b6d-df00-4310-b985-c106f5231ec0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;edp.java.main_class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.apache.hadoop.examples.WordCount&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;fs.swift.service.sahara.password&quot;</span><span class="p">:</span> <span class="s2">&quot;myname&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;fs.swift.service.sahara.username&quot;</span><span class="p">:</span> <span class="s2">&quot;mypassword&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;swift://integration.sahara/demo/make_job.sh&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;swift://integration.sahara/friday&quot;</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;724709bf-2268-46ed-8daf-47898b4630b4&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="job-executions">
+<h2>6. Job Executions<a class="headerlink" href="#job-executions" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong></p>
+<p>A Job Execution object represents a Hadoop Job executing on specified cluster.
+A Job Execution polls the status of a running Job and reports it to the user.
+Also a user has the ability to cancel a running job.</p>
+<p><strong>Job Executions ops</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="47%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Verb</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-executions</td>
+<td>Lists all Job Executions</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-executions/&lt;job_execution_id&gt;</td>
+<td>Shows info about specified Job Execution by id</td>
+</tr>
+<tr class="row-even"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-executions/&lt;job_execution_id&gt;/refresh-status</td>
+<td>Refreshes status and shows info about specified Job by id</td>
+</tr>
+<tr class="row-odd"><td>GET</td>
+<td>/v1.1/{tenant_id}/job-executions/&lt;job_execution_id&gt;/cancel</td>
+<td>Cancels specified Job by id</td>
+</tr>
+<tr class="row-even"><td>DELETE</td>
+<td>/v1.1/{tenant_id}/job-executions/&lt;job_execution_id&gt;</td>
+<td>Removes specified Job</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<div class="section" id="list-all-job-executions">
+<h3>6.1 List all Job Executions<a class="headerlink" href="#list-all-job-executions" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-executions">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-executions</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-executions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation returns the list of all Job Executions.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara/v1.1/11587919cc534bcbb1027a161c82cf58/job-executions
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="last highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;job_executions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b63780f3-13d7-4286-b731-88270fb204de&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;run&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;appName&quot;</span><span class="p">:</span> <span class="s2">&quot;job-wf&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;lastModTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:17 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;retries&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                        <span class="nt">&quot;transition&quot;</span><span class="p">:</span> <span class="s2">&quot;job-node&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stats&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;cred&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;errorCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Action name[:start:] status[OK]&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;externalStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;:START:&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;trackerUri&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;externalChildIDs&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:15 GMT&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W@:start:&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;:start:&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;retries&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                        <span class="nt">&quot;transition&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;stats&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:15 GMT&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;cred&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="s2">&quot;job_201310171352_0001&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;errorCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;http://edp-master-001:50030/jobdetails.jsp?jobid=job_201310171352_0001&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Action name[job-node] status[RUNNING]&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;externalStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;pig xmlns=\&quot;uri:oozie:workflow:0.2\&quot;&gt;\r\n  &lt;job-tracker&gt;edp-master-001:8021&lt;/job-tracker&gt;\r\n  &lt;name-node&gt;hdfs://edp-master-001:8020&lt;/name-node&gt;\r\n  &lt;configuration&gt;\r\n    &lt;property&gt;\r\n      &lt;name&gt;fs.swift.service.sahara.password&lt;/name&gt;\r\n      &lt;value&gt;swordfish&lt;/value&gt;\r\n    &lt;/property&gt;\r\n    &lt;property&gt;\r\n      &lt;name&gt;fs.swift.service.sahara.username&lt;/name&gt;\r\n      &lt;value&gt;admin&lt;/value&gt;\r\n    &lt;/property&gt;\r\n  &lt;/configuration&gt;\r\n  &lt;script&gt;example.pig&lt;/script&gt;\r\n  &lt;param&gt;INPUT=swift://container.sahara/text&lt;/param&gt;\r\n  &lt;param&gt;OUTPUT=swift://container.sahara/output&lt;/param&gt;\r\n&lt;/pig&gt;&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;pig&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;trackerUri&quot;</span><span class="p">:</span> <span class="s2">&quot;edp-master-001:8021&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;externalChildIDs&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W@job-node&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;job-node&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;acl&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;http://edp-master-001.novalocal:11000/oozie?job=0000000-131017135256789-oozie-hado-W&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;appPath&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs://edp-master-001:8020/user/hadoop/pig-job/9ceb6469-4d06-474d-995d-76fbc3b8c617/workflow.xml&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Workflow id[0000000-131017135256789-oozie-hado-W] status[RUNNING]&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;hadoop&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;configuration&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;user.name&lt;/name&gt;\r\n    &lt;value&gt;hadoop&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;oozie.use.system.libpath&lt;/name&gt;\r\n    &lt;value&gt;true&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;nameNode&lt;/name&gt;\r\n    &lt;value&gt;hdfs://edp-master-001:8020&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;jobTracker&lt;/name&gt;\r\n    &lt;value&gt;edp-master-001:8021&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;oozie.wf.application.path&lt;/name&gt;\r\n    &lt;value&gt;hdfs://edp-master-001:8020/user/hadoop/pig-job/9ceb6469-4d06-474d-995d-76fbc3b8c617/workflow.xml&lt;/value&gt;\r\n  &lt;/property&gt;\r\n&lt;/configuration&gt;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;parentId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;createdTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;65afed9c-dad7-4658-9554-b7b4e1ca908f&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;start_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17T17:53:14&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 13:53:32.227919&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;return_code&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;oozie_job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;end_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eb85e8a0-510c-489f-b78e-ad1d29e957c8&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e63bdc21-0126-4fd2-90c6-5163d16f31df&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 13:51:11.671977&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b63780f3-13d7-4286-b731-88270fb204de&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;PENDING&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;65afed9c-dad7-4658-9554-b7b4e1ca908f&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;start_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;return_code&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;oozie_job_id&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;end_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eb85e8a0-510c-489f-b78e-ad1d29e957c8&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e63bdc21-0126-4fd2-90c6-5163d16f31df&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 14:37:04.107096&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="show-job-execution">
+<h3>6.2 Show Job Execution<a class="headerlink" href="#show-job-execution" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-executions--job_execution_id-">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-executions/&lt;job_execution_id&gt;</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-executions--job_execution_id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation shows the information about a specified Job Execution.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara/v1.1/11587919cc534bcbb1027a161c82cf58/job-executions/e63bdc21-0126-4fd2-90c6-5163d16f31df
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p class="last">Response body contains <a class="reference internal" href="#job-execution-label"><em>Job Execution object</em></a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="refresh-job-execution-status">
+<h3>6.3 Refresh Job Execution status<a class="headerlink" href="#refresh-job-execution-status" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-executions--job-execution-id--refresh-status">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-executions/&lt;job-execution-id&gt;/refresh-status</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-executions--job-execution-id--refresh-status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation refreshes the status of the specified Job Execution and shows its information.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara/v1.1/11587919cc534bcbb1027a161c82cf58/job-executions/4a911624-1e25-4650-bd1d-382d19695708/refresh-status
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p class="last">Response body contains <a class="reference internal" href="#job-execution-label"><em>Job Execution object</em></a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="cancel-job-execution">
+<h3>6.4 Cancel Job Execution<a class="headerlink" href="#cancel-job-execution" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--v1.1-tenant_id-job-executions--job-execution-id--cancel">
+<tt class="descname">GET </tt><tt class="descname">/v1.1/{tenant_id}/job-executions/&lt;job-execution-id&gt;/cancel</tt><a class="headerlink" href="#get--v1.1-tenant_id-job-executions--job-execution-id--cancel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 200 (OK)</p>
+<p>Errors: none</p>
+<p>This operation cancels specified Job Execution.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>GET http://sahara/v1.1/11587919cc534bcbb1027a161c82cf58/job-executions/4a911624-1e25-4650-bd1d-382d19695708/refresh-status
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p class="last">Response body contains <a class="reference internal" href="#job-execution-label"><em>Job Execution object</em></a> with Job Execution in KILLED state</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="delete-job-execution">
+<h3>6.5 Delete Job Execution<a class="headerlink" href="#delete-job-execution" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--v1.1-tenant_id-job-executions--job-execution-id-">
+<tt class="descname">DELETE </tt><tt class="descname">/v1.1/{tenant_id}/job-executions/&lt;job-execution-id&gt;</tt><a class="headerlink" href="#delete--v1.1-tenant_id-job-executions--job-execution-id-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Normal Response Code: 204 (NO CONTENT)</p>
+<p>Errors: none</p>
+<p>Remove an existing Job Execution.</p>
+<p>This operation returns nothing.</p>
+<p>This operation does not require a request body.</p>
+<dl class="docutils">
+<dt><strong>Example</strong>:</dt>
+<dd><p class="first"><strong>request</strong></p>
+<div class="highlight-http"><div class="highlight"><pre>DELETE http://sahara/v1.1/job-executions/&lt;job-execution-id&gt;/d7g51a-8123-424e-sdsr3-eb222ec989b1
+</pre></div>
+</div>
+<p><strong>response</strong></p>
+<div class="last highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">NO CONTENT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="job-execution-object">
+<span id="job-execution-label"></span><h2>Job Execution object<a class="headerlink" href="#job-execution-object" title="Permalink to this headline">¶</a></h2>
+<p>The following json response represents a Job Execution object returned from Sahara</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;output_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b63780f3-13d7-4286-b731-88270fb204de&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;run&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;appName&quot;</span><span class="p">:</span> <span class="s2">&quot;job-wf&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastModTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:17 GMT&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;retries&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;transition&quot;</span><span class="p">:</span> <span class="s2">&quot;job-node&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;stats&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;cred&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;errorCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Action name[:start:] status[OK]&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;externalStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;:START:&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;trackerUri&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;externalChildIDs&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:15 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W@:start:&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;:start:&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;retries&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;transition&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;stats&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:15 GMT&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;cred&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;externalId&quot;</span><span class="p">:</span> <span class="s2">&quot;job_201310171352_0001&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;errorCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;http://edp-master-001:50030/jobdetails.jsp?jobid=job_201310171352_0001&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Action name[job-node] status[RUNNING]&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;externalStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;pig xmlns=\&quot;uri:oozie:workflow:0.2\&quot;&gt;\r\n  &lt;job-tracker&gt;edp-master-001:8021&lt;/job-tracker&gt;\r\n  &lt;name-node&gt;hdfs://edp-master-001:8020&lt;/name-node&gt;\r\n  &lt;configuration&gt;\r\n    &lt;property&gt;\r\n      &lt;name&gt;fs.swift.service.sahara.password&lt;/name&gt;\r\n      &lt;value&gt;swordfish&lt;/value&gt;\r\n    &lt;/property&gt;\r\n    &lt;property&gt;\r\n      &lt;name&gt;fs.swift.service.sahara.username&lt;/name&gt;\r\n      &lt;value&gt;admin&lt;/value&gt;\r\n    &lt;/property&gt;\r\n  &lt;/configuration&gt;\r\n  &lt;script&gt;example.pig&lt;/script&gt;\r\n  &lt;param&gt;INPUT=swift://container.sahara/text&lt;/param&gt;\r\n  &lt;param&gt;OUTPUT=swift://container.sahara/output&lt;/param&gt;\r\n&lt;/pig&gt;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;pig&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;trackerUri&quot;</span><span class="p">:</span> <span class="s2">&quot;edp-master-001:8021&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;externalChildIDs&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W@job-node&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;job-node&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;acl&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;consoleUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;http://edp-master-001.novalocal:11000/oozie?job=0000000-131017135256789-oozie-hado-W&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;appPath&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs://edp-master-001:8020/user/hadoop/pig-job/9ceb6469-4d06-474d-995d-76fbc3b8c617/workflow.xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;toString&quot;</span><span class="p">:</span> <span class="s2">&quot;Workflow id[0000000-131017135256789-oozie-hado-W] status[RUNNING]&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;hadoop&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;conf&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;configuration&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;user.name&lt;/name&gt;\r\n    &lt;value&gt;hadoop&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;oozie.use.system.libpath&lt;/name&gt;\r\n    &lt;value&gt;true&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;nameNode&lt;/name&gt;\r\n    &lt;value&gt;hdfs://edp-master-001:8020&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;jobTracker&lt;/name&gt;\r\n    &lt;value&gt;edp-master-001:8021&lt;/value&gt;\r\n  &lt;/property&gt;\r\n  &lt;property&gt;\r\n    &lt;name&gt;oozie.wf.application.path&lt;/name&gt;\r\n    &lt;value&gt;hdfs://edp-master-001:8020/user/hadoop/pig-job/9ceb6469-4d06-474d-995d-76fbc3b8c617/workflow.xml&lt;/value&gt;\r\n  &lt;/property&gt;\r\n&lt;/configuration&gt;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;parentId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;createdTime&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 17 Oct 2013 13:53:14 GMT&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;65afed9c-dad7-4658-9554-b7b4e1ca908f&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="s2">&quot;11587919cc534bcbb1027a161c82cf58&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;start_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17T17:53:14&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 13:53:32.227919&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;return_code&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;oozie_job_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000-131017135256789-oozie-hado-W&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;input_id&quot;</span><span class="p">:</span> <span class="s2">&quot;af7dc864-6331-4c30-80f5-63d74b667eaf&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;end_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eb85e8a0-510c-489f-b78e-ad1d29e957c8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e63bdc21-0126-4fd2-90c6-5163d16f31df&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;job_configs&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-10-17 13:51:11.671977&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sahara REST API v1.1 (EDP)</a><ul>
+<li><a class="reference internal" href="#general-information">1. General information</a></li>
+<li><a class="reference internal" href="#data-sources">2. Data Sources</a><ul>
+<li><a class="reference internal" href="#list-all-data-sources">2.1 List all Data Sources</a></li>
+<li><a class="reference internal" href="#show-data-source">2.2 Show Data Source</a></li>
+<li><a class="reference internal" href="#create-data-source">2.3 Create Data Source</a></li>
+<li><a class="reference internal" href="#delete-data-source">2.4 Delete Data Source</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#job-binary-internals">3 Job Binary Internals</a><ul>
+<li><a class="reference internal" href="#list-all-job-binary-internals">3.1 List all Job Binary Internals</a></li>
+<li><a class="reference internal" href="#show-job-binary-internal">3.2 Show Job Binary Internal</a></li>
+<li><a class="reference internal" href="#create-job-binary-internal">3.3 Create Job Binary Internal</a></li>
+<li><a class="reference internal" href="#delete-job-binary-internal">3.4 Delete Job Binary Internal</a></li>
+<li><a class="reference internal" href="#get-job-binary-internal-data">3.5 Get Job Binary Internal data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#job-binaries">4. Job Binaries</a><ul>
+<li><a class="reference internal" href="#list-all-job-binaries">4.1 List all Job Binaries</a></li>
+<li><a class="reference internal" href="#show-job-binary">4.2 Show Job Binary</a></li>
+<li><a class="reference internal" href="#create-job-binary">4.3 Create Job Binary</a></li>
+<li><a class="reference internal" href="#delete-job-binary">4.4 Delete Job Binary</a></li>
+<li><a class="reference internal" href="#get-job-binary-data">4.5 Get Job Binary data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jobs">5. Jobs</a><ul>
+<li><a class="reference internal" href="#list-all-jobs">5.1 List all Jobs</a></li>
+<li><a class="reference internal" href="#show-job">5.2 Show Job</a></li>
+<li><a class="reference internal" href="#create-job">5.3 Create Job</a></li>
+<li><a class="reference internal" href="#delete-job">5.4 Delete Job</a></li>
+<li><a class="reference internal" href="#show-job-configuration-hints">5.5 Show Job Configuration Hints</a></li>
+<li><a class="reference internal" href="#execute-job">5.6 Execute Job</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#job-executions">6. Job Executions</a><ul>
+<li><a class="reference internal" href="#list-all-job-executions">6.1 List all Job Executions</a></li>
+<li><a class="reference internal" href="#show-job-execution">6.2 Show Job Execution</a></li>
+<li><a class="reference internal" href="#refresh-job-execution-status">6.3 Refresh Job Execution status</a></li>
+<li><a class="reference internal" href="#cancel-job-execution">6.4 Cancel Job Execution</a></li>
+<li><a class="reference internal" href="#delete-job-execution">6.5 Delete Job Execution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#job-execution-object">Job Execution object</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_api_v1.0.html"
+                        title="previous chapter">Sahara REST API v1.0</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../userdoc/guest-requirements.html"
+                        title="next chapter">Requirements for Guests</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/restapi/rest_api_v1.1_EDP.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../userdoc/guest-requirements.html" title="Requirements for Guests"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rest_api_v1.0.html" title="Sahara REST API v1.0"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Sahara REST API docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

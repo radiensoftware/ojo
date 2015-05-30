@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vanilla Plugin &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Hortonworks Data Platform Plugin" href="hdp_plugin.html" />
+    <link rel="prev" title="Provisioning Plugins" href="plugins.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/vanilla_plugin.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/vanilla_plugin",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/vanilla_plugin";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="vanilla-plugin">
+<h1>Vanilla Plugin<a class="headerlink" href="#vanilla-plugin" title="Permalink to this headline">¶</a></h1>
+<p>The vanilla plugin is a reference implementation which allows users to operate
+a cluster with Apache Hadoop.</p>
+<p>For cluster provisioning prepared images should be used. They already have
+Apache Hadoop 1.2.1 and Apache Hadoop 2.4.1 installed. Prepared images
+can be found at the following locations:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-ubuntu-14.04.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-ubuntu-14.04.qcow2</a></li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-centos-6.5.qcow2</a></li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-fedora-20.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-fedora-20.qcow2</a></li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-ubuntu-14.04.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-ubuntu-14.04.qcow2</a></li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-centos-6.5.qcow2</a></li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-fedora-20.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-fedora-20.qcow2</a></li>
+</ul>
+<p>Additionally, you may build images by yourself using <a class="reference internal" href="diskimagebuilder.html"><em>Building Images for Vanilla Plugin</em></a>.
+Keep in mind that if you want to use the Swift Integration feature
+( <a class="reference internal" href="features.html"><em>Features Overview</em></a>),
+Hadoop 1.2.1 must be patched with an implementation of Swift File System.
+For more information about patching required by the Swift Integration feature
+see <a class="reference internal" href="hadoop-swift.html"><em>Swift Integration</em></a>.</p>
+<p>Vanilla plugin requires an image to be tagged in Sahara Image Registry with
+two tags: &#8216;vanilla&#8217; and &#8216;&lt;hadoop version&gt;&#8217; (e.g. &#8216;1.2.1&#8217;).</p>
+<p>The default username specified for these images is different
+for each distribution:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OS</th>
+<th class="head">username</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ubuntu 14.04</td>
+<td>ubuntu</td>
+</tr>
+<tr class="row-odd"><td>Fedora 20</td>
+<td>fedora</td>
+</tr>
+<tr class="row-even"><td>CentOS 6.5</td>
+<td>cloud-user</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="cluster-validation">
+<h2>Cluster Validation<a class="headerlink" href="#cluster-validation" title="Permalink to this headline">¶</a></h2>
+<p>When user creates or scales a Hadoop cluster using a Vanilla plugin,
+the cluster topology requested by user is verified for consistency.</p>
+<p>Currently there are the following limitations in cluster topology for Vanilla
+plugin:</p>
+<p>For Vanilla Hadoop version 1.X.X:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Cluster must contain exactly one namenode</li>
+<li>Cluster can contain at most one jobtracker</li>
+<li>Cluster can contain at most one oozie and this process is also required
+for EDP</li>
+<li>Cluster can&#8217;t contain oozie without jobtraker</li>
+<li>Cluster can&#8217;t have tasktracker nodes if it doesn&#8217;t have jobtracker</li>
+</ul>
+</div></blockquote>
+<p>For Vanilla Hadoop version 2.X.X:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Cluster must contain exactly one namenode</li>
+<li>Cluster can contain at most one resourcemanager</li>
+<li>Cluster can contain at most one historyserver</li>
+<li>Cluster can contain at most one oozie and this process is also required
+for EDP</li>
+<li>Cluster can&#8217;t contain oozie without resourcemanager and without
+historyserver</li>
+<li>Cluster can&#8217;t have nodemanager nodes if it doesn&#8217;t have resourcemanager</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Vanilla Plugin</a><ul>
+<li><a class="reference internal" href="#cluster-validation">Cluster Validation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="plugins.html"
+                        title="previous chapter">Provisioning Plugins</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hdp_plugin.html"
+                        title="next chapter">Hortonworks Data Platform Plugin</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/vanilla_plugin.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="hdp_plugin.html" title="Hortonworks Data Platform Plugin"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="plugins.html" title="Provisioning Plugins"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

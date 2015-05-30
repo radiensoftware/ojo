@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sahara Upgrade Guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Getting Started" href="overview.html" />
+    <link rel="prev" title="Sahara Advanced Configuration Guide" href="advanced.configuration.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/upgrade.guide.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/upgrade.guide",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/upgrade.guide";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sahara-upgrade-guide">
+<h1>Sahara Upgrade Guide<a class="headerlink" href="#sahara-upgrade-guide" title="Permalink to this headline">¶</a></h1>
+<p>This page contains some details about upgrading Sahara from one release to
+another like config file updates, db migrations, architecture changes and etc.</p>
+<div class="section" id="icehouse-juno">
+<h2>Icehouse -&gt; Juno<a class="headerlink" href="#icehouse-juno" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="main-binary-renamed-to-sahara-all">
+<h3>Main binary renamed to sahara-all<a class="headerlink" href="#main-binary-renamed-to-sahara-all" title="Permalink to this headline">¶</a></h3>
+<p>Please, note that you should use <cite>sahara-all</cite> instead of <cite>sahara-api</cite> to start
+the All-In-One Sahara.</p>
+</div>
+<div class="section" id="sahara-conf-upgrade">
+<h3>sahara.conf upgrade<a class="headerlink" href="#sahara-conf-upgrade" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ve migrated from custom auth_token middleware config options to the common
+config options. To update your config file you should replace the following
+old config opts with the new ones.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">os_auth_protocol</span></tt>, <tt class="docutils literal"><span class="pre">os_auth_host</span></tt>, <tt class="docutils literal"><span class="pre">os_auth_port</span></tt>
+-&gt; <tt class="docutils literal"><span class="pre">[keystone_authtoken]/auth_uri</span></tt> and <tt class="docutils literal"><span class="pre">[keystone_authtoken]/identity_uri</span></tt>;
+it should be the full uri, for example: <tt class="docutils literal"><span class="pre">http://127.0.0.1:5000/v2.0/</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">os_admin_username</span></tt> -&gt; <tt class="docutils literal"><span class="pre">[keystone_authtoken]/admin_user</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">os_admin_password</span></tt> -&gt; <tt class="docutils literal"><span class="pre">[keystone_authtoken]/admin_password</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">os_admin_tenant_name</span></tt> -&gt; <tt class="docutils literal"><span class="pre">[keystone_authtoken]/admin_tenant_name</span></tt></li>
+</ul>
+<p>We&#8217;ve replaced oslo code from sahara.openstack.common.db by usage of oslo.db
+library.</p>
+<p>Also sqlite database is not supported anymore. Please use MySQL or PostgreSQL
+db backends for Sahara. Sqlite support was dropped because it doesn&#8217;t support
+(and not going to support, see <a class="reference external" href="http://www.sqlite.org/omitted.html">http://www.sqlite.org/omitted.html</a>) ALTER
+COLUMN and DROP COLUMN commands required for DB migrations between versions.</p>
+<p>You can find more info about config file options in Sahara repository in file
+<tt class="docutils literal"><span class="pre">etc/sahara/sahara.conf.sample</span></tt>.</p>
+</div>
+<div class="section" id="sahara-dashboard-was-merged-into-openstack-dashboard">
+<h3>Sahara Dashboard was merged into OpenStack Dashboard<a class="headerlink" href="#sahara-dashboard-was-merged-into-openstack-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>The Sahara Dashboard is not available in Juno release. Instead it&#8217;s
+functionality is provided by OpenStack Dashboard out of the box.
+The Sahara UI is available in OpenStack Dashboard in
+&#8220;Project&#8221; -&gt; &#8220;Data Processing&#8221; tab.</p>
+<p>Note that you have to properly register Sahara in Keystone in
+order for Sahara UI in the Dashboard to work. For details see
+<tt class="docutils literal"><span class="pre">:ref:`registering</span> <span class="pre">Sahara</span> <span class="pre">in</span> <span class="pre">installation</span> <span class="pre">guide</span> <span class="pre">&lt;register-sahara-label&gt;`</span></tt>.</p>
+<p>The <a class="reference external" href="https://git.openstack.org/cgit/openstack/sahara-dashboard">sahara-dashboard</a>
+project is now used solely to host Sahara UI integration tests.</p>
+</div>
+<div class="section" id="vm-user-name-changed-for-heat-infrastructure-engine">
+<h3>VM user name changed for HEAT infrastructure engine<a class="headerlink" href="#vm-user-name-changed-for-heat-infrastructure-engine" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ve updated HEAT infrastructure engine (<tt class="docutils literal"><span class="pre">infrastructure_engine=heat</span></tt>) to
+use the same rules for instance user name as in direct engine. Before the
+change user name for VMs created by Sahara using HEAT engine was always
+&#8216;ec2-user&#8217;. Now user name is taken from the image registry as it is described
+in the documentation.</p>
+<p>Note, this change breaks Sahara backward compatibility for clusters created
+using HEAT infrastructure engine before the change. Clusters will continue to
+operate, but it is not recommended to perform scale operation over them.</p>
+</div>
+<div class="section" id="anti-affinity-implementation-changed">
+<h3>Anti affinity implementation changed<a class="headerlink" href="#anti-affinity-implementation-changed" title="Permalink to this headline">¶</a></h3>
+<p>Starting with Juno release anti affinity feature is implemented using server
+groups. There should not be much difference in Sahara behaviour from user
+perspective, but there are internal changes:</p>
+<ol class="arabic simple">
+<li>Server group object will be created if anti affinity feature is enabled</li>
+<li>New implementation doesn&#8217;t allow several affected instances on the same
+host even if they don&#8217;t have common processes. So, if anti affinity enabled
+for &#8216;datanode&#8217; and &#8216;tasktracker&#8217; processes, previous implementation allowed
+to have instance with &#8216;datanode&#8217; process and other instance with
+&#8216;tasktracker&#8217; process on one host. New implementation guarantees that
+instances will be on different hosts.</li>
+</ol>
+<p>Note, new implementation will be applied for new clusters only. Old
+implementation will be applied if user scales cluster created in Icehouse.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sahara Upgrade Guide</a><ul>
+<li><a class="reference internal" href="#icehouse-juno">Icehouse -&gt; Juno</a><ul>
+<li><a class="reference internal" href="#main-binary-renamed-to-sahara-all">Main binary renamed to sahara-all</a></li>
+<li><a class="reference internal" href="#sahara-conf-upgrade">sahara.conf upgrade</a></li>
+<li><a class="reference internal" href="#sahara-dashboard-was-merged-into-openstack-dashboard">Sahara Dashboard was merged into OpenStack Dashboard</a></li>
+<li><a class="reference internal" href="#vm-user-name-changed-for-heat-infrastructure-engine">VM user name changed for HEAT infrastructure engine</a></li>
+<li><a class="reference internal" href="#anti-affinity-implementation-changed">Anti affinity implementation changed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="advanced.configuration.guide.html"
+                        title="previous chapter">Sahara Advanced Configuration Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="overview.html"
+                        title="next chapter">Getting Started</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/upgrade.guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Getting Started"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="advanced.configuration.guide.html" title="Sahara Advanced Configuration Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

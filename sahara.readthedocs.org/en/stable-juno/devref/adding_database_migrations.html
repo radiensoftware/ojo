@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Adding Database Migrations &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara Testing" href="testing.html" />
+    <link rel="prev" title="How to build Oozie" href="how_to_build_oozie.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/adding_database_migrations.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/adding_database_migrations",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/adding_database_migrations";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="adding-database-migrations">
+<h1>Adding Database Migrations<a class="headerlink" href="#adding-database-migrations" title="Permalink to this headline">¶</a></h1>
+<p>The migrations in <tt class="docutils literal"><span class="pre">sahara/db/migration/alembic_migrations/versions</span></tt> contain the changes needed to migrate
+between Sahara database revisions. A migration occurs by executing a script that details the changes needed to
+upgrade or downgrade the database. The migration scripts are ordered so that multiple scripts
+can run sequentially. The scripts are executed by Sahara&#8217;s migration wrapper
+which uses the Alembic library to manage the migration. Sahara supports
+migration from Icehouse or later.</p>
+<p>Any code modifications that change the structure of the database require a migration script so that
+previously existing databases will continue to function when the new code is released. This page gives a
+brief overview of how to add the migration.</p>
+<div class="section" id="generate-a-new-migration-script">
+<h2>Generate a New Migration Script<a class="headerlink" href="#generate-a-new-migration-script" title="Permalink to this headline">¶</a></h2>
+<p>New migration scripts can be generated using the <tt class="docutils literal"><span class="pre">sahara-db-manage</span></tt> command.</p>
+<p>To generate a migration stub to be filled in by the developer:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf revision -m &quot;description of revision&quot;
+</pre></div>
+</div>
+<p>To autogenerate a migration script that reflects the current structure of the database:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf revision -m &quot;description of revision&quot; --autogenerate
+</pre></div>
+</div>
+<p>Each of these commands will create a file of the form <tt class="docutils literal"><span class="pre">revision_description</span></tt> where <tt class="docutils literal"><span class="pre">revision</span></tt> is a string
+generated by Alembic and <tt class="docutils literal"><span class="pre">description</span></tt> is based on the text passed with the <tt class="docutils literal"><span class="pre">-m</span></tt> option.</p>
+</div>
+<div class="section" id="follow-the-sahara-naming-convention">
+<h2>Follow the Sahara Naming Convention<a class="headerlink" href="#follow-the-sahara-naming-convention" title="Permalink to this headline">¶</a></h2>
+<p>By convention Sahara uses 3-digit revision numbers, and this scheme differs from the strings generated by Alembic.
+Consequently, it&#8217;s necessary to rename the generated script and modify the revision identifiers in the script.</p>
+<p>Open the new script and look for the variable <tt class="docutils literal"><span class="pre">down_revision</span></tt>.  The value should be a 3-digit numeric string, and it
+identifies the current revision number of the database.  Set the <tt class="docutils literal"><span class="pre">revision</span></tt> value to the <tt class="docutils literal"><span class="pre">down_revision</span></tt> value + 1.
+For example, the lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># revision identifiers, used by Alembic.</span>
+<span class="n">revision</span> <span class="o">=</span> <span class="s">&#39;507eb70202af&#39;</span>
+<span class="n">down_revision</span> <span class="o">=</span> <span class="s">&#39;006&#39;</span>
+</pre></div>
+</div>
+<p>will become:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># revision identifiers, used by Alembic.</span>
+<span class="n">revision</span> <span class="o">=</span> <span class="s">&#39;007&#39;</span>
+<span class="n">down_revision</span> <span class="o">=</span> <span class="s">&#39;006&#39;</span>
+</pre></div>
+</div>
+<p>Modify any comments in the file to match the changes and rename the file to match the new revision number:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ mv 507eb70202af_my_new_revision.py 007_my_new_revision.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-alembic-operations-to-the-script">
+<h2>Add Alembic Operations to the Script<a class="headerlink" href="#add-alembic-operations-to-the-script" title="Permalink to this headline">¶</a></h2>
+<p>The migration script contains two methods, <tt class="docutils literal"><span class="pre">upgrade()</span></tt> and <tt class="docutils literal"><span class="pre">downgrade()</span></tt>.  Fill in these methods with the appropriate Alembic operations to perform upgrades or downgrades. In the above example, an upgrade will move from revision &#8216;006&#8217; to revision &#8216;007&#8217; and a downgrade will move from revision &#8216;007&#8217; to revision &#8216;006&#8217;.</p>
+</div>
+<div class="section" id="command-summary-for-sahara-db-manage">
+<h2>Command Summary for sahara-db-manage<a class="headerlink" href="#command-summary-for-sahara-db-manage" title="Permalink to this headline">¶</a></h2>
+<p>You can upgrade to the latest database version via:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf upgrade head
+</pre></div>
+</div>
+<p>To check the current database version:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf current
+</pre></div>
+</div>
+<p>To create a script to run the migration offline:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf upgrade head --sql
+</pre></div>
+</div>
+<p>To run the offline migration between specific migration versions:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf upgrade &lt;start version&gt;:&lt;end version&gt; --sql
+</pre></div>
+</div>
+<p>Upgrade the database incrementally:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf upgrade --delta &lt;# of revs&gt;
+</pre></div>
+</div>
+<p>Downgrade the database by a certain number of revisions:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf downgrade --delta &lt;# of revs&gt;
+</pre></div>
+</div>
+<p>Create new revision:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf revision -m &quot;description of revision&quot; --autogenerate
+</pre></div>
+</div>
+<p>Create a blank file:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf revision -m &quot;description of revision&quot;
+</pre></div>
+</div>
+<p>This command does not perform any migrations, it only sets the revision.
+Revision may be any existing revision. Use this command carefully:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf stamp &lt;revision&gt;
+</pre></div>
+</div>
+<p>To verify that the timeline does branch, you can run this command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf check_migration
+</pre></div>
+</div>
+<p>If the migration path does branch, you can find the branch point via:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sahara-db-manage --config-file /path/to/sahara.conf history
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Adding Database Migrations</a><ul>
+<li><a class="reference internal" href="#generate-a-new-migration-script">Generate a New Migration Script</a></li>
+<li><a class="reference internal" href="#follow-the-sahara-naming-convention">Follow the Sahara Naming Convention</a></li>
+<li><a class="reference internal" href="#add-alembic-operations-to-the-script">Add Alembic Operations to the Script</a></li>
+<li><a class="reference internal" href="#command-summary-for-sahara-db-manage">Command Summary for sahara-db-manage</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="how_to_build_oozie.html"
+                        title="previous chapter">How to build Oozie</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="next chapter">Sahara Testing</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/adding_database_migrations.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="testing.html" title="Sahara Testing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="how_to_build_oozie.html" title="How to build Oozie"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

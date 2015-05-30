@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Development Guidelines &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Setting Up a Development Environment" href="development.environment.html" />
+    <link rel="prev" title="Building Images for Vanilla Plugin" href="../userdoc/diskimagebuilder.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/devref/development.guidelines.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "devref/development.guidelines",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "devref/development.guidelines";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="development-guidelines">
+<h1>Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="coding-guidelines">
+<h2>Coding Guidelines<a class="headerlink" href="#coding-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>For all the code in Sahara we have a rule - it should pass <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP 8</a>.</p>
+<p>To check your code against PEP 8 run:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tox -e pep8
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more details on coding guidelines see file <tt class="docutils literal"><span class="pre">HACKING.rst</span></tt> in the root
+of Sahara repo.</p>
+</div>
+</div>
+<div class="section" id="modification-of-upstream-files">
+<h2>Modification of Upstream Files<a class="headerlink" href="#modification-of-upstream-files" title="Permalink to this headline">¶</a></h2>
+<p>We never modify upstream files in Sahara. Any changes in upstream files should be made
+in the upstream project and then merged back in to Sahara.  This includes whitespace
+changes, comments, and typos. Any change requests containing upstream file modifications
+are almost certain to receive lots of negative reviews.  Be warned.</p>
+<p>Examples of upstream files are default xml configuration files used to configure Hadoop, or
+code imported from the OpenStack Oslo project. The xml files will usually be found in
+<tt class="docutils literal"><span class="pre">resource</span></tt> directories with an accompanying <tt class="docutils literal"><span class="pre">README</span></tt> file that identifies where the
+files came from.  For example:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">pwd</span>
+<span class="go">/home/me/sahara/sahara/plugins/vanilla/v2_3_0/resources</span>
+
+<span class="gp">$</span> ls
+<span class="go">core-default.xml     hdfs-default.xml    oozie-default.xml   README.rst</span>
+<span class="go">create_oozie_db.sql  mapred-default.xml  post_conf.template  yarn-default.xml</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-guidelines">
+<h2>Testing Guidelines<a class="headerlink" href="#testing-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>Sahara has a suite of tests that are run on all submitted code,
+and it is recommended that developers execute the tests themselves to
+catch regressions early.  Developers are also expected to keep the
+test suite up-to-date with any submitted code changes.</p>
+<p>Unit tests are located at <tt class="docutils literal"><span class="pre">sahara/tests</span></tt>.</p>
+<p>Sahara&#8217;s suite of unit tests can be executed in an isolated environment
+with <a class="reference external" href="http://tox.testrun.org/">Tox</a>. To execute the unit tests run the following from the root of
+Sahara repo:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tox -e py27
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation-guidelines">
+<h2>Documentation Guidelines<a class="headerlink" href="#documentation-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>All Sahara docs are written using Sphinx / RST and located in the main repo
+in <tt class="docutils literal"><span class="pre">doc</span></tt> directory. You can add/edit pages here to update
+<a class="reference external" href="http://docs.openstack.org/developer/sahara">http://docs.openstack.org/developer/sahara</a> site.</p>
+<p>The documentation in docstrings should follow the <a class="reference external" href="http://www.python.org/dev/peps/pep-0257/">PEP 257</a> conventions
+(as mentioned in the <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP 8</a> guidelines).</p>
+<p>More specifically:</p>
+<ol class="arabic simple">
+<li>Triple quotes should be used for all docstrings.</li>
+<li>If the docstring is simple and fits on one line, then just use
+one line.</li>
+<li>For docstrings that take multiple lines, there should be a newline
+after the opening quotes, and before the closing quotes.</li>
+<li><a class="reference external" href="http://sphinx.pocoo.org/markup/index.html">Sphinx</a> is used to build documentation, so use the restructured text
+markup to designate parameters, return values, etc.  Documentation on
+the sphinx specific markup can be found here:</li>
+</ol>
+<p>Run the following command to build docs locally.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tox -e docs
+</pre></div>
+</div>
+<p>After it you can access generated docs in <tt class="docutils literal"><span class="pre">doc/build/</span></tt> directory, for example,
+main page - <tt class="docutils literal"><span class="pre">doc/build/html/index.html</span></tt>.</p>
+<p>To make docs generation process faster you can use:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nv">SPHINX_DEBUG</span><span class="o">=</span>1 tox -e docs
+</pre></div>
+</div>
+<p>or to avoid sahara reinstallation to virtual env each time you want to rebuild
+docs you can use the following command (it could be executed only after
+running <tt class="docutils literal"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">docs</span></tt> first time):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nv">SPHINX_DEBUG</span><span class="o">=</span>1 .tox/docs/bin/python setup.py build_sphinx
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more details on documentation guidelines see file HACKING.rst in the root
+of Sahara repo.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Development Guidelines</a><ul>
+<li><a class="reference internal" href="#coding-guidelines">Coding Guidelines</a></li>
+<li><a class="reference internal" href="#modification-of-upstream-files">Modification of Upstream Files</a></li>
+<li><a class="reference internal" href="#testing-guidelines">Testing Guidelines</a></li>
+<li><a class="reference internal" href="#documentation-guidelines">Documentation Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../userdoc/diskimagebuilder.html"
+                        title="previous chapter">Building Images for Vanilla Plugin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="development.environment.html"
+                        title="next chapter">Setting Up a Development Environment</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devref/development.guidelines.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="development.environment.html" title="Setting Up a Development Environment"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../userdoc/diskimagebuilder.html" title="Building Images for Vanilla Plugin"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

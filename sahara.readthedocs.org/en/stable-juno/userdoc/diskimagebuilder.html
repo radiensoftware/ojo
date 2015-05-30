@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building Images for Vanilla Plugin &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Development Guidelines" href="../devref/development.guidelines.html" />
+    <link rel="prev" title="Swift Integration" href="hadoop-swift.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/diskimagebuilder.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/diskimagebuilder",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/diskimagebuilder";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="building-images-for-vanilla-plugin">
+<span id="diskimage-builder-label"></span><h1>Building Images for Vanilla Plugin<a class="headerlink" href="#building-images-for-vanilla-plugin" title="Permalink to this headline">¶</a></h1>
+<p>In this document you will find instruction on how to build Ubuntu, Fedora, and
+CentOS images with Apache Hadoop versions 1.x.x and 2.x.x.</p>
+<p>As of now the vanilla plugin works with images with pre-installed versions of
+Apache Hadoop. To simplify the task of building such images we use
+<a class="reference external" href="https://github.com/openstack/diskimage-builder">Disk Image Builder</a>.</p>
+<p><cite>Disk Image Builder</cite> builds disk images using elements. An element is a
+particular set of code that alters how the image is built, or runs within the
+chroot to prepare the image.</p>
+<p>Elements for building vanilla images are stored in
+<a class="reference external" href="https://github.com/openstack/sahara-image-elements">Sahara extra repository</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Sahara requires images with cloud-init package installed:</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://pkgs.fedoraproject.org/cgit/cloud-init.git/">For Fedora</a></li>
+<li><a class="reference external" href="http://packages.ubuntu.com/precise/cloud-init">For Ubuntu</a></li>
+</ul>
+</div>
+<p>To create vanilla images follow these steps:</p>
+<ol class="arabic">
+<li><p class="first">Clone repository &#8220;<a class="reference external" href="https://github.com/openstack/sahara-image-elements">https://github.com/openstack/sahara-image-elements</a>&#8221; locally.</p>
+</li>
+<li><p class="first">Run the diskimage-create.sh script.</p>
+<p>You can run the script diskimage-create.sh in any directory (for example, in
+your home directory). By default this script will attempt to create cloud
+images for all versions of supported plugins and all operating systems
+(subset of Ubuntu, Fedora, and CentOS depending on plugin). This script
+must be run with root privileges.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo bash diskimage-create.sh</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>This scripts will update your system and install required packages:</dt>
+<dd><ul class="first last simple">
+<li>kpartx</li>
+<li>qemu</li>
+</ul>
+</dd>
+<dt>Then it will clone the repositories &#8220;<a class="reference external" href="https://github.com/openstack/diskimage-builder">https://github.com/openstack/diskimage-builder</a>&#8221; and &#8220;<a class="reference external" href="https://github.com/openstack/sahara-image-elements">https://github.com/openstack/sahara-image-elements</a>&#8221; and export nessesary parameters.</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">DIB_HADOOP_VERSION</span></tt> - version of Hadoop to install</li>
+<li><tt class="docutils literal"><span class="pre">JAVA_DOWNLOAD_URL</span></tt> - download link for JDK (tarball or bin)</li>
+<li><tt class="docutils literal"><span class="pre">OOZIE_DOWNLOAD_URL</span></tt> - download link for OOZIE (we have built
+Oozie libs here: <a class="reference external" href="http://sahara-files.mirantis.com/oozie-4.0.0.tar.gz">http://sahara-files.mirantis.com/oozie-4.0.0.tar.gz</a>)</li>
+<li><tt class="docutils literal"><span class="pre">HIVE_VERSION</span></tt> - version of Hive to install (currently supports only 0.11.0)</li>
+<li><tt class="docutils literal"><span class="pre">ubuntu_image_name</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">fedora_image_name</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">DIB_IMAGE_SIZE</span></tt> - parameter that specifies a volume of hard disk of
+instance. You need to specify it only for Fedora because Fedora doesn&#8217;t use all available volume</li>
+<li><tt class="docutils literal"><span class="pre">DIB_COMMIT_ID</span></tt> - latest commit id of diksimage-builder project</li>
+<li><tt class="docutils literal"><span class="pre">SAHARA_ELEMENTS_COMMIT_ID</span></tt> - latest commit id of sahara-image-elements project</li>
+</ul>
+</dd>
+</dl>
+<p>NOTE: If you don&#8217;t want to use default values, you should set your values of parameters.</p>
+<p>Then it will create required cloud images using image elements that install
+all the necessary packages and configure them. You will find created images in
+the current directory.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Disk Image Builder will generate QCOW2 images, used with the default
+OpenStack Qemu/KVM hypervisors. If your OpenStack uses a different
+hypervisor, the generated image should be converted to an appropriate format.</p>
+<p>VMware Nova backend requires VMDK image format. You may use qemu-img
+utility to convert a QCOW2 image to VMDK.</p>
+<div class="last highlight-console"><div class="highlight"><pre><span class="go">qemu-img convert -O vmdk &lt;original_image&gt;.qcow2 &lt;converted_image&gt;.vmdk</span>
+</pre></div>
+</div>
+</div>
+<p>For finer control of diskimage-create.sh see the <a class="reference external" href="https://github.com/openstack/sahara-image-elements/blob/master/diskimage-create/README.rst">official documentation</a>
+or run:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> diskimage-create.sh -h
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hadoop-swift.html"
+                        title="previous chapter">Swift Integration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../devref/development.guidelines.html"
+                        title="next chapter">Development Guidelines</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/diskimagebuilder.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="../devref/development.guidelines.html" title="Development Guidelines"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hadoop-swift.html" title="Swift Integration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

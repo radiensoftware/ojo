@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hortonworks Data Platform Plugin &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Spark Plugin" href="spark_plugin.html" />
+    <link rel="prev" title="Vanilla Plugin" href="vanilla_plugin.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/hdp_plugin.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/hdp_plugin",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/hdp_plugin";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hortonworks-data-platform-plugin">
+<h1>Hortonworks Data Platform Plugin<a class="headerlink" href="#hortonworks-data-platform-plugin" title="Permalink to this headline">¶</a></h1>
+<p>The Hortonworks Data Platform (HDP) Sahara plugin provides a way to provision
+HDP clusters on OpenStack using templates in a single click and in an easily
+repeatable fashion. As seen from the architecture diagram below, the Sahara
+controller serves as the glue between Hadoop and OpenStack. The HDP plugin
+mediates between the Sahara controller and Apache Ambari in order to deploy
+and configure Hadoop on OpenStack. Core to the HDP Plugin is Apache Ambari
+which is used as the orchestrator for deploying HDP on OpenStack.</p>
+<a class="reference internal image-reference" href="../_images/hdp-plugin-architecture.png"><img alt="../_images/hdp-plugin-architecture.png" class="align-center" src="../_images/hdp-plugin-architecture.png" style="width: 640.0px; height: 617.6px;" /></a>
+<p>The HDP plugin can make use of Ambari Blueprints for cluster provisioning.</p>
+<div class="section" id="apache-ambari-blueprints">
+<h2>Apache Ambari Blueprints<a class="headerlink" href="#apache-ambari-blueprints" title="Permalink to this headline">¶</a></h2>
+<p>Apache Ambari Blueprints is a portable document definition, which provides
+a complete definition for an Apache Hadoop cluster, including cluster topology,
+components, services and their configurations. Ambari Blueprints can be
+consumed by the HDP plugin to instantiate a Hadoop cluster on OpenStack.
+The benefits of this approach is that it allows for Hadoop clusters to be
+configured and deployed using an Ambari native format that can be used with as
+well as outside of OpenStack allowing for clusters to be re-instantiated in a
+variety of environments.</p>
+<p>For more information about Apache Ambari Blueprints, refer to:
+<a class="reference external" href="https://issues.apache.org/jira/browse/AMBARI-1783">https://issues.apache.org/jira/browse/AMBARI-1783</a>. Note that Apache Ambari
+Blueprints are not yet finalized.</p>
+</div>
+<div class="section" id="operation">
+<h2>Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h2>
+<p>The HDP Plugin performs the following four primary functions during cluster
+creation:</p>
+<ol class="arabic simple">
+<li>Software deployment - the plugin orchestrates the deployment of the
+required software to the target VMs</li>
+<li>Services Installation - the Hadoop services configured for the node groups
+within the cluster are installed on the associated VMs</li>
+<li>Services Configuration - the plugin merges the default configuration values
+and user provided configurations for each installed service to the cluster</li>
+<li>Services Start - the plugin invokes the appropriate APIs to indicate to the
+Ambari Server that the cluster services should be started</li>
+</ol>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<p>The Sahara HDP plugin can make use of either minimal (operating system only)
+images or pre-populated HDP images. The base requirement for both is that the
+image is cloud-init enabled and contains a supported operating system
+(see <a class="reference external" href="http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.2.4/bk_hdp1-system-admin-guide/content/sysadminguides_ha_chap2_3.html">http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.2.4/bk_hdp1-system-admin-guide/content/sysadminguides_ha_chap2_3.html</a>).</p>
+<p>The advantage of a pre-populated image is that provisioning time is reduced,
+as packages do not need to be downloaded and installed which make up the
+majority of the time spent in the provisioning cycle. In addition, provisioning
+large clusters will put a burden on the network as packages for all nodes need
+to be downloaded from the package repository.</p>
+<p>For more information about HDP images, refer to
+<a class="reference external" href="https://github.com/openstack/sahara-image-elements">https://github.com/openstack/sahara-image-elements</a>.</p>
+<p>There are three VM images provided for use with the HDP Plugin, that can also
+be built using the tools available in sahara-image-elemnts:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-1.3.2-centos-6.5.qcow2">sahara-juno-hdp-1.3.2-centos-6.5.qcow2</a>:
+This image contains most of the requisite packages necessary for HDP
+deployment. The packages contained herein correspond to the HDP 1.3 release.
+The operating system is a minimal CentOS 6.5 cloud-init enabled install.
+This image can only be used to provision HDP 1.3 hadoop clusters.</li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-2.0.6-centos-6.5.qcow2">sahara-juno-hdp-2.0.6-centos-6.5.qcow2</a>:
+This image contains most of the requisite packages necessary for HDP
+deployment. The packages contained herein correspond to the HDP 2.0.6
+release. The operating system is a minimal CentOS 6.5 cloud-init enabled
+install. This image can only be used to provision HDP 2.0.6 hadoop clusters.</li>
+<li><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-plain-centos-6.5.qcow2">sahara-juno-hdp-plain-centos-6.5.qcow2</a>:
+This image provides only a minimal install of CentOS 6.5  and is cloud-init
+enabled. This image can be used to provision any versions of HDP supported
+by Sahara.</li>
+</ol>
+<p>HDP plugin requires an image to be tagged in Sahara Image Registry with two
+tags: &#8216;hdp&#8217; and &#8216;&lt;hdp version&gt;&#8217; (e.g. &#8216;1.3.2&#8217;).</p>
+<p>Also in the Image Registry you will need to specify username for an image.
+The username specified should be &#8216;cloud-user&#8217;.</p>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>The HDP plugin currently has the following limitations:</p>
+<ul class="simple">
+<li>It is not possible to decrement the number of node-groups or hosts per node
+group in a Sahara generated cluster.</li>
+</ul>
+</div>
+<div class="section" id="hdp-version-support">
+<h2>HDP Version Support<a class="headerlink" href="#hdp-version-support" title="Permalink to this headline">¶</a></h2>
+<p>The HDP plugin currently supports HDP 1.3.2 and HDP 2.0.6. Support for future
+version of HDP will be provided shortly after software is generally available.</p>
+</div>
+<div class="section" id="cluster-validation">
+<h2>Cluster Validation<a class="headerlink" href="#cluster-validation" title="Permalink to this headline">¶</a></h2>
+<p>Prior to Hadoop cluster creation, the HDP plugin will perform the following
+validation checks to ensure a successful Hadoop deployment:</p>
+<ul class="simple">
+<li>Ensure the existence of a NAMENODE process in the cluster</li>
+<li>Ensure the existence of a JOBTRACKER should any TASKTRACKER be deployed to
+the cluster</li>
+<li>Ensure the deployment of one Ambari Server instance to the cluster</li>
+<li>Ensure that each defined node group had an associated Ambari Agent configured</li>
+</ul>
+</div>
+<div class="section" id="the-hdp-plugin-and-sahara-support">
+<h2>The HDP Plugin and Sahara Support<a class="headerlink" href="#the-hdp-plugin-and-sahara-support" title="Permalink to this headline">¶</a></h2>
+<p>For more information, please contact Hortonworks.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Hortonworks Data Platform Plugin</a><ul>
+<li><a class="reference internal" href="#apache-ambari-blueprints">Apache Ambari Blueprints</a></li>
+<li><a class="reference internal" href="#operation">Operation</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+<li><a class="reference internal" href="#hdp-version-support">HDP Version Support</a></li>
+<li><a class="reference internal" href="#cluster-validation">Cluster Validation</a></li>
+<li><a class="reference internal" href="#the-hdp-plugin-and-sahara-support">The HDP Plugin and Sahara Support</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="vanilla_plugin.html"
+                        title="previous chapter">Vanilla Plugin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spark_plugin.html"
+                        title="next chapter">Spark Plugin</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/hdp_plugin.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="spark_plugin.html" title="Spark Plugin"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="vanilla_plugin.html" title="Vanilla Plugin"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sahara Advanced Configuration Guide &mdash; Sahara</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.1.dev1.ga7031f6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="top" title="Sahara" href="../index.html" />
+    <link rel="next" title="Sahara Upgrade Guide" href="upgrade.guide.html" />
+    <link rel="prev" title="Sahara Configuration Guide" href="configuration.guide.html" />
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://sahara.readthedocs.org/en/latest/userdoc/advanced.configuration.guide.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "sahara",
+    version: "stable-juno",
+    language: "en",
+    page: "userdoc/advanced.configuration.guide",
+    builder: "sphinx",
+    theme: "_theme_rtd",
+    docroot: "/doc/source/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "a7031f66c258c0d1c11e0667599cb8a28ed79e7d"
+  }
+  // Old variables
+  var doc_version = "stable-juno";
+  var doc_slug = "sahara";
+  var page_name = "userdoc/advanced.configuration.guide";
+  var html_theme = "_theme_rtd";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sahara-advanced-configuration-guide">
+<h1>Sahara Advanced Configuration Guide<a class="headerlink" href="#sahara-advanced-configuration-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide addresses specific aspects of Sahara configuration that pertain to
+advanced usage. It is divided into sections about various features that can be
+utilized, and their related configurations.</p>
+<div class="section" id="domain-usage-for-swift-proxy-users">
+<h2>Domain usage for Swift proxy users<a class="headerlink" href="#domain-usage-for-swift-proxy-users" title="Permalink to this headline">¶</a></h2>
+<p>To improve security for Sahara clusters accessing Swift objects, Sahara can be
+configured to use proxy users and delegated trusts for access. This behavior
+has been implemented to reduce the need for storing and distributing user
+credentials.</p>
+<p>The use of proxy users involves creating a domain in Keystone that will be
+designated as the home for any proxy users created. These created users will
+only exist for as long as a job execution runs. The domain created for the
+proxy users must have an identity backend that allows Sahara&#8217;s admin user to
+create new user accounts. This new domain should contain no roles, to limit
+the potential access of a proxy user.</p>
+<p>Once the domain has been created Sahara must be configured to use it by adding
+the domain name and any potential roles that must be used for Swift access in
+the sahara.conf file. With the domain enabled in Sahara, users will no longer
+be required to enter credentials with their Swift-backed Data Sources and Job
+Binaries.</p>
+<div class="section" id="detailed-instructions">
+<h3>Detailed instructions<a class="headerlink" href="#detailed-instructions" title="Permalink to this headline">¶</a></h3>
+<p>First a domain must be created in Keystone to hold proxy users created by
+Sahara. This domain must have an identity backend that allows for Sahara to
+create new users. The default SQL engine is sufficient but if your Keystone
+identity is backed by LDAP or similar then domain specific configurations
+should be used to ensure Sahara&#8217;s access. See the <a class="reference external" href="http://docs.openstack.org/developer/keystone/configuration.html#domain-specific-drivers">Keystone documentation</a>
+for more information.</p>
+<p>With the domain created Sahara&#8217;s configuration file should be updated to
+include the new domain name and any potential roles that will be needed. For
+this example let&#8217;s assume that the name of the proxy domain is
+<tt class="docutils literal"><span class="pre">sahara_proxy</span></tt> and the roles needed by proxy users will be <tt class="docutils literal"><span class="pre">Member</span></tt> and
+<tt class="docutils literal"><span class="pre">SwiftUser</span></tt>.</p>
+<div class="highlight-cfg"><div class="highlight"><pre><span class="k">[DEFAULT]</span>
+<span class="na">use_domain_for_proxy_users</span><span class="o">=</span><span class="s">True</span>
+<span class="na">proxy_user_domain_name</span><span class="o">=</span><span class="s">sahara_proxy</span>
+<span class="na">proxy_user_role_names</span><span class="o">=</span><span class="s">Member,SwiftUser</span>
+</pre></div>
+</div>
+<p>A note on the use of roles. In the context of the proxy user, any roles
+specified here are roles intended to be delegated to the proxy user from the
+user with access to the Swift object store. More specifically, any roles that
+are required for Swift access by the project owning the object store must be
+delegated to the proxy user for Swift authentication to be successful.</p>
+<p>Finally, the stack administrator must ensure that images registered with
+Sahara have the latest version of the Hadoop Swift filesystem plugin
+installed. The sources for this plugin can be found in the
+<a class="reference external" href="http://github.com/openstack/sahara-extra">Sahara extra repository</a>. For more information on images or Swift
+integration see the Sahara documentation sections
+<a class="reference internal" href="diskimagebuilder.html#diskimage-builder-label"><em>Building Images for Vanilla Plugin</em></a> and <a class="reference internal" href="hadoop-swift.html#swift-integration-label"><em>Swift Integration</em></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sahara Advanced Configuration Guide</a><ul>
+<li><a class="reference internal" href="#domain-usage-for-swift-proxy-users">Domain usage for Swift proxy users</a><ul>
+<li><a class="reference internal" href="#detailed-instructions">Detailed instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configuration.guide.html"
+                        title="previous chapter">Sahara Configuration Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="upgrade.guide.html"
+                        title="next chapter">Sahara Upgrade Guide</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userdoc/advanced.configuration.guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="upgrade.guide.html" title="Sahara Upgrade Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.guide.html" title="Sahara Configuration Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sahara</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, OpenStack Foundation.
+      Last updated on Thu Oct 16 09:59:51 2014, commit a7031f6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
