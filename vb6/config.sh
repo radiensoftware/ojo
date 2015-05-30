@@ -180,7 +180,7 @@ elif [ "$CONFIG_FOR" = "8GB" ]; then
 
   vm_slave_memory_mb[1]=1536
   vm_slave_memory_mb[2]=1536
-  vm_slave_memory_mb[3]=1536
+  vm_slave_memory_mb[3]=4096
 elif [ "$CONFIG_FOR" = "4GB" ]; then
   vm_slave_memory_default=1024
 
