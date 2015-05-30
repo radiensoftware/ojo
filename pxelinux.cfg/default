@@ -1,0 +1,19 @@
+DEFAULT vesamenu.c32
+MENU BACKGROUND tots.png
+MENU COLOR BORDER 0 #ffffffff #00000000 std
+MENU COLOR TITLE 0 #ffffffff #00000000 std
+MENU COLOR SEL 0 #ffffffff #ff000000 std
+MENU TITLE CentOS 6 PXE Boot Menu
+PROMPT 0
+TIMEOUT 300
+ONTIMEOUT local
+
+LABEL local
+	MENU LABEL Boot CentOS 6.6 from Hard Disk 
+	LOCALBOOT 0
+
+LABEL centos 664
+	MENU LABEL Install CentOS 6.6 and Hadoop 1.2.1 from the LAN
+	KERNEL images/centos/x86_64/6/vmlinuz
+	APPEND initrd=images/centos/x86_64/6/initrd.img inst.repo=ftp://10.10.10.10/pub/centos/6/os/x86_64 ks=ftp://10.10.10.10/pub/ks/ks.cfg
+
