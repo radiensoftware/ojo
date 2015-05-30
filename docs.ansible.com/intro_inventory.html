@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager Data Layer -->
+  <script>
+   dataLayer = [];
+  </script>
+  <!-- End Google Tag Manager Data Layer -->
+
+  
+  <title>Inventory &mdash; Ansible Documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.01',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.min.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Ansible Documentation" href="index.html"/>
+        <link rel="up" title="Introduction" href="intro.html"/>
+        <link rel="next" title="Dynamic Inventory" href="intro_dynamic_inventory.html"/>
+        <link rel="prev" title="Getting Started" href="intro_getting_started.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <!-- Google Code for Remarketing Tag -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 972577926;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt=""
+              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/972577926/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+  </noscript>
+  <!-- End of Google Code for Remarketing Tag -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div style='background-color:#64C5C7'>
+        <br/>
+        <center><a href="index.html"><img src="http://cdn2.hubspot.net/hub/330046/file-445792629-png/ANSI_logotype_web_white.png" style="border-radius:0;background-color:#64C5C7;width:214px;height:26px;margin:'auto auto auto auto'"></a></center>
+        <br/>      
+      </div>
+      <div class="wy-side-nav-search" style="background-color:#64C5C7;height=80px;margin:'auto auto auto auto'">
+        <!-- <a href="index.html" class="icon icon-home"> Ansible Documentation</a> -->
+        <!-- <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form> -->
+
+<script>
+  (function() {
+    var cx = '006019874985968165468:eu5pbnxp4po';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<form id="search-form-id" action="">
+  <input type="text" name="query" id="search-box-id" />
+  <a class="search-reset-start" id="search-reset"><i class="fa fa-times"></i></a>
+  <a class="search-reset-start" id="search-start"><i class="fa fa-search"></i></a>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=search-form-id&inputbox=search-box-id"></script>
+
+<script>
+  function executeQuery() {
+      var input = document.getElementById('search-box-id');
+      var element = google.search.cse.element.getElement('searchresults-only0');
+      element.resultsUrl = '/htmlout/search.html'
+      if (input.value == '') {
+          element.clearAllResults();
+          $('#page-content, .rst-footer-buttons, #search-start').show();
+          $('#search-results, #search-reset').hide();
+      } else {
+          $('#page-content, .rst-footer-buttons, #search-start').hide();
+          $('#search-results, #search-reset').show();
+          element.execute(input.value);
+      }
+      return false;
+      }
+
+  $('#search-reset').hide();
+
+  $('#search-box-id').css('background-position', '1em center');
+
+  $('#search-box-id').on('blur', function() {
+    $('#search-box-id').css('background-position', '1em center');
+  });
+
+  $('#search-start').click(function(e) { executeQuery(); });
+  $('#search-reset').click(function(e) { $('#search-box-id').val(''); executeQuery(); });
+
+  $('#search-form-id').submit(function(e) {
+      console.log('submitting!');
+      executeQuery();
+      e.preventDefault();
+      });
+</script>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro_installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_getting_started.html">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_dynamic_inventory.html">Dynamic Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_adhoc.html">Introduction To Ad-Hoc Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_configuration.html">The Ansible Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_windows.html">Windows Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_intro.html">Intro to Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_roles.html">Playbook Roles and Include Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_variables.html">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_filters.html">Jinja2 filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_conditionals.html">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_loops.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_best_practices.html">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">Asynchronous Actions and Polling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (&#8220;Dry Run&#8221;)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">Delegation, Rolling Updates, and Local Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">Setting the Environment (and Working With Proxies)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Error Handling In Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_lookups.html">Using Lookups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">Start and Step</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">About Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#introduction">Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules_by_category.html">Module Index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="list_of_all_modules.html">All Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_cloud_modules.html">Cloud Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_clustering_modules.html">Clustering Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_commands_modules.html">Commands Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_database_modules.html">Database Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_files_modules.html">Files Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_inventory_modules.html">Inventory Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_messaging_modules.html">Messaging Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_monitoring_modules.html">Monitoring Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_network_modules.html">Network Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_notification_modules.html">Notification Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_packaging_modules.html">Packaging Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_source_control_modules.html">Source Control Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_system_modules.html">System Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_utilities_modules.html">Utilities Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_web_infrastructure_modules.html">Web Infrastructure Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_windows_modules.html">Windows Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">Detailed Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide_aws.html">Amazon Web Services Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rax.html">Rackspace Cloud Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_gce.html">Google Cloud Platform Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_vagrant.html">Using Vagrant and Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rolling_upgrade.html">Continuous Delivery and Rolling Upgrades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html">Testing Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">Developer Information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developing_api.html">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_inventory.html">Developing Dynamic Inventory Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_modules.html">Developing Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_plugins.html">Developing Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_test_pr.html">Helping Testing PRs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Information &amp; Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="community.html#ansible-users">Ansible Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="community.html#for-current-and-prospective-developers">For Current and Prospective Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="community.html#other-topics">Other Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="galaxy.html#the-website">The Website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="galaxy.html#the-ansible-galaxy-command-line-tool">The ansible-galaxy command line tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">Testing Strategies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#integrating-testing-with-ansible-playbooks">Integrating Testing With Ansible Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#the-right-level-of-testing">The Right Level of Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#check-mode-as-a-drift-test">Check Mode As A Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#modules-that-are-useful-for-testing">Modules That Are Useful for Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#testing-lifecycle">Testing Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#integrating-testing-with-rolling-updates">Integrating Testing With Rolling Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#achieving-continuous-deployment">Achieving Continuous Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-can-i-set-the-path-or-any-other-environment-variable-for-a-task-or-entire-playbook">How can I set the PATH or any other environment variable for a task or entire playbook?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-handle-different-machines-needing-different-user-accounts-or-ports-to-log-in-with">How do I handle different machines needing different user accounts or ports to log in with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-get-ansible-to-reuse-connections-enable-kerberized-ssh-or-have-ansible-pay-attention-to-my-local-ssh-config-file">How do I get ansible to reuse connections, enable Kerberized SSH, or have Ansible pay attention to my local SSH config file?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-speed-up-management-inside-ec2">How do I speed up management inside EC2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine">How do I handle python pathing not having a Python 2.X in /usr/bin/python on a remote machine?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-the-best-way-to-make-content-reusable-redistributable">What is the best way to make content reusable/redistributable?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#where-does-the-configuration-file-live-and-what-can-i-configure-in-it">Where does the configuration file live and what can I configure in it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-disable-cowsay">How do I disable cowsay?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-see-a-list-of-all-of-the-ansible-variables">How do I see a list of all of the ansible_ variables?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template">How do I loop over a list of hosts in a group, inside of a template?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-a-variable-name-programmatically">How do I access a variable name programmatically?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-a-variable-of-the-first-host-in-a-group">How do I access a variable of the first host in a group?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-copy-files-recursively-onto-a-target-host">How do I copy files recursively onto a target host?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-shell-environment-variables">How do I access shell environment variables?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-generate-crypted-passwords-for-the-user-module">How do I generate crypted passwords for the user module?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#can-i-get-training-on-ansible-or-find-commercial-support">Can I get training on Ansible or find commercial support?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#is-there-a-web-interface-rest-api-etc">Is there a web interface / REST API / etc?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-submit-a-change-to-the-documentation">How do I submit a change to the documentation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-keep-secret-data-in-my-playbook">How do I keep secret data in my playbook?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-don-t-see-my-question-here">I don&#8217;t see my question here</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#action">Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#ad-hoc">Ad Hoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#async">Async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#callback-plugin">Callback Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#check-mode">Check Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#connection-type-connection-plugin">Connection Type, Connection Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#conditionals">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#diff-mode">Diff Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#facts">Facts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#filter-plugin">Filter Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#forks">Forks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#gather-facts-boolean">Gather Facts (Boolean)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#globbing">Globbing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#group">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#group-vars">Group Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#handlers">Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host">Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host-specifier">Host Specifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host-vars">Host Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#lookup-plugin">Lookup Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#multi-tier">Multi-Tier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#idempotency">Idempotency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#includes">Includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#inventory">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#inventory-script">Inventory Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#jinja2">Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#limit-groups">Limit Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#local-connection">Local Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#local-action">Local Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#loops">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#notify">Notify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#orchestration">Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#paramiko">paramiko</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#playbooks">Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#plays">Plays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#pull-mode">Pull Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#push-mode">Push Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#register-variable">Register Variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#resource-model">Resource Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#rolling-update">Rolling Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#runner">Runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#serial">Serial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#sudo">Sudo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#ssh-native">SSH (Native)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#when">When</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#van-halen">Van Halen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#vars-variables">Vars (Variables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#yaml">YAML</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="YAMLSyntax.html#yaml-basics">YAML Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="YAMLSyntax.html#gotchas">Gotchas</a></li>
+</ul>
+</li>
+</ul>
+
+        
+
+<!-- changeable widget -->
+<center>
+<br/>
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-71d47584-8ef5-4b06-87ae-8d25bc2a837e">
+    <span class="hs-cta-node hs-cta-71d47584-8ef5-4b06-87ae-8d25bc2a837e" id="hs-cta-71d47584-8ef5-4b06-87ae-8d25bc2a837e">
+        <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
+        <a href="http://cta-redirect.hubspot.com/cta/redirect/330046/71d47584-8ef5-4b06-87ae-8d25bc2a837e"><img class="hs-cta-img" id="hs-cta-img-71d47584-8ef5-4b06-87ae-8d25bc2a837e" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/330046/71d47584-8ef5-4b06-87ae-8d25bc2a837e.png" /></a>
+    </span>
+    <script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script>
+        <script type="text/javascript">
+            hbspt.cta.load(330046, '71d47584-8ef5-4b06-87ae-8d25bc2a837e');
+        </script>
+</span>
+</center>
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">Ansible Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+<!-- AnsibleFest and free eBook preview stuff -->
+<center>
+<a href="http://www.ansible.com/tower?utm_source=docs">
+<img src="http://www.ansible.com/hubfs/Docs_Ads/TowerDocs.png">
+</a>
+<a href="https://www.eventbrite.com/e/ansiblefest-nyc-2015-tickets-16058031003">
+<img src="http://www.ansible.com/hubfs/Docs_Ads/Untitled_design_1.png">
+</a>
+<br/>&nbsp;<br/>
+<br/>&nbsp;<br/>
+</center>
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Inventory</a></li>
+  
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/ansible/ansible/blob/devel/docsite/rst/intro_inventory.rst" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="inventory">
+<span id="id1"></span><h1><a class="toc-backref" href="#id4">Inventory</a><a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="topics">
+<p class="topic-title first">Topics</p>
+<ul class="simple">
+<li><a class="reference internal" href="#inventory" id="id4">Inventory</a><ul>
+<li><a class="reference internal" href="#hosts-and-groups" id="id5">Hosts and Groups</a></li>
+<li><a class="reference internal" href="#host-variables" id="id6">Host Variables</a></li>
+<li><a class="reference internal" href="#group-variables" id="id7">Group Variables</a></li>
+<li><a class="reference internal" href="#groups-of-groups-and-group-variables" id="id8">Groups of Groups, and Group Variables</a></li>
+<li><a class="reference internal" href="#splitting-out-host-and-group-specific-data" id="id9">Splitting Out Host and Group Specific Data</a></li>
+<li><a class="reference internal" href="#list-of-behavioral-inventory-parameters" id="id10">List of Behavioral Inventory Parameters</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Ansible works against multiple systems in your infrastructure at the
+same time.  It does this by selecting portions of systems listed in
+Ansible&#8217;s inventory file, which defaults to being saved in
+the location /etc/ansible/hosts.</p>
+<p>Not only is this inventory configurable, but you can also use
+multiple inventory files at the same time (explained below) and also
+pull inventory from dynamic or cloud sources, as described in <a class="reference internal" href="intro_dynamic_inventory.html"><em>Dynamic Inventory</em></a>.</p>
+<div class="section" id="hosts-and-groups">
+<span id="inventoryformat"></span><h2><a class="toc-backref" href="#id5">Hosts and Groups</a><a class="headerlink" href="#hosts-and-groups" title="Permalink to this headline">¶</a></h2>
+<p>The format for /etc/ansible/hosts is an INI-like format and looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mail</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+
+<span class="p">[</span><span class="n">webservers</span><span class="p">]</span>
+<span class="n">foo</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="n">bar</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+
+<span class="p">[</span><span class="n">dbservers</span><span class="p">]</span>
+<span class="n">one</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="n">two</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="n">three</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>The things in brackets are group names, which are used in classifying systems
+and deciding what systems you are controlling at what times and for what purpose.</p>
+<p>It is ok to put systems in more than one group, for instance a server could be both a webserver and a dbserver.
+If you do, note that variables will come from all of the groups they are a member of, and variable precedence is detailed in a later chapter.</p>
+<p>If you have hosts that run on non-standard SSH ports you can put the port number
+after the hostname with a colon.  Ports listed in your SSH config file won&#8217;t be used with the paramiko
+connection but will be used with the openssh connection.</p>
+<p>To make things explicit, it is suggested that you set them if things are not running on the default port:</p>
+<div class="highlight-python"><div class="highlight"><pre>badwolf.example.com:5309
+</pre></div>
+</div>
+<p>Suppose you have just static IPs and want to set up some aliases that don&#8217;t live in your host file, or you are connecting through tunnels.  You can do things like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50
+</pre></div>
+</div>
+<p>In the above example, trying to ansible against the host alias &#8220;jumper&#8221; (which may not even be a real hostname) will contact 192.168.1.50 on port 5555.  Note that this is using a feature of the inventory file to define some special variables.  Generally speaking this is not the best
+way to define variables that describe your system policy, but we&#8217;ll share suggestions on doing this later.  We&#8217;re just getting started.</p>
+<p>Adding a lot of hosts?  If you have a lot of hosts following similar patterns you can do this rather than listing each hostname:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">webservers</span><span class="p">]</span>
+<span class="n">www</span><span class="p">[</span><span class="mo">01</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>For numeric patterns, leading zeros can be included or removed, as desired. Ranges are inclusive.  You can also define alphabetic ranges:</p>
+<div class="highlight-python"><div class="highlight"><pre>[databases]
+db-[a:f].example.com
+</pre></div>
+</div>
+<p>You can also select the connection type and user on a per host basis:</p>
+<div class="highlight-python"><div class="highlight"><pre>[targets]
+
+localhost              ansible_connection=local
+other1.example.com     ansible_connection=ssh        ansible_ssh_user=mpdehaan
+other2.example.com     ansible_connection=ssh        ansible_ssh_user=mdehaan
+</pre></div>
+</div>
+<p>As mentioned above, setting these in the inventory file is only a shorthand, and we&#8217;ll discuss how to store them in individual files
+in the &#8216;host_vars&#8217; directory a bit later on.</p>
+</div>
+<div class="section" id="host-variables">
+<span id="id2"></span><h2><a class="toc-backref" href="#id6">Host Variables</a><a class="headerlink" href="#host-variables" title="Permalink to this headline">¶</a></h2>
+<p>As alluded to above, it is easy to assign variables to hosts that will be used later in playbooks:</p>
+<div class="highlight-python"><div class="highlight"><pre>[atlanta]
+host1 http_port=80 maxRequestsPerChild=808
+host2 http_port=303 maxRequestsPerChild=909
+</pre></div>
+</div>
+</div>
+<div class="section" id="group-variables">
+<span id="id3"></span><h2><a class="toc-backref" href="#id7">Group Variables</a><a class="headerlink" href="#group-variables" title="Permalink to this headline">¶</a></h2>
+<p>Variables can also be applied to an entire group at once:</p>
+<div class="highlight-python"><div class="highlight"><pre>[atlanta]
+host1
+host2
+
+[atlanta:vars]
+ntp_server=ntp.atlanta.example.com
+proxy=proxy.atlanta.example.com
+</pre></div>
+</div>
+</div>
+<div class="section" id="groups-of-groups-and-group-variables">
+<span id="subgroups"></span><h2><a class="toc-backref" href="#id8">Groups of Groups, and Group Variables</a><a class="headerlink" href="#groups-of-groups-and-group-variables" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to make groups of groups and assign
+variables to groups.  These variables can be used by /usr/bin/ansible-playbook, but not
+/usr/bin/ansible:</p>
+<div class="highlight-python"><div class="highlight"><pre>[atlanta]
+host1
+host2
+
+[raleigh]
+host2
+host3
+
+[southeast:children]
+atlanta
+raleigh
+
+[southeast:vars]
+some_server=foo.southeast.example.com
+halon_system_timeout=30
+self_destruct_countdown=60
+escape_pods=2
+
+[usa:children]
+southeast
+northeast
+southwest
+northwest
+</pre></div>
+</div>
+<p>If you need to store lists or hash data, or prefer to keep host and group specific variables
+separate from the inventory file, see the next section.</p>
+</div>
+<div class="section" id="splitting-out-host-and-group-specific-data">
+<span id="splitting-out-vars"></span><h2><a class="toc-backref" href="#id9">Splitting Out Host and Group Specific Data</a><a class="headerlink" href="#splitting-out-host-and-group-specific-data" title="Permalink to this headline">¶</a></h2>
+<p>The preferred practice in Ansible is actually not to store variables in the main inventory file.</p>
+<p>In addition to storing variables directly in the INI file, host
+and group variables can be stored in individual files relative to the
+inventory file.</p>
+<p>These variable files are in YAML format.  See <a class="reference internal" href="YAMLSyntax.html"><em>YAML Syntax</em></a> if you are new to YAML.</p>
+<p>Assuming the inventory file path is:</p>
+<div class="highlight-python"><div class="highlight"><pre>/etc/ansible/hosts
+</pre></div>
+</div>
+<p>If the host is named &#8216;foosball&#8217;, and in groups &#8216;raleigh&#8217; and &#8216;webservers&#8217;, variables
+in YAML files at the following locations will be made available to the host:</p>
+<div class="highlight-python"><div class="highlight"><pre>/etc/ansible/group_vars/raleigh
+/etc/ansible/group_vars/webservers
+/etc/ansible/host_vars/foosball
+</pre></div>
+</div>
+<p>For instance, suppose you have hosts grouped by datacenter, and each datacenter
+uses some different servers.  The data in the groupfile &#8216;/etc/ansible/group_vars/raleigh&#8217; for
+the &#8216;raleigh&#8217; group might look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+ntp_server: acme.example.org
+database_server: storage.example.org
+</pre></div>
+</div>
+<p>It is ok if these files do not exist, as this is an optional feature.</p>
+<p>As an advanced use-case, you can create <em>directories</em> named after your groups or hosts, and
+Ansible will read all the files in these directories. An example with the &#8216;raleigh&#8217; group:</p>
+<div class="highlight-python"><div class="highlight"><pre>/etc/ansible/group_vars/raleigh/db_settings
+/etc/ansible/group_vars/raleigh/cluster_settings
+</pre></div>
+</div>
+<p>All hosts that are in the &#8216;raleigh&#8217; group will have the variables defined in these files
+available to them. This can be very useful to keep your variables organized when a single
+file starts to be too big, or when you want to use <a class="reference internal" href="playbooks_vault.html"><em>Ansible Vault</em></a> on a part of a group&#8217;s
+variables. Note that this only works on Ansible 1.4 or later.</p>
+<p>Tip: In Ansible 1.2 or later the group_vars/ and host_vars/ directories can exist in either
+the playbook directory OR the inventory directory. If both paths exist, variables in the playbook
+directory will override variables set in the inventory directory.</p>
+<p>Tip: Keeping your inventory file and variables in a git repo (or other version control)
+is an excellent way to track changes to your inventory and host variables.</p>
+</div>
+<div class="section" id="list-of-behavioral-inventory-parameters">
+<span id="behavioral-parameters"></span><h2><a class="toc-backref" href="#id10">List of Behavioral Inventory Parameters</a><a class="headerlink" href="#list-of-behavioral-inventory-parameters" title="Permalink to this headline">¶</a></h2>
+<p>As alluded to above, setting the following variables controls how ansible interacts with remote hosts. Some we have already
+mentioned:</p>
+<div class="highlight-python"><div class="highlight"><pre>ansible_ssh_host
+  The name of the host to connect to, if different from the alias you wish to give to it.
+ansible_ssh_port
+  The ssh port number, if not 22
+ansible_ssh_user
+  The default ssh user name to use.
+ansible_ssh_pass
+  The ssh password to use (this is insecure, we strongly recommend using --ask-pass or SSH keys)
+ansible_sudo
+  The boolean to decide if sudo should be used for this host. Defaults to false.
+ansible_sudo_pass
+  The sudo password to use (this is insecure, we strongly recommend using --ask-sudo-pass)
+ansible_sudo_exe (new in version 1.8)
+  The sudo command path.
+ansible_connection
+  Connection type of the host. Candidates are local, ssh or paramiko.  The default is paramiko before Ansible 1.2, and &#39;smart&#39; afterwards which detects whether usage of &#39;ssh&#39; would be feasible based on whether ControlPersist is supported.
+ansible_ssh_private_key_file
+  Private key file used by ssh.  Useful if using multiple keys and you don&#39;t want to use SSH agent.
+ansible_shell_type
+  The shell type of the target system. By default commands are formatted using &#39;sh&#39;-style syntax by default. Setting this to &#39;csh&#39; or &#39;fish&#39; will cause commands executed on target systems to follow those shell&#39;s syntax instead.
+ansible_python_interpreter
+  The target host python path. This is useful for systems with more
+  than one Python or not located at &quot;/usr/bin/python&quot; such as \*BSD, or where /usr/bin/python
+  is not a 2.X series Python.  We do not use the &quot;/usr/bin/env&quot; mechanism as that requires the remote user&#39;s
+  path to be set right and also assumes the &quot;python&quot; executable is named python, where the executable might
+  be named something like &quot;python26&quot;.
+ansible\_\*\_interpreter
+  Works for anything such as ruby or perl and works just like ansible_python_interpreter.
+  This replaces shebang of modules which will run on that host.
+</pre></div>
+</div>
+<p>Examples from a host file:</p>
+<div class="highlight-python"><div class="highlight"><pre>some_host         ansible_ssh_port=2222     ansible_ssh_user=manager
+aws_host          ansible_ssh_private_key_file=/home/example/.ssh/aws.pem
+freebsd_host      ansible_python_interpreter=/usr/local/bin/python
+ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="intro_dynamic_inventory.html"><em>Dynamic Inventory</em></a></dt>
+<dd>Pulling inventory from dynamic sources, such as cloud providers</dd>
+<dt><a class="reference internal" href="intro_adhoc.html"><em>Introduction To Ad-Hoc Commands</em></a></dt>
+<dd>Examples of basic commands</dd>
+<dt><a class="reference internal" href="playbooks.html"><em>Playbooks</em></a></dt>
+<dd>Learning ansible&#8217;s configuration management language</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">Mailing List</a></dt>
+<dd>Questions? Help? Ideas?  Stop by the list on Google Groups</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt>
+<dd>#ansible IRC chat channel</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="intro_dynamic_inventory.html" class="btn btn-neutral float-right" title="Dynamic Inventory"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="intro_getting_started.html" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  &copy; Copyright 2015 <a href="http://ansible.com">Ansible, Inc.</a>.
+    Last updated on May 26, 2015.
+  </p>
+
+Ansible docs are generated from <a href="http://github.com/ansible/ansible">GitHub sources</A> using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+        (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+        n.id=i;n.src = '//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+        e.parentNode.insertBefore(n, e);
+        })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+
+</body>
+</html>

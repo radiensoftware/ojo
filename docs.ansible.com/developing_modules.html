@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager Data Layer -->
+  <script>
+   dataLayer = [];
+  </script>
+  <!-- End Google Tag Manager Data Layer -->
+
+  
+  <title>Developing Modules &mdash; Ansible Documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.01',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.min.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Ansible Documentation" href="index.html"/>
+        <link rel="up" title="Developer Information" href="developing.html"/>
+        <link rel="next" title="Developing Plugins" href="developing_plugins.html"/>
+        <link rel="prev" title="Developing Dynamic Inventory Sources" href="developing_inventory.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  <style>
+    .search-reset-start {
+        color: #463E3F;
+        float: right;
+        position: relative;
+        top: -25px;
+        left: -10px;
+        z-index: 10;
+     }
+     .search-reset-start:hover {
+        cursor: pointer;
+        color: #2980B9;
+     }
+     #search-box-id {
+        padding-right: 25px;
+     }
+  </style>
+
+  <!-- Google Code for Remarketing Tag -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 972577926;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt=""
+              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/972577926/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+  </noscript>
+  <!-- End of Google Code for Remarketing Tag -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div style='background-color:#64C5C7'>
+        <br/>
+        <center><a href="index.html"><img src="http://cdn2.hubspot.net/hub/330046/file-445792629-png/ANSI_logotype_web_white.png" style="border-radius:0;background-color:#64C5C7;width:214px;height:26px;margin:'auto auto auto auto'"></a></center>
+        <br/>      
+      </div>
+      <div class="wy-side-nav-search" style="background-color:#64C5C7;height=80px;margin:'auto auto auto auto'">
+        <!-- <a href="index.html" class="icon icon-home"> Ansible Documentation</a> -->
+        <!-- <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form> -->
+
+<script>
+  (function() {
+    var cx = '006019874985968165468:eu5pbnxp4po';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<form id="search-form-id" action="">
+  <input type="text" name="query" id="search-box-id" />
+  <a class="search-reset-start" id="search-reset"><i class="fa fa-times"></i></a>
+  <a class="search-reset-start" id="search-start"><i class="fa fa-search"></i></a>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=search-form-id&inputbox=search-box-id"></script>
+
+<script>
+  function executeQuery() {
+      var input = document.getElementById('search-box-id');
+      var element = google.search.cse.element.getElement('searchresults-only0');
+      element.resultsUrl = '/htmlout/search.html'
+      if (input.value == '') {
+          element.clearAllResults();
+          $('#page-content, .rst-footer-buttons, #search-start').show();
+          $('#search-results, #search-reset').hide();
+      } else {
+          $('#page-content, .rst-footer-buttons, #search-start').hide();
+          $('#search-results, #search-reset').show();
+          element.execute(input.value);
+      }
+      return false;
+      }
+
+  $('#search-reset').hide();
+
+  $('#search-box-id').css('background-position', '1em center');
+
+  $('#search-box-id').on('blur', function() {
+    $('#search-box-id').css('background-position', '1em center');
+  });
+
+  $('#search-start').click(function(e) { executeQuery(); });
+  $('#search-reset').click(function(e) { $('#search-box-id').val(''); executeQuery(); });
+
+  $('#search-form-id').submit(function(e) {
+      console.log('submitting!');
+      executeQuery();
+      e.preventDefault();
+      });
+</script>
+      </div>
+
+      <div id="menu-id" class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro_installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_inventory.html">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_dynamic_inventory.html">Dynamic Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_adhoc.html">Introduction To Ad-Hoc Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_configuration.html">The Ansible Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_windows.html">Windows Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_intro.html">Intro to Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_roles.html">Playbook Roles and Include Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_variables.html">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_filters.html">Jinja2 filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_conditionals.html">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_loops.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_best_practices.html">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">Asynchronous Actions and Polling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (&#8220;Dry Run&#8221;)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">Delegation, Rolling Updates, and Local Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">Setting the Environment (and Working With Proxies)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Error Handling In Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_lookups.html">Using Lookups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">Start and Step</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">About Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#introduction">Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules_by_category.html">Module Index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="list_of_all_modules.html">All Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_cloud_modules.html">Cloud Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_clustering_modules.html">Clustering Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_commands_modules.html">Commands Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_database_modules.html">Database Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_files_modules.html">Files Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_inventory_modules.html">Inventory Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_messaging_modules.html">Messaging Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_monitoring_modules.html">Monitoring Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_network_modules.html">Network Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_notification_modules.html">Notification Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_packaging_modules.html">Packaging Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_source_control_modules.html">Source Control Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_system_modules.html">System Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_utilities_modules.html">Utilities Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_web_infrastructure_modules.html">Web Infrastructure Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_of_windows_modules.html">Windows Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">Detailed Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide_aws.html">Amazon Web Services Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rax.html">Rackspace Cloud Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_gce.html">Google Cloud Platform Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_vagrant.html">Using Vagrant and Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rolling_upgrade.html">Continuous Delivery and Rolling Upgrades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html">Testing Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="developing.html">Developer Information</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="developing_api.html">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_inventory.html">Developing Dynamic Inventory Sources</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Developing Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_plugins.html">Developing Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_test_pr.html">Helping Testing PRs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Information &amp; Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="community.html#ansible-users">Ansible Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="community.html#for-current-and-prospective-developers">For Current and Prospective Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="community.html#other-topics">Other Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="galaxy.html#the-website">The Website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="galaxy.html#the-ansible-galaxy-command-line-tool">The ansible-galaxy command line tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">Testing Strategies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#integrating-testing-with-ansible-playbooks">Integrating Testing With Ansible Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#the-right-level-of-testing">The Right Level of Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#check-mode-as-a-drift-test">Check Mode As A Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#modules-that-are-useful-for-testing">Modules That Are Useful for Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#testing-lifecycle">Testing Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#integrating-testing-with-rolling-updates">Integrating Testing With Rolling Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#achieving-continuous-deployment">Achieving Continuous Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_strategies.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-can-i-set-the-path-or-any-other-environment-variable-for-a-task-or-entire-playbook">How can I set the PATH or any other environment variable for a task or entire playbook?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-handle-different-machines-needing-different-user-accounts-or-ports-to-log-in-with">How do I handle different machines needing different user accounts or ports to log in with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-get-ansible-to-reuse-connections-enable-kerberized-ssh-or-have-ansible-pay-attention-to-my-local-ssh-config-file">How do I get ansible to reuse connections, enable Kerberized SSH, or have Ansible pay attention to my local SSH config file?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-speed-up-management-inside-ec2">How do I speed up management inside EC2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine">How do I handle python pathing not having a Python 2.X in /usr/bin/python on a remote machine?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-the-best-way-to-make-content-reusable-redistributable">What is the best way to make content reusable/redistributable?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#where-does-the-configuration-file-live-and-what-can-i-configure-in-it">Where does the configuration file live and what can I configure in it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-disable-cowsay">How do I disable cowsay?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-see-a-list-of-all-of-the-ansible-variables">How do I see a list of all of the ansible_ variables?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template">How do I loop over a list of hosts in a group, inside of a template?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-a-variable-name-programmatically">How do I access a variable name programmatically?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-a-variable-of-the-first-host-in-a-group">How do I access a variable of the first host in a group?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-copy-files-recursively-onto-a-target-host">How do I copy files recursively onto a target host?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-access-shell-environment-variables">How do I access shell environment variables?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-generate-crypted-passwords-for-the-user-module">How do I generate crypted passwords for the user module?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#can-i-get-training-on-ansible-or-find-commercial-support">Can I get training on Ansible or find commercial support?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#is-there-a-web-interface-rest-api-etc">Is there a web interface / REST API / etc?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-submit-a-change-to-the-documentation">How do I submit a change to the documentation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-keep-secret-data-in-my-playbook">How do I keep secret data in my playbook?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-don-t-see-my-question-here">I don&#8217;t see my question here</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#action">Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#ad-hoc">Ad Hoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#async">Async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#callback-plugin">Callback Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#check-mode">Check Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#connection-type-connection-plugin">Connection Type, Connection Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#conditionals">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#diff-mode">Diff Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#facts">Facts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#filter-plugin">Filter Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#forks">Forks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#gather-facts-boolean">Gather Facts (Boolean)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#globbing">Globbing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#group">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#group-vars">Group Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#handlers">Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host">Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host-specifier">Host Specifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#host-vars">Host Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#lookup-plugin">Lookup Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#multi-tier">Multi-Tier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#idempotency">Idempotency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#includes">Includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#inventory">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#inventory-script">Inventory Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#jinja2">Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#limit-groups">Limit Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#local-connection">Local Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#local-action">Local Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#loops">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#notify">Notify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#orchestration">Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#paramiko">paramiko</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#playbooks">Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#plays">Plays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#pull-mode">Pull Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#push-mode">Push Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#register-variable">Register Variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#resource-model">Resource Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#rolling-update">Rolling Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#runner">Runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#serial">Serial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#sudo">Sudo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#ssh-native">SSH (Native)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#when">When</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#van-halen">Van Halen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#vars-variables">Vars (Variables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#yaml">YAML</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="YAMLSyntax.html#yaml-basics">YAML Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="YAMLSyntax.html#gotchas">Gotchas</a></li>
+</ul>
+</li>
+</ul>
+
+        
+
+<!-- changeable widget -->
+<center>
+<br/>
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-71d47584-8ef5-4b06-87ae-8d25bc2a837e">
+    <span class="hs-cta-node hs-cta-71d47584-8ef5-4b06-87ae-8d25bc2a837e" id="hs-cta-71d47584-8ef5-4b06-87ae-8d25bc2a837e">
+        <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
+        <a href="http://cta-redirect.hubspot.com/cta/redirect/330046/71d47584-8ef5-4b06-87ae-8d25bc2a837e"><img class="hs-cta-img" id="hs-cta-img-71d47584-8ef5-4b06-87ae-8d25bc2a837e" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/330046/71d47584-8ef5-4b06-87ae-8d25bc2a837e.png" /></a>
+    </span>
+    <script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script>
+        <script type="text/javascript">
+            hbspt.cta.load(330046, '71d47584-8ef5-4b06-87ae-8d25bc2a837e');
+        </script>
+</span>
+</center>
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">Ansible Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+<!-- AnsibleFest and free eBook preview stuff -->
+<center>
+<a href="http://www.ansible.com/tower?utm_source=docs">
+<img src="http://www.ansible.com/hubfs/Docs_Ads/TowerDocs.png">
+</a>
+<a href="https://www.eventbrite.com/e/ansiblefest-nyc-2015-tickets-16058031003">
+<img src="http://www.ansible.com/hubfs/Docs_Ads/Untitled_design_1.png">
+</a>
+<br/>&nbsp;<br/>
+<br/>&nbsp;<br/>
+</center>
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Developing Modules</a></li>
+  
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/ansible/ansible/blob/devel/docsite/rst/developing_modules.rst" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="developing-modules">
+<h1><a class="toc-backref" href="#id4">Developing Modules</a><a class="headerlink" href="#developing-modules" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="topics">
+<p class="topic-title first">Topics</p>
+<ul class="simple">
+<li><a class="reference internal" href="#developing-modules" id="id4">Developing Modules</a><ul>
+<li><a class="reference internal" href="#tutorial" id="id5">Tutorial</a></li>
+<li><a class="reference internal" href="#testing-modules" id="id6">Testing Modules</a></li>
+<li><a class="reference internal" href="#reading-input" id="id7">Reading Input</a></li>
+<li><a class="reference internal" href="#module-provided-facts" id="id8">Module Provided &#8216;Facts&#8217;</a></li>
+<li><a class="reference internal" href="#common-module-boilerplate" id="id9">Common Module Boilerplate</a></li>
+<li><a class="reference internal" href="#check-mode" id="id10">Check Mode</a></li>
+<li><a class="reference internal" href="#common-pitfalls" id="id11">Common Pitfalls</a></li>
+<li><a class="reference internal" href="#conventions-recommendations" id="id12">Conventions/Recommendations</a></li>
+<li><a class="reference internal" href="#documenting-your-module" id="id13">Documenting Your Module</a><ul>
+<li><a class="reference internal" href="#example" id="id14">Example</a></li>
+<li><a class="reference internal" href="#building-testing" id="id15">Building &amp; Testing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-paths" id="id16">Module Paths</a></li>
+<li><a class="reference internal" href="#getting-your-module-into-ansible" id="id17">Getting Your Module Into Ansible</a></li>
+<li><a class="reference internal" href="#module-checklist" id="id18">Module checklist</a></li>
+<li><a class="reference internal" href="#deprecating-and-making-module-aliases" id="id19">Deprecating and making module aliases</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Ansible modules are reusable units of magic that can be used by the Ansible API,
+or by the <cite>ansible</cite> or <cite>ansible-playbook</cite> programs.</p>
+<p>See <a class="reference internal" href="modules.html"><em>About Modules</em></a> for a list of various ones developed in core.</p>
+<p>Modules can be written in any language and are found in the path specified
+by <cite>ANSIBLE_LIBRARY</cite> or the <code class="docutils literal"><span class="pre">--module-path</span></code> command line option.</p>
+<p>By default, everything that ships with ansible is pulled from its source tree, but
+additional paths can be added.</p>
+<p>The directory &#8221;./library&#8221;, alongside your top level playbooks, is also automatically
+added as a search directory.</p>
+<p>Should you develop an interesting Ansible module, consider sending a pull request to the
+<a class="reference external" href="http://github.com/ansible/ansible-modules-extras">modules-extras project</a>.  There&#8217;s also a core
+repo for more established and widely used modules.  &#8220;Extras&#8221; modules may be promoted to core periodically,
+but there&#8217;s no fundamental difference in the end - both ship with ansible, all in one package, regardless
+of how you acquire ansible.</p>
+<div class="section" id="tutorial">
+<span id="module-dev-tutorial"></span><h2><a class="toc-backref" href="#id5">Tutorial</a><a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s build a very-basic module to get and set the system time.  For starters, let&#8217;s build
+a module that just outputs the current time.</p>
+<p>We are going to use Python here but any language is possible.  Only File I/O and outputting to standard
+out are required.  So, bash, C++, clojure, Python, Ruby, whatever you want
+is fine.</p>
+<p>Now Python Ansible modules contain some extremely powerful shortcuts (that all the core modules use)
+but first we are going to build a module the very hard way.  The reason we do this is because modules
+written in any language OTHER than Python are going to have to do exactly this.  We&#8217;ll show the easy
+way later.</p>
+<p>So, here&#8217;s an example.  You would never really need to build a module to set the system time,
+the &#8216;command&#8217; module could already be used to do this.  Though we&#8217;re going to make one.</p>
+<p>Reading the modules that come with ansible (linked above) is a great way to learn how to write
+modules.   Keep in mind, though, that some modules in ansible&#8217;s source tree are internalisms,
+so look at <cite>service</cite> or <cite>yum</cite>, and don&#8217;t stare too close into things like <cite>async_wrapper</cite> or
+you&#8217;ll turn to stone.  Nobody ever executes async_wrapper directly.</p>
+<p>Ok, let&#8217;s get going with an example.  We&#8217;ll use Python.  For starters, save this as a file named <cite>timetest.py</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">&quot;time&quot;</span> <span class="p">:</span> <span class="n">date</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-modules">
+<span id="module-testing"></span><h2><a class="toc-backref" href="#id6">Testing Modules</a><a class="headerlink" href="#testing-modules" title="Permalink to this headline">¶</a></h2>
+<p>There&#8217;s a useful test script in the source checkout for ansible:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="d0b7b9a490b7b9a4b8a5b2feb3bfbd">[email&#160;protected]</a><script cf-hash='f9e31' type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script>:ansible/ansible.git --recursive
+source ansible/hacking/env-setup
+chmod +x ansible/hacking/test-module
+</pre></div>
+</div>
+<p>Let&#8217;s run the script you just wrote with that:</p>
+<div class="highlight-python"><div class="highlight"><pre>ansible/hacking/test-module -m ./timetest.py
+</pre></div>
+</div>
+<p>You should see output that looks something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">u&#39;time&#39;</span><span class="p">:</span> <span class="s">u&#39;2012-03-14 22:13:48.539183&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>If you did not, you might have a typo in your module, so recheck it and try again.</p>
+</div>
+<div class="section" id="reading-input">
+<span id="id1"></span><h2><a class="toc-backref" href="#id7">Reading Input</a><a class="headerlink" href="#reading-input" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s modify the module to allow setting the current time.  We&#8217;ll do this by seeing
+if a key value pair in the form <cite>time=&lt;string&gt;</cite> is passed in to the module.</p>
+<p>Ansible internally saves arguments to an arguments file.  So we must read the file
+and parse it.  The arguments file is just a string, so any form of arguments are legal.
+Here we&#8217;ll do some basic parsing to treat the input as key=value.</p>
+<p>The example usage we are trying to achieve to set the time is:</p>
+<div class="highlight-python"><div class="highlight"><pre>time time=&quot;March 14 22:10&quot;
+</pre></div>
+</div>
+<p>If no time parameter is set, we&#8217;ll just leave the time as is and return the current time.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is obviously an unrealistic idea for a module.  You&#8217;d most likely just
+use the shell module.  However, it probably makes a decent tutorial.</p>
+</div>
+<p>Let&#8217;s look at the code.  Read the comments as we&#8217;ll explain as we go.  Note that this
+is highly verbose because it&#8217;s intended as an educational example.  You can write modules
+a lot shorter than this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+
+<span class="c"># import some python modules that we&#39;ll use.  These are all</span>
+<span class="c"># available in Python&#39;s core</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shlex</span>
+
+<span class="c"># read the argument string from the arguments file</span>
+<span class="n">args_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">args_data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">args_file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c"># for this module, we&#39;re going to do key=value style arguments</span>
+<span class="c"># this is up to each module to decide what it wants, but all</span>
+<span class="c"># core modules besides &#39;command&#39; and &#39;shell&#39; take key=value</span>
+<span class="c"># so this is highly recommended</span>
+
+<span class="n">arguments</span> <span class="o">=</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">args_data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span><span class="p">:</span>
+
+    <span class="c"># ignore any arguments without an equals in it</span>
+    <span class="k">if</span> <span class="s">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
+
+        <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;=&quot;</span><span class="p">)</span>
+
+        <span class="c"># if setting the time, the key &#39;time&#39;</span>
+        <span class="c"># will contain the value we want to set the time to</span>
+
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s">&quot;time&quot;</span><span class="p">:</span>
+
+            <span class="c"># now we&#39;ll affect the change.  Many modules</span>
+            <span class="c"># will strive to be &#39;idempotent&#39;, meaning they</span>
+            <span class="c"># will only make changes when the desired state</span>
+            <span class="c"># expressed to the module does not match</span>
+            <span class="c"># the current state.  Look at &#39;service&#39;</span>
+            <span class="c"># or &#39;yum&#39; in the main git tree for an example</span>
+            <span class="c"># of how that might look.</span>
+
+            <span class="n">rc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;date -s </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
+
+            <span class="c"># always handle all possible errors</span>
+            <span class="c">#</span>
+            <span class="c"># when returning a failure, include &#39;failed&#39;</span>
+            <span class="c"># in the return data, and explain the failure</span>
+            <span class="c"># in &#39;msg&#39;.  Both of these conventions are</span>
+            <span class="c"># required however additional keys and values</span>
+            <span class="c"># can be added.</span>
+
+            <span class="k">if</span> <span class="n">rc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                    <span class="s">&quot;failed&quot;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                    <span class="s">&quot;msg&quot;</span>    <span class="p">:</span> <span class="s">&quot;failed setting the time&quot;</span>
+                <span class="p">})</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c"># when things do not fail, we do not</span>
+            <span class="c"># have any restrictions on what kinds of</span>
+            <span class="c"># data are returned, but it&#39;s always a</span>
+            <span class="c"># good idea to include whether or not</span>
+            <span class="c"># a change was made, as that will allow</span>
+            <span class="c"># notifiers to be used in playbooks.</span>
+
+            <span class="n">date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+            <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s">&quot;time&quot;</span> <span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+                <span class="s">&quot;changed&quot;</span> <span class="p">:</span> <span class="bp">True</span>
+            <span class="p">})</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c"># if no parameters are sent, the module may or</span>
+<span class="c"># may not error out, this one will just</span>
+<span class="c"># return the time</span>
+
+<span class="n">date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">&quot;time&quot;</span> <span class="p">:</span> <span class="n">date</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Let&#8217;s test that module:</p>
+<div class="highlight-python"><div class="highlight"><pre>ansible/hacking/test-module -m ./time -a time=\&quot;March 14 12:23\&quot;
+</pre></div>
+</div>
+<p>This should return something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;changed&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2012-03-14 12:23:00.000307&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-provided-facts">
+<span id="id2"></span><h2><a class="toc-backref" href="#id8">Module Provided &#8216;Facts&#8217;</a><a class="headerlink" href="#module-provided-facts" title="Permalink to this headline">¶</a></h2>
+<p>The &#8216;setup&#8217; module that ships with Ansible provides many variables about a system that can be used in playbooks
+and templates.  However, it&#8217;s possible to also add your own facts without modifying the system module.  To do
+this, just have the module return a <cite>ansible_facts</cite> key, like so, along with other return data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;changed&quot;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s">&quot;rc&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s">&quot;ansible_facts&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;leptons&quot;</span> <span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="s">&quot;colors&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;red&quot;</span>   <span class="p">:</span> <span class="s">&quot;FF0000&quot;</span><span class="p">,</span>
+            <span class="s">&quot;white&quot;</span> <span class="p">:</span> <span class="s">&quot;FFFFFF&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These &#8216;facts&#8217; will be available to all statements called after that module (but not before) in the playbook.
+A good idea might be make a module called &#8216;site_facts&#8217; and always call it at the top of each playbook, though
+we&#8217;re always open to improving the selection of core facts in Ansible as well.</p>
+</div>
+<div class="section" id="common-module-boilerplate">
+<span id="id3"></span><h2><a class="toc-backref" href="#id9">Common Module Boilerplate</a><a class="headerlink" href="#common-module-boilerplate" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned, if you are writing a module in Python, there are some very powerful shortcuts you can use.
+Modules are still transferred as one file, but an arguments file is no longer needed, so these are not
+only shorter in terms of code, they are actually FASTER in terms of execution time.</p>
+<p>Rather than mention these here, the best way to learn is to read some of the <a class="reference external" href="https://github.com/ansible/ansible-modules-core">source of the modules</a> that come with Ansible.</p>
+<p>The &#8216;group&#8217; and &#8216;user&#8217; modules are reasonably non-trivial and showcase what this looks like.</p>
+<p>Key parts include always ending the module file with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ansible.module_utils.basic</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And instantiating the module class like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">module</span> <span class="o">=</span> <span class="n">AnsibleModule</span><span class="p">(</span>
+    <span class="n">argument_spec</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">state</span>     <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;present&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;present&#39;</span><span class="p">,</span> <span class="s">&#39;absent&#39;</span><span class="p">]),</span>
+        <span class="n">name</span>      <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+        <span class="n">enabled</span>   <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">BOOLEANS</span><span class="p">),</span>
+        <span class="n">something</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;whatever&#39;</span><span class="p">])</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The AnsibleModule provides lots of common code for handling returns, parses your arguments
+for you, and allows you to check inputs.</p>
+<p>Successful returns are made like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">module</span><span class="o">.</span><span class="n">exit_json</span><span class="p">(</span><span class="n">changed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">something_else</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And failures are just as simple (where &#8216;msg&#8217; is a required parameter to explain the error):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">module</span><span class="o">.</span><span class="n">fail_json</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">&quot;Something fatal happened&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are also other useful functions in the module class, such as module.sha1(path).  See
+lib/ansible/module_common.py in the source checkout for implementation details.</p>
+<p>Again, modules developed this way are best tested with the hacking/test-module script in the git
+source checkout.  Because of the magic involved, this is really the only way the scripts
+can function outside of Ansible.</p>
+<p>If submitting a module to ansible&#8217;s core code, which we encourage, use of the AnsibleModule
+class is required.</p>
+</div>
+<div class="section" id="check-mode">
+<span id="developing-for-check-mode"></span><h2><a class="toc-backref" href="#id10">Check Mode</a><a class="headerlink" href="#check-mode" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.1.</span></p>
+</div>
+<p>Modules may optionally support check mode. If the user runs Ansible in check
+mode, the module should try to predict whether changes will occur.</p>
+<p>For your module to support check mode, you must pass <code class="docutils literal"><span class="pre">supports_check_mode=True</span></code>
+when instantiating the AnsibleModule object. The AnsibleModule.check_mode attribute
+will evaluate to True when check mode is enabled. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">module</span> <span class="o">=</span> <span class="n">AnsibleModule</span><span class="p">(</span>
+    <span class="n">argument_spec</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">supports_check_mode</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">module</span><span class="o">.</span><span class="n">check_mode</span><span class="p">:</span>
+    <span class="c"># Check if any changes would be made by don&#39;t actually make those changes</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">exit_json</span><span class="p">(</span><span class="n">changed</span><span class="o">=</span><span class="n">check_if_system_state_would_be_changed</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Remember that, as module developer, you are responsible for ensuring that no
+system state is altered when the user enables check mode.</p>
+<p>If your module does not support check mode, when the user runs Ansible in check
+mode, your module will simply be skipped.</p>
+</div>
+<div class="section" id="common-pitfalls">
+<span id="module-dev-pitfalls"></span><h2><a class="toc-backref" href="#id11">Common Pitfalls</a><a class="headerlink" href="#common-pitfalls" title="Permalink to this headline">¶</a></h2>
+<p>You should also never do this in a module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;some status message&quot;</span>
+</pre></div>
+</div>
+<p>Because the output is supposed to be valid JSON.</p>
+<p>Modules must not output anything on standard error, because the system will merge
+standard out with standard error and prevent the JSON from parsing. Capturing standard
+error and returning it as a variable in the JSON on standard out is fine, and is, in fact,
+how the command module is implemented.</p>
+<p>If a module returns stderr or otherwise fails to produce valid JSON, the actual output
+will still be shown in Ansible, but the command will not succeed.</p>
+<p>Always use the hacking/test-module script when developing modules and it will warn
+you about these kind of things.</p>
+</div>
+<div class="section" id="conventions-recommendations">
+<span id="module-dev-conventions"></span><h2><a class="toc-backref" href="#id12">Conventions/Recommendations</a><a class="headerlink" href="#conventions-recommendations" title="Permalink to this headline">¶</a></h2>
+<p>As a reminder from the example code above, here are some basic conventions
+and guidelines:</p>
+<ul class="simple">
+<li>If the module is addressing an object, the parameter for that object should be called &#8216;name&#8217; whenever possible, or accept &#8216;name&#8217; as an alias.</li>
+<li>If you have a company module that returns facts specific to your installations, a good name for this module is <cite>site_facts</cite>.</li>
+<li>Modules accepting boolean status should generally accept &#8216;yes&#8217;, &#8216;no&#8217;, &#8216;true&#8217;, &#8216;false&#8217;, or anything else a user may likely throw at them.  The AnsibleModule common code supports this with &#8220;choices=BOOLEANS&#8221; and a module.boolean(value) casting function.</li>
+<li>Include a minimum of dependencies if possible.  If there are dependencies, document them at the top of the module file, and have the module raise JSON error messages when the import fails.</li>
+<li>Modules must be self-contained in one file to be auto-transferred by ansible.</li>
+<li>If packaging modules in an RPM, they only need to be installed on the control machine and should be dropped into /usr/share/ansible.  This is entirely optional and up to you.</li>
+<li>Modules should output valid JSON only. All return types must be hashes (dictionaries) although they can be nested.  Lists or simple scalar values are not supported, though they can be trivially contained inside a dictionary.</li>
+<li>In the event of failure, a key of &#8216;failed&#8217; should be included, along with a string explanation in &#8216;msg&#8217;.  Modules that raise tracebacks (stacktraces) are generally considered &#8216;poor&#8217; modules, though Ansible can deal with these returns and will automatically convert anything unparseable into a failed result.  If you are using the AnsibleModule common Python code, the &#8216;failed&#8217; element will be included for you automatically when you call &#8216;fail_json&#8217;.</li>
+<li>Return codes from modules are not actually not significant, but continue on with 0=success and non-zero=failure for reasons of future proofing.</li>
+<li>As results from many hosts will be aggregated at once, modules should return only relevant output.  Returning the entire contents of a log file is generally bad form.</li>
+</ul>
+</div>
+<div class="section" id="documenting-your-module">
+<span id="module-documenting"></span><h2><a class="toc-backref" href="#id13">Documenting Your Module</a><a class="headerlink" href="#documenting-your-module" title="Permalink to this headline">¶</a></h2>
+<p>All modules included in the CORE distribution must have a
+<code class="docutils literal"><span class="pre">DOCUMENTATION</span></code> string. This string MUST be a valid YAML document
+which conforms to the schema defined below. You may find it easier to
+start writing your <code class="docutils literal"><span class="pre">DOCUMENTATION</span></code> string in an editor with YAML
+syntax highlighting before you include it in your Python file.</p>
+<div class="section" id="example">
+<span id="module-doc-example"></span><h3><a class="toc-backref" href="#id14">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>See an example documentation string in the checkout under <a class="reference external" href="https://github.com/ansible/ansible/blob/devel/examples/DOCUMENTATION.yml">examples/DOCUMENTATION.yml</a>.</p>
+<p>Include it in your module file like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># Copyright header....</span>
+
+<span class="n">DOCUMENTATION</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">---</span>
+<span class="s">module: modulename</span>
+<span class="s">short_description: This is a sentence describing the module</span>
+<span class="s"># ... snip ...</span>
+<span class="s">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">description</span></code>, and <code class="docutils literal"><span class="pre">notes</span></code> fields
+support formatting with some special macros.</p>
+<p>These formatting functions are <code class="docutils literal"><span class="pre">U()</span></code>, <code class="docutils literal"><span class="pre">M()</span></code>, <code class="docutils literal"><span class="pre">I()</span></code>, and <code class="docutils literal"><span class="pre">C()</span></code>
+for URL, module, italic, and constant-width respectively. It is suggested
+to use <code class="docutils literal"><span class="pre">C()</span></code> for file and option names, and <code class="docutils literal"><span class="pre">I()</span></code> when referencing
+parameters; module names should be specified as <code class="docutils literal"><span class="pre">M(module)</span></code>.</p>
+<p>Examples (which typically contain colons, quotes, etc.) are difficult
+to format with YAML, so these must be
+written in plain text in an <code class="docutils literal"><span class="pre">EXAMPLES</span></code> string within the module
+like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">EXAMPLES</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">- action: modulename opt1=arg1 opt2=arg2</span>
+<span class="s">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>The EXAMPLES section, just like the documentation section, is required in
+all module pull requests for new modules.</p>
+</div>
+<div class="section" id="building-testing">
+<span id="module-dev-testing"></span><h3><a class="toc-backref" href="#id15">Building &amp; Testing</a><a class="headerlink" href="#building-testing" title="Permalink to this headline">¶</a></h3>
+<p>Put your completed module file into the &#8216;library&#8217; directory and then
+run the command: <code class="docutils literal"><span class="pre">make</span> <span class="pre">webdocs</span></code>. The new &#8216;modules.html&#8217; file will be
+built and appear in the &#8216;docsite/&#8217; directory.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you&#8217;re having a problem with the syntax of your YAML you can
+validate it on the <a class="reference external" href="http://www.yamllint.com/">YAML Lint</a> website.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can set the environment variable ANSIBLE_KEEP_REMOTE_FILES=1 on the controlling host to prevent ansible from
+deleting the remote files so you can debug your module.</p>
+</div>
+</div>
+</div>
+<div class="section" id="module-paths">
+<span id="module-contribution"></span><h2><a class="toc-backref" href="#id16">Module Paths</a><a class="headerlink" href="#module-paths" title="Permalink to this headline">¶</a></h2>
+<p>If you are having trouble getting your module &#8220;found&#8221; by ansible, be sure it is in the ANSIBLE_LIBRARY_PATH.</p>
+<p>If you have a fork of one of the ansible module projects, do something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>ANSIBLE_LIBRARY=~/ansible-modules-core:~/ansible-modules-extras
+</pre></div>
+</div>
+<p>And this will make the items in your fork be loaded ahead of what ships with Ansible.  Just be sure
+to make sure you&#8217;re not reporting bugs on versions from your fork!</p>
+<p>To be safe, if you&#8217;re working on a variant on something in Ansible&#8217;s normal distribution, it&#8217;s not
+a bad idea to give it a new name while you are working on it, to be sure you know you&#8217;re pulling
+your version.</p>
+</div>
+<div class="section" id="getting-your-module-into-ansible">
+<h2><a class="toc-backref" href="#id17">Getting Your Module Into Ansible</a><a class="headerlink" href="#getting-your-module-into-ansible" title="Permalink to this headline">¶</a></h2>
+<p>High-quality modules with minimal dependencies
+can be included in Ansible, but modules (just due to the programming
+preferences of the developers) will need to be implemented in Python and use
+the AnsibleModule common code, and should generally use consistent arguments with the rest of
+the program.   Stop by the mailing list to inquire about requirements if you like, and submit
+a github pull request to the <a class="reference external" href="https://github.com/ansible/ansible-modules-extras">extras</a> project.
+Included modules will ship with ansible, and also have a chance to be promoted to &#8216;core&#8217; status, which
+gives them slightly higher development priority (though they&#8217;ll work in exactly the same way).</p>
+</div>
+<div class="section" id="module-checklist">
+<h2><a class="toc-backref" href="#id18">Module checklist</a><a class="headerlink" href="#module-checklist" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The shebang should always be #!/usr/bin/python, this allows ansible_python_interpreter to work</p>
+</li>
+<li><dl class="first docutils">
+<dt>Documentation: Make sure it exists</dt>
+<dd><ul class="first last simple">
+<li><cite>required</cite> should always be present, be it true or false</li>
+<li>If <cite>required</cite> is false you need to document <cite>default</cite>, even if its &#8216;null&#8217;</li>
+<li><cite>default</cite> is not needed for <cite>required: true</cite></li>
+<li>Remove unnecessary doc like <cite>aliases: []</cite> or <cite>choices: []</cite></li>
+<li>The version is not a float number and value the current development version</li>
+<li>The verify that arguments in doc and module spec dict are identical</li>
+<li>For password / secret arguments no_log=True should be set</li>
+<li>Requirements should  be documented, using the <cite>requirements=[]</cite> field</li>
+<li>Author should be set, name and github id at least</li>
+<li>Made use of U() for urls, C() for files and options, I() for params, M() for modules?</li>
+<li>GPL License header</li>
+<li>Does module use check_mode? Could it be modified to use it? Document it</li>
+<li>Examples: make sure they are reproducible</li>
+<li>Return: document the return structure of the module</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Exceptions: The module must handle them. (exceptions are bugs)</dt>
+<dd><ul class="first last simple">
+<li>Give out useful messages on what you were doing and you can add the exception message to that.</li>
+<li>Avoid catchall exceptions, they are not very useful unless the underlying API gives very good error messages pertaining the attempted action.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">The module must not use sys.exit() &#8211;&gt; use fail_json() from the module object</p>
+</li>
+<li><p class="first">Import custom packages in try/except and handled with fail_json() in main() e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">foo</span>
+    <span class="n">HAS_LIB</span><span class="o">=</span><span class="bp">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">HAS_LIB</span><span class="o">=</span><span class="bp">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The return structure should be consistent, even if NA/None are used for keys normally returned under other options.</p>
+</li>
+<li><p class="first">Are module actions idempotent? If not document in the descriptions or the notes</p>
+</li>
+<li><p class="first">Import module snippets <cite>from ansible.module_utils.basic import *</cite> at the bottom, conserves line numbers for debugging.</p>
+</li>
+<li><p class="first">Try to normalize parameters with other modules, you can have aliases for when user is more familiar with underlying API name for the option</p>
+</li>
+<li><p class="first">Being pep8 compliant is nice, but not a requirement. Specifically, the 80 column limit now hinders readability more that it improves it</p>
+</li>
+<li><p class="first">Avoid &#8216;<cite>action</cite>/<cite>command</cite>&#8216;, they are imperative and not declarative, there are other ways to express the same thing</p>
+</li>
+<li><p class="first">Sometimes you want to split the module, specially if you are adding a list/info state, you want a _facts version</p>
+</li>
+<li><p class="first">If you are asking &#8216;how can i have a module execute other modules&#8217; ... you want to write a role</p>
+</li>
+</ul>
+</div>
+<div class="section" id="deprecating-and-making-module-aliases">
+<h2><a class="toc-backref" href="#id19">Deprecating and making module aliases</a><a class="headerlink" href="#deprecating-and-making-module-aliases" title="Permalink to this headline">¶</a></h2>
+<p>Starting in 1.8 you can deprecate modules by renaming them with a preceding _, i.e. old_cloud.py to
+_old_cloud.py, This will keep the module available but hide it from the primary docs and listing.</p>
+<p>You can also rename modules and keep an alias to the old name by using a symlink that starts with _.
+This example allows the stat module to be called with fileinfo, making the following examples equivalent</p>
+<blockquote>
+<div>EXAMPLES = &#8216;&#8217;&#8217;
+ln -s stat.py _fileinfo.py
+ansible -m stat -a &#8220;path=/tmp&#8221; localhost
+ansible -m fileinfo -a &#8220;path=/tmp&#8221; localhost
+&#8216;&#8217;&#8216;</div></blockquote>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="modules.html"><em>About Modules</em></a></dt>
+<dd>Learn about available modules</dd>
+<dt><a class="reference internal" href="developing_plugins.html"><em>Developing Plugins</em></a></dt>
+<dd>Learn about developing plugins</dd>
+<dt><a class="reference internal" href="developing_api.html"><em>Python API</em></a></dt>
+<dd>Learn about the Python API for playbook and task execution</dd>
+<dt><a class="reference external" href="https://github.com/ansible/ansible-modules-core/tree/devel">GitHub Core modules directory</a></dt>
+<dd>Browse source of core modules</dd>
+<dt><a class="reference external" href="https://github.com/ansible/ansible-modules-extras/tree/devel">Github Extras modules directory</a></dt>
+<dd>Browse source of extras modules.</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">Mailing List</a></dt>
+<dd>Development mailing list</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt>
+<dd>#ansible IRC chat channel</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="developing_plugins.html" class="btn btn-neutral float-right" title="Developing Plugins"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="developing_inventory.html" class="btn btn-neutral" title="Developing Dynamic Inventory Sources"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+  &copy; Copyright 2015 <a href="http://ansible.com">Ansible, Inc.</a>.
+    Last updated on May 26, 2015.
+  </p>
+
+Ansible docs are generated from <a href="http://github.com/ansible/ansible">GitHub sources</A> using <A HREF="http://sphinx-doc.org/">Sphinx</A> using a theme provided by <a href="http://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+        (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+        n.id=i;n.src = '//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+        e.parentNode.insertBefore(n, e);
+        })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+
+</body>
+</html>
