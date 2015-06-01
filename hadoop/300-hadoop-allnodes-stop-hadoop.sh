@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible hadoop -a "/home/hadoop/ojo/hadoop-stop.sh"
+ansible namenode -a "/home/hadoop/ojo/hadoop-stop.sh"
