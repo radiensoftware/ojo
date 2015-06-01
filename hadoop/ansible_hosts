@@ -1,5 +1,11 @@
-[hadoop]
+[namenode]
 t1.daddylabs.com
+
+[datanodes]
 m1.daddylabs.com
 m2.daddylabs.com
 m3.daddylabs.com
+
+[hadoop:children]
+namenode
+datanodes

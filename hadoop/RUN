@@ -1,0 +1,82 @@
+    1  finger
+    2  ls -ltr
+    3  cd ojo/
+    4  ls
+    5  ./hadoop-create.sh 
+    6  exec bash
+    7  ./hadoop-initialise.sh 
+    8  ./hadoop-start.sh
+    9  ./hadoop-status
+   10  ./hadoop-status.sh 
+   11  ls
+   12  ./hadoop-pizza.sh 
+   13  ls
+   14  sudo yum install ansible
+   15  ls
+   16  l
+   17  ls
+   18  cd ono
+   19  cd ojo
+   20  ls
+   21  git pull
+   22  ls
+   23  vi ansible_hosts
+   24  ping m4
+   25  vi ansible_hosts
+   26  ssh-copy-id m1
+   27  ssh-copy-id m2
+   28  ssh-copy-id m3
+   29  ssh m1
+   30  ssh m1.daddylabs.com
+   31  ssh mw.daddylabs.com
+   32  ssh m2.daddylabs.com
+   33  ssh m3.daddylabs.com
+   34  ssh t1.daddylabs.com
+   35  ssh 10.10.10.31
+   36  ssh 10.10.10.51
+   37  ssh 10.10.10.52
+   38  ssh 10.10.10.53
+   39  ls
+   40  export ANSIBLE_INVENTORY=~/ojo/ansible_hosts 
+   41  ansible all -m ping
+   42  ssh 10.10.10.71 -l dinesh
+   43  git pull
+   44  cat NOTES 
+   45  git add ansible_hosts 
+   46  git commit -m ansible_hosts 
+   47  ./dinesh.sh 
+   48  git commit -m ansible_hosts 
+   49  git push origin master
+   50  ls
+   51  vi NOTES 
+   52  ls
+   53  mkdir hadoop
+   54  cd hadoop
+   55  ls
+   56  mkdir hadoop-1.2.1
+   57  mkdir hadoop-1.2.1/conf
+   58  vi hadoop-1.2.1/conf/master
+   59  vi hadoop-1.2.1/conf/slaves
+   60  git add hadoop-1.2.1/conf/slaves
+   61  git add hadoop-1.2.1/conf/master 
+   62  pwd
+   63  git mv ../ansible_hosts 
+   64  git mv ../ansible_hosts .
+   65  ls
+   66  git add hadoop-1.2.1/conf/*
+   67  git commit -m hadoop
+   68  vi ansible_hosts 
+   69  ansible hadoop -m ping
+   70  ls
+   71  vi ENV
+   72  git add ENV 
+   73  git commit -m env
+   74  . ENV 
+   75  vi . ENV 
+   76  ansible hadoop -m ping
+   77  ansible master -m ping
+   78  ansible namenode -m ping
+   79  ansible datanodes -m ping
+   80  ls
+   81  history
+   82  history > RUN
