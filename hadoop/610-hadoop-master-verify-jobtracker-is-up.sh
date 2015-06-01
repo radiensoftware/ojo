@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible namenode -a "/home/hadoop/ojo/hadoo-status.sh"
+ansible namenode -a "/home/hadoop/ojo/hadoop-status.sh"
