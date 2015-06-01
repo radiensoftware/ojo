@@ -1,0 +1,18 @@
+1. Specify the cluster configuration in ansible_hosts
+2. Run . ENV
+3. Edit the configuration in multinode/hadoop-1.2.1/conf/*
+4. Login into the namenode 
+   And prepare password ssh to all data nodes manually
+   for dn in datanode1 datanode2 datanode3 ...
+   do 
+     echo Data Node $dn
+     ssh-copy-id $dn
+     # ssh-copy-id $dn.daddylabs.com
+   done
+5. Run the scripts in the numbered order
+6. Have fun!
+
+Good luck!
+
+Dinesh
+
