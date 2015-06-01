@@ -1,0 +1,25 @@
+ansible tiny -u hadoop -m git -a "repo=https://github.com/radiensoftware/ojo.git dest=/home/hadoop/ojo2 version=HEAD"
+t1.daddylabs.com | success >> {
+    "after": "219bc39acafdc1dc8f73649c08b7a637b835cb3d", 
+    "before": "219bc39acafdc1dc8f73649c08b7a637b835cb3d", 
+    "changed": false
+}
+
+t2.daddylabs.com | success >> {
+    "after": "219bc39acafdc1dc8f73649c08b7a637b835cb3d", 
+    "before": "219bc39acafdc1dc8f73649c08b7a637b835cb3d", 
+    "changed": false
+}
+
+add user  
+
+ansible tiny -u hadoop -m user -a "name=mirantis" --sudo
+
+del user
+
+ansible tiny -u hadoop -m user -a "name=mirantis state=absent" --sudo
+
+ansible tiny -m setup -u hadoop
+:w
+
+
