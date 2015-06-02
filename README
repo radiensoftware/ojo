@@ -1,0 +1,18 @@
+$ ./hadoop-create.sh
+$ exec bash
+$ ./hadoop-initialise.sh 
+$ unset SSH_AUTH_SOCK
+$ unset SSH_ASKPASS
+$ ./hadoop-ssh-keys.sh 
+$ ./hadoop-status.sh		# check if hadoop is running
+$ ./hadoop-start.sh		# start hadoop
+$ ./hadoop-status.sh		# check if hadoop is running
+$ ./hadoop-pizza.sh		# submit pi calculation jobs 
+				# in a loop
+
+Observe
+1. HDFS GUI
+access t1.daddylabs.com:50070 in firefox
+
+2. Map Reduce GUI
+access t1.daddylabs.com:50030 in firefox
