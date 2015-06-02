@@ -1,0 +1,6 @@
+$ ./hadoop-create.sh
+$ exec bash
+$ ./hadoop-initialise.sh 
+$ unset SSH_AUTH_SOCK
+$ unset SSH_ASKPASS
+$ ./hadoop-ssh-keys.sh 
