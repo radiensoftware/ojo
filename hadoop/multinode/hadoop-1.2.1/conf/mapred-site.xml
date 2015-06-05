@@ -7,7 +7,7 @@
 
 	<property>
 		<name>mapred.job.tracker</name>
-		<value>10.10.10.31:54311</value>
+		<value>10.10.10.41:54311</value>
 		<description>mapred.job.tracker</description>
 	</property>
 

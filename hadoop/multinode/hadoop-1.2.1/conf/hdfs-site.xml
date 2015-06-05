@@ -7,7 +7,7 @@
 
 	<property>
 		<name>dfs.replication</name>
-		<value>2</value>
+		<value>1</value>
 		<description>dfs.replication</description>
 	</property>
 
