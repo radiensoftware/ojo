@@ -42,6 +42,7 @@ Hadoop v1 Multiple Node Configuration Setup
 
 Prepare the Hadoop Nodes
 -------------------------
+
 Verify all nodes are up and running
 
 $ ./100-hadoop-allnodes-ping.sh
