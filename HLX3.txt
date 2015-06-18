@@ -1,0 +1,14 @@
+Hadoop Lab Exercise 3
+---------------------
+
+Have fun!
+
+Dinesh
+--
+
+Do HLX2
+
+Now run the Hadoop Multi Node setup present in hadoop/README.
+
+-- 
+End of HLX
