@@ -1,0 +1,22 @@
+Hadoop Lab Exercise 2
+---------------------
+
+Have fun!
+
+Dinesh
+--
+
+Select 4 lab node.
+
+Install Linux and Hadoop 1 on all of them
+
+Login in as hadoop.
+
+Install Hadoop Single Node Setup on the 4 lab nodes
+
+Run Hadoop Example Job "pi 100 10000"
+
+Observe the increase in CPU usages using top, atop, htop
+
+-- 
+End of HLX
