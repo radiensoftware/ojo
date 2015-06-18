@@ -2,17 +2,42 @@ Hadoop v1 Multiple Node Configuration Setup
 -------------------------------------------
 
 1. Specify the cluster configuration in ansible_hosts
+
 2. Run . ENV
+
 3. Edit the configuration in multinode/hadoop-1.2.1/conf/*
+
 4. Login into the namenode 
-   And prepare password ssh to all data nodes manually
-   for dn in datanode1 datanode2 datanode3 ...
+   And prepare passwordless ssh access to all hadoop nodes manually
+
+   for node in namenode datanode1 datanode2 datanode3 ...
    do 
-     echo Data Node $dn
-     ssh-copy-id $dn
-     # ssh-copy-id $dn.daddylabs.com
+     	echo Hadoop Node $node
+     	ssh-copy-id $node
+     	ssh-copy-id $node.daddylabs.com
    done
-5. Run the scripts in the numbered order
+
+   Verify that you can login to all hadoop nodes and run a command without
+   specifying the password
+
+   for node in namenode datanode1 datanode2 datanode3 ...
+   do 
+   	echo Hadoop Node $node
+	ssh $node hostname
+	ssh $node uptime
+   done
+
+   Repeat the same with the full hostname
+
+   for node in namenode datanode1 datanode2 datanode3 ...
+   do 
+   	echo Hadoop Node $node
+	ssh $node.daddylabs.com hostname
+	ssh $node.daddylabs.com uptime
+   done
+
+5. Run the hadoop scripts in the numbered order
+
 6. Have fun!
 
 Prepare the Hadoop Nodes
