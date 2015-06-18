@@ -1,6 +1,12 @@
 Hadoop v1 Multiple Node Configuration Setup
 -------------------------------------------
 
+Have fun!  Good luck!
+
+Dinesh
+
+---
+
 1. Specify the cluster configuration in ansible_hosts
 
 2. Run . ENV
@@ -176,8 +182,4 @@ is no longer running on the master
 
 $ ./820-hadoop-slaves-verify-datanodes-are-down.sh
 
-
-Good luck!
-
-Dinesh
 
