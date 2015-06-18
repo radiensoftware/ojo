@@ -108,8 +108,10 @@ $ ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh
 
 Initialising Hadoop (Run This Only Once)
 ------------------------------------------------
+
 Format hadoop filesystem on the master node
-420-hadoop-master-format-dfs.sh
+
+$ ./420-hadoop-master-format-dfs.sh
 
 Starting Hadoop (Run after booting all nodes)
 ------------------------------------------------
