@@ -1,0 +1,1125 @@
+INSTALLATION NOTES for OpenBSD/amd64 5.7
+
+
+What is OpenBSD?
+----------------
+
+OpenBSD is a fully functional, multi-platform UN*X-like Operating
+System based on Berkeley Networking Release 2 (Net/2) and 4.4BSD-Lite.
+There are several operating systems in this family, but OpenBSD
+differentiates itself by putting security and correctness first.  The
+OpenBSD team strives to achieve what is called a 'secure by default'
+status.  This means that an OpenBSD user should feel safe that their
+newly installed machine will not be compromised.  This 'secure by
+default' goal is achieved by taking a proactive stance on security.
+
+Since security flaws are essentially mistakes in design or implement-
+ation, the OpenBSD team puts as much importance on finding and fixing
+existing design flaws and implementation bugs as it does writing new
+code.  This means that an OpenBSD system will not only be more secure,
+but it will be more stable.  The source code for all critical system
+components has been checked for remote-access, local-access, denial-
+of-service, data destruction, and information-gathering problems.
+
+In addition to bug fixing, OpenBSD has integrated strong cryptography
+into the base system.  A fully functional IPsec implementation is
+provided as well as support for common protocols such as SSL and SSH.
+Network filtering and monitoring tools such as packet filtering, NAT,
+and bridging are also standard, as well as several routing services,
+such as BGP and OSPF.  For high performance demands, support for
+hardware cryptography has also been added to the base system.  Because
+security is often seen as a tradeoff with usability, OpenBSD provides
+as many security options as possible to allow the user to enjoy secure
+computing without feeling burdened by it.
+
+Because OpenBSD is from Canada, the export of Cryptography pieces
+(such as OpenSSH and IPsec) to the world is not restricted.
+
+(NOTE: OpenBSD can not be re-exported from the US once it has entered
+the US.  Because of this, take care NOT to get the distribution from
+an FTP server in the US if you are outside of Canada and the US.)
+
+A comprehensive list of the improvements brought by the 5.7 release
+is available on the web at http://www.OpenBSD.org/57.html.
+
+OpenBSD/amd64 runs on computers equipped with AMD Athlon64 processors.
+Machines with compatible processors (such as Intel's EM64T processors)
+are also supported.
+
+
+Sources of OpenBSD:
+-------------------
+
+Please refer to http://www.openbsd.org/ftp.html for all the ways you may
+acquire OpenBSD.
+
+
+OpenBSD 5.7 Release Contents:
+-----------------------------
+
+The OpenBSD 5.7 release is organized in the following way.  In the
+.../5.7 directory, for each of the architectures having an OpenBSD 5.7
+binary distribution, there is a sub-directory.
+
+The amd64-specific portion of the OpenBSD 5.7 release is found in the
+"amd64" subdirectory of the distribution.  That subdirectory is laid
+out as follows:
+
+.../5.7/amd64/
+
+	INSTALL.amd64	Installation notes; this file.
+
+	SHA256		Output of the sum(1) program using the option
+			-a sha256, usable for verification of the
+			correctness of downloaded files.
+
+	SHA256.sig	The above file, signed with the OpenBSD signing key
+			for the 5.7 release, usable for verification of the
+			integrity of the above file, and thus of the
+		        downloaded files.
+
+	miniroot57.fs	A miniroot filesystem image to be used if you
+			for some reason can't or don't want to use the
+			ramdisk installation method.
+			It can be copied to a small USB key to start the install.
+
+	floppy57.fs	The standard amd64 boot and installation floppy;
+			see below.
+
+	pxeboot		amd64-specific second-stage PXE bootstrap (for
+			network installs); see below.
+
+	*.tgz		amd64 binary distribution sets; see below.
+
+	bsd		A stock GENERIC amd64 kernel which will be
+			installed on your system during the install.
+
+	bsd.mp		A stock GENERIC.MP amd64 kernel, with support for
+			multiprocessor machines, which can be used instead
+			of the GENERIC kernel after the install.
+
+	bsd.rd		A compressed RAMDISK kernel; the embedded
+			filesystem contains the installation tools.
+			Used for simple installation from a pre-existing
+			system.
+
+	install57.iso	The amd64 boot and installation CD-ROM image,
+			which contains the base and X sets, so that install
+			or upgrade can be done without network connectivity.
+
+	install57.fs	A boot and installation image which contains
+			the base and X sets.  An install or upgrade can be
+			done with a USB key without network connectivity.
+
+	cd57.iso	A simple bootable filesystem image consisting of the
+			bsd.rd installation kernel, suitable to be used
+			as a bootable CD-ROM image, but will require the base
+			and X sets be found via another media or network.
+
+	cdbr		First-stage CD bootstrap (boot sector), which loads
+			the cdboot second-stage bootstrap.  This file is
+			included in the cd57.iso image, and is
+			provided as a convenience, but will rarely be needed.
+
+	cdboot		Second-stage CD bootstrap loader for non-emulation
+			OpenBSD El Torito CD-ROMs. It processes boot.conf
+			then loads the bsd.rd installation ramdisk kernel.
+			This file is included in the cd57.iso image,
+			and is provided as a convenience, but will rarely be
+			needed.
+
+Bootable installation/upgrade floppy image:
+
+	The single floppy image can be copied to a floppy using rawrite.exe,
+	ntrw.exe, or `dd', as described later in this document.
+	The floppy image is a bootable install floppy which can be used
+	both to install and to upgrade OpenBSD to the current version.
+	It is also useful for maintenance and disaster recovery.
+
+The OpenBSD/amd64 binary distribution sets contain the binaries which
+comprise the OpenBSD 5.7 release for amd64 systems.  There are ten
+binary distribution sets.  The binary distribution sets can be found in
+the "amd64" subdirectory of the OpenBSD 5.7 distribution tree,
+and are as follows:
+
+	base57	 The OpenBSD/amd64 5.7 base binary distribution.  You MUST
+		 install this distribution set.  It contains the base OpenBSD
+		 utilities that are necessary for the system to run and be
+		 minimally functional.
+		 It includes shared library support, and excludes everything
+		 described below.
+		 [ 60.6 MB gzipped, 177.9 MB uncompressed ]
+
+	comp57	 The OpenBSD/amd64 Compiler tools.  All of the tools relating
+		 to C, C++ and Objective-C are supported.  This set includes
+		 the system include files (/usr/include), the linker, the
+		 compiler tool chain, and the various system libraries
+		 (except the shared libraries, which are included as part of
+		 the base set).
+		 This set also includes the manual pages for all of the
+		 utilities it contains, as well as the system call and library
+		 manual pages.
+		 [ 45.7 MB gzipped, 168.9 MB uncompressed ]
+
+	game57	 This set includes the games and their manual pages.
+		 [ 2.6 MB gzipped, 6.1 MB uncompressed ]
+
+	man57	 This set includes all of the manual pages for the binaries
+		 and other software contained in the base set.
+		 Note that it does not include any of the manual pages
+		 that are included in the other sets.
+		 [ 8.7 MB gzipped, 34.2 MB uncompressed ]
+
+	xbase57  This set includes the base X distribution.  This includes
+		 programs, headers and libraries.
+		 [ 16.1 MB gzipped, 52.4 MB uncompressed ]
+
+	xfont57  This set includes all of the X fonts.
+		 [ 38.0 MB gzipped, 49.7 MB uncompressed ]
+
+	xserv57  This set includes all of the X servers.
+		 [ 18.9 MB gzipped, 51.9 MB uncompressed ]
+
+	xshare57 This set includes all text files equivalent between all
+		 architectures.
+		 [ 4.3 MB gzipped, 24.5 MB uncompressed ]
+
+
+
+OpenBSD System Requirements and Supported Devices:
+--------------------------------------------------
+
+OpenBSD/amd64 5.7 should work on all Athlon 64-based and
+compatible designs.
+
+OpenBSD/amd64 5.7 supports most SMP (Symmetrical MultiProcessor)
+systems.  To support SMP operation, a separate SMP kernel (bsd.mp)
+is included with the installation file sets.
+
+Please refer to the website for a full list of supported hardware.
+
+http://www.openbsd.org/amd64.html
+
+
+
+Verifying the OpenBSD Installation Media:
+-----------------------------------------
+
+As of OpenBSD 5.5, installations are able to verify files for the next
+release.  The OpenBSD 5.7 release was signed with the
+/etc/signify/openbsd-57-base.pub release key.
+
+If you have an existing OpenBSD 5.5 or higher installation, you can run
+signify(1) to verify the signature and checksum.  For example, run the following
+to verify that the cd57.iso file was distributed by the OpenBSD team:
+	signify -C -p /etc/signify/openbsd-57-base.pub -x SHA256.sig cd57.iso
+
+If you are unable to run or compile signify(1), use sha256(1) with the SHA256
+file to see if a file was corrupt during the transfer.
+
+
+Getting the OpenBSD System onto Useful Media:
+---------------------------------------------
+
+Installation is supported from several media types, including:
+
+	CD-ROM
+	FFS partitions
+	DOS (FAT) partitions
+	FTP
+	HTTP
+
+If you can't (or don't want to) boot off a CD-ROM, you can use a floppy
+disk (1.44MB required) or a USB key.  Failing that, if your computer supports
+PXE, you can prepare a server to start the install across the network, but you
+will still need the install sets available on one of the above media types.
+
+Creating a bootable CD-ROM:
+
+	First you need to get access to the OpenBSD bootable CD-ROM (ISO)
+	images. They can be found on one of the FTP or HTTP mirrors. Two
+	files are available, install57.iso which contains all of
+	the sets needed for installation, and a smaller cd57.iso
+	which contains just the installer, for a network install.
+
+	Windows 7 users should be able to do this by right clicking on the
+	install57.iso file and clicking burn to CD.
+
+	OpenBSD users should be able to do this with the cdio command.
+	"cdio tao install57.iso"
+
+	Users of other operating systems should consult the
+	appropriate documentation.
+
+Creating a bootable floppy disk using Windows:
+
+	First you need to get access to the OpenBSD bootable floppy
+	images.  If you can access the distribution from the CD-ROM under
+	DOS, you will find the bootable disks in the 5.7/amd64
+	directory.  Otherwise, you will have to download them from one of
+	the OpenBSD FTP or HTTP mirror sites, using an FTP client or a web
+	browser.  In either case, take care to do "binary" transfers, since
+	these are images files and any DOS cr/lf translations or Control-z
+	EOF interpretations will result in corrupted transfers.
+
+	You will also need to go to the "tools" directory and grab a copy of
+	the ntrw.exe utility.  Run it with the correct arguments like this
+	"ntrw <image> <drive>:"
+
+	Note that, when installing, the boot floppy can be write-protected
+	(i.e. read-only).
+
+Creating a bootable floppy disk using a Un*x-like system:
+
+	First, you will need to obtain a local copy of the bootable filesystem
+	image as described above.  You should use the signify(1) and sha256(1)
+	commands to verify the integrity of the images with the SHA256.sig file
+	on the mirror site.
+
+	Next, use the dd(1) utility to copy the file to the floppy drive.
+	The command would likely be, under OpenBSD:
+		dd if=floppy57.fs of=/dev/rfd0c bs=36b
+
+	If you are using another operating system, you may have to adapt
+	this to conform to local naming conventions for the floppy and
+	options suitable for copying to a "raw" floppy image.  The key
+	issue is that the device name used for the floppy *must* be one
+	that refers to the correct block device, not a partition or
+	compatibility mode, and the copy command needs to be compatible
+	with the requirement that writes to a raw device must be in
+	multiples of 512-byte blocks.  The variations are endless and
+	beyond the scope of this document.
+
+	If you're doing this on the system you intend to boot the floppy on,
+	copying the floppy back to a file and doing a compare or checksum
+	is a good way to verify that the floppy is readable and free of
+	read/write errors.
+
+	Note that, when installing, the boot floppy can be write-protected
+	(i.e. read-only).
+
+Creating a bootable USB key using a Un*x-like system:
+
+	Some older systems may not be able to boot from USB keys or require
+	changing boot priority.  Check your BIOS settings if you run into
+	problems.
+
+	First, you will need to obtain a local copy of the bootable filesystem
+	image miniroot57.fs or install57.fs as described above.
+	You should use the signify(1) and sha256(1) commands to verify
+	the integrity of the images with the SHA256.sig file on the mirror site.
+
+	Next, use the dd(1) utility to copy the file to the USB storage device.
+	The command would likely be, under OpenBSD:
+		dd if=miniroot57.fs of=/dev/rsdNc bs=1m
+
+	where N is the device number.  You can find the correct device number
+	by checking dmesg(8) when inserting the media.
+
+	If you are using another operating system, you may have to adapt
+	this to conform to local naming conventions for the USB key and
+	options suitable for copying to a "raw" disk image.  The key
+	issue is that the device name used for the USB key *must* be one
+	that refers to the correct block device, not a partition or
+	compatibility mode, and the copy command needs to be compatible
+	with the requirement that writes to a raw device must be in
+	multiples of 512-byte blocks.  The variations are endless and
+	beyond the scope of this document.
+
+	If you're doing this on the system you intend to boot the USB key on,
+	copying the image back to a file and doing a compare or checksum
+	is a good way to verify that the USB key is readable and free of
+	read/write errors.
+
+Creating a PXE network bootable setup using OpenBSD or other Un*x-like system:
+
+	In order to start the install via PXE, you will need to set up a
+	DHCP server and a TFTP server.  The details of how to do this
+	vary considerably, depending on the network's host.  You should
+	refer to the relevant man pages or administrator's guide for the
+	host system.
+
+	The DHCP server should return "pxeboot" to amd64 clients as the
+	network boot program.  Both pxeboot and the bsd.rd install kernel
+	should be copied to the TFTP server's root directory.
+
+	If you are using an OpenBSD server, you can use the supplied
+	dhcpd and tftpd.  A sample configuration for dhcpd is given in
+	the pxeboot(8) man page.  You can get it from the man57.tgz
+	distribution set, or see the copy on the OpenBSD web page.  You
+	should also refer to dhcpd(8) and tftpd(8) for more information
+	on configuring them.
+
+
+The steps necessary to prepare the distribution sets for installation
+depend on which method of installation you choose.  Some methods
+require a bit of setup first that is explained below.
+
+The installation allows installing OpenBSD directly from FTP mirror
+sites over the internet, however you must consider the speed and
+reliability of your internet connection for this option.  It may save
+much time and frustration to use ftp get/reget to transfer the
+distribution sets to a local server or disk and perform the installation
+from there, rather than directly from the internet.
+
+If you are upgrading OpenBSD, you also have the option of installing
+OpenBSD by putting the new distribution sets somewhere in your
+existing file system, and using them from there.  To do that, do
+the following:
+
+	Place the distribution sets you wish to upgrade somewhere
+	in your current file system tree.  At a bare minimum, you
+	must upgrade the "base" binary distribution, and so must
+	put the "base57" set somewhere in your file system.  It
+	is recommended that you upgrade the other sets, as well.
+
+
+
+Preparing your System for OpenBSD Installation:
+-----------------------------------------------
+
+First and foremost, before beginning the installation process, MAKE
+SURE YOU HAVE A RELIABLE BACKUP of any data on your hard disk that you
+wish to keep.  Repartitioning your hard disk is an excellent way to
+destroy important data.
+
+If you plan to dual boot, use the other operating system's "fdisk" program
+or partition editor to create at least one of the partitions to be used for
+that operating system.  If that operating system is already set up to use the
+entire disk, you will need to make space available.  Windows 7 can resize its
+own system partition.  In the control panel, search for "partition": this
+will lead you to the system administration tool.  You do not have to create an
+OpenBSD partition at this time; the OpenBSD installation will give you an
+opportunity to create the partition needed for OpenBSD.
+
+Your hard disk is now prepared to have OpenBSD installed on it, and
+you should proceed with the installation instructions.
+
+
+
+Installing the OpenBSD System:
+------------------------------
+
+Installing OpenBSD is a relatively simple process. If you take your time
+and are careful to read the information presented by the installer, you
+shouldn't have any trouble.
+
+There are several ways to install OpenBSD onto a disk.  The easiest way,
+should your computer support it, is to boot off the OpenBSD CD-ROM,
+USB key, or off one of the bootable CD-ROM mini images.  Otherwise, you
+can boot from a 3.5" 1.44MB floppy disk if your machine has a floppy drive.
+If your machine supports PXE network boots, you could try to configure a
+server for a network install.
+
+You should now be ready to install OpenBSD.
+
+The following is a walk-through of the steps you will take while getting
+OpenBSD installed on your hard disk.
+
+The installation procedure is designed to gather as much information about
+your system setup as possible at the beginning, so that no human interaction
+is required as soon as the questions are over.
+
+The order of these questions might be quite disconcerting if you are used to
+other installation procedures, including older OpenBSD versions.
+
+If any question has a default answer, it will be displayed in brackets ("[]")
+after the question.  If you wish to stop the installation, you may hit
+Control-C at any time, but if you do, you'll have to begin the installation
+process again from scratch.  Using Control-Z to suspend the process may be a
+better option, or at any prompt enter `!' to get a shell, from which 'exit'
+will return you back to that prompt (no refresh of the prompt will occur,
+though).
+
+	If you are using CD-ROM, USB key or floppy media, ensure the media is
+	present before starting.
+
+	Reboot the computer to begin the install.  You might have to play
+	with your BIOS options to get the computer to boot from the
+	correct installation media (floppy, CD, USB key or network/PXE)	rather
+	than from the hard disk.
+
+	If you are installing across the network with PXE, you will need
+	to tell pxeboot to get the bsd.rd install kernel:
+
+	    boot> boot bsd.rd
+
+	It can take a while to load the kernel from a floppy, slow speed
+	CD-ROM drive, or across a network, most likely more than a minute.
+	If some action doesn't eventually happen, or the spinning cursor
+	has stopped and nothing further has happened, either your boot
+	floppy is bad or you are having hardware problems. If trying
+	another floppy disk doesn't help, try booting after disabling your
+	CPU's internal and external caches (if any).  If it still doesn't
+	work, OpenBSD probably can't be run on your hardware.  This can
+	probably be considered a bug, so you might want to report it.  If
+	you do, please include as many details about your system
+	configuration as you can.
+
+	Once the kernel has loaded, you will be presented with the
+	OpenBSD kernel boot messages which contain information about
+	the hardware that was detected and supported by OpenBSD.
+
+	After the kernel is done initialising, you will be asked whether
+	you wish to do an "(A)utoinstall", "(I)nstall" or an "(U)pgrade".
+	Enter 'I' for a fresh install or 'U' to upgrade an existing
+	installation.  Enter 'A' to start an unattended installation
+	where all of your answers are supplied in a response file (more
+	on that in "Preparing an unattended installation of OpenBSD").
+
+	If you are connected with a serial console, you will next be
+	asked for your terminal type.
+	You should choose the terminal type from amongst those listed.
+	(If your terminal type is xterm, just use vt220).
+
+	If you are connected using a glass console, you will next be
+	asked for your keyboard layout (the default being the US QWERTY
+	layout).  Depending on your keyboard type, not all international
+	layouts may be supported; answering `?' (which, on QWERTY layouts,
+	is the key to the left of the right `shift' key, shifted) will
+	display a list of supported layouts.
+	(If you do not need to change the keyboard layout, just press
+	enter.)
+
+	The first question you will be asked is the system hostname.
+	Reply with the name of the system, without any domain part.
+
+	You will now be given an opportunity to configure the network.
+	The network configuration you enter (if any) can then be used to
+	do the install from another system using HTTP or FTP, and will
+	also be the configuration used by the system after the installation
+	is complete.
+
+	The install program will give you a list of network interfaces you
+	can configure.  For each network interface you select to configure,
+	you will be asked for:
+
+	- the symbolic host name to use (except for the first
+	  interface setup, which will reuse the host name entered at the
+	  beginning of the installation).
+
+	- the IPv4 settings: address and netmask.  If the IP address
+	  should be obtained from a DHCP server, simply enter ``dhcp''
+	  when asked for the address.
+
+	- the IPv6 settings (address, prefix length, and default router).
+	  You may enter ``rtsol'' when asked for the address for the
+	  interface to configure automatically via router solicitation
+	  messages.
+
+	After all interfaces have been configured, if there have been
+	any IPv4 interfaces setup, you will be asked for the IPv4 default
+	route.  This step is skipped if you only have one IPv4 interface
+	setup, and it is configured with DHCP.
+
+	The install program will also ask you for your DNS domain name,
+	and the domain name servers, unless this information has
+	already been obtained from a DHCP server during interface setup.
+
+	You will also be presented with an opportunity to do more
+	manual configuration.  If you accept, you will be dropped
+	to a shell; when you are done, enter `exit' to return to
+	the installation program.
+
+	You will then be asked to enter the initial root password
+	of the system, twice.
+	Although the install program will only check that the two
+	passwords match, you should make sure to use a strong password.
+	As a minimum, the password should be at least eight characters
+	long and a mixture of both lower and uppercase letters, numbers
+	and punctuation characters.
+
+	You will then be asked whether you want to start sshd(8) by
+	default, as well as ntpd(8).  If you choose to start ntpd(8),
+	you will be asked for your ntp server; if you don't have any
+	preferred ntp server, press enter to confirm the default
+	setting of using the pool.ntp.org servers.
+
+	You will next be asked whether you intend to run the X Window
+	System on your machine.  The install program needs to know
+	this, to change a configuration setting controlling whether
+	the X server will be able to access the xf86(4) driver; it
+	is not necessary to answer `y' to this question if you only
+	intend to run X client programs on a remote display.
+	If you answered `y' to this question, you will get asked
+	whether you want to start xdm on boot.
+
+	If you are installing using a serial console, and since by default,
+	the OpenBSD/amd64 installation will only start terminals on
+	the primary display device, the installation program will ask you
+	whether you want to also enable an additional terminal on that
+	line, and will allow you to select the line speed.
+
+	You will now be given the possibility to setup a user account
+	on the forthcoming system.  This user will be added to the
+	`wheel' group.
+
+	Enter the desired login name, or `n' if you do not want to
+	add a user account at this point.  Valid login names are
+	sequences of digits and lowercase letters, and must start
+	with a lowercase letter.  If the login name matches this
+	criteria, and doesn't conflict with any of the administrative
+	user accounts (such as `root', `daemon' or `ftp'), you
+	will be prompted with the users descriptive name, as well
+	as its password, twice.
+	As for the root password earlier, the install program will only
+	check that the two passwords match, but you should make sure to
+	use a strong password here as well.
+
+	If you have chosen to setup a user account, and you had chosen
+	to start sshd(8) on boot, you will be given the possibility to
+	disable sshd(8) logins as root.
+
+	You may now be given the opportunity to configure the time zone
+	your system will be using (this depends on the installation
+	media you are using).
+	If the installation program skips this question, do not be
+	alarmed, the time zone will be configured at the end
+	of the installation.
+
+	The installation program will now tell you which disks it can
+	install on, and ask you which it should use.
+	Reply with the name of your root disk.
+
+	You will the be asked if you want to use DUID notation in
+	/etc/fstab, instead of traditional device names. You are strongly
+	advised to use DUIDs, as they allow you to move your disks to
+	different controllers, or change their bus identifiers, without
+	having to modify /etc/fstab every time your configuration changes.
+
+	Disks on OpenBSD/amd64 are partitioned using the ``MBR''
+	partitioning scheme.  You will need to create one
+	MBR partition, in which all the real OpenBSD partitions will
+	be created.
+
+	The installation program will ask you if you want to use the
+	whole disk for OpenBSD.  If you don't need to or don't intend
+	to share the disk with other operating systems, answer `w'
+	here.  The installation program will then create a single
+	MBR partition spanning the whole disk, dedicated to OpenBSD.
+
+	Otherwise, fdisk(8) will be invoked to let you to edit your MBR
+	partitioning.  The current MBR partitions defined will be
+	displayed and you will be allowed to modify them, add new
+	partitions, and change which partition to boot from by default.
+
+	Note that you should make the OpenBSD partition the active
+	partition at least until the install has been completed.
+
+	After your OpenBSD MBR partition has been setup, the real
+	partition setup can follow.
+
+	Next the disk label which defines the layout of the OpenBSD
+	partitions must be set up.  Each file system you want will
+	require a separate partition.
+
+	You will be proposed a default partition layout, trying
+	to set up separate partitions, disk size permitting.
+
+	You will be given the possibility to either accept the proposed
+	layout, or edit it, or create your own custom layout.  These last
+	two choices will invoke the disklabel(8) interactive editor,
+	allowing you to create your desired layout.
+
+	Within the editor, you will probably start out with only the
+	'c' partition of fstype 'unused' that represents the whole disk.
+	This partition can not be modified.
+	If you have DOS or Linux partitions defined on the disk, these
+	will usually show up as partition 'i', 'j' and so on.
+
+	You must create partition 'a' as a native OpenBSD partition, i.e.
+	one with "4.2BSD" as the fstype, to hold the root file system.
+
+	In addition to partition 'a' you should create partition 'b' with
+	fstype "swap", and native OpenBSD partitions to hold separate file
+	systems such as /usr, /tmp, /var, and /home.
+
+	You will need to provide a mount point for all partitions you
+	define.  Partitions without mount points, or not of 4.2BSD fstype,
+	will neither be formatted nor mounted during the installation.
+
+	For quick help while in the interactive editor, enter '?'.  The
+	`z' command (which deletes all partitions and starts with a
+	clean label), the `A' command (which performs the automatic
+	partition layout) and the `n' command (to change mount points)
+	are of particular interest.
+
+	Although the partitions position and size are written in exact
+	sector values, you do not need a calculator to create your
+	partitions!  Human-friendly units can be specified by adding `k',
+	`m' or `g' after any numbers to have them converted to kilobytes,
+	megabytes or gigabytes. Or you may specify a percentage of the
+	disk size using `%' as the suffix.
+
+	Enter 'M' to view the entire manual page (see the info on the
+	``-E'' flag).  To exit the editor enter 'q'.
+
+	After the layout has been saved, new filesystems will be
+	created on all partitions with mount points.
+	This will DESTROY ALL EXISTING DATA on those partitions.
+
+	After configuring your root disk, the installer will
+	return to the list of available disks to configure.
+
+	You can choose the other disks to use with OpenBSD in
+	any order, and will get to setup their layout similarly
+	to the root disk above. However, for non-root disks,
+	you will not be proposed a default partition layout.
+
+	When all your disks are configured, simply hit return
+	at the disk prompt.
+
+	After these preparatory steps have been completed, you will be
+        able to extract the distribution sets onto your system.  There
+        are several install methods supported:
+	FTP, HTTP, CD-ROM, or a local disk partition.
+
+	To install via FTP or HTTP:
+		To begin an FTP or HTTP install you will need the following
+		pieces of information:
+		1) Proxy server URL if you are using a URL-based FTP or
+		   HTTP proxy (squid, CERN FTP, Apache 1.2 or higher).
+		   You need to define a proxy if you are behind a
+		   firewall that blocks outgoing FTP or HTTP connections
+		   (assuming you have a proxy available to use).
+		2) The IP address (or hostname if you configured
+		   DNS servers earlier in the install) of an FTP or HTTP
+		   server carrying the OpenBSD 5.7 distribution.
+		   The installation program will try to fetch a list
+		   of such servers; depending on your network settings,
+		   this might fail.  If the list could be fetched, it
+		   will be displayed, and you can choose an entry from
+		   the list (the first entries are expected to be the
+		   closest mirrors to your location).
+		3) The directory holding the distribution sets.
+		   The default value of pub/OpenBSD/5.7/amd64
+		   is almost always correct on FTP servers; for HTTP
+		   servers there is no standard location for this.
+		4) For FTP installs only, the login and password for the
+		   FTP account.  You will only be asked for a password for
+		   non-anonymous FTP.
+
+		Then refer to the section named "installation set selection"
+		below.
+
+	To install from CD-ROM:
+		When installing from a CD-ROM, you will be asked which
+		device holds the distribution sets.  This will typically
+		be "cd0".  If there is more than one partition on the
+		CD-ROM, you will be asked which partition the distribution
+		is to be loaded from.  This is normally partition "a".
+
+		You will also have to provide the relative path to the
+		directory on the CD-ROM which holds the distribution, for
+		the amd64 this is "5.7/amd64".
+
+		Then refer to the section named "installation set selection"
+		below.
+
+	To install from a local disk partition:
+		When installing from a local disk partition, you will
+		first have to identify which disk holds the distribution
+		sets.
+		This is normally "wdN" or "sdN", where N is a number.
+		Next you will have to identify the partition within that disk
+		that holds the distribution; this is a single letter between
+		'a' and 'p'.
+
+		You will also have to identify the type of file system
+		residing in the partition identified.  Currently, you can
+		install from partitions that have been formatted as the
+		Berkeley fast file system (ffs) or MS-DOS.
+
+		You will also have to provide the relative path to the
+		directory on the file system where the distribution sets
+		are located.  Note that this path should not be prefixed
+		with a '/'.
+
+		Then refer to the next section.
+
+	Installation set selection:
+		A list of available distribution sets found on the
+		given location will be listed.
+
+		You may individually select distribution sets to install,
+		by entering their name, or wildcards (e.g. `*.tgz' or
+		`base*|comp*', or `all' to select all the sets (which
+		is what most users will want to do).
+		You may also enter `abort' to deselect everything and
+		restart the selection from scratch, or unselect sets
+		by entering their name prefixed with `-' (e.g. `-x*').
+
+		It is also possible to enter an arbitrary filename and
+		have it treated as a file set.
+
+		When you are done selecting distribution sets, enter
+		`done'.  The files will begin to extract.
+
+	After the files have been extracted, you will be given the choice
+	to select a new location from which to install distribution sets.
+	If there have been errors extracting the sets from the previous
+	location, or if some sets have been missing, this allows you to
+	select a better source.
+
+	Also, if the installation program complains that the distribution
+	sets you have been using do not match their recorded checksums, you
+	might want to check your installation source (although this can
+	happen between releases, if a snapshot is being updated on an FTP
+	or HTTP server with newer files while you are installing).
+
+	The last thing you might need to configure, if you did not get
+	the chance to earlier, is the time zone your system will be using.
+	For this work properly, it is expected that you have installed at
+	least the "base57" and "bsd" distribution sets.
+
+	The installation program will then proceed to save the system
+	configuration, create all the device nodes needed by the installed
+	system, and will install bootblocks on the root disk.
+
+	On multiprocessor systems, if the bsd.mp kernel has been installed,
+	it will be renamed to `bsd', which is the default kernel the boot
+	blocks look for.  The single processor kernel, `bsd', will be
+	available as `bsd.sp'.
+
+	Finally, you will be asked whether you would like to install
+	non-free firmware files (which can't be tightly integrated to
+	the OpenBSD system) on first boot, by invoking fw_update(8) on
+	the next boot.
+
+
+Congratulations, you have successfully installed OpenBSD 5.7.  When you
+reboot into OpenBSD, you should log in as "root" at the login prompt.
+You should create yourself an account and protect it and the "root"
+account with good passwords.
+
+The install program leaves root an initial mail message.  We recommend
+you read it, as it contains answers to basic questions you might have
+about OpenBSD, such as configuring your system, installing packages,
+getting more information about OpenBSD, sending in your dmesg output
+and more.  To do this, run
+
+	mail
+
+and then just enter "more 1" to get the first message.  You quit mail by
+entering "q".
+
+Some of the files in the OpenBSD 5.7 distribution might need to be
+tailored for your site.  We recommend you run:
+
+	man afterboot
+
+which will tell you about a bunch of the files needing to be reviewed.
+If you are unfamiliar with UN*X-like system administration, it's
+recommended that you buy a book that discusses it.
+
+
+
+Preparing an unattended installation of OpenBSD:
+------------------------------------------------
+
+If '(A)utoinstall' is choosen at the install prompt or if the
+installation system detects that it booted from the network, and
+isn't interrupted within 5 seconds, it attempts a fully-automatic
+installation. 
+
+The installer runs dhclient(8) on the network interface the system
+booted from, or in case of multiple interfaces it will ask which one
+to use. Upon success it retrieves a response file via HTTP. If that
+fails, the installer asks for the response file location which can be
+either an url or a local path and retrieves the response file from
+there.
+
+The "next-server" DHCP option specifies the hostname part of the URL,
+as in "http://<next-server>/install.conf".  The "filename" DHCP
+parameter specifies the installer mode, e.g. "auto_install".  On
+architectures where this parameter is used for netbooting, create
+a symbolic link named "auto_install" pointing to the boot program.
+
+The response file contains lines with key/value pairs separated by
+an equals sign '=', where the key is a non-ambiguous part (up to the
+question mark) of the installer question, consisting of whitespace
+separated words. The value is what would have been entered at the
+interactive prompt. Empty lines and lines beginning with a '#'
+character are ignored. The installer uses default answers in case
+of missing answers.
+
+Here is a response file example that uses a hashed password (see
+encrypt(1) for more details) for root and a public ssh key for the
+user that is created during the installation.
+
+           System hostname = openbsd
+           Password for root = $2a$14$Z4xRMg8vDpgYH...GVot3ySoj8yby
+           Setup a user = puffy
+           Password for user = *************
+           Public ssh key for user = ssh-ed25519 AAAAC3NzaC1...g3Aqre puffy@ai
+           What timezone are you in = Europe/Stockholm
+           Location of sets = http
+           HTTP Server = ftp.eu.openbsd.org
+
+The "System hostname" key above matches the following full question
+asked during an interactive installation:
+
+  System hostname? (short form, e.g. 'foo')
+
+While the installation is in progress the installer writes all output
+to the file /ai.log, which is available as mail on the freshly
+installed system after the initial reboot.  If the installation is
+successful the system will reboot automatically; otherwise, you will
+be dropped back into the shell where you can look at the /ai.log file
+or try again.
+
+
+
+
+
+Upgrading a previously-installed OpenBSD System:
+------------------------------------------------
+
+Warning! Upgrades to OpenBSD 5.7 are currently only supported from the
+immediately previous release.  The upgrade process will also work with older
+releases, but might not execute some migration tasks that would be necessary
+for a proper upgrade.
+
+The best solution, whenever possible, is to backup your data and reinstall
+from scratch. As a minimum, if the toolchain (the ``comp'' set) was installed,
+you should remove all files within /usr/include before attempting to
+upgrade.
+
+To upgrade OpenBSD 5.7 from a previous version, start with the general
+instructions in the section "Installing OpenBSD".
+
+Boot from the CD-ROM or an installation floppy as you would do for
+a new installation.
+When prompted, select the (U)pgrade option rather than the (I)nstall
+option at the prompt in the install process.
+
+You will be presented with a welcome message and asked if you really wish
+to upgrade.
+
+The upgrade script will ask you for the existing root partition, and
+will use the existing filesystems defined in /etc/fstab to install the
+new system in.  It will also use your existing network parameters.
+
+From then, the upgrade procedure is very close to the installation
+procedure described earlier in this document.
+
+However, it is strongly advised that you unpack the etc.tgz and the
+xetc.tgz files found in /usr/share/sysmerge in a temporary
+directory and merge changes by hand, or with the help of the sysmerge(8)
+helper script, since all components of your system may not function
+correctly until your files in `/etc' are updated.
+
+
+
+Getting source code for your OpenBSD System:
+--------------------------------------------
+
+Now that your OpenBSD system is up and running, you probably want to get
+access to source code so that you can recompile pieces of the system.
+
+A few methods are provided.  If you have an OpenBSD CD-ROM, the source
+code is provided.  Otherwise, you can get the pieces over the Internet
+using anonymous CVS, CVSync or FTP.  For more information, see
+
+	http://www.OpenBSD.org/anoncvs.html
+	http://www.OpenBSD.org/cvsync.html
+	http://www.OpenBSD.org/ftp.html
+
+
+Using online OpenBSD documentation:
+-----------------------------------
+
+Documentation is available if you first install the manual pages
+distribution set.  Traditionally, the UN*X "man pages" (documentation)
+are denoted by 'name(section)'.  Some examples of this are
+
+	intro(1),
+	man(1),
+	apropos(1),
+	passwd(1),
+	passwd(5) and
+	afterboot(8).
+
+The section numbers group the topics into several categories, but three
+are of primary interest: user commands are in section 1, file formats
+are in section 5, and administrative information is in section 8.
+
+The 'man' command is used to view the documentation on a topic, and is
+started by entering 'man [section] topic'.  The brackets [] around the
+section should not be entered, but rather indicate that the section is
+optional.  If you don't ask for a particular section, the topic with the
+least-numbered section name will be displayed.  For instance, after
+logging in, enter
+
+	man passwd
+
+to read the documentation for passwd(1).  To view the documentation for
+passwd(5), enter
+
+	man 5 passwd
+
+instead.
+
+If you are unsure of what man page you are looking for, enter
+
+	apropos subject-word
+
+where "subject-word" is your topic of interest; a list of possibly
+related man pages will be displayed.
+
+
+Adding third party software; ``packages'' and ``ports'':
+--------------------------------------------------------
+
+As complete as your OpenBSD system is, you may want to add any of several
+excellent third party software applications.  There are several ways to do
+this.  You can:
+
+1) Use the OpenBSD ``package'' collection to grab a pre-compiled
+   and tested version of the application for your hardware.
+
+2) Use the OpenBSD ``ports'' collection to automatically get any
+   needed source file, apply any required patches, create the
+   application, and install it for you.
+
+3) Obtain the source code and build the application based
+   upon whatever installation procedures are provided with the
+   application.
+
+If you purchased the OpenBSD CD-ROM set you already have a few popular
+``packages'', and the ``ports'' collection.
+
+Instructions for installing applications from the various sources using
+the different installation methods follow.
+
+You should also refer to the packages(7) manual page.
+
+Installing applications from the CD-ROM package collection:
+
+	The OpenBSD CD-ROM ships with the most commonly installed third-party
+	applications pre-built for various hardware architectures.  Limited
+	disk space on the CD-ROM unfortunately limits the number of such
+	packages.  Check the directory 5.7/packages/amd64 to see which
+	packages are available for your hardware architecture.  That directory
+	will be on the same CD-ROM containing the OS installation files for
+	your architecture.
+
+	To install one or more of these packages you must:
+	1) become the superuser (root).
+	2) mount the appropriate CD-ROM.
+	3) use the ``pkg_add'' command to install the software.
+
+	Example (in which we use su(1) to get superuser privileges, thus
+	you have to be in group "wheel", see the manual page for su(1)).
+
+    $ su
+    Password: <enter your root password>
+    # mkdir -p /cdrom
+    # mount /dev/cd0a /cdrom
+    # pkg_add /cdrom/5.7/packages/amd64/<package-name>
+    # <add more packages if desired>
+    # umount /cdrom
+
+	Package names are usually the application name and version
+	with .tgz appended, e.g. bzip2-1.0.6p0.tgz
+
+Installing applications from the ftp.OpenBSD.org package collection:
+
+	All available packages for your architecture have been placed on
+	ftp.OpenBSD.org in the directory pub/OpenBSD/5.7/packages/amd64/
+	You may want to peruse this to see what packages are available.  The
+	packages are also on the OpenBSD FTP mirror sites.  See
+
+		http://www.OpenBSD.org/ftp.html
+
+	for a list of current FTP mirror sites.
+
+	Installation of a package is very easy.
+	1) become the superuser (root)
+	2) use the ``pkg_add'' command to install the software
+
+	``pkg_add'' is smart enough to know how to download the software
+	from the OpenBSD FTP server.  Example:
+
+    $ su
+    Password: <enter your root password>
+    # pkg_add \
+      ftp://ftp.OpenBSD.org/pub/OpenBSD/5.7/packages/amd64/emacs-21.4p23.tgz
+
+Installing applications from the CD-ROM ports collection:
+
+	The CD-ROM ``ports'' collection is a set of Makefiles, patches,
+	and other files used to control the building and installation
+	of an application from source files.
+
+	Creating an application from sources can require a lot of
+	disk space, sometimes 50 megabytes or more.  The first step is
+	to determine which of your disks has enough room.  Once you've
+	made this determination, read the file PORTS located on the
+	CD-ROM which contains the ports tree.
+
+	To build an application you must:
+
+	1) become the superuser (root)
+	2) have network access, or obtain the actual source files by
+	   some other means.
+	3) cd to the ports directory containing the port you wish
+	   to build.  To build samba, for example, where you'd
+	   previously copied the ports files into the /usr/ports
+	   directory: cd /usr/ports/net/samba
+	4) make
+	5) make install
+	6) make clean
+
+Installing applications from the OpenBSD ports collection:
+
+	See http://www.OpenBSD.org/faq/ports/ports.html for current
+	instructions on obtaining and installing OpenBSD ports.
+
+	You should also refer to the ports(7) manual page.
+
+Installing other applications:
+
+	If an OpenBSD package or port does not exist for an application
+	you're pretty much on your own.  The first thing to do is ask
+	<ports@OpenBSD.org> if anyone is working on a port -- there may
+	be one in progress.  If no such port exists, you might want to
+	look at the FreeBSD ports or NetBSD pkgsrc for inspiration.
+
+	If you can't find an existing port, try to make your own and
+	feed it back to OpenBSD.  That's how our ports collection grows.
+	Some details can be found in the OpenBSD Porter's Handbook at
+	http://www.openbsd.org/faq/ports/
+	with more help coming from the mailing list, <ports@OpenBSD.org>.
+
+
+
+Administrivia:
+--------------
+
+There are various mailing lists available via the mailing list
+server at <majordomo@OpenBSD.org>.  To get help on using the mailing
+list server, send mail to that address with an empty body, and it will
+reply with instructions.
+
+More information about the various OpenBSD mailing list and proper
+netiquette is available at
+
+	http://www.OpenBSD.org/mail.html
+
+To report bugs, use the 'sendbug' command shipped with OpenBSD,
+and fill in as much information about the problem as you can.  Good
+bug reports include lots of details.  Additionally, bug reports can
+be sent by mail to:
+
+	bugs@OpenBSD.org
+
+As a favor, please avoid mailing huge documents or files to the
+mailing lists.  Instead, put the material you would have sent on
+a web server, then mail the appropriate list about it, or if
+you'd rather not do that, mail the list saying you'll send the data
+to those who want it.
+
+For more information about reporting bugs, see
+
+	http://www.OpenBSD.org/report.html
