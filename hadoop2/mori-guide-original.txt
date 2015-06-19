@@ -1,0 +1,187 @@
+Steps to install Hadoop 2.x release (Yarn or Next-Gen) on single node cluster setup
+
+Posted on September 23, 2012	
+
+Hadoop 2.x release involves many changes to Hadoop and MapReduce. The centralized JobTracker service is replaced with a ResourceManager that manages the resources in the cluster and an ApplicationManager that manages the application lifecycle. These architectural changes enable hadoop to scale to much larger clusters. For more details on architectural changes in Hadoop next-gen (a.k.a. Yarn), watch this video or visit this blog.
+
+This post concentrates on installing Hadoop 2.x a.k.a. Yarn a.k.a. next-gen on a single-node cluster.
+
+Prerequisites:
+
+    Java 6 installed
+    Dedicated user for hadoop
+    SSH configured
+
+Steps to install Hadoop 2.x:
+
+1. Download tarball
+
+You can download tarball for hadoop 2.x from here. Extract it to a folder say, /home/hduser/yarn. We assume dedicated user for Hadoop is ÎéÎíhduserÎéÎí.
+
+$ cd /home/hduser/yarn
+$ sudo chown -R hduser:hadoop hadoop-2.0.1-alpha
+
+2. Setup Environment Variables
+
+$ export HADOOP_HOME=$HOME/yarn/hadoop-2.0.1-alpha
+$ export HADOOP_MAPRED_HOME=$HOME/yarn/hadoop-2.0.1-alpha
+$ export HADOOP_COMMON_HOME=$HOME/yarn/hadoop-2.0.1-alpha
+$ export HADOOP_HDFS_HOME=$HOME/yarn/hadoop-2.0.1-alpha
+$ export HADOOP_YARN_HOME=$HOME/yarn/hadoop-2.0.1-alpha
+$ export HADOOP_CONF_DIR=$HOME/yarn/hadoop-2.0.1-alpha/etc/hadoop
+
+This is very important as if you miss any one variable or set the value incorrectly, it will be very difficult to detect the error and the job will fail.
+
+Also, add these to your ~/.bashrc or other shell start-up script so that you donÎéÎ÷t need to set them every time.
+
+3. Create directories
+
+Create two directories to be used by namenode and datanode.
+
+$ mkdir -p $HOME/yarn/yarn_data/hdfs/namenode
+$ mkdir -p $HOME/yarn/yarn_data/hdfs/datanode
+
+4. Set up config files
+
+$ cd $YARN_HOME
+
+Add the following properties under configuration tag in the files mentioned below:
+
+etc/hadoop/yarn-site.xml:
+
+   yarn.nodemanager.aux-services
+   mapreduce_shuffle
+
+
+   yarn.nodemanager.aux-services.mapreduce.shuffle.class
+   org.apache.hadoop.mapred.ShuffleHandler
+
+etc/hadoop/core-site.xml:
+
+   fs.default.name
+   hdfs://localhost:9000
+
+etc/hadoop/hdfs-site.xml:
+
+ 
+   dfs.replication
+   1
+ 
+ 
+   dfs.namenode.name.dir
+   file:/home/hduser/yarn/yarn_data/hdfs/namenode
+ 
+ 
+   dfs.datanode.data.dir
+   file:/home/hduser/yarn/yarn_data/hdfs/datanode
+
+etc/hadoop/mapred-site.xml:
+
+If this file does not exist, create it and paste the content provided below:
+
+   
+      mapreduce.framework.name
+      yarn
+   
+
+5. Format namenode
+
+This step is needed only for the first time. Doing it every time will result in loss of content on HDFS.
+
+$ bin/hadoop namenode -format
+
+6. Start HDFS processes
+
+Name node:
+
+$ sbin/hadoop-daemon.sh start namenode
+starting namenode, logging to /home/hduser/yarn/hadoop-2.0.1-alpha/logs/hadoop-hduser-namenode-pc3-laptop.out
+$ jps
+18509 Jps
+17107 NameNode
+
+Data node:
+
+$ sbin/hadoop-daemon.sh start datanode
+starting datanode, logging to /home/hduser/yarn/hadoop-2.0.1-alpha/logs/hadoop-hduser-datanode-pc3-laptop.out
+$ jps
+18509 Jps
+17107 NameNode
+17170 DataNode
+
+7. Start Hadoop Map-Reduce Processes
+
+Resource Manager:
+
+$ sbin/yarn-daemon.sh start resourcemanager
+starting resourcemanager, logging to /home/hduser/yarn/hadoop-2.0.1-alpha/logs/yarn-hduser-resourcemanager-pc3-laptop.out
+$ jps
+18509 Jps
+17107 NameNode
+17170 DataNode
+17252 ResourceManager
+
+Node Manager:
+
+$ sbin/yarn-daemon.sh start nodemanager
+starting nodemanager, logging to /home/hduser/yarn/hadoop-2.0.1-alpha/logs/yarn-hduser-nodemanager-pc3-laptop.out
+$jps
+18509 Jps
+17107 NameNode
+17170 DataNode
+17252 ResourceManager
+17309 NodeManager
+
+Job History Server:
+
+$ sbin/mr-jobhistory-daemon.sh start historyserver
+starting historyserver, logging to /home/hduser/yarn/hadoop-2.0.1-alpha/logs/yarn-hduser-historyserver-pc3-laptop.out
+$jps
+18509 Jps
+17107 NameNode
+17170 DataNode
+17252 ResourceManager
+17309 NodeManager
+17626 JobHistoryServer
+
+8. Running the famous wordcount example to verify installation
+
+$ mkdir in
+$ cat > in/file
+This is one line
+This is another one
+
+Add this directory to HDFS:
+
+$ bin/hadoop dfs -copyFromLocal in /in
+
+Run wordcount example provided:
+
+$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.*-alpha.jar wordcount /in /out
+
+Check the output:
+
+$ bin/hadoop dfs -cat /out/*
+This 2
+another 1
+is 2
+line 1
+one 2
+
+9. Web interface
+
+Browse HDFS and check health using http://localhost:50070 in the browser:
+
+You can check the status of the applications running using the following URL:
+
+http://localhost:8088
+
+10. Stop the processes
+
+$ sbin/hadoop-daemon.sh stop namenode
+$ sbin/hadoop-daemon.sh stop datanode
+$ sbin/yarn-daemon.sh stop resourcemanager
+$ sbin/yarn-daemon.sh stop nodemanager
+$ sbin/mr-jobhistory-daemon.sh stop historyserver
+
+Happy Coding!!!
