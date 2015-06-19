@@ -1,0 +1,12 @@
+Hadoop Lab Exercise 4
+---------------------
+
+Have fun!
+
+Dinesh
+--
+
+Install Hadoop 2 on a Single Node using account hadoop2
+
+-- 
+End of HLX

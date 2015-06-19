@@ -1,0 +1,12 @@
+Hadoop Lab Exercise 4
+---------------------
+
+Have fun!
+
+Dinesh
+--
+
+Do HLX3 but with 1 + 8 Data Nodes
+
+-- 
+End of HLX
