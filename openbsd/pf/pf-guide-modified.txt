@@ -1,0 +1,281 @@
+D firewalls: PF
+
+2014-04-30
+
+Live demo in BSD Now Episode 035 | Originally written by TJ for bsdnow.tv | Last updated: 2015/05/10
+
+The year was 2001, and OpenBSD was using IPFilter as their firewall. It was in FreeBSD and NetBSD as well. The world seemed to be at peace, until... a new clause was added to the license. With this change, all modifications to the software required the author's approval. This was obviously unacceptable, so the OpenBSD team ripped it out of their tree. The problem now... is that OpenBSD had no firewall.
+
+Rapid development happened, mainly by Daniel Hartmeier and a few others. Before long, OpenBSD had a new in-house firewall: "pf" or Packet Filter. Since then, it's been ported to FreeBSD, NetBSD. DragonFlyBSD and Mac OS X. The problem with these ports is that they are all outdated or forked. FreeBSD's pf is from OpenBSD 4.5, DragonFly's is from 4.4 and NetBSD's is from around that time frame as well. While performance and features of these older versions is generally lacking, the version of pf in FreeBSD 10 is actually an improvement in one area: scaling with SMP. To make matters worse, the configuration syntax changed around 4.6/4.7. Leaving that debate aside, we have to provide two different config syntaxes in this tutorial. One of them for the newer pf, one for the older. Hopefully one day the firewalls will be united, and a global syntax can be agreed upon.
+
+It should go without saying, but pf is not a simple tool. It's a very complex one, with nearly endless options and functionality. You can use it for a router, a server, a desktop or anything in between. You need to already know exactly what you want your firewall to do before implementing a ruleset. This tutorial will cover some examples of situations in which you might want to use pf, but it can't cover everything. It will provide practical examples, and may be an ongoing tutorial. There's a book of pf that covers a little more in depth, but not even it can explain every possible situation. These slides from the author also have lots of information. OpenBSD's own documentation should be consulted for the most up-to-date reference. Things change, and it's possible that the syntaxes used in this tutorial won't work forever. The main file we'll be editing is /etc/pf.conf. Once you make a change to your config, you'll need to run this command to apply it:
+
+# pfctl -f /etc/pf.conf
+
+Read the pfctl man page for more info. It can do lots of things like showing information and statistics on your currently-running ruleset - more on that later. On FreeBSD, you'll need a line like this in your /etc/rc.conf:
+
+pf_enable="YES"
+
+and you need to run
+
+# kldload pf
+
+the very first time you enable it. Rebooting will also enable it if you have the rc.conf line and a valid ruleset. There is a sample ruleset located at /usr/share/examples/pf/pf.conf. On OpenBSD, pf is enabled by default and has a sample ruleset located at /etc/pf.conf. The rules included in this tutorial are ONLY EXAMPLES. They may not be the best for every situation.
+Desktop Ruleset
+
+Here is a ruleset that might be useful on your typical desktop system. I'll explain what each line does.
+
+ext_if = "em0"
+broken="224.0.0.22 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, \
+        10.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, \
+        192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16, 0.0.0.0/8, 240.0.0.0/4, 255.255.255.255/32"
+set block-policy drop
+set skip on lo0
+match in all scrub (no-df max-mss 1440)
+antispoof quick for ($ext_if)
+block out quick inet6 all
+block in quick inet6 all
+block in quick from { $broken urpf-failed no-route } to any
+block in all
+pass out quick on $ext_if inet keep state
+
+Luckily, for our first example, there's only one change between the versions. If you'll notice the line:
+
+match in all scrub (no-df max-mss 1440)
+
+It would instead be something like:
+
+scrub in all no-df max-mss 1440
+
+for older versions. This is one of the changes in the syntax update. Now, let's break this ruleset down, line by line, and learn what each rule does. Starting from the top:
+
+ext_if = "em0"
+
+This is what's called a macro. If you've done any shell scripting, consider this to be like a variable you set in a script. Any time "$ext_if" is mentioned in the ruleset from then on, it will be replaced with the value we set it as - em0 in this case. This macro is the name of my computer's NIC, since it uses a Intel chipset. Yours will vary depending on what driver is being used. You don't need his line, but if you want your ruleset to be portable across different hardware, it's less work to change one line to point to the new interface than ten.
+
+broken="224.0.0.22 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, \
+        10.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, \
+        192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16, 0.0.0.0/8, 240.0.0.0/4, 255.255.255.255/32"
+
+Another macro, this time a list of RFC 1918, RFC 5737, RFC 3927 and other private addresses. This is actually one single rule. Long lines can be wrapped with a backslash and a newline. We'll get into the details of this one in just a moment.
+
+set block-policy drop
+
+The "set" command also sets a variable for future rules to go by. In this case, I want the firewall to silently drop packets instead of returning a TCP RST to the sender. If you want the opposite, set it to "return" instead of "drop." There are advantages and disadvantages to both, so you may want to read up a bit. Dropping packets silently uses less resources - especially useful during a DDoS attack - but provides the sender with no confirmation that their packet even arrived. They may retry over and over again, wasting time and bandwidth. Using "return" also makes debugging rulesets somewhat easier.
+
+set skip on lo0
+
+My loopback interface is called lo0, and I don't need to bother firewalling that. Just skip it entirely.
+
+match in all scrub (no-df max-mss 1440)
+
+One of the cooler features of pf is scrubbing. It normalizes the packets and reassembles any fragmented ones. If a packet has an invalid TCP flag combination, it will also drop that. There are only a few known cases where scrubbing can cause issues: NFS sometimes doesn't play nicely with it and neither do some game consoles. By using the "no-df" addition, we can work around those for the most part. It tells pf to clear the "don't fragment" bit from the header. The "max-mms" part sets an upper limit for the maximum segment size in the TCP packet headers. 1440 is a good general rule for most networks, but you can adjust it up or down depending on your specific needs. You may not need or want it at all. It's recommended to scrub in pretty much every scenario, since it can provide protection against some forms of attack.
+
+antispoof quick for ($ext_if) inet
+
+The "antispoof" function is also really neat. It can protect against packets from spoofed or forged IP addresses. I applied "quick" here again because if something gets caught by antispoof, just drop it without wasting any more time. I only want this to apply to IPv4 traffic (more on that next), so also use "inet" to specify that.
+
+block out quick inet6 all
+block in quick inet6 all
+
+As of the time I wrote this, IPv6 isn't of much use to anyone me personally. In fact, sometimes enabling it can be a security risk. I want the firewall to block all IPv6 traffic, both incoming and outgoing. Evaluate and drop that stuff without wasting any time once again.
+
+block in quick from { $broken urpf-failed no-route } to any
+
+Similar to the antispoof ability, pf can drop packets that are non-routable, as well as packets that fail the Unicast Reverse Path Forwarding test. This also blocks the internal addresses in our earlier macro. Sometimes you have to deal with misconfigurations outside of your control. Be sure you're not actually using these address ranges or you might break connectivity.
+
+block in all
+
+Block (and drop, in our case) all incoming packets by default that weren't initiated by us. This is the general "catch-all" rule. Default deny is the best policy.
+
+pass out quick on $ext_if inet keep state
+
+Pass all outgoing traffic on our interface and keep state of the connections (not that "keep state" is the default on OpenBSD for all pass rules). Also consider "modulate state" for this line, depending on your upload speed requirements. This is a generous rule; if you only want to allow some traffic to go out of your network, this isn't something you'll want to use. The "quick" keyword means to evaluate this rule before the others. Normally, pf goes by a "last match wins" format. By adding quick we'll save a little bit of time and processing power. We don't need to run a full evaluation on all of our outgoing packets. This ruleset does not allow incoming pings. For a desktop system, I think that makes sense. If you want to get extremely basic, the following would also work to block incoming traffic and allow outgoing traffic:
+
+block in
+pass out
+
+Seriously!
+Server Ruleset
+
+The desktop ruleset will also be used for our server configuration, but I'll mention a few more lines that can be appended and what they do. They're mostly just examples of opening ports and allowing specific hosts, as well as a little extra protection.
+
+ext_if = "em0"
+broken="224.0.0.22 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, \
+        10.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, \
+        192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16, 0.0.0.0/8, 240.0.0.0/4, 255.255.255.255/32"
+set block-policy drop
+set skip on lo0
+match in all scrub (no-df max-mss 1440)
+block in all
+pass out quick on $ext_if inet keep state
+antispoof quick for ($ext_if) inet
+block out quick inet6 all
+block in quick inet6 all
+block in quick from { $broken urpf-failed no-route } to any
+block out quick on $ext_if from any to { $broken no-route }
+table <childrens> persist
+block in quick proto tcp from <childrens> to any
+table <chuugoku> persist file "/etc/cn.zone"
+block in quick proto tcp from <chuugoku> to any port { 80 22 }
+pass in on $ext_if proto tcp from any to any port 80 flags S/SA synproxy state
+pass in on $ext_if proto tcp from 1.2.3.4 to any port { 137, 139, 445, 138 }
+pass in on $ext_if proto tcp to any port ssh flags S/SA keep state \
+(max-src-conn 5, max-src-conn-rate 5/5, overload <childrens> flush)
+pass inet proto icmp icmp-type echoreq
+
+Now let's break it down again.
+
+table <childrens> persist
+block in quick proto tcp from <childrens> to any
+
+This creates a table called "childrens" and keeps it in memory. Any IPs in this table will have their connections dropped without further processing. We'll get into how (and who) to add to this table of shame in just a minute.
+
+table <chuugoku> persist file "/etc/cn.zone"
+block in quick proto tcp from <chuugoku> to any port { 80 22 }
+
+Like the previous rule, this creates a table from the file /etc/cn.zone and immediately drops all connections from those IPs to your webserver and SSH daemon. In this case, it's a list of Chinese addresses. You could also reverse this concept and do a whitelist. The file must be in place before loading the ruleset. This table will continue to grow until either the system is rebooted or the table is flushed. If you want to remove all the entries in the table, you could do something like:
+
+# pfctl -t childrens -T expire 86400
+
+This will tell pf to remove any entries in the table that have been there for more than 24 hours (86400 seconds). You could put something like this in a cron job, depending on your needs. In this case, the table probably won't ever become very large, so you may not need to flush it at all.
+
+pass in on $ext_if proto tcp from any to any port 80 flags S/SA synproxy state
+
+This will pass in all TCP traffic from any address to any address that the server has on port 80. You can replace "any" in both places with a specific IP, a list of IPs or even a text file with a huge list of IPs. Since we used the "quick" keyword in the previous rule, this will only allow non-Chinese IPs to connect. The synproxy state part enables pf's built-in handshake validation ability. This can help prevent some SYN flood attacks, but comes at the price of reducing speeds. Use it very carefully, not everywhere.
+
+pass in on $ext_if proto tcp from 1.2.3.4 to any port { 137, 139, 445, 138 }
+
+Anything from 1.2.3.4 is allowed on TCP ports 137, 139, 445 or 138. The commas are optional.
+
+pass in on $ext_if proto tcp to any port ssh flags S/SA keep state \
+(max-src-conn 5, max-src-conn-rate 5/5, overload <childrens> flush)
+
+Note that you can use "ssh" instead of "22" as well, and pf will know to translate it. This line will allow all incoming TCP connections from any IP to any IP for SSH logins, but applies some strict limits to prevent rapid brute force attempts. It first of all limits the number of connections on port 22 to 5 per IP. If a host tries to connect more than 5 times in a 5 second period, they get sent to the "childrens" table (see what I did there?) and all their connections are dropped.
+
+pass inet proto icmp icmp-type echoreq
+
+This permits ping to and from your server.
+Gateway Ruleset
+
+We have a great OpenBSD router tutorial, and the ruleset I'm using here is partially lifted from that. I'm just going to explain the lines in this one that weren't mentioned in the previous two rulesets.
+
+int_if="{ vether0 em1 em2 em3 }"
+ext_if="em0"
+broken="224.0.0.22 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, \
+        10.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, \
+        192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16, 0.0.0.0/8, 240.0.0.0/4, 255.255.255.255/32"
+set block-policy drop
+set loginterface egress
+set skip on lo0
+match in all scrub (no-df max-mss 1440)
+match out on egress inet from !(egress:network) to any nat-to (egress:0)
+antispoof quick for (egress)
+block in quick on egress from { $broken urpf-failed no-route } to any
+block in quick inet6 all
+block in all
+block out quick inet6 all
+block out quick on egress from any to { $broken no-route }
+block out log quick on egress proto udp from any to any port 53
+pass out quick inet keep state
+pass in on egress inet proto tcp to (egress) port 222 rdr-to 192.168.1.2
+pass in on egress inet proto tcp from any to (egress) port 2222 flags S/SA synproxy state
+pass in on $int_if inet
+pass in on $int_if proto tcp from any to ubuntu.com rdr-to bsdnow.tv port 80
+pass in on $int_if proto { tcp udp } from any to ! 192.168.1.1 port 53 rdr-to 192.168.1.1
+
+Note that you will need different configuration options in place (outside of pf.conf) if you want to use either OS as a gateway.
+
+int_if="{ vether0 em1 em2 em3 }"
+
+My internal interfaces for the LAN, including the virtual one. This is a macro, just to make things easier.
+
+set loginterface egress
+
+You can set an interface as a log interface for pf to log packets on. The "egress" keyword means the interface with the default route. It's just a handy trick that makes things easier and identify which is the public-facing interface. You will need to use a macro or the actual interface on FreeBSD, since the "egress" keyword doesn't work there.
+
+match out on egress inet from !(egress:network) to any nat-to (egress:0)
+
+This line performs network address translation. For a router, this is a very vital role. All the attached LAN clients (with internal IPs) will be able to access the internet, and pf will keep track of who made what connection and to where. There's a state table kept in memory of which IPs wanted to talk to which other IPs, and on what ports. This line will be significantly different on older rulesets. An older version would look something like this:
+
+nat on $ext_if from $int_if:network to any -> ($ext_if)
+
+I'd recommend using OpenBSD for routers/gateways instead of the other BSDs, at least until they can get their pf updated.
+
+block out log quick on egress proto udp from any to any port 53
+
+Why would I want to prevent any IP from sending DNS requests? Simple. In the router tutorial, I'm running a dnscrypt proxy. I don't want unencrypted DNS lookups to somehow leak, so block them all and put a note about it in the log so I know what to fix and who to yell at.
+
+pass in on egress inet proto tcp to (egress) port 222 rdr-to 192.168.1.2
+
+If you've ever configured "port forwarding" in a consumer router, this line shouldn't be too foreign to you. Whenever an incoming connection from the internet comes in at TCP port 222 on the egress interface, redirect that to the LAN client 192.168.1.2. In my example, it was an SSH server. This line will be significantly different on older rulesets.
+
+rdr on $ext_if proto tcp to ($ext_if) port 222 -> 192.168.1.2
+
+It would look something like that.
+
+pass in on egress inet proto tcp from any to (egress) port 2222 flags S/SA synproxy state
+
+Like the above, but don't redirect the connection to anywhere. In the example, this was the SSH server that was actually running on the router itself.
+
+pass in on $int_if inet
+
+Let all the LAN clients talk to each other freely.
+
+pass in quick on $int_if proto tcp from any to ubuntu.com rdr-to bsdnow.tv port 80
+
+This is an example of how pf can use hostnames instead of IPs and perform redirection based on your criteria. In this case, redirect anyone who accidentally typed "ubuntu.com" and send them to where they should be going instead. You can cause all kinds of mischief with the rdr-to function. This line will be significantly different on older rulesets.
+
+rdr on $int_if proto tcp to ubuntu.com port 80 -> bsdnow.tv
+
+Something like that.
+
+pass in on $int_if proto { tcp udp } from any to ! 192.168.1.1 port 53 rdr-to 192.168.1.1
+
+Another example of redirection. If someone thinks they're smarter than me by choosing a custom DNS server instead of the one I gave them with DHCP, silently redirect their queries to our internal resolver.
+
+Believe it or not, this tutorial barely scratches the surface of pf's abilities. It can do lots of crazy things, it can manipulate and mutilate your packets in pretty much any way that you can imagine. It can even pass or drop packets based on the operating system they came from. It can do load balancing, bandwidth shaping and a lot more. To check some statistics about pf, run:
+
+# pfctl -si
+
+Status: Enabled for 174 days 18:29:28            Debug: err
+
+Interface Stats for egress            IPv4             IPv6
+  Bytes In                   1525425195007                0
+  Bytes Out                    74394754398                0
+  Packets In
+    Passed                      1197572751                0
+    Blocked                         538848                0
+  Packets Out
+    Passed                       664468840                0
+    Blocked                          18772                0
+
+State Table                          Total             Rate
+  current entries                       82               
+  searches                      5458493946          361.5/s
+  inserts                          6594649            0.4/s
+  removals                         6594567            0.4/s
+Counters
+  match                            7214569            0.5/s
+  bad-offset                             0            0.0/s
+  fragment                               4            0.0/s
+  short                               1633            0.0/s
+  normalize                            919            0.0/s
+  memory                                 0            0.0/s
+  bad-timestamp                          0            0.0/s
+  congestion                          1083            0.0/s
+  ip-option                            554            0.0/s
+  proto-cksum                            0            0.0/s
+  state-mismatch                      1483            0.0/s
+  state-insert                           1            0.0/s
+  state-limit                            0            0.0/s
+  src-limit                              0            0.0/s
+  synproxy                              12            0.0/s
+  translate                              0            0.0/s
+
+Hopefully this provided a foundation for more learning, and provided some practical examples and use cases. Read the man pages and links mentioned above for more info.
+
