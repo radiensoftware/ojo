@@ -4,7 +4,10 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-
+	
+	<!-- Do not edit this property initially -->
+	<!-- Once, you get comfortable with Hadoop -->
+	<!-- then increase the replication incrementally to 3 -->
 	<property>
 		<name>dfs.replication</name>
 		<value>1</value>

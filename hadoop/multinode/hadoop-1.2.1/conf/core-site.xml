@@ -5,15 +5,18 @@
 
 <configuration>
 
+	<!-- Do **not** edit this property -->
 	<property>
 		<name>hadoop.tmp.dir</name>
 		<value>/home/hadoop/multinode/tmp</value>
 		<description>hadoop.tmp.dir</description>
 	</property>
 
+	<!-- Edit this property -->
 	<property>
 		<name>fs.default.name</name>
 		<value>hdfs://10.10.10.41:54310</value>
+		<!--- Put the IP address of the master node above -->
 		<description>fs.default.name</description>
 	</property>
 
