@@ -1,0 +1,220 @@
+The ultimate OpenBSD router
+
+2013-11-13
+
+Live demo in BSD Now Episode 011 | Originally written by TJ for bsdnow.tv | Last updated: 2015/06/09
+
+Friends don't let friends use consumer networking equipment. The consumer-grade home routers are particularly bad. They're proprietary, have security issues and offer very little flexibility. Why would you let something like that sit between you and the internet? This tutorial will show you how to build your own gateway, based on OpenBSD and PF, and take back control of the network. It's divided into twelve sections:
+
+The Essentials:
+01. Hardware
+02. Background
+03. Networking
+04. DHCP
+05. NTP
+06. DNS
+07. Firewall Rules
+08. Final Tweaks
+
+Extras:
+09. Outgoing SMTP
+10. Bandwidth Throttling
+11. Bandwidth Statistics
+12. Power Management
+
+Let's get started.
+
+Hardware
+
+This is a list of hardware I'll be using (although nothing in this tutorial is specific to it).
+
+    A Soekris net6501 with power supply
+    A low profile USB drive or mSATA SSD for the OS
+    Four CAT6 cables, green is my favorite color
+    A USB to serial converter and null modem cable (if you want to install via serial console)
+
+Buy whatever hardware you want, just make sure the network cards are supported beforehand. The board I chose uses Intel NICs that are known to have good BSD support.
+
+Background
+
+First, let's define what a router is, since everyone has different requirements. I've got three computers that need to share my internet connection. The router will be doing the following things:
+
+    Performing Network Address Translation
+    Giving my server and laptop static IPs based on their MAC address
+    Handing out IP addresses via DHCP to everyone else
+    Doing local DNS caching for the LAN and encrypting all outgoing DNS lookups
+    Allowing incoming SSH connections to my server and the router itself
+
+This ultimate router will be running nothing more than OpenBSD. Almost everything I'm using is included in the base system. I'm going to assume you're capable of installing the OS on your machine. If you want a fully-encrypted installation, see our tutorial for that. If you have a serial cable, install it that way. Combining FDE and serial requires some additional steps though. You can also install over PXE if that's your thing. The hardware I chose has four NICs, which show up in the OS as em0, em1, em2 and em3. I'm going to be using the first one as the external interface and the other three as the internal interfaces for the LAN. This particular board also has a PCIe x1 slot that can be used for expansion.
+
+Networking
+
+The setup detailed here is an all-in-one solution. The client machines will be directly connected to the gateway, without the need for a switch. This is done by bridging your internal NICs with the virtual ethernet interface.
+
+# echo dhcp > /etc/hostname.em0
+# echo up > /etc/hostname.em1
+# echo up > /etc/hostname.em2
+# echo up > /etc/hostname.em3
+# echo 'inet 192.168.1.1 255.255.255.0 192.168.1.255' > /etc/hostname.vether0
+# vi /etc/hostname.bridge0
+
+Add the following:
+
+add vether0
+add em1
+add em2
+add em3
+blocknonip vether0
+blocknonip em1
+blocknonip em2
+blocknonip em3
+up
+
+We need to allow IP forwarding and adjust a couple other values for network throughput. Note that we're not actually enabling any of these options just yet. They'll be applied after our first reboot.
+
+# vi /etc/sysctl.conf
+
+Add the following:
+
+net.inet.ip.forwarding=1
+net.inet.ip.redirect=0
+kern.bufcachepercent=50
+net.inet.ip.ifq.maxlen=1024
+net.inet.tcp.mssdflt=1440
+kern.securelevel=2
+
+    net.inet.ip.forwarding lets traffic pass through the interfaces when needed. This is the only required sysctl change, the others are just recommendations.
+
+    net.inet.ip.redirect disables sending IP redirects.
+
+    kern.bufcachepercent tells the kernel how much memory it can use for cache.
+
+    net.inet.ip.ifq.maxlen should generally be 256 times the number of NICs you have - four in this case.
+
+    net.inet.tcp.mssdflt should match the "max-mss" value in our firewall config. A value of 1440 is a good general rule for most networks, but you can adjust it to be higher or lower depending on your needs (or disable it entirely).
+
+    kern.securelevel locks the securelevel to the highest setting and prevents changes to the firewall rules. You may want to hold off on this one until you have a firewall configuration in place that you're happy with.
+
+Firewall Rules
+
+The centerpiece of this entire guide is the file /etc/pf.conf. Like in some of the previous sections, there's another tutorial for more in-depth explanation and advanced rulesets.
+
+# vi /etc/pf.conf
+
+For my needs, I ended up with:
+
+int_if="{ vether0 em1 em2 em3 }"
+broken="224.0.0.22 127.0.0.0/8 192.168.0.0/16 172.16.0.0/12 \
+        10.0.0.0/8 169.254.0.0/16 192.0.2.0/24 \
+        198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16 0.0.0.0/8 240.0.0.0/4 255.255.255.255/32"
+set block-policy drop
+set loginterface egress
+set skip on lo0
+match in all scrub (no-df random-id max-mss 1440)
+match out on egress inet from !(egress:network) to any nat-to (egress:0)
+antispoof quick for (egress)
+block in quick on egress from { $broken no-route urpf-failed } to any
+block in quick inet6 all
+block out quick inet6 all
+block return out quick log on egress proto { tcp udp } from any to any port 53
+block return out quick log on egress from any to { no-route $broken }
+block in all
+pass out quick inet keep state
+pass in on $int_if inet
+pass in on $int_if inet proto { tcp udp } from any to ! 192.168.1.1 port 53 rdr-to 192.168.1.1
+pass in on egress inet proto tcp to (egress) port 222 rdr-to 192.168.1.2
+pass in on egress inet proto tcp from any to (egress) port 2222
+
+In this example, we would be running SSH on port 2222 and the server would be running SSH on port 222, both open to the internet. Adjust to fit your needs.
+
+Final Tweaks
+
+Finally, a sound server isn't the most useful thing for a router, so let's disable it.
+
+# echo 'sndiod_flags=NO' >> /etc/rc.conf.local
+# reboot
+
+At this point, you should be able to plug in some computers to the other ethernet ports and everything will work. They'll be assigned IP addresses and granted access to the internet, while being protected by the firewall. If that's all you want, you're done! I'd recommend subscribing to the openbsd-announce mailing list to get notifications when a new security patch or version of the OS is released.
+
+Bandwidth Statistics
+
+Monitoring how much bandwidth is being used is a common feature of many routers. The same thing can be done on an OpenBSD box quite easily. We'll install the "vnstat" daemon and tell it to monitor each interface.
+
+# pkg_add vnstat
+# vnstat -u -i em0
+# vnstat -u -i em1
+# vnstat -u -i em2
+# vnstat -u -i em3
+# chown _vnstat /var/db/vnstat/*
+
+If you only care about WAN traffic statistics, just enable it for the egress interface, which is em0 in my case. Next, make any changes you want to the configuration file:
+
+# vi /etc/vnstat.conf
+
+I like to make things a bit more human-readable:
+
+--- vnstat.conf     Sat May  2 21:15:35 2015
++++ vnstat.conf     Sat May  2 21:13:32 2015
+@@ -28,7 +28,7 @@
+ # how units are prefixed when traffic is shown
+ # 0 = IEC standard prefixes (KiB/MiB/GiB/TiB)
+ # 1 = old style binary prefixes (KB/MB/GB/TB)
+-UnitMode 0
++UnitMode 1
+
+ # output style
+ # 0 = minimal & narrow, 1 = bar column visible
+@@ -37,11 +37,11 @@
+ OutputStyle 3
+
+ # used rate unit (0 = bytes, 1 = bits)
+-RateUnit 1
++RateUnit 0
+
+ # maximum bandwidth (Mbit) for all interfaces, 0 = disable feature
+ # (unless interface specific limit is given)
+-MaxBandwidth 100
++MaxBandwidth 0
+
+ # interface specific limits
+ #  example 8Mbit limit for 'ethnone':
+
+Be sure to add the rc.d script to your startup items, alongside dnscrypt-proxy.
+
+# grep scripts /etc/rc.conf.local
+
+pkg_scripts="dnscrypt_proxy vnstatd"
+
+Finally, start the daemon.
+
+# /etc/rc.d/vnstatd start
+
+Wait a few minutes and it should start collecting data.
+
+# vnstat -i em0
+
+    Database updated: Tue Jun  9 15:41:10 2015
+
+   em0 since 05/02/15
+
+          rx:  334.15 GB      tx:  110.72 GB      total:  444.88 GB
+
+   monthly
+                     rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+       May '15     265.71 GB |    53.94 GB |   319.66 GB |    125.14 KB/s
+       Jun '15      68.44 GB |    56.78 GB |   125.22 GB |    175.62 KB/s
+     ------------------------+-------------+-------------+---------------
+     estimated     237.26 GB |   196.85 GB |   434.11 GB |
+
+   daily
+                     rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+     yesterday       3.03 GB |     1.43 GB |     4.46 GB |     54.09 KB/s
+         today       2.68 GB |   134.89 MB |     2.82 GB |     52.28 KB/s
+     ------------------------+-------------+-------------+---------------
+     estimated       4.11 GB |      205 MB |     4.31 GB |
+
+That's all there is to it.
+
