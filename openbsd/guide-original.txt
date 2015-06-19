@@ -1,0 +1,393 @@
+The ultimate OpenBSD router
+
+2013-11-13
+
+Live demo in BSD Now Episode 011 | Originally written by TJ for bsdnow.tv | Last updated: 2015/06/09
+
+Friends don't let friends use consumer networking equipment. The consumer-grade home routers are particularly bad. They're proprietary, have security issues and offer very little flexibility. Why would you let something like that sit between you and the internet? This tutorial will show you how to build your own gateway, based on OpenBSD and PF, and take back control of the network. It's divided into twelve sections:
+
+The Essentials:
+01. Hardware
+02. Background
+03. Networking
+04. DHCP
+05. NTP
+06. DNS
+07. Firewall Rules
+08. Final Tweaks
+
+Extras:
+09. Outgoing SMTP
+10. Bandwidth Throttling
+11. Bandwidth Statistics
+12. Power Management
+
+Let's get started.
+Hardware
+
+This is a list of hardware I'll be using (although nothing in this tutorial is specific to it).
+
+    A Soekris net6501 with power supply
+    A low profile USB drive or mSATA SSD for the OS
+    Four CAT6 cables, green is my favorite color
+    A USB to serial converter and null modem cable (if you want to install via serial console)
+
+Buy whatever hardware you want, just make sure the network cards are supported beforehand. The board I chose uses Intel NICs that are known to have good BSD support.
+Background
+
+First, let's define what a router is, since everyone has different requirements. I've got three computers that need to share my internet connection. The router will be doing the following things:
+
+    Performing Network Address Translation
+    Giving my server and laptop static IPs based on their MAC address
+    Handing out IP addresses via DHCP to everyone else
+    Doing local DNS caching for the LAN and encrypting all outgoing DNS lookups
+    Allowing incoming SSH connections to my server and the router itself
+
+This ultimate router will be running nothing more than OpenBSD. Almost everything I'm using is included in the base system. I'm going to assume you're capable of installing the OS on your machine. If you want a fully-encrypted installation, see our tutorial for that. If you have a serial cable, install it that way. Combining FDE and serial requires some additional steps though. You can also install over PXE if that's your thing. The hardware I chose has four NICs, which show up in the OS as em0, em1, em2 and em3. I'm going to be using the first one as the external interface and the other three as the internal interfaces for the LAN. This particular board also has a PCIe x1 slot that can be used for expansion.
+Networking
+
+The setup detailed here is an all-in-one solution. The client machines will be directly connected to the gateway, without the need for a switch. This is done by bridging your internal NICs with the virtual ethernet interface.
+
+# echo dhcp > /etc/hostname.em0
+# echo up > /etc/hostname.em1
+# echo up > /etc/hostname.em2
+# echo up > /etc/hostname.em3
+# echo 'inet 192.168.1.1 255.255.255.0 192.168.1.255' > /etc/hostname.vether0
+# vi /etc/hostname.bridge0
+
+Add the following:
+
+add vether0
+add em1
+add em2
+add em3
+blocknonip vether0
+blocknonip em1
+blocknonip em2
+blocknonip em3
+up
+
+We need to allow IP forwarding and adjust a couple other values for network throughput. Note that we're not actually enabling any of these options just yet. They'll be applied after our first reboot.
+
+# vi /etc/sysctl.conf
+
+Add the following:
+
+net.inet.ip.forwarding=1
+net.inet.ip.redirect=0
+kern.bufcachepercent=50
+net.inet.ip.ifq.maxlen=1024
+net.inet.tcp.mssdflt=1440
+kern.securelevel=2
+
+    net.inet.ip.forwarding lets traffic pass through the interfaces when needed. This is the only required sysctl change, the others are just recommendations.
+    net.inet.ip.redirect disables sending IP redirects.
+    kern.bufcachepercent tells the kernel how much memory it can use for cache.
+    net.inet.ip.ifq.maxlen should generally be 256 times the number of NICs you have - four in this case.
+    net.inet.tcp.mssdflt should match the "max-mss" value in our firewall config. A value of 1440 is a good general rule for most networks, but you can adjust it to be higher or lower depending on your needs (or disable it entirely).
+    kern.securelevel locks the securelevel to the highest setting and prevents changes to the firewall rules. You may want to hold off on this one until you have a firewall configuration in place that you're happy with.
+
+DHCP
+
+Users gotta have IP addresses, so we'll need to tell the DHCP server to start on boot and give them one.
+
+# echo 'dhcpd_flags="vether0"' >> /etc/rc.conf.local
+# vi /etc/dhcpd.conf
+
+Take this example and modify it for your needs:
+
+option domain-name-servers 192.168.1.1;
+subnet 192.168.1.0 netmask 255.255.255.0 {
+    option routers 192.168.1.1;
+    range 192.168.1.4 192.168.1.254;
+    host meimei {
+        fixed-address 192.168.1.2;
+        hardware ethernet 00:00:00:00:00:00;
+        }
+    host suigintou {
+        fixed-address 192.168.1.3;
+        hardware ethernet 11:11:11:11:11:11;
+        }
+}
+
+You can specify any IP range you want to use and any DNS servers you want to use. By default, I want all clients to query the local DNS resolver that we'll set up in just a minute. This will speed up repeated lookups and is handy to have. Use the MAC addresses of your computers if you want static IPs.
+NTP
+
+Having the correct time is very important, so we'll make sure the router's clock is synced with ntpd. If you plan on running an NTP server, even only for your LAN, there's a tutorial for that too.
+
+# echo 'ntpd_flags=""' >> /etc/rc.conf.local
+# cp /etc/examples/ntpd.conf /etc
+# echo 'constraint from "https://example.org"' >> /etc/ntpd.conf
+# ntpd -s
+
+Simple.
+DNS
+
+Setting up a local DNS caching server is pretty easy. We'll be using unbound, which is part of the base system, along with DNSCrypt to keep our lookups private.
+
+# echo 'unbound_flags=""' >> /etc/rc.conf.local
+# vi /var/unbound/etc/unbound.conf
+
+Something like this should do:
+
+server:
+    interface: 192.168.1.1
+    interface: 127.0.0.1
+    do-ip6: no
+    access-control: 192.168.1.0/24 allow
+    do-not-query-localhost: no
+    hide-identity: yes
+    hide-version: yes
+
+forward-zone:
+        name: "."
+        forward-addr: 127.0.0.1@40
+
+Now we'll set up dnscrypt-proxy. It's not part of the base system, so we'll need to install it from ports or packages.
+
+# export PKG_PATH=http://ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`uname -m`/
+# pkg_add dnscrypt-proxy
+# echo 'pkg_scripts="dnscrypt_proxy"' >> /etc/rc.conf.local
+# echo 'dnscrypt_proxy_flags="-l /dev/null -R opendns -a 127.0.0.1:40"' >> /etc/rc.conf.local
+# echo 'nameserver 127.0.0.1' > /etc/resolv.conf
+
+You can edit /etc/dhclient.conf's "supersede domain-name-servers" section so it doesn't overwrite your local nameserver...
+
+# echo 'supersede domain-name-servers 127.0.0.1;' >> /etc/dhclient.conf
+
+...or use a more "forceful" approach:
+
+# chflags schg /etc/resolv.conf
+
+The dnscrypt-proxy port won't use any server by default; you need to specify one with the "-R" flag. I'm using OpenDNS in this example, but you can check the included documentation for a list of supported resolvers.
+Firewall Rules
+
+The centerpiece of this entire guide is the file /etc/pf.conf. Like in some of the previous sections, there's another tutorial for more in-depth explanation and advanced rulesets.
+
+# vi /etc/pf.conf
+
+For my needs, I ended up with:
+
+int_if="{ vether0 em1 em2 em3 }"
+broken="224.0.0.22 127.0.0.0/8 192.168.0.0/16 172.16.0.0/12 \
+        10.0.0.0/8 169.254.0.0/16 192.0.2.0/24 \
+        198.51.100.0/24, 203.0.113.0/24, \
+        169.254.0.0/16 0.0.0.0/8 240.0.0.0/4 255.255.255.255/32"
+set block-policy drop
+set loginterface egress
+set skip on lo0
+match in all scrub (no-df random-id max-mss 1440)
+match out on egress inet from !(egress:network) to any nat-to (egress:0)
+antispoof quick for (egress)
+block in quick on egress from { $broken no-route urpf-failed } to any
+block in quick inet6 all
+block out quick inet6 all
+block return out quick log on egress proto { tcp udp } from any to any port 53
+block return out quick log on egress from any to { no-route $broken }
+block in all
+pass out quick inet keep state
+pass in on $int_if inet
+pass in on $int_if inet proto { tcp udp } from any to ! 192.168.1.1 port 53 rdr-to 192.168.1.1
+pass in on egress inet proto tcp to (egress) port 222 rdr-to 192.168.1.2
+pass in on egress inet proto tcp from any to (egress) port 2222
+
+In this example, we would be running SSH on port 2222 and the server would be running SSH on port 222, both open to the internet. Adjust to fit your needs.
+Final Tweaks
+
+Since I'm using a flash drive for the OS, I want to minimize the number of writes to it. I'll append the "noatime" flag to the mount point and enable soft updates. You may also want to consider using mfs or tmpfs for /var and /tmp.
+
+# vi /etc/fstab
+
+Assuming my root device is "sd0" (yours might not be) my fstab will look like this:
+
+/dev/sd0a / ffs rw,noatime,softdep 1 1
+
+Finally, a sound server isn't the most useful thing for a router, so let's disable it.
+
+# echo 'sndiod_flags=NO' >> /etc/rc.conf.local
+# reboot
+
+At this point, you should be able to plug in some computers to the other ethernet ports and everything will work. They'll be assigned IP addresses and granted access to the internet, while being protected by the firewall. If that's all you want, you're done! I'd recommend subscribing to the openbsd-announce mailing list to get notifications when a new security patch or version of the OS is released.
+Outgoing SMTP
+
+It's possible to configure the router to send you nightly emails using nothing but smtpd and an email account. I'm using a throwaway gmail account for this example, but you can obviously use any mail server. Make sure your system's hostname is in present in /etc/hosts:
+
+# grep 127 /etc/hosts
+
+127.0.0.1       localhost bsdnow.tv
+
+Add the email account you'll be sending the mail from.
+
+# echo 'gmail youruser@gmail.com:yourpassword' > /etc/mail/secrets
+# chmod 640 /etc/mail/secrets
+# chown root:_smtpd /etc/mail/secrets
+# makemap /etc/mail/secrets
+
+Move the default smtpd configuration to a backup file and create a new one.
+
+# mv /etc/mail/smtpd.conf /etc/mail/smtpd.conf.orig
+# vi /etc/mail/smtpd.conf
+
+Add the following, changing the server to whatever you used:
+
+listen on lo0
+table aliases db:/etc/mail/aliases.db
+table secrets db:/etc/mail/secrets.db
+accept for local alias <aliases> deliver to mbox
+accept for any relay via tls+auth://gmail@smtp.gmail.com:587 auth <secrets>
+
+Finally, enable it on startup.
+
+# echo 'smtpd_flags=""' >> /etc/rc.conf.local
+# /etc/rc.d/smtpd start
+
+Now you should be able to take the output of any command and send it with your email account. We can test it by doing something like this:
+
+# echo 'Woah, my router can send emails! Nice tutorials as always dude!' | mail feedback@bsdnow.tv
+
+You can pipe any command or script's output to an email, send it off and then check what's going on in the morning. It can be used for firewall logs, automatically checking for updates and patches, or really anything you can think of.
+Bandwidth Throttling
+
+If you have to share your internet connection with other users, it's quite possible that they will hog all your bandwidth if you let them. Fortunately, pf provides a way to assign packets to different queues, giving them specific bandwidth limitations. There are two approaches to throttling: setting a maximum limit a connection can use, or reserving a minimum amount that it will always have access to. Since we're nice, we'll just reserve a minimum amount for certain types of traffic that are particularly annoying to use while all the bandwidth is being hoarded. You probably don't want your interactive SSH session lagging because of your friend torrenting. Being forced to wait ten seconds for a website to load because someone is uploading a video of their cat is also unacceptable. For this example, we'll just focus on SSH, FTP(S) and HTTP(S) traffic. The pf.conf manpage has additional details for all the different things you can do with queueing. We'll assume you have a twenty megabit connection, but you can adjust the numbers up or down to suit your needs.
+
+queue limits on em0 bandwidth 20M
+queue shell parent limits bandwidth 1M min 1M
+queue ftp parent limits bandwidth 8M max 8M
+queue web parent limits bandwidth 5M min 5M max 10M default
+
+Our example protocols each get assigned to their own queue. One megabit will always be reserved for SSH traffic, as to prevent any frustrating delays between typing in an interactive session and getting a response. FTP(S) traffic will be choked to a max of eight megabits. Web traffic will always have five megabits reserved for it, but will also be able to use up to ten megabits, depending on how much is available. Add the pass lines for them:
+
+pass out quick inet proto tcp from any to any port 22 set queue shell
+pass out quick inet proto tcp from any to any port { 20 21 989 990 } set queue ftp
+pass out quick inet proto tcp from any to any port { 80 443 } set queue web
+
+With throttling enabled, the full pf.conf would look something like this:
+
+int_if="{ vether0 em1 em2 em3 }"
+broken="224.0.0.22 127.0.0.0/8 192.168.0.0/16 172.16.0.0/12 \
+         10.0.0.0/8 169.254.0.0/16 192.0.2.0/24 \
+         198.51.100.0/24, 203.0.113.0/24, \
+         169.254.0.0/16 0.0.0.0/8 240.0.0.0/4 255.255.255.255/32"
+set block-policy drop
+set loginterface egress
+set skip on lo0
+match in all scrub (no-df random-id max-mss 1440)
+match out on egress inet from !(egress:network) to any nat-to (egress:0)
+queue limits on em0 bandwidth 20M
+queue shell parent limits bandwidth 1M min 1M
+queue ftp parent limits bandwidth 8M max 8M
+queue web parent limits bandwidth 5M min 5M max 10M default
+antispoof quick for (egress)
+block in quick on egress from { $broken no-route urpf-failed } to any
+block in quick inet6 all
+block out quick inet6 all
+block return out quick log on egress proto { tcp udp } from any to any port 53
+block return out quick log on egress from any to { no-route $broken }
+block in all
+pass out quick inet proto tcp from any to any port 22 set queue shell
+pass out quick inet proto tcp from any to any port { 20 21 989 990 } set queue ftp
+pass out quick inet proto tcp from any to any port { 80 443 } set queue web
+pass out quick inet keep state
+pass in on egress inet proto tcp to (egress) port 222 rdr-to 192.168.1.2
+pass in on egress inet proto tcp from any to (egress) port 2222 flags S/SA synproxy state
+pass in on $int_if inet
+pass in on $int_if proto { tcp udp } from any to ! 192.168.1.1 port 53 rdr-to 192.168.1.1
+
+If you want to throttle both download and upload, you could do it on a per-interface basis. For example, limit the outbound interface (em0) for download and the internal interfaces (em1-3) for upload. With pf's powerful syntax, you can get creative and combine this with certain IPs or hostnames. It's possible to limit a specific user's connection to a video streaming site based on their UID and destination address, add groups that have no limits whatsoever or really anything else you can think of.
+Bandwidth Statistics
+
+Monitoring how much bandwidth is being used is a common feature of many routers. The same thing can be done on an OpenBSD box quite easily. We'll install the "vnstat" daemon and tell it to monitor each interface.
+
+# pkg_add vnstat
+# vnstat -u -i em0
+# vnstat -u -i em1
+# vnstat -u -i em2
+# vnstat -u -i em3
+# chown _vnstat /var/db/vnstat/*
+
+If you only care about WAN traffic statistics, just enable it for the egress interface, which is em0 in my case. Next, make any changes you want to the configuration file:
+
+# vi /etc/vnstat.conf
+
+I like to make things a bit more human-readable:
+
+--- vnstat.conf     Sat May  2 21:15:35 2015
++++ vnstat.conf     Sat May  2 21:13:32 2015
+@@ -28,7 +28,7 @@
+ # how units are prefixed when traffic is shown
+ # 0 = IEC standard prefixes (KiB/MiB/GiB/TiB)
+ # 1 = old style binary prefixes (KB/MB/GB/TB)
+-UnitMode 0
++UnitMode 1
+
+ # output style
+ # 0 = minimal & narrow, 1 = bar column visible
+@@ -37,11 +37,11 @@
+ OutputStyle 3
+
+ # used rate unit (0 = bytes, 1 = bits)
+-RateUnit 1
++RateUnit 0
+
+ # maximum bandwidth (Mbit) for all interfaces, 0 = disable feature
+ # (unless interface specific limit is given)
+-MaxBandwidth 100
++MaxBandwidth 0
+
+ # interface specific limits
+ #  example 8Mbit limit for 'ethnone':
+
+Be sure to add the rc.d script to your startup items, alongside dnscrypt-proxy.
+
+# grep scripts /etc/rc.conf.local
+
+pkg_scripts="dnscrypt_proxy vnstatd"
+
+Finally, start the daemon.
+
+# /etc/rc.d/vnstatd start
+
+Wait a few minutes and it should start collecting data.
+
+# vnstat -i em0
+
+    Database updated: Tue Jun  9 15:41:10 2015
+
+   em0 since 05/02/15
+
+          rx:  334.15 GB      tx:  110.72 GB      total:  444.88 GB
+
+   monthly
+                     rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+       May '15     265.71 GB |    53.94 GB |   319.66 GB |    125.14 KB/s
+       Jun '15      68.44 GB |    56.78 GB |   125.22 GB |    175.62 KB/s
+     ------------------------+-------------+-------------+---------------
+     estimated     237.26 GB |   196.85 GB |   434.11 GB |
+
+   daily
+                     rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+     yesterday       3.03 GB |     1.43 GB |     4.46 GB |     54.09 KB/s
+         today       2.68 GB |   134.89 MB |     2.82 GB |     52.28 KB/s
+     ------------------------+-------------+-------------+---------------
+     estimated       4.11 GB |      205 MB |     4.31 GB |
+
+That's all there is to it.
+Power Management
+
+You may also want to enable apmd to save power if your hardware supports it. It will scale the CPU down during idle times and turn it up when the load reaches a certain point. Check the man page for a few different options.
+
+# echo 'apmd_flags="-A"' >> /etc/rc.conf.local
+# /etc/rc.d/apmd start
+
+You can check what level (with 0 being the lowest, 100 being the highest) the CPU is running at with:
+
+# sysctl hw.setperf
+
+Try different levels and apmd settings to find the balance you're most comfortable with. Always running it on the lowest setting might limit the data throughput too much, but it will really depend on what hardware you're using.
+
+
+Thanks for reading.
+
+
