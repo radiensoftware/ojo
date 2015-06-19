@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><link rel="stylesheet" type="text/css" href="http://magpiehall.com/wp-content/cache/minify/000000/RY5RCsMwDEMvFM_Lxw4UkoyaObUXpXS9_UI72JeQnhCKvDu9N8kvTaN-OAP8t_S03tIIdy5J9KAiWMi7McahNTxmjEWyrbg1WUNkSHOtBMuSlE5yTl79yLv14r0C5Oabpj4V48fnFf8C.css" media="all" />
+
+<meta charset="UTF-8" />
+<title>Matrix-Vector Multiplication with MapReduce – Magpie Hall</title><meta name="robots" content="noodp,noydir" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="alternate" type="application/rss+xml" title="Magpie Hall &raquo; Feed" href="http://feeds.feedburner.com/MagpieHall" />
+<link rel="alternate" type="application/rss+xml" title="Magpie Hall &raquo; Comments Feed" href="http://magpiehall.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Magpie Hall &raquo; Matrix-Vector Multiplication with MapReduce Comments Feed" href="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/feed/" />
+<link rel="canonical" href="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/magpiehall.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+
+
+<link rel='stylesheet' id='ssbaFont-css'  href='//fonts.googleapis.com/css?family=Indie+Flower&#038;ver=4.2.2' type='text/css' media='all' />
+
+<link rel='stylesheet' id='daily-dish-google-fonts-css'  href='//fonts.googleapis.com/css?family=Alice%7CLato%3A400%2C700%2C900&#038;ver=1.0.2' type='text/css' media='all' />
+
+
+<script type='text/javascript' src='http://magpiehall.com/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+<script type='text/javascript' src='http://magpiehall.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://magpiehall.com/wp-content/themes/daily-dish-pro/js/responsive-menu.js?ver=1.0.0'></script>
+<script type='text/javascript' src='http://magpiehall.com/wp-content/plugins/wp-quicklatex/js/wp-quicklatex-frontend.js?ver=1.0'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://magpiehall.com/xmlrpc.php?rsd" />
+<style type="text/css"> .enews .screenread {
+	height: 1px;
+    left: -1000em;
+    overflow: hidden;
+    position: absolute;
+    top: -1000em;
+    width: 1px; } </style><style type="text/css">	.ssba {
+									
+									
+									
+									
+								}
+								.ssba img
+								{
+									width: 36px !important;
+									padding: 6px;
+									border:  0;
+									box-shadow: none !important;
+									display: inline !important;
+									vertical-align: middle;
+								}
+								.ssba, .ssba a
+								{
+									text-decoration:none;
+									background: none;
+									font-family: Indie Flower;
+									font-size: 	20px;
+									
+									
+								}.ssba_sharecount:after, .ssba_sharecount:before {
+									right: 100%;
+									border: solid transparent;
+									content: " ";
+									height: 0;
+									width: 0;
+									position: absolute;
+									pointer-events: none;
+								}
+								.ssba_sharecount:after {
+									border-color: rgba(224, 221, 221, 0);
+									border-right-color: #f5f5f5;
+									border-width: 5px;
+									top: 50%;
+									margin-top: -5px;
+								}
+								.ssba_sharecount:before {
+									border-color: rgba(85, 94, 88, 0);
+									border-right-color: #e0dddd;
+									border-width: 6px;
+									top: 50%;
+									margin-top: -6px;
+								}
+								.ssba_sharecount {
+									font: 11px Arial, Helvetica, sans-serif;
+
+									padding: 5px;
+									-khtml-border-radius: 6px;
+									-o-border-radius: 6px;
+									-webkit-border-radius: 6px;
+									-moz-border-radius: 6px;
+									border-radius: 6px;
+									position: relative;
+									border: 1px solid #e0dddd;color: #555e58;
+										background: #f5f5f5;
+									}
+									.ssba_sharecount:after {
+										border-right-color: #f5f5f5;
+									}</style><script type="text/javascript">
+	window._wp_rp_static_base_url = 'https://wprp.zemanta.com/static/';
+	window._wp_rp_wp_ajax_url = "http://magpiehall.com/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '3.5.4';
+	window._wp_rp_post_id = '250';
+	window._wp_rp_num_rel_posts = '4';
+	window._wp_rp_thumbnails = false;
+	window._wp_rp_post_title = 'Matrix-Vector+Multiplication+with+MapReduce';
+	window._wp_rp_post_tags = ['mapreduce', 'mapreduc', 'product', 'multipl', 'v2', 'map', 'task', 'comput', 'a', 'reduc', 'vector', 'length', 'result', 'commun', 'cost'];
+	window._wp_rp_promoted_content = true;
+</script>
+<script type="text/javascript" src="https://wprp.zemanta.com/static/js/loader.js?version=3.5.4" async></script>
+<link rel="Shortcut Icon" href="http://magpiehall.com/wp-content/plugins/genesis-favicon-uploader/favicons/favicon.ico" type="image/x-icon" />
+<link rel="pingback" href="http://magpiehall.com/xmlrpc.php" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62238992-1', 'auto');
+  ga('send', 'pageview');
+
+</script><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<style type="text/css" media="screen"> .simple-social-icons ul li a, .simple-social-icons ul li a:hover { background-color: #f9f9f9 !important; border-radius: 3px; color: #aaaaaa !important; border: 0px #ffffff solid !important; font-size: 18px; padding: 9px; }  .simple-social-icons ul li a:hover { background-color: #f9f9f9 !important; border-color: #ffffff !important; color: #222222 !important; }</style>				<!-- WordPress Popular Posts v3.2.2 -->
+				<script type="text/javascript">//<![CDATA[
+
+					var sampling_active = 0;
+					var sampling_rate   = 100;
+					var do_request = false;
+
+					if ( !sampling_active ) {
+						do_request = true;
+					} else {
+						var num = Math.floor(Math.random() * sampling_rate) + 1;
+						do_request = ( 1 === num );
+					}
+
+					if ( do_request ) {
+
+						// Create XMLHttpRequest object and set variables
+						var xhr = ( window.XMLHttpRequest )
+						  ? new XMLHttpRequest()
+						  : new ActiveXObject( "Microsoft.XMLHTTP" ),
+						url = 'http://magpiehall.com/wp-admin/admin-ajax.php',
+						params = 'action=update_views_ajax&token=73a4340d1a&id=250';
+						// Set request method and target URL
+						xhr.open( "POST", url, true );
+						// Set request header
+						xhr.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
+						// Hook into onreadystatechange
+						xhr.onreadystatechange = function() {
+							if ( 4 === xhr.readyState && 200 === xhr.status ) {
+								if ( window.console && window.console.log ) {
+									window.console.log( xhr.responseText );
+								}
+							}
+						};
+						// Send request
+						xhr.send( params );
+
+					}
+
+				//]]></script>
+				<!-- End WordPress Popular Posts v3.2.2 -->
+				<style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url('http://magpiehall.com/wp-content/themes/daily-dish-pro/images/bg.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+<body class="single single-post postid-250 single-format-standard custom-background header-full-width content-sidebar" itemscope="itemscope" itemtype="http://schema.org/WebPage"><div class="site-container"><header class="site-header" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader"><div class="wrap"><div class="title-area"><h1 class="site-title" itemprop="headline"><a href="http://magpiehall.com/">Magpie Hall</a></h1></div></div></header><nav class="nav-primary" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement"><div class="wrap"><ul id="menu-main-menu" class="menu genesis-nav-menu menu-primary"><li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1156"><a href="/">Home</a></li>
+<li id="menu-item-1157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1157"><a href="http://magpiehall.com/mining-big-data-sets/">Mining Big Data Sets</a></li>
+</ul></div></nav><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog"><article class="post-250 post type-post status-publish format-standard category-mapreduce entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Matrix-Vector Multiplication with MapReduce</h1> 
+<p class="entry-meta"><time class="entry-time" itemprop="datePublished" datetime="2013-07-07T12:00:50+00:00">July 7, 2013</time> <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><a href="http://magpiehall.com/author/admin/" class="entry-author-link" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">Piti</span></a></span> <span class="entry-comments-link"><a href="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/#comments">1 Comment</a></span></p></header><div class="entry-content" itemprop="text"><!-- Simple Share Buttons Adder (6.0.2) simplesharebuttons.com --><div class="ssba ssba-wrap"><div style="text-align:left"><a class="ssba_twitter_share" href="http://twitter.com/share?url=http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/&amp;text=Matrix-Vector+Multiplication+with+MapReduce+"  target="_blank"  rel="nofollow"><img src="http://magpiehall.com/wp-content/plugins/simple-share-buttons-adder/buttons/simple/twitter.png" title="Twitter" class="ssba ssba-img" alt="Tweet about this on Twitter" /></a><span class="ssba_sharecount">0</span><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/"  target="_blank"  rel="nofollow"><img src="http://magpiehall.com/wp-content/plugins/simple-share-buttons-adder/buttons/simple/facebook.png" title="Facebook" class="ssba ssba-img" alt="Share on Facebook" /></a><span class="ssba_sharecount">0</span><a class="ssba_google_share" href="https://plus.google.com/share?url=http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/"  target="_blank"  rel="nofollow" ><img src="http://magpiehall.com/wp-content/plugins/simple-share-buttons-adder/buttons/simple/google.png" title="Google+" class="ssba ssba-img" alt="Share on Google+" /></a><span class="ssba_sharecount">0</span><a class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/"  target="_blank"  rel="nofollow" ><img src="http://magpiehall.com/wp-content/plugins/simple-share-buttons-adder/buttons/simple/linkedin.png" title="LinkedIn" class="ssba ssba-img" alt="Share on LinkedIn" /></a><span class="ssba_sharecount">0</span></div></div><p><span id="more-250"></span></p>
+<p>Let <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-98ecc3d49021dcdc06a4712e539fd3bc_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#65;&#125;" title="Rendered by QuickLaTeX.com" height="13" width="15" style="vertical-align: -1px;"/> be an <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-a6aff79e23beaa423df23806d2acee3a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#109;&#92;&#116;&#105;&#109;&#101;&#115;&#32;&#110;" title="Rendered by QuickLaTeX.com" height="9" width="48" style="vertical-align: 0px;"/> matrix</p>
+<p class="ql-center-displayed-equation" style="line-height: 97px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-a640fee6eb37a72bf02885183beba790_l3.png" height="97" width="219" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91; &#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#65;&#125;&#32;&#61; &#92;&#98;&#101;&#103;&#105;&#110;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#97;&#95;&#123;&#49;&#49;&#125;&#32;&#38;&#32;&#97;&#95;&#123;&#49;&#50;&#125;&#32;&#38;&#32;&#92;&#99;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#97;&#95;&#123;&#49;&#110;&#125;&#32;&#92;&#92; &#97;&#95;&#123;&#50;&#49;&#125;&#32;&#38;&#32;&#97;&#95;&#123;&#50;&#50;&#125;&#32;&#38;&#32;&#92;&#99;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#97;&#95;&#123;&#50;&#110;&#125;&#32;&#92;&#92; &#92;&#118;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#92;&#118;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#92;&#100;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#92;&#118;&#100;&#111;&#116;&#115;&#32;&#92;&#92; &#97;&#95;&#123;&#109;&#49;&#125;&#32;&#38;&#32;&#97;&#95;&#123;&#109;&#50;&#125;&#32;&#38;&#32;&#92;&#99;&#100;&#111;&#116;&#115;&#32;&#38;&#32;&#97;&#95;&#123;&#109;&#110;&#125; &#92;&#101;&#110;&#100;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p>and <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-af5c15c8fe1cae427bb254a90e1e3956_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#118;&#125;" title="Rendered by QuickLaTeX.com" height="9" width="11" style="vertical-align: 0px;"/> be a vector of length <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-a63eb5ff0272d3119fa684be6e7acce8_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#110;" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;"/></p>
+<p class="ql-center-displayed-equation" style="line-height: 97px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-fc0a5be6b7e181d1e0c459d5e9b5f9a8_l3.png" height="97" width="71" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91; &#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#118;&#125;&#32;&#61; &#92;&#98;&#101;&#103;&#105;&#110;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#118;&#95;&#49;&#32;&#92;&#92; &#118;&#95;&#50;&#32;&#92;&#92; &#92;&#118;&#100;&#111;&#116;&#115;&#32;&#92;&#92; &#118;&#95;&#110; &#92;&#101;&#110;&#100;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p>The product <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-7456df306ebc10f0d80379f65846435a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#65;&#125;&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#118;&#125;" title="Rendered by QuickLaTeX.com" height="13" width="26" style="vertical-align: -1px;"/> is a vector of length <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-c9892c160739d7b5be03e1d300d29a2b_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#109;" title="Rendered by QuickLaTeX.com" height="8" width="15" style="vertical-align: 0px;"/></p>
+<p class="ql-center-displayed-equation" style="line-height: 161px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-698cf8796870a58c42f4e09748a8ddc7_l3.png" height="161" width="141" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91; &#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#65;&#125;&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#118;&#125;&#32;&#61; &#92;&#98;&#101;&#103;&#105;&#110;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#92;&#115;&#117;&#109;&#92;&#108;&#105;&#109;&#105;&#116;&#115;&#95;&#123;&#106;&#61;&#49;&#125;&#94;&#123;&#110;&#125;&#32;&#97;&#95;&#123;&#49;&#106;&#125;&#118;&#95;&#106;&#32;&#92;&#92; &#92;&#115;&#117;&#109;&#92;&#108;&#105;&#109;&#105;&#116;&#115;&#95;&#123;&#106;&#61;&#49;&#125;&#94;&#123;&#110;&#125;&#32;&#97;&#95;&#123;&#50;&#106;&#125;&#118;&#95;&#106;&#32;&#92;&#92; &#92;&#118;&#100;&#111;&#116;&#115;&#32;&#92;&#92; &#92;&#115;&#117;&#109;&#92;&#108;&#105;&#109;&#105;&#116;&#115;&#95;&#123;&#106;&#61;&#49;&#125;&#94;&#123;&#110;&#125;&#32;&#97;&#95;&#123;&#109;&#106;&#125;&#118;&#95;&#106;&#32;&#92;&#92; &#92;&#101;&#110;&#100;&#123;&#98;&#109;&#97;&#116;&#114;&#105;&#120;&#125; &#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p>The pseudocode below computes <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-7456df306ebc10f0d80379f65846435a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#65;&#125;&#92;&#109;&#97;&#116;&#104;&#98;&#102;&#123;&#118;&#125;" title="Rendered by QuickLaTeX.com" height="13" width="26" style="vertical-align: -1px;"/>:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+map(key, value):
+    for (i, j, a_ij) in value:
+        emit(i, a_ij * v[j])
+
+reduce(key, values):
+    result = 0
+    for value in values:
+        result += value
+    emit(key, result)
+</pre>
+<p>The communication cost of Map tasks is <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-3b8ef76fe50cee28caae2a2f33158f11_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#79;&#40;&#109;&#110;&#32;&#43;&#32;&#110;&#41;" title="Rendered by QuickLaTeX.com" height="18" width="86" style="vertical-align: -4px;"/>.<br />
+The communication cost of Reduce tasks is <img src="http://magpiehall.com/wp-content/ql-cache/quicklatex.com-77baa1bf0f8d6bf18de074ef59a1ad71_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#79;&#40;&#109;&#110;&#41;" title="Rendered by QuickLaTeX.com" height="18" width="54" style="vertical-align: -4px;"/>.</p>
+
+<div class="wp_rp_wrap  wp_rp_plain" id="wp_rp_first"><div class="wp_rp_content"><h3 class="related_post_title">Related Posts</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-214" data-post-type="none" ><a href="http://magpiehall.com/relational-algebra-operations-with-mapreduce/" class="wp_rp_title">Relational Algebra Operations with MapReduce</a></li><li data-position="1" data-poid="in-28" data-post-type="none" ><a href="http://magpiehall.com/communication-cost-of-multiway-star-joins-with-mapreduce/" class="wp_rp_title">Communication Cost of Multiway Star Joins with MapReduce</a></li><li data-position="2" data-poid="in-610" data-post-type="none" ><a href="http://magpiehall.com/two-step-matrix-multiplication-with-hadoop/" class="wp_rp_title">Two-Step Matrix Multiplication with Hadoop</a></li><li data-position="3" data-poid="in-388" data-post-type="none" ><a href="http://magpiehall.com/multiway-star-joins-with-mapreduce/" class="wp_rp_title">Multiway Star Joins with MapReduce</a></li></ul></div></div>
+<!--<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/"
+    dc:identifier="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/"
+    dc:title="Matrix-Vector Multiplication with MapReduce"
+    trackback:ping="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/trackback/" />
+</rdf:RDF>-->
+</div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories">Filed Under: <a href="http://magpiehall.com/category/mining-big-data-sets/mapreduce/" rel="category tag">MapReduce</a></span> </p></footer></article><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+	<li class="comment even thread-even depth-1" id="comment-173">
+	<article itemprop="comment" itemscope="itemscope" itemtype="http://schema.org/UserComments">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="creator" itemscope="itemscope" itemtype="http://schema.org/Person">
+				<img alt='' src='http://0.gravatar.com/avatar/ffd1987e13d51a38f6eb4a01795942fc?s=96&#038;d=identicon&#038;r=g' srcset='http://0.gravatar.com/avatar/ffd1987e13d51a38f6eb4a01795942fc?s=192&amp;d=identicon&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' /><span itemprop="name">silk_route11</span> <span class="says">says</span>		 	</p>
+
+			<p class="comment-meta">
+				<time class="comment-time" datetime="2015-05-23T09:02:17+00:00" itemprop="commentTime"><a href="http://magpiehall.com/matrix-vector-multiplication-with-mapreduce/#comment-173" class="comment-time-link" itemprop="url">May 23, 2015 at 9:02 am</a></time>			</p>
+		</header>
+
+		<div class="comment-content" itemprop="commentText">
+			
+			<p>How would you get the v[j] in map function? Could you please explain the format of the input file?</p>
+		</div>
+
+		<div class="comment-reply"><a class='comment-reply-link' href='/matrix-vector-multiplication-with-mapreduce/?replytocom=173#respond' onclick='return addComment.moveForm( "comment-173", "173", "respond", "250" )' aria-label='Reply to silk_route11'>Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ol></div>						<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/matrix-vector-multiplication-with-mapreduce/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://magpiehall.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+																			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required='true' required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" aria-required='true' required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" /></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="5349a-comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea><textarea name="comment" style="display:none" rows="1" cols="1"></textarea></p>						
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='250' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>					</form>
+							</div><!-- #respond -->
+			</main><aside class="sidebar sidebar-primary widget-area" role="complementary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar"><section id="text-2" class="widget widget_text"><div class="widget-wrap"><h4 class="widget-title widgettitle">About</h4>
+			<div class="textwidget"><p><img src="http://magpiehall.com/wp-content/uploads/2015/04/magpie.jpg" style="float:left; margin: 0 1em 1em 0; width=128px; height=128px;">Hi everyone! My name is Piti and I'm a graphics researcher in the San Francisco Bay Area. In my spare time, I like to read about other subjects and, whenever there is extra spare time (ha!), I try to write about what I learned on this blog. I hope you'll find them as interesting as I do.</p>
+<p>Oh, I think magpies are intelligent and beautiful!（・⊝・）</p>
+</div>
+		</div></section>		<section id="recent-posts-3" class="widget widget_recent_entries"><div class="widget-wrap">		<h4 class="widget-title widgettitle">Recent Posts</h4>
+		<ul>
+					<li>
+				<a href="http://magpiehall.com/learning-association-rules-with-python/">Learning Association Rules with Python</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/association-rules/">Association Rules</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/limited-pass-algorithms/">Limited-Pass Algorithms</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/apriori-algorithm/">Apriori Algorithm</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/finding-frequent-itemsets/">Finding Frequent Itemsets</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/frequent-itemsets/">Frequent Itemsets</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/block-matrix-multiplication-with-hadoop/">Block Matrix Multiplication with Hadoop</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/two-step-matrix-multiplication-with-hadoop/">Two-Step Matrix Multiplication with Hadoop</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/one-step-matrix-multiplication-with-hadoop/">One-Step Matrix Multiplication with Hadoop</a>
+						</li>
+					<li>
+				<a href="http://magpiehall.com/how-to-find-all-simple-paths-in-an-undirected-graph-with-hadoop/">How to Find All Simple Paths in an Undirected Graph with Hadoop</a>
+						</li>
+				</ul>
+		</div></section>
+<!-- WordPress Popular Posts Plugin v3.2.2 [W] [weekly] [views] [regular] -->
+<section id="wpp-2" class="widget popular-posts"><div class="widget-wrap">
+<h4 class="widget-title widgettitle">Popular Posts</h4>
+
+<ul class="wpp-list">
+<li><a href="http://magpiehall.com/one-step-matrix-multiplication-with-hadoop/" title="One-Step Matrix Multiplication with Hadoop" class="wpp-post-title" target="_self">One-Step Matrix Multiplication with Hadoop</a> </li>
+<li><a href="http://magpiehall.com/how-to-run-hadoop-in-standalone-mode-using-eclipse-on-mac-os-x/" title="How to Run Hadoop in Standalone Mode Using Eclipse on Mac OS X" class="wpp-post-title" target="_self">How to Run Hadoop in Standalone Mode Using Eclipse on Mac OS X</a> </li>
+<li><a href="http://magpiehall.com/learning-association-rules-with-python/" title="Learning Association Rules with Python" class="wpp-post-title" target="_self">Learning Association Rules with Python</a> </li>
+<li><a href="http://magpiehall.com/how-to-install-hadoop-on-mac-os-x/" title="How to Install Hadoop on Mac OS X" class="wpp-post-title" target="_self">How to Install Hadoop on Mac OS X</a> </li>
+<li><a href="http://magpiehall.com/two-step-matrix-multiplication-with-hadoop/" title="Two-Step Matrix Multiplication with Hadoop" class="wpp-post-title" target="_self">Two-Step Matrix Multiplication with Hadoop</a> </li>
+<li><a  title="Matrix-Vector Multiplication with MapReduce" class="wpp-post-title" target="_self">Matrix-Vector Multiplication with MapReduce</a> </li>
+<li><a href="http://magpiehall.com/block-matrix-multiplication-with-hadoop/" title="Block Matrix Multiplication with Hadoop" class="wpp-post-title" target="_self">Block Matrix Multiplication with Hadoop</a> </li>
+<li><a href="http://magpiehall.com/apriori-algorithm/" title="Apriori Algorithm" class="wpp-post-title" target="_self">Apriori Algorithm</a> </li>
+<li><a href="http://magpiehall.com/relational-algebra-operations-with-mapreduce/" title="Relational Algebra Operations with MapReduce" class="wpp-post-title" target="_self">Relational Algebra Operations with MapReduce</a> </li>
+<li><a href="http://magpiehall.com/people-you-may-know-friendship-recommendation-with-hadoop/" title="&#8220;People You May Know&#8221; Friendship Recommendation with Hadoop" class="wpp-post-title" target="_self">&#8220;People You May Know&#8221; Friendship Recommendation with Hadoop</a> </li>
+
+</ul>
+</div></section>
+<!-- End WordPress Popular Posts Plugin v3.2.2 -->
+<section id="search-2" class="widget widget_search"><div class="widget-wrap"><h4 class="widget-title widgettitle">Search Magpie Hall</h4>
+<form method="get" class="search-form" action="http://magpiehall.com/" role="search"><input type="search" name="s" placeholder="Search this website&#x2026;" /><input type="submit" value="Search" /></form></div></section><section id="simple-social-icons-2" class="widget simple-social-icons"><div class="widget-wrap"><h4 class="widget-title widgettitle">Follow Me</h4>
+<ul class="alignleft"><li class="social-rss"><a href="http://feeds.feedburner.com/MagpieHall" >&#xe805;</a></li></ul></div></section><section id="enews-ext-2" class="widget enews-widget"><div class="widget-wrap"><div class="enews"><h4 class="widget-title widgettitle">Subscribe via Email</h4>
+		<form id="subscribe" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open( 'http://feedburner.google.com/fb/a/mailverify?uri=MagpieHall', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" name="Subscribe via Email">
+			<label for="subbox" class="screenread">Email Address</label><input type="email" value="Email Address" id="subbox" onfocus="if ( this.value == 'Email Address') { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = 'Email Address'; }" name="email" required="required" />
+			<input type="hidden" name="uri" value="MagpieHall" />
+			<input type="hidden" name="loc" value="en_US" />
+			<input type="submit" value="Go" id="subbutton" />
+		</form>
+		</div></div></section></aside></div></div><footer class="site-footer" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter"><div class="wrap"><p>Copyright &#x000A9;&nbsp;2015 &middot; <a href="/">Magpie Hall</a></p></div></footer></div><script type='text/javascript' src='http://magpiehall.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='http://magpiehall.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://magpiehall.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://magpiehall.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='http://magpiehall.com/wp-includes/js/comment-reply.min.js?ver=4.2.2'></script>
+</body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk
+Page Caching using disk: enhanced
+Database Caching 6/38 queries in 0.014 seconds using disk
+Object Caching 1221/1355 objects using disk
+
+ Served from: magpiehall.com @ 2015-06-19 10:20:10 by W3 Total Cache -->
