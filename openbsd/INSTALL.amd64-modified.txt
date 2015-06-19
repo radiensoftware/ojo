@@ -69,26 +69,6 @@ out as follows:
 
 	INSTALL.amd64	Installation notes; this file.
 
-	SHA256		Output of the sum(1) program using the option
-			-a sha256, usable for verification of the
-			correctness of downloaded files.
-
-	SHA256.sig	The above file, signed with the OpenBSD signing key
-			for the 5.7 release, usable for verification of the
-			integrity of the above file, and thus of the
-		        downloaded files.
-
-	miniroot57.fs	A miniroot filesystem image to be used if you
-			for some reason can't or don't want to use the
-			ramdisk installation method.
-			It can be copied to a small USB key to start the install.
-
-	floppy57.fs	The standard amd64 boot and installation floppy;
-			see below.
-
-	pxeboot		amd64-specific second-stage PXE bootstrap (for
-			network installs); see below.
-
 	*.tgz		amd64 binary distribution sets; see below.
 
 	bsd		A stock GENERIC amd64 kernel which will be
@@ -98,35 +78,9 @@ out as follows:
 			multiprocessor machines, which can be used instead
 			of the GENERIC kernel after the install.
 
-	bsd.rd		A compressed RAMDISK kernel; the embedded
-			filesystem contains the installation tools.
-			Used for simple installation from a pre-existing
-			system.
-
 	install57.iso	The amd64 boot and installation CD-ROM image,
 			which contains the base and X sets, so that install
 			or upgrade can be done without network connectivity.
-
-	install57.fs	A boot and installation image which contains
-			the base and X sets.  An install or upgrade can be
-			done with a USB key without network connectivity.
-
-	cd57.iso	A simple bootable filesystem image consisting of the
-			bsd.rd installation kernel, suitable to be used
-			as a bootable CD-ROM image, but will require the base
-			and X sets be found via another media or network.
-
-	cdbr		First-stage CD bootstrap (boot sector), which loads
-			the cdboot second-stage bootstrap.  This file is
-			included in the cd57.iso image, and is
-			provided as a convenience, but will rarely be needed.
-
-	cdboot		Second-stage CD bootstrap loader for non-emulation
-			OpenBSD El Torito CD-ROMs. It processes boot.conf
-			then loads the bsd.rd installation ramdisk kernel.
-			This file is included in the cd57.iso image,
-			and is provided as a convenience, but will rarely be
-			needed.
 
 
 The OpenBSD/amd64 binary distribution sets contain the binaries which
