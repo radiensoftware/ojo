@@ -16,31 +16,34 @@ Dinesh
 4. Login into the namenode 
    And prepare passwordless ssh access to all hadoop nodes manually
 
-   for node in namenode datanode1 datanode2 datanode3 ...
-   do 
-     	echo Hadoop Node $node
-     	ssh-copy-id $node
-     	ssh-copy-id $node.daddylabs.com
-   done
+   	Note: Replace namenode, datanode1, datanode2, datanode3 with
+	      actual hostnames e.g. m1, m2, m3, m4
+
+   	for node in namenode datanode1 datanode2 datanode3 ...
+   	do 
+     		echo Hadoop Node $node
+     		ssh-copy-id $node
+     		ssh-copy-id $node.daddylabs.com
+   	done
 
    Verify that you can login to all hadoop nodes and run a command without
    specifying the password
 
-   for node in namenode datanode1 datanode2 datanode3 ...
-   do 
-   	echo Hadoop Node $node
-	ssh $node hostname
-	ssh $node uptime
-   done
+   	for node in namenode datanode1 datanode2 datanode3 ...
+   	do 
+   		echo Hadoop Node $node
+		ssh $node hostname
+		ssh $node uptime
+   	done
 
    Repeat the same with the full hostname
 
-   for node in namenode datanode1 datanode2 datanode3 ...
-   do 
-   	echo Hadoop Node $node
-	ssh $node.daddylabs.com hostname
-	ssh $node.daddylabs.com uptime
-   done
+   	for node in namenode datanode1 datanode2 datanode3 ...
+   	do 
+   		echo Hadoop Node $node
+		ssh $node.daddylabs.com hostname
+		ssh $node.daddylabs.com uptime
+   	done
 
 5. Run the hadoop scripts in the numbered order
 
@@ -51,135 +54,135 @@ Prepare the Hadoop Nodes
 
 Verify all nodes are up and running
 
-$ ./100-hadoop-allnodes-ping.sh
+	$ ./100-hadoop-allnodes-ping.sh
 
 Verify master node is up and running
 
-$ ./110-hadoop-master-ping.sh
+	$ ./110-hadoop-master-ping.sh
 
 Verify all slave nodes are up and running
 
-$ ./120-hadoop-slaves-ping.sh
+	$ ./120-hadoop-slaves-ping.sh
 
 Configure masters file on master node
 
-$ ./200-hadoop-master-configure-masters.sh
+	$ ./200-hadoop-master-configure-masters.sh
 
 Configure slaves file on master node
 
-$ ./210-hadoop-master-configure-slaves.sh
+	$ ./210-hadoop-master-configure-slaves.sh
 
 Configure core-site.xml file on all hadoop nodes
 
-$ ./220-hadoop-allnodes-configure-core-site-xml.sh
+	$ ./220-hadoop-allnodes-configure-core-site-xml.sh
 
 Configure hdfs-site.xml file on all hadoop nodes
 
-$ ./230-hadoop-allnodes-configure-hdfs-site-xml.sh
+	$ ./230-hadoop-allnodes-configure-hdfs-site-xml.sh
 
 Configure mapred-site.xml files on all hadoop nodes
 
-$ ./240-hadoop-allnodes-configure-mapred-site-xml.sh
+	$ ./240-hadoop-allnodes-configure-mapred-site-xml.sh
 
 Stop any hadoop services on all hadoop nodes
 
-$ ./300-hadoop-allnodes-stop-hadoop.sh
+	$ ./300-hadoop-allnodes-stop-hadoop.sh
 
 Verify that all hadoop nodes are not running any services
 
-$ ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh
+	$ ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh
 
 Reboot all hadoop nodes just in case
 
-$ ./320-hadoop-allnodes-reboot.sh
+	$ ./320-hadoop-allnodes-reboot.sh
 
 Give all hadoop nodes 2 minutes to boot
 
-$ ./330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh
+	$ ./330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh
 
 Verify all hadoop nodes are back up and running
 
-$ ./340-hadoop-allnodes-verify-they-are-back-up.sh
+	$ ./340-hadoop-allnodes-verify-they-are-back-up.sh
 
 Verify that all nodes have just booted using the uptime command 
 
-$ ./350-hadoop-allnodes-check-uptime.sh
+	$ ./350-hadoop-allnodes-check-uptime.sh
 
 Remove the hadoop data directory on all hadoop nodes
 
-$ ./400-hadoop-allnodes-remove-data.sh
+	$ ./400-hadoop-allnodes-remove-data.sh
 
 Verify again that hadoop is not running again 
 
-$ ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh
+	$ ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh
 
 Initialising Hadoop (Run This Only Once)
 ------------------------------------------------
 
 Format hadoop filesystem on the master node
 
-$ ./420-hadoop-master-format-dfs.sh
+	$ ./420-hadoop-master-format-dfs.sh
 
 Starting Hadoop (Run after booting all nodes)
 ------------------------------------------------
 
 Start the hadoop file system on the master node
 
-$ ./500-hadoop-master-start-hdfs.sh
+	$ ./500-hadoop-master-start-hdfs.sh
 
 Verify that the hadoop file system component (namenode) 
 is running on the master
 
-$ ./510-hadoop-master-verify-namenode-is-up.sh
+	$ ./510-hadoop-master-verify-namenode-is-up.sh
 
 Verify that the hadoop file system component (datanode) 
 is running on the slave nodes
 
-$ ./520-hadoop-slaves-verify-datanodes-are-up.sh
+	$ ./520-hadoop-slaves-verify-datanodes-are-up.sh
 
 Start the hadoop mapreduce system on the master node
 
-$ ./600-hadoop-master-start-mapreduce.sh
+	$ ./600-hadoop-master-start-mapreduce.sh
 
 Verify that the hadoop mapreduce component (jobtracker) 
 is running on the master node
 
-$ ./610-hadoop-master-verify-jobtracker-is-up.sh
+	$ ./610-hadoop-master-verify-jobtracker-is-up.sh
 
 Verify that the hadoop mapreduce component (tasktracker) 
 is running on the slave nodes
 
-$ ./620-hadoop-slaves-verify-tasktrackers-are-up.sh
+	$ ./620-hadoop-slaves-verify-tasktrackers-are-up.sh
 
 Stopping Hadoop (Run after booting all nodes)
 ------------------------------------------------
 
 Stop the hadoop mapreduce component on the masternode
 
-$ ./700-hadoop-master-stop-mapreduce.sh
+	$ ./700-hadoop-master-stop-mapreduce.sh
 
 Verify that the hadoop mapreduce component (jobtracker) 
 is no longer running on the master node
 
-$ ./710-hadoop-master-verify-jobtracker-is-down.sh
+	$ ./710-hadoop-master-verify-jobtracker-is-down.sh
 
 Verify that the hadoop mapreduce component (tasktracker) 
 is no longer running on the master node
 
-$ ./720-hadoop-slaves-verify-tasktrackers-are-down.sh
+	$ ./720-hadoop-slaves-verify-tasktrackers-are-down.sh
 
 Stop the hadoop file system on the master node
 
-$ ./800-hadoop-master-stop-hdfs.sh
+	$ ./800-hadoop-master-stop-hdfs.sh
 
 Verify that the hadoop file system component (namenode) 
 is no longer running on the master
 
-$ ./810-hadoop-master-verify-namenode-is-down.sh
+	$ ./810-hadoop-master-verify-namenode-is-down.sh
 
 Verify that the hadoop file system component (tasktracker) 
 is no longer running on the master
 
-$ ./820-hadoop-slaves-verify-datanodes-are-down.sh
+	$ ./820-hadoop-slaves-verify-datanodes-are-down.sh
 
 
