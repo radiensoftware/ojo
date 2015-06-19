@@ -16,7 +16,7 @@ Steps to install Hadoop 2.x:
 
 1. Download tarball
 
-You can download tarball for hadoop 2.x from here. Extract it to a folder say, /home/hduser/yarn. We assume dedicated user for Hadoop is ÎéÎíhduserÎéÎí.
+You can download tarball for hadoop 2.x from here. Extract it to a folder say, /home/hduser/yarn. We assume dedicated user for Hadoop is hduser.
 
 $ cd /home/hduser/yarn
 $ sudo chown -R hduser:hadoop hadoop-2.0.1-alpha
