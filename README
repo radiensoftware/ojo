@@ -1,12 +1,29 @@
+Install Hadoop
 $ ./hadoop-create.sh
+
+Use New Shell
 $ exec bash
+
+Initialise Hadoop
 $ ./hadoop-initialise.sh 
+
+Unset existing SSH enviroment
 $ unset SSH_AUTH_SOCK
 $ unset SSH_ASKPASS
+
+Generate New SSH Keys
 $ ./hadoop-ssh-keys.sh 
+
+Verify Hadoop is not running
 $ ./hadoop-status.sh		# check if hadoop is running
+
+Start Hadoop
 $ ./hadoop-start.sh		# start hadoop
+
+Verify Hadoop is running
 $ ./hadoop-status.sh		# check if hadoop is running
+
+Run Hadoop Jobs Repeatedly
 $ ./hadoop-pizza.sh		# submit pi calculation jobs 
 				# in a loop
 
