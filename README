@@ -4,12 +4,14 @@ $ ./hadoop-create.sh
 Use New Shell
 $ exec bash
 
+Remove Any Previous Hadoop Data
+$ ./hadoop-remove-data.sh	# from ~/tmp
+
 Initialise Hadoop
 $ ./hadoop-initialise.sh 
 
 Unset existing SSH enviroment
-$ unset SSH_AUTH_SOCK
-$ unset SSH_ASKPASS
+$ unset SSH_AUTH_SOCK SSH_ASKPASS
 
 Generate New SSH Keys
 $ ./hadoop-ssh-keys.sh 
