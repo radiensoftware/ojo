@@ -31,7 +31,11 @@ $ ./hadoop-pizza.sh		# submit pi calculation jobs
 
 Observe
 1. HDFS GUI
-access t1.daddylabs.com:50070 in firefox
+access master:50070 in firefox
 
 2. Map Reduce GUI
-access t1.daddylabs.com:50030 in firefox
+access master:50030 in firefox
+
+Note: Replace master with the full hostname of the master node
+or the IP address of the master.
+
