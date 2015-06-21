@@ -1,0 +1,6 @@
+edit /etc/fstab
+/dev/something /bigdata ext3 defaults,noatime 0 #
+
+# reboot if / 
+# remount if not /
+# use mount -o remount /bigdata

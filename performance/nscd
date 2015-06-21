@@ -1,0 +1,3 @@
+chkconfig --level 345 nscd on
+service nscd start
+nscd -g
