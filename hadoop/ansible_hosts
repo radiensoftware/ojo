@@ -1,3 +1,8 @@
+# ansible_hosts
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 [namenode]
 t1.daddylabs.com
 

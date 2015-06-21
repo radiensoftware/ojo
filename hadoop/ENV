@@ -1,1 +1,6 @@
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 export ANSIBLE_INVENTORY=$HOME/ojo/hadoop/ansible_hosts
+

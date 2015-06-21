@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 for m in 1 2 
 do
 	for r in 1 2 3 4 5 6 
