@@ -4,3 +4,6 @@ echo never > /sys/kernel/mm/redhat_transparent_hugepages/defrag
 echo never > /sys/kernel/mm/redhat_transparent_hugepages/enabled
 
 refer http://goo.gl/WSF2qC
+i.e. http://structureddata.org/2012/06/18/linux-6-transparent-huge-pages-and-hadoop-workloads/
+and
+https://blogs.oracle.com/linux/entry/performance_issues_with_transparent_huge
