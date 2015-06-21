@@ -1,0 +1,621 @@
+    1  cd ojo
+    2  ls
+    3  ./hadoop-create.sh 
+    4  exec bash
+    5  htop
+    6  cat READNE
+    7  cat README
+    8  ./hadoop-initialise.sh 
+    9  cat README
+   10  ./hadoop-status.sh 
+   11  ./hadoop-start.sh 
+   12  ./hadoop-status.sh 
+   13  ./hadoop-pizza.sh 
+   14  hostname
+   15  cd ojo
+   16  cat README
+   17  top
+   18  atop
+   19  cd ojo
+   20  ./hadoopstatus
+   21  ./hadoop-status.sh
+   22  ./hadoop-start.sh
+   23  ./hadoop-status.sh
+   24  ./hadoop-pizza.sh
+   25  htop
+   26  cd ojo/
+   27  ls
+   28  cat hadoop-pizza.sh 
+   29  cd ~/hadoop-1.2.1/
+   30  pwd
+   31  hadoop jar hadoop-examples-1.2.1.jar pi   10 100
+   32  pwd
+   33  ifconfig
+   34  ping 10.1.1.4
+   35  ping 10.10.10.10
+   36  ifconfig
+   37  tracert 14.139.181.241
+   38  traceroute google.com
+   39  traceroute aubit.edu.in
+   40  traceroute mail.aubit.edu.in
+   41  traceroute 14.139.181.249
+   42  ping 14.139.181.249
+   43  ifconfig
+   44  traceroute  14.139.181.250
+   45  ifconfig
+   46  traceroute google.com
+   47  traceroute www.google.com
+   48  ping 14.139.5.5
+   49  ping 10.10.10.10
+   50  ping 8.8.8.8
+   51  cd ojo
+   52  ls
+   53  telnet
+   54  cd
+   55  ipconfig
+   56  ifconfig
+   57  ping 10.10.10.1
+   58  ping 10.10.10.90
+   59  ping 10.1.60.10
+   60  ping 10.10.10.90
+   61  pwd
+   62  ./hadoop-create.sh
+   63  cd ojo
+   64  ./hadoop-create.sh
+   65  exec bash
+   66  cd ojo
+   67  htop
+   68  clear
+   69  vi *pizz*
+   70  ./*pizza*
+   71  ls
+   72  cd hadoop
+   73  ls
+   74  git pull
+   75  cat README 
+   76  less README 
+   77  vi ansible_hosts 
+   78  ls
+   79  less README 
+   80  . ENV 
+   81  less README 
+   82  ls
+   83  less README 
+   84  ssh m1
+   85  ls
+   86  # venkatesan?
+   87  #ok
+   88  # thanks
+   89  less README 
+   90  ./100-hadoop-allnodes-ping.sh 
+   91  sudo yum install ansible
+   92  ./100-hadoop-allnodes-ping.sh 
+   93  for h in m1 t2 s2 m3; do ssh-copy-id $h; done
+   94  for h in m1 t2 s2 m2; do ssh-copy-id $h; done
+   95  for h in m1 t2 s2 m2; do ssh-copy-id $h.daddylabs.com; done
+   96  for h in m1 t2 s2 m2; do ssh $h hostname; done
+   97  cat ansible_hosts 
+   98  cat $ANSIBLE_INVENTORY 
+   99  ./100-hadoop-allnodes-ping.sh 
+  100  ./110-hadoop-master-ping.sh 
+  101  ./120-hadoop-slaves-ping.sh 
+  102  ls
+  103  ./200-hadoop-master-configure-masters.sh 
+  104  ./210-hadoop-master-configure-slaves.sh 
+  105  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  106  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  107  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  108  ls
+  109  ./300-hadoop-allnodes-stop-hadoop.sh 
+  110  ls
+  111  ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh 
+  112  ./320-hadoop-allnodes-reboot.sh 
+  113  # please verify m1 (namenode) is rebooting
+  114  # please verify *2 (t2, s2, m3) (datanodes) are rebooting
+  115  # thanks
+  116  #ok
+  117  # you can look at the consoles
+  118  #yes..they r booting..
+  119  ls
+  120  ./330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh 
+  121  vi multinode/hadoop-1.2.1/conf/*
+  122  # name node is m1 
+  123  ping m1
+  124  # ip of m1 is 10.10.10.51
+  125  fg
+  126  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  127  #alll r up..
+  128  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  129  ping s2
+  130  # is s2 up?
+  131  ping s2
+  132  #yes
+  133  ping s2
+  134  ping t2
+  135  ping m2
+  136  ping s2
+  137  # i am unable to ping it?
+  138  # login into s2 on console as hadoop
+  139  # from s2 open terminal
+  140  # ping t1 from there
+  141  # does that work?
+  142  #s2 up...but its em1 interface did not get a IPv4 address... it got  a IPv6 address...
+  143  #hence int sot reachable
+  144  ssh gateway
+  145  ping 10.10.10.10
+  146  ssh root@10.10.10.10
+  147  ping s2
+  148  vi ansible_hosts 
+  149  ls
+  150  vi multinode/hadoop-1.2.1/conf/slaves 
+  151  ./100-hadoop-allnodes-ping.sh 
+  152  # it is not going into pxe booting..
+  153  #only centos kernal option is availe
+  154  #pxe option not there...
+  155  #in GRUB
+  156  ./000-hadoop-allnodes-status.sh 
+  157  ./100-hadoop-allnodes-ping.sh 
+  158  ./110-hadoop-master-ping.sh 
+  159  ./120-hadoop-slaves-ping.sh 
+  160  ls
+  161  ./200-hadoop-master-configure-masters.sh 
+  162  ./210-hadoop-master-configure-slaves.sh 
+  163  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  164  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  165  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  166  ls
+  167  ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh 
+  168  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  169  ./350-hadoop-allnodes-check-uptime.sh 
+  170  ./400-hadoop-allnodes-remove-data.sh 
+  171  ls
+  172  ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+  173  ./420-hadoop-master-format-dfs.sh 
+  174  ls
+  175  ./500-hadoop-master-start-hdfs.sh 
+  176  ./510-hadoop-master-verify-namenode-is-up.sh 
+  177  ./520-hadoop-slaves-verify-datanodes-are-up.sh 
+  178  ./600-hadoop-master-start-mapreduce.sh 
+  179  ./610-hadoop-master-verify-jobtracker-is-up.sh 
+  180  ./620-hadoop-slaves-verify-tasktrackers-are-up.sh 
+  181  ls
+  182  ./000-hadoop-allnodes-status.sh 
+  183  # login in to namenode via ssh here
+  184  ssh m1.daddylabs.com
+  185  telnet 10.10.10.10
+  186  yum install telnet
+  187  sudo yum install telnet
+  188  telnet 10.10.10.10
+  189  pwd
+  190  ls -la
+  191  pwd
+  192  cd ojo
+  193  ls -la
+  194  cat README
+  195  ./hadoop-pizza.sh
+  196  ./hadoop-initialise.sh 
+  197  unset SSH_AUTH_SOCK
+  198  unset SSH_ASKPASS
+  199  ./hadoop-ssh-keys.sh
+  200  ./hadoop-status.sh
+  201  ./hadoop-start.sh
+  202  ./hadoop-status.sh
+  203  ./hadoop-pizza.sh
+  204  hadoop -rm /user/hadoop/PiEstimator_TMP_3_141592654
+  205  hadoop rm /user/hadoop/PiEstimator_TMP_3_141592654
+  206  hadoop rm /user/hadoop/PiEstimator_*
+  207  hadoop -file -rm /user/hadoop/PiEstimator_*
+  208  hadoop -fs -rm /user/hadoop/PiEstimator_*
+  209  hadoop dfs -rmr /user/hadoop/PiEstimator_*
+  210  ./hadoop-pizza.sh
+  211  ls
+  212  git pull
+  213  cd ojo
+  214  git pull
+  215  git stash drop
+  216  git stash 
+  217  ./dinesh.sh 
+  218  git stash 
+  219  git stash  drop
+  220  git pul
+  221  git pull
+  222  ls
+  223  cd hadoop
+  224  ls
+  225  more README 
+  226  cat multinode/hadoop-1.2.1/conf/
+  227  cat multinode/hadoop-1.2.1/conf/slaves 
+  228  vi ../helper-ssh-copy-id-host 
+  229  for h in `cat multinode/hadoop-1.2.1/conf/slaves `; do echo Processing $h; ../helper-ssh-copy-id-host $h; done
+  230  ls
+  231  vi 000-hadoop-allnodes-ssh-login-prepare.sh
+  232  ./000-hadoop-allnodes-status.sh 
+  233  chmod +x 000-hadoop-allnodes-ssh-login-prepare.sh 
+  234  ./000-hadoop-allnodes-ssh-login-prepare.sh 
+  235  ls
+  236  git add 000-hadoop-allnodes-ssh-login-prepare.sh 
+  237  git update-index --chmod=+x 000-hadoop-allnodes-ssh-login-prepare.sh
+  238  git commit -m hadoop
+  239  git push origin master
+  240  ls
+  241  ./000-hadoop-allnodes-status.sh 
+  242  . ENV 
+  243  ./000-hadoop-allnodes-s
+  244  ./000-hadoop-allnodes-status.sh 
+  245  ./100-hadoop-allnodes-ping.sh 
+  246  ./110-hadoop-master-ping.sh 
+  247  ./120-hadoop-slaves-ping.sh 
+  248  ls
+  249  ./200-hadoop-master-configure-masters.sh 
+  250  ls
+  251  ./210-hadoop-master-configure-slaves.sh 
+  252  ls
+  253  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  254  ls
+  255  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  256  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  257  ls
+  258  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  259  ls
+  260  vi 300-hadoop-allnodes-stop-hadoop.sh 
+  261  jkill
+  262  jps
+  263  jpkill
+  264  ./320-hadoop-allnodes-reboot.sh 
+  265  ls
+  266  exec bash
+  267  cd
+  268  cd ojo
+  269  ls -la
+  270  cd hadoop
+  271  pwd
+  272  ls -la
+  273  cat ansible_hosts 
+  274  cat RUN
+  275  cat ENV
+  276  ls -la
+  277  pwd
+  278  cd multinode/
+  279  ls -la
+  280  cd *
+  281  ls -la
+  282  cat masters
+  283  cat slaves
+  284  pwd
+  285  cd ../../..
+  286  pwd
+  287  ls -la
+  288  vi /home/hadoop/.ssh/known_hosts
+  289  ssh root@m3
+  290  ssh-copy-id m3
+  291  ssh-delete-id m3
+  292  vi /home/hadoop/.ssh/known_hosts:9
+  293  vi /home/hadoop/.ssh/known_hosts
+  294  ssh-copy-id m3
+  295  ssh-copy-id m3.daddylabs.com
+  296  pwd
+  297  ./100-hadoop-allnodes-ping.sh 
+  298  vi 100-hadoop-allnodes-ping.sh 
+  299  pwd
+  300  ./110-hadoop-master-ping.sh 
+  301  vi ansible_hosts 
+  302  . ENV
+  303  ./100-hadoop-allnodes-ping.sh 
+  304  ./100-hadoop-allnodes-ping.sh  | more
+  305  ./110-hadoop-master-ping.sh 
+  306  ./120-hadoop-slaves-ping.sh 
+  307  ./200-hadoop-master-configure-masters.sh 
+  308  ./210-hadoop-master-configure-slaves.sh 
+  309  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  310  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  311  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  312  ./300-hadoop-allnodes-stop-hadoop.sh 
+  313  ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh 
+  314  ./320-hadoop-allnodes-reboot.sh 
+  315  cat /etc/sudoers
+  316  sudo cat /etc/sudoers
+  317  sudo cat /etc/sudoers | more
+  318  ping namenode
+  319  pwd
+  320  cd
+  321  cd ojo
+  322  cd hadoop
+  323  cat ansible_hosts 
+  324  vi ansible_hosts 
+  325  cat ansible_hosts 
+  326  cd multinode/hadoop-1.2.1/conf/
+  327  ls -la
+  328  vi core-site.xml 
+  329  vi hdfs-site.xml 
+  330  ls -la
+  331  vi hdfs-site.xml 
+  332  vi mapred-site.xml 
+  333  vi slaves 
+  334  cd ../../..
+  335  pwd
+  336  for node in t1 t1 t2 t3 t4; do echo Hadoop Node $node; ssh-copy-id $node; ssh-copy-id $node.daddylabs.com; done
+  337  for node in t1 s1 s3 s4 m1 m2 m3 m4; do echo Hadoop Node $node; ssh-copy-id $node; ssh-copy-id $node.daddylabs.com; done
+  338  for node in t1 t1 t2 t3 t4 s1 s3 s4 m1 m2 m3 m4; do echo Hadoop Node $node; ssh $node hostname; ssh $node uptime; done
+  339  ssh m3
+  340  for node in t1 t1 t2 t3 t4 s1 s3 s4 m1 m2 m3 m4; do echo Hadoop Node $node; ssh $node hostname; ssh $node uptime; done
+  341  for node in t1 t1 t2 t3 t4 s1 s3 s4 m1 m2 m3 m4; do echo Hadoop Node $node.daddylabs.com; ssh $node.daddylabs.com hostname; ssh $node uptime; done
+  342  cd ojo/
+  343  git pull
+  344  cd hadoop
+  345  ls
+  346  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  347  . ENV 
+  348  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  349  ./350-hadoop-allnodes-check-uptime.sh 
+  350  ./400-hadoop-allnodes-remove-data.sh 
+  351  clear
+  352  ./400-hadoop-allnodes-remove-data.sh 
+  353  rm -fr ~/tmp &
+  354  jobs
+  355  du -sh ~/tmp
+  356  ls
+  357  ls ~/tmp
+  358  cat ~/tmp/hadoop-map-reduce.html 
+  359  cd ~/tmp
+  360  ls
+  361  mv cdac-mapreduce.tar.gz ~
+  362  mv hadoop-map-reduce.html ..
+  363  ls
+  364  cd
+  365  tar ztvf cdac-mapreduce.tar.gz 
+  366  tar ztvf cdac-mapreduce.tar.gz  | less
+  367  lynx hadoop-map-reduce.html 
+  368  ls
+  369  sudo yum install -y lynx
+  370  lynx hadoop-map-reduce.html 
+  371  ls
+  372  cd ojo/hadoop
+  373  ls
+  374  ls ~/tmp
+  375  jobs
+  376  fg
+  377  cd
+  378  mv tmp tmp2
+  379  /bin/rm -fr tmp2 &
+  380  cd ~/ojo/hadoop
+  381  ls
+  382  ./400-hadoop-allnodes-remove-data.sh 
+  383  ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+  384  ls
+  385  ./420-hadoop-master-format-dfs.sh 
+  386  ./500-hadoop-master-start-hdfs.sh 
+  387  ./510-hadoop-master-verify-namenode-is-up.sh 
+  388  ./520-hadoop-slaves-verify-datanodes-are-up.sh 
+  389  ls
+  390  ./600-hadoop-master-start-mapreduce.sh 
+  391  ./610-hadoop-master-verify-jobtracker-is-up.sh 
+  392  ./620-hadoop-slaves-verify-tasktrackers-are-up.sh 
+  393  vi ansible_hosts 
+  394  pwd
+  395  cat ansible_hosts 
+  396  reset
+  397  export TERM=vt100
+  398  ls
+  399  vi ansible_hosts 
+  400  kill -9 %%
+  401  ls
+  402  rm .ansible_hosts.swp 
+  403  cat ansible_hosts 
+  404  ./210-hadoop-master-configure-slaves.sh 
+  405  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  406  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  407  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  408  ls
+  409  ./800-hadoop-master-stop-hdfs.sh 
+  410  export PS1=$
+  411  ./800-hadoop-master-stop-hdfs.sh 
+  412  jps
+  413  ./700-hadoop-master-stop-mapreduce.sh 
+  414  ls
+  415  ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+  416  ./500-hadoop-master-start-hdfs.sh 
+  417  ./600-hadoop-master-start-mapreduce.sh 
+  418  ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+  419  ls
+  420  cd ..
+  421  ls
+  422  ./hadoop-pizza.sh 
+  423  vi ansible_hosts 
+  424  kill -9 %%
+  425  ls
+  426  jobs
+  427  lynx
+  428  ls
+  429  lynx http://t1.daddylabs.com:50070//
+  430  lynx http://t1.daddylabs.com:50070/
+  431  lynx http://t1.daddylabs.com:50030/
+  432  ls
+  433  jobs
+  434  fg
+  435  ls
+  436  pwd
+  437  vi hadoop-pizza.sh 
+  438  KILL -9 %%
+  439  kill -9 %%
+  440  ./hadoop-pizza.sh 
+  441   
+  442  ls
+  443  bash
+  444  export PS1="$ "
+  445  ls
+  446  cd ~/hadoop-1.2.1
+  447  ls
+  448  hadoop jar hadoop-examples-1.2.1.jar teragen 1000 ti1
+  449  hadoop jar hadoop-examples-1.2.1.jar teragen 100000 ti1
+  450  hadoop jar hadoop-examples-1.2.1.jar teragen 100000 ti2
+  451  hadoop jar hadoop-examples-1.2.1.jar teragen 1000000 ti3
+  452  hadoop jar hadoop-examples-1.2.1.jar teragen 1000000000 ti4
+  453  hadoop jar hadoop-examples-1.2.1.jar teragen 10000000000 terasort-input
+  454  hadoop jar hadoop-examples-1.2.1.jar teragen 1000000000 terasort-input
+  455  pwd
+  456  uname -a
+  457  ssh gateway
+  458  ssh root@10.10.10.10
+  459  cd hadoop-
+  460  pwd
+  461  cd ojo/hadoop
+  462  ./330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh 
+  463  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  464  . ENV
+  465  ./340-hadoop-allnodes-verify-they-are-back-up.sh 
+  466  ./350-hadoop-allnodes-check-uptime.sh 
+  467  ./400-hadoop-allnodes-remove-data.sh 
+  468  ./410-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+  469  ./420-hadoop-master-format-dfs.sh 
+  470  ./500-hadoop-master-start-hdfs.sh 
+  471  ./510-hadoop-master-verify-namenode-is-up.sh 
+  472  ./520-hadoop-slaves-verify-datanodes-are-up.sh 
+  473  ./600-hadoop-master-start-mapreduce.sh 
+  474  ./610-hadoop-master-verify-jobtracker-is-up.sh 
+  475  ./620-hadoop-slaves-verify-tasktrackers-are-up.sh 
+  476  ./700-hadoop-master-stop-mapreduce.sh 
+  477  ./710-hadoop-master-verify-jobtracker-is-down.sh 
+  478  ./720-hadoop-slaves-verify-tasktrackers-are-down.sh 
+  479  ./800-hadoop-master-stop-hdfs.sh 
+  480  ./810-hadoop-master-verify-namenode-is-down.sh 
+  481  ./820-hadoop-slaves-verify-datanodes-are-down.sh 
+  482  ls
+  483  jps
+  484  cat ansible_hosts 
+  485  ls
+  486  . ENV 
+  487  ./000-hadoop-allnodes-ssh-login-prepare.sh 
+  488  ls
+  489  ./000-hadoop-allnodes-s
+  490  ./000-hadoop-allnodes-status.sh 
+  491  ./100-hadoop-allnodes-ping.sh 
+  492  ./110-hadoop-master-ping.sh 
+  493  ls
+  494  ./120-hadoop-slaves-ping.sh 
+  495  ls
+  496  ./200-hadoop-master-configure-masters.sh 
+  497  ./210-hadoop-master-configure-slaves.sh 
+  498  ./220-hadoop-allnodes-configure-core-site-xml.sh 
+  499  ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+  500  ls
+  501  ./240-hadoop-allnodes-configure-mapred-site-xml.sh 
+  502  hsitory
+  503  history
+  504  ls
+  505  ./310-hadoop-allnodes-verify-hadoop-has-stopped.sh 
+  506  ./350-hadoop-allnodes-check-uptime.sh 
+  507  ls
+  508  ./500-hadoop-master-start-hdfs.sh 
+  509  ./510-hadoop-master-verify-namenode-is-up.sh 
+  510  ./520-hadoop-slaves-verify-datanodes-are-up.sh 
+  511  ls
+  512  ./600-hadoop-master-start-mapreduce.sh 
+  513  ./610-hadoop-master-verify-jobtracker-is-up.sh 
+  514  ./620-hadoop-slaves-verify-tasktrackers-are-up.sh 
+  515  ls
+  516  jps
+  517  ls
+  518  git status
+  519  git add ansible_hosts 
+  520  ../dinesh.sh 
+  521  git add multinode/hadoop-1.2.1/conf/slaves 
+  522  vi multinode/hadoop-1.2.1/conf/hdfs-site.xml 
+  523  git add multinode/hadoop-1.2.1/conf/hdfs-site.xml
+  524  git commit -m hadoop
+  525  git push origin master
+  526  ls
+  527  jps
+  528  pwd
+  529  cd $HADOOP_HOME
+  530  ls
+  531  cd
+  532  cd ojo
+  533  ls
+  534  vi hadoop-pizza.sh
+  535  ./hadoop-pizza.sh 
+  536  cd hadoop
+  537  ls
+  538  git pull
+  539   mapred.JobClient:  map 98% reduce 32%
+  540  15/06/21 10:26:25 INFO mapred.JobClient:  map 99% reduce 32%
+  541  15/06/21 10:26:30 INFO mapred.JobClient:  map 100% reduce 32%
+  542  15/06/21 10:26:32 INFO mapred.JobClient:  map 100% reduce 33%
+  543  15/06/21 10:26:36 INFO mapred.JobClient:  map 100% reduce 100%
+  544  15/06/21 10:26:37 INFO mapred.JobClient: Job complete: job_201506211002_0001
+  545  15/06/21 10:26:37 INFO mapred.JobClient: Counters: 31
+  546  15/06/21 10:26:37 INFO mapred.JobClient:   Job Counters
+  547  15/06/21 10:26:37 INFO mapred.JobClient:     Launched reduce tasks=1
+  548  15/06/21 10:26:37 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=9410557
+  549  15/06/21 10:26:37 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+  550  15/06/21 10:26:37 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+  551  15/06/21 10:26:37 INFO mapred.JobClient:     Rack-local map tasks=9147
+  552  15/06/21 10:26:37 INFO mapred.JobClient:     Launched map tasks=10000
+  553  15/06/21 10:26:37 INFO mapred.JobClient:     Data-local map tasks=853
+  554  15/06/21 10:26:37 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=492918
+  555  15/06/21 10:26:37 INFO mapred.JobClient:   File Input Format Counters
+  556  15/06/21 10:26:37 INFO mapred.JobClient:     Bytes Read=1180000
+  557  15/06/21 10:26:37 INFO mapred.JobClient:   File Output Format Counters
+  558  15/06/21 10:26:37 INFO mapred.JobClient:     Bytes Written=97
+  559  15/06/21 10:26:37 INFO mapred.JobClient:   FileSystemCounters
+  560  15/06/21 10:26:37 INFO mapred.JobClient:     FILE_BYTES_READ=220060
+  561  15/06/21 10:26:37 INFO mapred.JobClient:     HDFS_BYTES_READ=2468890
+  562  15/06/21 10:26:37 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=581126883
+  563  15/06/21 10:26:37 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=215
+  564  15/06/21 10:26:37 INFO mapred.JobClient:   Map-Reduce Framework
+  565  15/06/21 10:26:37 INFO mapred.JobClient:     Map output materialized bytes=280000
+  566  15/06/21 10:26:37 INFO mapred.JobClient:     Map input records=10000
+  567  15/06/21 10:26:37 INFO mapred.JobClient:     Reduce shuffle bytes=280000
+  568  15/06/21 10:26:37 INFO mapred.JobClient:     Spilled Records=40000
+  569  15/06/21 10:26:37 INFO mapred.JobClient:     Map output bytes=180000
+  570  15/06/21 10:26:37 INFO mapred.JobClient:     Total committed heap usage (bytes)=1739321835520
+  571  15/06/21 10:26:37 INFO mapred.JobClient:     CPU time spent (ms)=3903930
+  572  15/06/21 10:26:37 INFO mapred.JobClient:     Map input bytes=240000
+  573  15/06/21 10:26:37 INFO mapred.JobClient:     SPLIT_RAW_BYTES=1288890
+  574  15/06/21 10:26:37 INFO mapred.JobClient:     Combine input records=0
+  575  15/06/21 10:26:37 INFO mapred.JobClient:     Reduce input records=20000
+  576  15/06/21 10:26:37 INFO mapred.JobClient:     Reduce input groups=20000
+  577  15/06/21 10:26:37 INFO mapred.JobClient:     Combine output records=0
+  578  15/06/21 10:26:37 INFO mapred.JobClient:     Physical memory (bytes) snapshot=2032786624512
+  579  15/06/21 10:26:37 INFO mapred.JobClient:     Reduce output records=0
+  580  15/06/21 10:26:37 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=6340318347264
+  581  15/06/21 10:26:37 INFO mapred.JobClient:     Map output records=20000
+  582  Job Finished in 529.378 seconds
+  583  Estimated value of Pi is 3.14159265584000000000
+  584  Sun Jun 21 10:26:47 UTC 2015
+  585  Warning: $HADOOP_HOME is deprecated.
+  586  lsgit pull
+  587  git pull
+  588  git stash 
+  589  git stash drop
+  590  git pull
+  591  ls
+  592  les ansible_hosts 
+  593  less ansible_hosts 
+  594  ls
+  595  pwd
+  596  ls
+  597  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar 
+  598  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar testfilesystem
+  599  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO
+  600  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -write
+  601  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO
+  602  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -nrFiles 1024 -fileSize 1024
+  603  hadoop fs -ls
+  604  hadoop fs -ls /
+  605  hadoop fs -ls /benchmarks
+  606  hadoop fs -ls /benchmarks/TestDFSIO
+  607  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -nrFiles 1024 -fileSize 1024
+  608  jps
+  609  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -nrFiles 10 -fileSize 1024
+  610  ls
+  611  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -clean
+  612  hadoop jar ~/hadoop-1.2.1/hadoop-test-1.2.1.jar TestDFSIO -nrFiles 128 -fileSize 128
+  613  ls
+  614  hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen
+  615  hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen -help
+  616  hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen 1000000000 ti1
+  617  hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen -D dfs.block.size=536870912 1000000000 ti2
+  618  hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen -D dfs.block.size=536870912 10000000000 tera-input
+  619  mkdir ../terasort
+  620  cd ../terasort
+  621  history > H
