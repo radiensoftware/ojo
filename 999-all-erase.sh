@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 cd $HOME
 /bin/rm -fr ojo/
 /bin/rm -fr hadoop-*.tar.gz hadoop*

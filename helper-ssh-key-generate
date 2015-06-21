@@ -1,4 +1,8 @@
 #!/usr/bin/expect
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 set timeout 20
 spawn "/usr/bin/ssh-keygen"
 expect "id_rsa):" 		{ send "\r" }

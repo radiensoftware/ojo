@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 mkdir -p ~/Desktop/Mirantis
 DIR=~/Desktop/Mirantis
 URL0_VIRTUALBOX=ftp://10.10.10.10/pub/virtualbox

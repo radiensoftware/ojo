@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 unset SSH_ASKPASS
 unset SSH_AUTH_SOCK
 for ip in `./helper-my-ip-addresses`

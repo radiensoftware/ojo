@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 SRC=ftp.riken.jp::centos 
 DSTDIR=/var/ftp/pub/centos
 	# --exclude="6.6/updates/x86_64/Packages/java*" \

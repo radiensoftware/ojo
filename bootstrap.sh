@@ -1,4 +1,8 @@
 #!/bin/bash -xvf
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 echo $PATH
 FILE=DaddyLabs-FTP.repo
 PATH=/etc/yum.repos.d

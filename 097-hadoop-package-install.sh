@@ -1,4 +1,8 @@
 #!/bin/bash -xvf
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 cd $HOME
 DIR=hadoop-1.2.1
 SUFFIX=-bin.tar.gz

@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 cd $HOME
 RPM=epel-release-6-8.noarch.rpm
 URL0=http://dl.fedoraproject.org/pub/epel/6/x86_64/

@@ -1,4 +1,8 @@
 #!/usr/bin/expect
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 
 set timeout 30
 spawn /usr/bin/ssh-copy-id hadoop@[lindex $argv 0]

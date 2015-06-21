@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
 export PATH=$PATH:.
 
 040-rpmforge-htop-git-install.sh
