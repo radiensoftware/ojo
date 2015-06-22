@@ -1,0 +1,2345 @@
+Script started on Sun 21 Jun 2015 11:20:05 AM UTC
+]0;hadoop@t1:~/ojo/terasort[?1034h[hadoop@t1 terasort]$ ./teragen.sh
+Warning: $HADOOP_HOME is deprecated.
+
+Found 4 items
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:26 /user/hadoop/PiEstimator_TMP_3_141592654
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 11:14 /user/hadoop/tera-input
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:52 /user/hadoop/ti1
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 11:10 /user/hadoop/ti2
+Warning: $HADOOP_HOME is deprecated.
+
+Deleted hdfs://10.10.10.31:54310/user/hadoop/tera-input
+Warning: $HADOOP_HOME is deprecated.
+
+Generating 10000000000 using 2 maps with step of 5000000000
+15/06/21 11:20:11 INFO mapred.JobClient: Running job: job_201506211002_0012
+15/06/21 11:20:12 INFO mapred.JobClient:  map 0% reduce 0%
+15/06/21 11:20:52 INFO mapred.JobClient:  map 1% reduce 0%
+15/06/21 11:21:28 INFO mapred.JobClient:  map 2% reduce 0%
+15/06/21 11:21:59 INFO mapred.JobClient:  map 3% reduce 0%
+15/06/21 11:22:32 INFO mapred.JobClient:  map 4% reduce 0%
+15/06/21 11:23:08 INFO mapred.JobClient:  map 5% reduce 0%
+15/06/21 11:23:40 INFO mapred.JobClient:  map 6% reduce 0%
+15/06/21 11:24:13 INFO mapred.JobClient:  map 7% reduce 0%
+15/06/21 11:24:47 INFO mapred.JobClient:  map 8% reduce 0%
+15/06/21 11:25:21 INFO mapred.JobClient:  map 9% reduce 0%
+15/06/21 11:25:53 INFO mapred.JobClient:  map 10% reduce 0%
+15/06/21 11:26:29 INFO mapred.JobClient:  map 11% reduce 0%
+15/06/21 11:27:02 INFO mapred.JobClient:  map 12% reduce 0%
+15/06/21 11:27:39 INFO mapred.JobClient:  map 13% reduce 0%
+15/06/21 11:28:10 INFO mapred.JobClient:  map 14% reduce 0%
+15/06/21 11:28:45 INFO mapred.JobClient:  map 15% reduce 0%
+15/06/21 11:29:18 INFO mapred.JobClient:  map 16% reduce 0%
+15/06/21 11:29:56 INFO mapred.JobClient:  map 17% reduce 0%
+15/06/21 11:30:26 INFO mapred.JobClient:  map 18% reduce 0%
+15/06/21 11:31:02 INFO mapred.JobClient:  map 19% reduce 0%
+15/06/21 11:31:35 INFO mapred.JobClient:  map 20% reduce 0%
+15/06/21 11:32:07 INFO mapred.JobClient:  map 21% reduce 0%
+15/06/21 11:32:41 INFO mapred.JobClient:  map 22% reduce 0%
+15/06/21 11:33:17 INFO mapred.JobClient:  map 23% reduce 0%
+15/06/21 11:33:47 INFO mapred.JobClient:  map 24% reduce 0%
+15/06/21 11:34:23 INFO mapred.JobClient:  map 25% reduce 0%
+15/06/21 11:34:56 INFO mapred.JobClient:  map 26% reduce 0%
+15/06/21 11:35:31 INFO mapred.JobClient:  map 27% reduce 0%
+15/06/21 11:36:04 INFO mapred.JobClient:  map 28% reduce 0%
+15/06/21 11:36:39 INFO mapred.JobClient:  map 29% reduce 0%
+15/06/21 11:37:13 INFO mapred.JobClient:  map 30% reduce 0%
+15/06/21 11:37:47 INFO mapred.JobClient:  map 31% reduce 0%
+15/06/21 11:38:19 INFO mapred.JobClient:  map 32% reduce 0%
+15/06/21 11:38:53 INFO mapred.JobClient:  map 33% reduce 0%
+15/06/21 11:39:27 INFO mapred.JobClient:  map 34% reduce 0%
+15/06/21 11:40:01 INFO mapred.JobClient:  map 35% reduce 0%
+15/06/21 11:40:32 INFO mapred.JobClient:  map 36% reduce 0%
+15/06/21 11:41:06 INFO mapred.JobClient:  map 37% reduce 0%
+15/06/21 11:41:43 INFO mapred.JobClient:  map 38% reduce 0%
+15/06/21 11:42:16 INFO mapred.JobClient:  map 39% reduce 0%
+15/06/21 11:42:51 INFO mapred.JobClient:  map 40% reduce 0%
+15/06/21 11:43:25 INFO mapred.JobClient:  map 41% reduce 0%
+15/06/21 11:43:58 INFO mapred.JobClient:  map 42% reduce 0%
+15/06/21 11:44:30 INFO mapred.JobClient:  map 43% reduce 0%
+15/06/21 11:45:06 INFO mapred.JobClient:  map 44% reduce 0%
+15/06/21 11:45:39 INFO mapred.JobClient:  map 45% reduce 0%
+15/06/21 11:46:13 INFO mapred.JobClient:  map 46% reduce 0%
+15/06/21 11:46:45 INFO mapred.JobClient:  map 47% reduce 0%
+15/06/21 11:47:20 INFO mapred.JobClient:  map 48% reduce 0%
+15/06/21 11:47:54 INFO mapred.JobClient:  map 49% reduce 0%
+15/06/21 11:48:27 INFO mapred.JobClient:  map 50% reduce 0%
+15/06/21 11:49:01 INFO mapred.JobClient:  map 51% reduce 0%
+15/06/21 11:49:35 INFO mapred.JobClient:  map 52% reduce 0%
+15/06/21 11:50:07 INFO mapred.JobClient:  map 53% reduce 0%
+15/06/21 11:50:42 INFO mapred.JobClient:  map 54% reduce 0%
+15/06/21 11:51:19 INFO mapred.JobClient:  map 55% reduce 0%
+15/06/21 11:51:52 INFO mapred.JobClient:  map 56% reduce 0%
+15/06/21 11:52:25 INFO mapred.JobClient:  map 57% reduce 0%
+15/06/21 11:52:59 INFO mapred.JobClient:  map 58% reduce 0%
+15/06/21 11:53:34 INFO mapred.JobClient:  map 59% reduce 0%
+15/06/21 11:54:07 INFO mapred.JobClient:  map 60% reduce 0%
+15/06/21 11:54:41 INFO mapred.JobClient:  map 61% reduce 0%
+15/06/21 11:55:15 INFO mapred.JobClient:  map 62% reduce 0%
+15/06/21 11:55:49 INFO mapred.JobClient:  map 63% reduce 0%
+15/06/21 11:56:23 INFO mapred.JobClient:  map 64% reduce 0%
+15/06/21 11:56:57 INFO mapred.JobClient:  map 65% reduce 0%
+15/06/21 11:57:30 INFO mapred.JobClient:  map 66% reduce 0%
+15/06/21 11:58:04 INFO mapred.JobClient:  map 67% reduce 0%
+15/06/21 11:58:37 INFO mapred.JobClient:  map 68% reduce 0%
+15/06/21 11:59:11 INFO mapred.JobClient:  map 69% reduce 0%
+15/06/21 11:59:45 INFO mapred.JobClient:  map 70% reduce 0%
+15/06/21 12:00:20 INFO mapred.JobClient:  map 71% reduce 0%
+15/06/21 12:00:54 INFO mapred.JobClient:  map 72% reduce 0%
+15/06/21 12:01:28 INFO mapred.JobClient:  map 73% reduce 0%
+15/06/21 12:02:02 INFO mapred.JobClient:  map 74% reduce 0%
+15/06/21 12:02:36 INFO mapred.JobClient:  map 75% reduce 0%
+15/06/21 12:03:11 INFO mapred.JobClient:  map 76% reduce 0%
+15/06/21 12:03:46 INFO mapred.JobClient:  map 77% reduce 0%
+15/06/21 12:04:20 INFO mapred.JobClient:  map 78% reduce 0%
+15/06/21 12:04:56 INFO mapred.JobClient:  map 79% reduce 0%
+15/06/21 12:05:30 INFO mapred.JobClient:  map 80% reduce 0%
+15/06/21 12:06:05 INFO mapred.JobClient:  map 81% reduce 0%
+15/06/21 12:06:43 INFO mapred.JobClient:  map 82% reduce 0%
+15/06/21 12:07:17 INFO mapred.JobClient:  map 83% reduce 0%
+15/06/21 12:07:54 INFO mapred.JobClient:  map 84% reduce 0%
+15/06/21 12:08:27 INFO mapred.JobClient:  map 85% reduce 0%
+15/06/21 12:09:04 INFO mapred.JobClient:  map 86% reduce 0%
+15/06/21 12:09:40 INFO mapred.JobClient:  map 87% reduce 0%
+15/06/21 12:10:15 INFO mapred.JobClient:  map 88% reduce 0%
+15/06/21 12:10:47 INFO mapred.JobClient:  map 89% reduce 0%
+15/06/21 12:11:27 INFO mapred.JobClient:  map 90% reduce 0%
+15/06/21 12:12:01 INFO mapred.JobClient:  map 91% reduce 0%
+15/06/21 12:12:37 INFO mapred.JobClient:  map 92% reduce 0%
+15/06/21 12:13:12 INFO mapred.JobClient:  map 93% reduce 0%
+15/06/21 12:13:46 INFO mapred.JobClient:  map 94% reduce 0%
+15/06/21 12:14:25 INFO mapred.JobClient:  map 95% reduce 0%
+15/06/21 12:15:03 INFO mapred.JobClient:  map 96% reduce 0%
+15/06/21 12:15:39 INFO mapred.JobClient:  map 97% reduce 0%
+15/06/21 12:16:17 INFO mapred.JobClient:  map 98% reduce 0%
+15/06/21 12:16:52 INFO mapred.JobClient:  map 99% reduce 0%
+15/06/21 12:17:40 INFO mapred.JobClient:  map 100% reduce 0%
+15/06/21 12:17:43 INFO mapred.JobClient: Job complete: job_201506211002_0012
+15/06/21 12:17:43 INFO mapred.JobClient: Counters: 19
+15/06/21 12:17:43 INFO mapred.JobClient:   Job Counters 
+15/06/21 12:17:43 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=6870017
+15/06/21 12:17:43 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+15/06/21 12:17:43 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+15/06/21 12:17:43 INFO mapred.JobClient:     Launched map tasks=2
+15/06/21 12:17:43 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=0
+15/06/21 12:17:43 INFO mapred.JobClient:   File Input Format Counters 
+15/06/21 12:17:43 INFO mapred.JobClient:     Bytes Read=0
+15/06/21 12:17:43 INFO mapred.JobClient:   File Output Format Counters 
+15/06/21 12:17:43 INFO mapred.JobClient:     Bytes Written=1000000000000
+15/06/21 12:17:43 INFO mapred.JobClient:   FileSystemCounters
+15/06/21 12:17:43 INFO mapred.JobClient:     HDFS_BYTES_READ=173
+15/06/21 12:17:43 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=115018
+15/06/21 12:17:43 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=1000000000000
+15/06/21 12:17:43 INFO mapred.JobClient:   Map-Reduce Framework
+15/06/21 12:17:43 INFO mapred.JobClient:     Map input records=10000000000
+15/06/21 12:17:43 INFO mapred.JobClient:     Physical memory (bytes) snapshot=281935872
+15/06/21 12:17:43 INFO mapred.JobClient:     Spilled Records=0
+15/06/21 12:17:43 INFO mapred.JobClient:     CPU time spent (ms)=7338660
+15/06/21 12:17:43 INFO mapred.JobClient:     Total committed heap usage (bytes)=98828288
+15/06/21 12:17:43 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1270349824
+15/06/21 12:17:43 INFO mapred.JobClient:     Map input bytes=10000000000
+15/06/21 12:17:43 INFO mapred.JobClient:     Map output records=10000000000
+15/06/21 12:17:43 INFO mapred.JobClient:     SPLIT_RAW_BYTES=173
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop fs -ls
+Warning: $HADOOP_HOME is deprecated.
+
+Found 4 items
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:26 /user/hadoop/PiEstimator_TMP_3_141592654
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 12:17 /user/hadoop/tera-input
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:52 /user/hadoop/ti1
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 11:10 /user/hadoop/ti2
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop fs -ls tera-input
+Warning: $HADOOP_HOME is deprecated.
+
+Found 5 items
+-rw-r--r--   1 hadoop supergroup            0 2015-06-21 12:17 /user/hadoop/tera-input/_SUCCESS
+drwxr-xr-x   - hadoop supergroup            0 2015-06-21 11:20 /user/hadoop/tera-input/_logs
+drwxr-xr-x   - hadoop supergroup            0 2015-06-21 12:17 /user/hadoop/tera-input/_temporary
+-rw-r--r--   1 hadoop supergroup 500000000000 2015-06-21 11:20 /user/hadoop/tera-input/part-00000
+-rw-r--r--   1 hadoop supergroup 500000000000 2015-06-21 11:20 /user/hadoop/tera-input/part-00001
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop jar ~/hadoop-examples-*.jar terasort tera-input tera-output
+Warning: $HADOOP_HOME is deprecated.
+
+Not a valid JAR: /home/hadoop/hadoop-examples-*.jar
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ har[Kdoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar j[Ktear[K[Krasort tera-input tera-output
+Warning: $HADOOP_HOME is deprecated.
+
+15/06/21 12:20:03 INFO terasort.TeraSort: starting
+15/06/21 12:20:03 INFO mapred.FileInputFormat: Total input paths to process : 2
+15/06/21 12:20:03 INFO util.NativeCodeLoader: Loaded the native-hadoop library
+15/06/21 12:20:03 WARN snappy.LoadSnappy: Snappy native library not loaded
+15/06/21 12:20:06 INFO zlib.ZlibFactory: Successfully loaded & initialized native-zlib library
+15/06/21 12:20:06 INFO compress.CodecPool: Got brand-new compressor
+Making 1 from 100000 records
+Step size is 100000.0
+15/06/21 12:20:06 INFO mapred.FileInputFormat: Total input paths to process : 2
+15/06/21 12:20:07 INFO mapred.JobClient: Running job: job_201506211002_0013
+15/06/21 12:20:08 INFO mapred.JobClient:  map 0% reduce 0%
+15/06/21 12:24:29 INFO mapred.JobClient:  map 1% reduce 0%
+15/06/21 12:28:35 INFO mapred.JobClient:  map 2% reduce 0%
+15/06/21 12:32:48 INFO mapred.JobClient:  map 3% reduce 0%
+15/06/21 12:36:57 INFO mapred.JobClient:  map 4% reduce 0%
+15/06/21 12:41:05 INFO mapred.JobClient:  map 5% reduce 0%
+15/06/21 12:45:32 INFO mapred.JobClient:  map 6% reduce 0%
+15/06/21 12:50:08 INFO mapred.JobClient:  map 7% reduce 0%
+15/06/21 12:54:45 INFO mapred.JobClient:  map 8% reduce 0%
+15/06/21 12:59:49 INFO mapred.JobClient:  map 9% reduce 0%
+15/06/21 13:04:43 INFO mapred.JobClient:  map 10% reduce 0%
+15/06/21 13:09:34 INFO mapred.JobClient:  map 11% reduce 0%
+15/06/21 13:14:38 INFO mapred.JobClient:  map 12% reduce 0%
+15/06/21 13:19:14 INFO mapred.JobClient:  map 13% reduce 0%
+15/06/21 13:24:03 INFO mapred.JobClient:  map 14% reduce 0%
+15/06/21 13:26:36 INFO mapred.JobClient:  map 15% reduce 0%
+15/06/21 13:27:57 INFO mapred.JobClient:  map 15% reduce 1%
+15/06/21 13:28:15 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000181_0, Status : FAILED
+15/06/21 13:29:18 INFO mapred.JobClient:  map 16% reduce 1%
+15/06/21 13:31:59 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000195_0, Status : FAILED
+15/06/21 13:31:59 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000193_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:07 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000194_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:10 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000196_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:12 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000197_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:14 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000191_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+attempt_201506211002_0013_m_000191_0: log4j:WARN No appenders could be found for logger (org.apache.hadoop.mapred.Task).
+attempt_201506211002_0013_m_000191_0: log4j:WARN Please initialize the log4j system properly.
+15/06/21 13:32:36 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000192_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:51 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000199_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:53 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000190_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:32:57 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000198_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:33:08 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000202_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:33:12 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000203_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:33:20 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000205_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:33:24 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000204_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:35:03 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000083_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:35:09 INFO mapred.JobClient: Task Id : attempt_201506211002_0013_m_000084_0, Status : FAILED
+java.io.IOException: IO error in map input file hdfs://10.10.10.31:54310/user/hadoop/tera-input/part-00000
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:236)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:210)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:430)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:366)
+	at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:396)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1190)
+	at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: java.io.IOException: Blocklist for /user/hadoop/tera-input/part-00000 has changed!
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.fetchLocatedBlocks(DFSClient.java:2016)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.openInfo(DFSClient.java:1975)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.chooseDataNode(DFSClient.java:2474)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.blockSeekTo(DFSClient.java:2252)
+	at org.apache.hadoop.hdfs.DFSClient$DFSInputStream.read(DFSClient.java:2415)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.util.LineReader.readDefaultLine(LineReader.java:205)
+	at org.apache.hadoop.util.LineReader.readLine(LineReader.java:169)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:176)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:179)
+	at org.apache.hadoop.examples.terasort.TeraInputFormat$TeraRecordReader.next(TeraInputFormat.java:147)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:230)
+	... 9 more
+
+15/06/21 13:39:03 INFO mapred.JobClient:  map 17% reduce 1%
+15/06/21 13:46:46 INFO mapred.JobClient:  map 18% reduce 1%
+15/06/21 13:50:19 INFO mapred.JobClient:  map 19% reduce 1%
+15/06/21 13:54:00 INFO mapred.JobClient:  map 20% reduce 1%
+15/06/21 13:57:18 INFO mapred.JobClient:  map 21% reduce 1%
+15/06/21 14:00:08 INFO mapred.JobClient:  map 22% reduce 1%
+15/06/21 14:03:21 INFO mapred.JobClient:  map 23% reduce 1%
+15/06/21 14:06:12 INFO mapred.JobClient:  map 24% reduce 1%
+15/06/21 14:09:22 INFO mapred.JobClient:  map 25% reduce 1%
+15/06/21 14:12:43 INFO mapred.JobClient:  map 26% reduce 1%
+15/06/21 14:13:17 INFO mapred.JobClient:  map 26% reduce 2%
+15/06/21 14:15:50 INFO mapred.JobClient:  map 27% reduce 2%
+15/06/21 14:18:54 INFO mapred.JobClient:  map 28% reduce 2%
+15/06/21 14:22:12 INFO mapred.JobClient:  map 29% reduce 2%
+15/06/21 14:25:00 INFO mapred.JobClient:  map 30% reduce 2%
+15/06/21 14:28:26 INFO mapred.JobClient:  map 31% reduce 2%
+15/06/21 14:31:47 INFO mapred.JobClient:  map 32% reduce 2%
+15/06/21 14:34:46 INFO mapred.JobClient:  map 33% reduce 2%
+15/06/21 14:38:08 INFO mapred.JobClient:  map 34% reduce 2%
+15/06/21 14:41:36 INFO mapred.JobClient:  map 35% reduce 2%
+15/06/21 14:44:47 INFO mapred.JobClient:  map 36% reduce 2%
+15/06/21 14:47:56 INFO mapred.JobClient:  map 37% reduce 2%
+15/06/21 14:51:36 INFO mapred.JobClient:  map 38% reduce 2%
+15/06/21 14:54:56 INFO mapred.JobClient:  map 39% reduce 2%
+15/06/21 14:57:02 INFO mapred.JobClient:  map 39% reduce 3%
+15/06/21 14:58:42 INFO mapred.JobClient:  map 40% reduce 3%
+15/06/21 15:01:57 INFO mapred.JobClient:  map 41% reduce 3%
+15/06/21 15:05:00 INFO mapred.JobClient:  map 42% reduce 3%
+15/06/21 15:08:15 INFO mapred.JobClient:  map 43% reduce 3%
+15/06/21 15:11:28 INFO mapred.JobClient:  map 44% reduce 3%
+15/06/21 15:14:50 INFO mapred.JobClient:  map 45% reduce 3%
+15/06/21 15:18:21 INFO mapred.JobClient:  map 46% reduce 3%
+15/06/21 15:21:45 INFO mapred.JobClient:  map 47% reduce 3%
+15/06/21 15:25:04 INFO mapred.JobClient:  map 48% reduce 3%
+^C]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ls
+c  H  nohup.out  [0m[01;32mteragen.sh[0m  terasort.session.out
+[m]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ git pull[K[K[K[K[K[K[K[Kexit
+exit
+
+Script done on Sun 21 Jun 2015 03:25:55 PM UTC
+Script started on Sun 21 Jun 2015 03:26:59 PM UTC
+]0;hadoop@t1:~/ojo/terasort[?1034h[hadoop@t1 terasort]$ ./terage-[Kn[Kcat terage-n[K[Kn-more*
+#!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
+hadoop fs -ls  
+hadoop fs -rmr tera-input
+hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen -Dmapred.map.tasks=10000 -Ddfs.block.size=536870912 10000000000 tera-input
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ./!$
+./teragen-more*
+bash: ./teragen-more-maptasks.sh: Permission denied
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ chmod +x !$
+chmod +x ./teragen-more*
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ./!$
+././teragen-more*
+Warning: $HADOOP_HOME is deprecated.
+
+Found 5 items
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:26 /user/hadoop/PiEstimator_TMP_3_141592654
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 13:23 /user/hadoop/tera-input
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 12:20 /user/hadoop/tera-output
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 10:52 /user/hadoop/ti1
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 11:10 /user/hadoop/ti2
+Warning: $HADOOP_HOME is deprecated.
+
+Deleted hdfs://10.10.10.31:54310/user/hadoop/tera-input
+Warning: $HADOOP_HOME is deprecated.
+
+Generating 10000000000 using 10000 maps with step of 1000000
+15/06/21 15:28:00 INFO mapred.JobClient: Running job: job_201506211002_0014
+15/06/21 15:28:01 INFO mapred.JobClient:  map 0% reduce 0%
+15/06/21 15:28:57 INFO mapred.JobClient:  map 1% reduce 0%
+15/06/21 15:29:13 INFO mapred.JobClient:  map 2% reduce 0%
+15/06/21 15:29:27 INFO mapred.JobClient:  map 3% reduce 0%
+15/06/21 15:29:42 INFO mapred.JobClient:  map 4% reduce 0%
+15/06/21 15:29:57 INFO mapred.JobClient:  map 5% reduce 0%
+15/06/21 15:30:11 INFO mapred.JobClient:  map 6% reduce 0%
+15/06/21 15:30:27 INFO mapred.JobClient:  map 7% reduce 0%
+15/06/21 15:30:42 INFO mapred.JobClient:  map 8% reduce 0%
+15/06/21 15:30:57 INFO mapred.JobClient:  map 9% reduce 0%
+15/06/21 15:31:12 INFO mapred.JobClient:  map 10% reduce 0%
+15/06/21 15:31:27 INFO mapred.JobClient:  map 11% reduce 0%
+15/06/21 15:31:42 INFO mapred.JobClient:  map 12% reduce 0%
+15/06/21 15:31:58 INFO mapred.JobClient:  map 13% reduce 0%
+15/06/21 15:32:14 INFO mapred.JobClient:  map 14% reduce 0%
+15/06/21 15:32:29 INFO mapred.JobClient:  map 15% reduce 0%
+15/06/21 15:32:45 INFO mapred.JobClient:  map 16% reduce 0%
+15/06/21 15:33:01 INFO mapred.JobClient:  map 17% reduce 0%
+15/06/21 15:33:16 INFO mapred.JobClient:  map 18% reduce 0%
+15/06/21 15:33:31 INFO mapred.JobClient:  map 19% reduce 0%
+15/06/21 15:33:46 INFO mapred.JobClient:  map 20% reduce 0%
+15/06/21 15:34:01 INFO mapred.JobClient:  map 21% reduce 0%
+15/06/21 15:34:16 INFO mapred.JobClient:  map 22% reduce 0%
+15/06/21 15:34:32 INFO mapred.JobClient:  map 23% reduce 0%
+15/06/21 15:34:47 INFO mapred.JobClient:  map 24% reduce 0%
+15/06/21 15:35:02 INFO mapred.JobClient:  map 25% reduce 0%
+15/06/21 15:35:17 INFO mapred.JobClient:  map 26% reduce 0%
+15/06/21 15:35:32 INFO mapred.JobClient:  map 27% reduce 0%
+15/06/21 15:35:48 INFO mapred.JobClient:  map 28% reduce 0%
+15/06/21 15:36:03 INFO mapred.JobClient:  map 29% reduce 0%
+15/06/21 15:36:19 INFO mapred.JobClient:  map 30% reduce 0%
+15/06/21 15:36:34 INFO mapred.JobClient:  map 31% reduce 0%
+15/06/21 15:36:50 INFO mapred.JobClient:  map 32% reduce 0%
+15/06/21 15:37:05 INFO mapred.JobClient:  map 33% reduce 0%
+15/06/21 15:37:20 INFO mapred.JobClient:  map 34% reduce 0%
+15/06/21 15:37:36 INFO mapred.JobClient:  map 35% reduce 0%
+15/06/21 15:37:51 INFO mapred.JobClient:  map 36% reduce 0%
+15/06/21 15:38:06 INFO mapred.JobClient:  map 37% reduce 0%
+15/06/21 15:38:22 INFO mapred.JobClient:  map 38% reduce 0%
+15/06/21 15:38:37 INFO mapred.JobClient:  map 39% reduce 0%
+15/06/21 15:38:51 INFO mapred.JobClient:  map 40% reduce 0%
+15/06/21 15:39:07 INFO mapred.JobClient:  map 41% reduce 0%
+15/06/21 15:39:22 INFO mapred.JobClient:  map 42% reduce 0%
+15/06/21 15:39:38 INFO mapred.JobClient:  map 43% reduce 0%
+15/06/21 15:39:53 INFO mapred.JobClient:  map 44% reduce 0%
+15/06/21 15:40:09 INFO mapred.JobClient:  map 45% reduce 0%
+15/06/21 15:40:23 INFO mapred.JobClient:  map 46% reduce 0%
+15/06/21 15:40:39 INFO mapred.JobClient:  map 47% reduce 0%
+15/06/21 15:40:55 INFO mapred.JobClient:  map 48% reduce 0%
+15/06/21 15:41:09 INFO mapred.JobClient:  map 49% reduce 0%
+15/06/21 15:41:24 INFO mapred.JobClient:  map 50% reduce 0%
+15/06/21 15:41:40 INFO mapred.JobClient:  map 51% reduce 0%
+15/06/21 15:41:55 INFO mapred.JobClient:  map 52% reduce 0%
+15/06/21 15:42:10 INFO mapred.JobClient:  map 53% reduce 0%
+15/06/21 15:42:26 INFO mapred.JobClient:  map 54% reduce 0%
+15/06/21 15:42:41 INFO mapred.JobClient:  map 55% reduce 0%
+15/06/21 15:42:57 INFO mapred.JobClient:  map 56% reduce 0%
+15/06/21 15:43:12 INFO mapred.JobClient:  map 57% reduce 0%
+15/06/21 15:43:28 INFO mapred.JobClient:  map 58% reduce 0%
+15/06/21 15:43:43 INFO mapred.JobClient:  map 59% reduce 0%
+15/06/21 15:43:58 INFO mapred.JobClient:  map 60% reduce 0%
+15/06/21 15:44:13 INFO mapred.JobClient:  map 61% reduce 0%
+15/06/21 15:44:28 INFO mapred.JobClient:  map 62% reduce 0%
+15/06/21 15:44:43 INFO mapred.JobClient:  map 63% reduce 0%
+15/06/21 15:44:58 INFO mapred.JobClient:  map 64% reduce 0%
+15/06/21 15:45:14 INFO mapred.JobClient:  map 65% reduce 0%
+15/06/21 15:45:30 INFO mapred.JobClient:  map 66% reduce 0%
+15/06/21 15:45:46 INFO mapred.JobClient:  map 67% reduce 0%
+15/06/21 15:46:00 INFO mapred.JobClient:  map 68% reduce 0%
+15/06/21 15:46:16 INFO mapred.JobClient:  map 69% reduce 0%
+15/06/21 15:46:31 INFO mapred.JobClient:  map 70% reduce 0%
+15/06/21 15:46:47 INFO mapred.JobClient:  map 71% reduce 0%
+15/06/21 15:47:02 INFO mapred.JobClient:  map 72% reduce 0%
+15/06/21 15:47:18 INFO mapred.JobClient:  map 73% reduce 0%
+15/06/21 15:47:33 INFO mapred.JobClient:  map 74% reduce 0%
+15/06/21 15:47:49 INFO mapred.JobClient:  map 75% reduce 0%
+15/06/21 15:48:04 INFO mapred.JobClient:  map 76% reduce 0%
+15/06/21 15:48:20 INFO mapred.JobClient:  map 77% reduce 0%
+15/06/21 15:48:36 INFO mapred.JobClient:  map 78% reduce 0%
+15/06/21 15:48:50 INFO mapred.JobClient:  map 79% reduce 0%
+15/06/21 15:49:05 INFO mapred.JobClient:  map 80% reduce 0%
+15/06/21 15:49:21 INFO mapred.JobClient:  map 81% reduce 0%
+15/06/21 15:49:35 INFO mapred.JobClient:  map 82% reduce 0%
+15/06/21 15:49:51 INFO mapred.JobClient:  map 83% reduce 0%
+15/06/21 15:50:07 INFO mapred.JobClient:  map 84% reduce 0%
+15/06/21 15:50:23 INFO mapred.JobClient:  map 85% reduce 0%
+15/06/21 15:50:39 INFO mapred.JobClient:  map 86% reduce 0%
+15/06/21 15:50:55 INFO mapred.JobClient:  map 87% reduce 0%
+15/06/21 15:51:10 INFO mapred.JobClient:  map 88% reduce 0%
+15/06/21 15:51:25 INFO mapred.JobClient:  map 89% reduce 0%
+15/06/21 15:51:41 INFO mapred.JobClient:  map 90% reduce 0%
+15/06/21 15:51:56 INFO mapred.JobClient:  map 91% reduce 0%
+15/06/21 15:52:11 INFO mapred.JobClient:  map 92% reduce 0%
+15/06/21 15:52:27 INFO mapred.JobClient:  map 93% reduce 0%
+15/06/21 15:52:42 INFO mapred.JobClient:  map 94% reduce 0%
+15/06/21 15:52:57 INFO mapred.JobClient:  map 95% reduce 0%
+15/06/21 15:53:12 INFO mapred.JobClient:  map 96% reduce 0%
+15/06/21 15:53:28 INFO mapred.JobClient:  map 97% reduce 0%
+15/06/21 15:53:43 INFO mapred.JobClient:  map 98% reduce 0%
+15/06/21 15:53:59 INFO mapred.JobClient:  map 99% reduce 0%
+15/06/21 15:54:14 INFO mapred.JobClient:  map 100% reduce 0%
+15/06/21 15:54:14 INFO mapred.JobClient: Job complete: job_201506211002_0014
+15/06/21 15:54:14 INFO mapred.JobClient: Counters: 19
+15/06/21 15:54:14 INFO mapred.JobClient:   Job Counters 
+15/06/21 15:54:14 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=33719072
+15/06/21 15:54:14 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+15/06/21 15:54:14 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+15/06/21 15:54:14 INFO mapred.JobClient:     Launched map tasks=10017
+15/06/21 15:54:14 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=2244
+15/06/21 15:54:14 INFO mapred.JobClient:   File Input Format Counters 
+15/06/21 15:54:14 INFO mapred.JobClient:     Bytes Read=0
+15/06/21 15:54:14 INFO mapred.JobClient:   File Output Format Counters 
+15/06/21 15:54:14 INFO mapred.JobClient:     Bytes Written=1000000000000
+15/06/21 15:54:14 INFO mapred.JobClient:   FileSystemCounters
+15/06/21 15:54:14 INFO mapred.JobClient:     HDFS_BYTES_READ=865685
+15/06/21 15:54:14 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=575158890
+15/06/21 15:54:14 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=1000000000000
+15/06/21 15:54:14 INFO mapred.JobClient:   Map-Reduce Framework
+15/06/21 15:54:14 INFO mapred.JobClient:     Map input records=10000000000
+15/06/21 15:54:14 INFO mapred.JobClient:     Physical memory (bytes) snapshot=1322773905408
+15/06/21 15:54:14 INFO mapred.JobClient:     Spilled Records=0
+15/06/21 15:54:14 INFO mapred.JobClient:     CPU time spent (ms)=16576460
+15/06/21 15:54:14 INFO mapred.JobClient:     Total committed heap usage (bytes)=1480458436608
+15/06/21 15:54:14 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=6350818836480
+15/06/21 15:54:14 INFO mapred.JobClient:     Map input bytes=10000000000
+15/06/21 15:54:14 INFO mapred.JobClient:     Map output records=10000000000
+15/06/21 15:54:14 INFO mapred.JobClient:     SPLIT_RAW_BYTES=865685
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ls
+c  nohup.out           [0m[01;32mteragen-more-maptasks.sh[0m
+H  [01;32mteragen-default.sh[0m  terasort.session.out
+[m]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ cd ../hadoop[K[hadoop@t1 terasort]$ cd ../hadoop
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ cd multinode/hadoop-1.2.1/conf/
+]0;hadoop@t1:~/ojo/hadoop/multinode/hadoop-1.2.1/conf[hadoop@t1 conf]$ vi hdfs-site.xml 
+[?1049h[?1h=[1;53r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[53;1H"hdfs-site.xml" 17L, 453C[>c[1;1H[34m<?[m[32mxml version[m=[31m"1.0"[m[34m?>
+<?[m[32mxml-stylesheet type[m=[31m"text/xsl"[m[32m href[m=[31m"configuration.xsl"[m[34m?>
+
+<!-- Put site-specific property overrides in this file. -->[m
+
+[36m<configuration>[m[8;8H [34m<!-- Do not edit this property initially -->[m[9;8H [34m<!-- Once, you get comfortable with Hadoop -->[m[10;8H [34m<!-- then increase the replication incrementally to 3 -->[m[11;8H [36m<property>[m[12;16H [36m<name>[mdfs.replication[36m</name>[m[13;16H [36m<value>[m3[36m</value>[m[14;16H [36m<description>[mdfs.replication[36m</description>[m[15;8H [36m</property>
+
+</configuration>[m
+[1m[34m~                                                                                                                                                                            [19;1H~                                                                                                                                                                            [20;1H~                                                                                                                                                                            [21;1H~                                                                                                                                                                            [22;1H~                                                                                                                                                                            [23;1H~                                                                                                                                                                            [24;1H~                                                                                                                                                                            [25;1H~                                                                                                                                                                            [26;1H~                                                                                                                                                                            [27;1H~                                                                                                                                                                            [28;1H~                                                                                                                                                                            [29;1H~                                                                                                                                                                            [30;1H~                                                                                                                                                                            [31;1H~                                                                                                                                                                            [32;1H~                                                                                                                                                                            [33;1H~                                                                                                                                                                            [34;1H~                                                                                                                                                                            [35;1H~                                                                                                                                                                            [36;1H~                                                                                                                                                                            [37;1H~                                                                                                                                                                            [38;1H~                                                                                                                                                                            [39;1H~                                                                                                                                                                            [40;1H~                                                                                                                                                                            [41;1H~                                                                                                                                                                            [42;1H~                                                                                                                                                                            [43;1H~                                                                                                                                                                            [44;1H~                                                                                                                                                                            [45;1H~                                                                                                                                                                            [46;1H~                                                                                                                                                                            [47;1H~                                                                                                                                                                            [48;1H~                                                                                                                                                                            [49;1H~                                                                                                                                                                            [50;1H~                                                                                                                                                                            [51;1H~                                                                                                                                                                            [52;1H~                                                                                                                                                                            [m[53;156H13,3-17[7CAll[13;17H[?12l[?25h[?25l[53;159H4-18[13;18H[?12l[?25h[?25l[53;159H5-19[13;19H[?12l[?25h[?25l[53;159H6-20[13;20H[?12l[?25h[?25l[53;159H7-21[13;21H[?12l[?25h[?25l[53;159H8-22[13;22H[?12l[?25h[?25l[53;159H9-23[13;23H[?12l[?25h[?25l[53;159H10-24[13;24H[?12l[?25h[?25l[53;1H[K[53;1H:[?12l[?25hx[?25l[?12l[?25h[?25l[53;1H[K[53;1H[?1l>[?12l[?25h[?1049l]0;hadoop@t1:~/ojo/hadoop/multinode/hadoop-1.2.1/conf[hadoop@t1 conf]$ !vi
+vi hdfs-site.xml 
+[?1049h[?1h=[1;53r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[53;1H"hdfs-site.xml" 17L, 453C[>c[1;1H[34m<?[m[32mxml version[m=[31m"1.0"[m[34m?>
+<?[m[32mxml-stylesheet type[m=[31m"text/xsl"[m[32m href[m=[31m"configuration.xsl"[m[34m?>
+
+<!-- Put site-specific property overrides in this file. -->[m
+
+[36m<configuration>[m[8;8H [34m<!-- Do not edit this property initially -->[m[9;8H [34m<!-- Once, you get comfortable with Hadoop -->[m[10;8H [34m<!-- then increase the replication incrementally to 3 -->[m[11;8H [36m<property>[m[12;16H [36m<name>[mdfs.replication[36m</name>[m[13;16H [36m<value>[m3[36m</value>[m[14;16H [36m<description>[mdfs.replication[36m</description>[m[15;8H [36m</property>
+
+</configuration>[m
+[1m[34m~                                                                                                                                                                            [19;1H~                                                                                                                                                                            [20;1H~                                                                                                                                                                            [21;1H~                                                                                                                                                                            [22;1H~                                                                                                                                                                            [23;1H~                                                                                                                                                                            [24;1H~                                                                                                                                                                            [25;1H~                                                                                                                                                                            [26;1H~                                                                                                                                                                            [27;1H~                                                                                                                                                                            [28;1H~                                                                                                                                                                            [29;1H~                                                                                                                                                                            [30;1H~                                                                                                                                                                            [31;1H~                                                                                                                                                                            [32;1H~                                                                                                                                                                            [33;1H~                                                                                                                                                                            [34;1H~                                                                                                                                                                            [35;1H~                                                                                                                                                                            [36;1H~                                                                                                                                                                            [37;1H~                                                                                                                                                                            [38;1H~                                                                                                                                                                            [39;1H~                                                                                                                                                                            [40;1H~                                                                                                                                                                            [41;1H~                                                                                                                                                                            [42;1H~                                                                                                                                                                            [43;1H~                                                                                                                                                                            [44;1H~                                                                                                                                                                            [45;1H~                                                                                                                                                                            [46;1H~                                                                                                                                                                            [47;1H~                                                                                                                                                                            [48;1H~                                                                                                                                                                            [49;1H~                                                                                                                                                                            [50;1H~                                                                                                                                                                            [51;1H~                                                                                                                                                                            [52;1H~                                                                                                                                                                            [m[53;156H13,3-17[7CAll[13;17H[?12l[?25h[?25l[53;157H4[14;17H[?12l[?25h[?25l[53;157H3[13;17H[?12l[?25h[?25l[53;159H4-18[13;18H[?12l[?25h[?25l[53;159H5-19[13;19H[?12l[?25h[?25l[53;159H6-20[13;20H[?12l[?25h[?25l[53;159H7-21[13;21H[?12l[?25h[?25l[53;159H8-22[13;22H[?12l[?25h[?25l[53;159H9-23[13;23H[?12l[?25h[?25l[53;159H10-24[13;24H[?12l[?25h[?25l[36m>[m2[?12l[?25h[?25l[53;1H[K[53;1H:[?12l[?25hl[?25l[?12l[?25hw[?25l[?12l[?25h[?25l[155C13,10-24      All[13;24H[?12l[?25h[?25l[53;159H9-23 [13;23H[?12l[?25h[?25l[53;159H8-22[13;22H[?12l[?25h[?25l[53;1H[K[53;1H:[?12l[?25hx[?25l[?12l[?25h[?25l"hdfs-site.xml" 17L, 453C written
+[?1l>[?12l[?25h[?1049l]0;hadoop@t1:~/ojo/hadoop/multinode/hadoop-1.2.1/conf[hadoop@t1 conf]$ cd ..
+]0;hadoop@t1:~/ojo/hadoop/multinode/hadoop-1.2.1[hadoop@t1 hadoop-1.2.1]$ cd ..
+]0;hadoop@t1:~/ojo/hadoop/multinode[hadoop@t1 multinode]$ cd ..
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               ansible_hosts
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               c
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    ENV
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  [01;34mmultinode[0m
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          README
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  RUN
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               TestDFSIO_results.log
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./200-hadoop-master-configure-masters.sh 
+[0;32mt1.daddylabs.com | success >> {
+    "changed": false, 
+    "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/masters", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "d41d8cd98f00b204e9800998ecf8427e", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 0, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902370.05-146388749896178/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./210-hadoop-master-configure-slaves.sh 
+[0;32mt1.daddylabs.com | success >> {
+    "changed": false, 
+    "checksum": "d7a93f1eeb909a33aa820eb2a9245e43833e1839", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/slaves", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "path": "/home/hadoop/hadoop-1.2.1/conf/slaves", 
+    "size": 187, 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./230-hadoop-allnodes-configure-hdfs-site-xml.sh 
+[0;32mt1.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902387.38-203784761948352/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32ms1.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902388.88-178876588483622/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mm1.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902388.88-92955862914072/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mt2.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902389.1-176425077396322/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mm2.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902389.27-167948588072299/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mt3.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902389.5-269937088784054/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32ms3.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902391.89-275835672232628/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mt4.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902392.12-145858234598933/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mm3.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902392.12-255021247329833/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32ms4.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902392.17-56029876658843/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+[0;32mm4.daddylabs.com | success >> {
+    "changed": true, 
+    "checksum": "3dd372403b6ffc75da366ed89e3ef84585220ccd", 
+    "dest": "/home/hadoop/hadoop-1.2.1/conf/hdfs-site.xml", 
+    "gid": 500, 
+    "group": "hadoop", 
+    "md5sum": "214bc4916de5f52edaa7d07c140f3130", 
+    "mode": "0664", 
+    "owner": "hadoop", 
+    "size": 453, 
+    "src": "/home/hadoop/.ansible/tmp/ansible-tmp-1434902392.63-187824096499488/source", 
+    "state": "file", 
+    "uid": 500
+}
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               ansible_hosts
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               c
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    ENV
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  [01;34mmultinode[0m
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          README
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  RUN
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               TestDFSIO_results.log
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./800-hadoop-master-stop-hdfs.sh [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K/700-hadoop-master-stop-mapreduce.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+stopping jobtracker
+t1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t1.daddylabs.com: 
+t1.daddylabs.com: stopping tasktracker
+s3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s3.daddylabs.com: 
+s3.daddylabs.com: stopping tasktracker
+t4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t4.daddylabs.com: 
+t4.daddylabs.com: stopping tasktracker
+t3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t3.daddylabs.com: 
+t3.daddylabs.com: stopping tasktracker
+s1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s1.daddylabs.com: 
+s1.daddylabs.com: stopping tasktracker
+m3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m3.daddylabs.com: 
+m3.daddylabs.com: stopping tasktracker
+s4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s4.daddylabs.com: 
+s4.daddylabs.com: stopping tasktracker
+t2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t2.daddylabs.com: 
+t2.daddylabs.com: stopping tasktracker
+m1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m1.daddylabs.com: 
+m1.daddylabs.com: stopping tasktracker
+m4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m4.daddylabs.com: 
+m4.daddylabs.com: stopping tasktracker
+m2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m2.daddylabs.com: 
+m2.daddylabs.com: stopping tasktrackerWarning: $HADOOP_HOME is deprecated.
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ jps
+6003 Jps
+12910 DataNode
+12739 NameNode
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ 
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./710-hadoop-master-verify-jobtracker-is-down.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+6102 Jps
+12910 DataNode
+12739 NameNode
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               ansible_hosts
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               c
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    ENV
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  [01;34mmultinode[0m
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          README
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  RUN
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               TestDFSIO_results.log
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./800-hadoop-master-stop-hdfs.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+stopping namenode
+t1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t1.daddylabs.com: 
+t1.daddylabs.com: stopping datanode
+m2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m2.daddylabs.com: 
+m2.daddylabs.com: stopping datanode
+m3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m3.daddylabs.com: 
+m3.daddylabs.com: stopping datanode
+t4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t4.daddylabs.com: 
+t4.daddylabs.com: stopping datanode
+s1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s1.daddylabs.com: 
+s1.daddylabs.com: stopping datanode
+t3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t3.daddylabs.com: 
+t3.daddylabs.com: stopping datanode
+t2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t2.daddylabs.com: 
+t2.daddylabs.com: stopping datanode
+s3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s3.daddylabs.com: 
+s3.daddylabs.com: stopping datanode
+m4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m4.daddylabs.com: 
+m4.daddylabs.com: stopping datanode
+m1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m1.daddylabs.com: 
+m1.daddylabs.com: stopping datanode
+s4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s4.daddylabs.com: 
+s4.daddylabs.com: stopping datanodeWarning: $HADOOP_HOME is deprecated.
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ cp[K[Kcp 410-hadoop-allnodes-verify-hadoop-is-not-running.sh 410-hadoop-allnodes-verify-hadoop-is-not-running.sh [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@c[1@c^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ^C
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ 
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               ansible_hosts
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               c
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    ENV
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  [01;34mmultinode[0m
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          README
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  RUN
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               TestDFSIO_results.log
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               ansible_hosts
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               c
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    ENV
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  [01;34mmultinode[0m
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          README
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  RUN
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               TestDFSIO_results.log
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./9[K[K[Kgit pull
+Already up-to-date.
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./[K[Kgit pull
+remote: Counting objects: 3, done.[K
+remote: Compressing objects: 100% (1/1)   [Kremote: Compressing objects: 100% (1/1), done.[K
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0[K
+Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+From https://github.com/radiensoftware/ojo
+   f47a46a..7936b29  master     -> origin/master
+Updating f47a46a..7936b29
+Fast-forward
+ hadoop/900-hadoop-allnodes-verify-hadoop-is-not-running.sh | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100755 hadoop/900-hadoop-allnodes-verify-hadoop-is-not-running.sh
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ 
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ 
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./900-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+6652 Jps
+[0m
+[0;32ms1.daddylabs.com | success | rc=0 >>
+10163 Jps
+[0m
+[0;32mt2.daddylabs.com | success | rc=0 >>
+2783 Jps
+[0m
+[0;32mm1.daddylabs.com | success | rc=0 >>
+9057 Jps
+[0m
+[0;32mm2.daddylabs.com | success | rc=0 >>
+10506 Jps
+[0m
+[0;32mt3.daddylabs.com | success | rc=0 >>
+32448 Jps
+[0m
+[0;32mm3.daddylabs.com | success | rc=0 >>
+32320 Jps
+[0m
+[0;32ms3.daddylabs.com | success | rc=0 >>
+9507 Jps
+[0m
+[0;32mt4.daddylabs.com | success | rc=0 >>
+3644 Jps
+[0m
+[0;32ms4.daddylabs.com | success | rc=0 >>
+3773 Jps
+[0m
+[0;32mm4.daddylabs.com | success | rc=0 >>
+16789 Jps
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               [01;32m900-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               ansible_hosts
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    c
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  ENV
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          [01;34mmultinode[0m
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  README
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               RUN
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m                           TestDFSIO_results.log
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ 
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./500-hadoop-master-start-hdfs.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+starting namenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-namenode-t1.daddylabs.com.out
+t1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t1.daddylabs.com: 
+t1.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-t1.daddylabs.com.out
+s1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s1.daddylabs.com: 
+s1.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-s1.daddylabs.com.out
+m3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m3.daddylabs.com: 
+m3.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-m3.daddylabs.com.out
+m4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m4.daddylabs.com: 
+m4.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-m4.daddylabs.com.out
+s3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s3.daddylabs.com: 
+s3.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-s3.daddylabs.com.out
+m2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m2.daddylabs.com: 
+m2.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-m2.daddylabs.com.out
+t4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t4.daddylabs.com: 
+t4.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-t4.daddylabs.com.out
+t2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t2.daddylabs.com: 
+t2.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-t2.daddylabs.com.out
+m1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m1.daddylabs.com: 
+m1.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-m1.daddylabs.com.out
+t3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t3.daddylabs.com: 
+t3.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-t3.daddylabs.com.out
+s4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s4.daddylabs.com: 
+s4.daddylabs.com: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-s4.daddylabs.com.outWarning: $HADOOP_HOME is deprecated.
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./600-hadoop-master-start-mapreduce.sh 
+[0;32mt1.daddylabs.com | success | rc=0 >>
+starting jobtracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-jobtracker-t1.daddylabs.com.out
+t1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t1.daddylabs.com: 
+t1.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-t1.daddylabs.com.out
+s4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s4.daddylabs.com: 
+s4.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-s4.daddylabs.com.out
+m3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m3.daddylabs.com: 
+m3.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-m3.daddylabs.com.out
+t3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t3.daddylabs.com: 
+t3.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-t3.daddylabs.com.out
+m1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m1.daddylabs.com: 
+m1.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-m1.daddylabs.com.out
+m4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m4.daddylabs.com: 
+m4.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-m4.daddylabs.com.out
+t2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t2.daddylabs.com: 
+t2.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-t2.daddylabs.com.out
+m2.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+m2.daddylabs.com: 
+m2.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-m2.daddylabs.com.out
+s1.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s1.daddylabs.com: 
+s1.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-s1.daddylabs.com.out
+t4.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+t4.daddylabs.com: 
+t4.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-t4.daddylabs.com.out
+s3.daddylabs.com: Warning: $HADOOP_HOME is deprecated.
+s3.daddylabs.com: 
+s3.daddylabs.com: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-s3.daddylabs.com.outWarning: $HADOOP_HOME is deprecated.
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               [01;32m900-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               ansible_hosts
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    c
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  ENV
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          [01;34mmultinode[0m
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  README
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               RUN
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m                           TestDFSIO_results.log
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./900-hadoop-allnodes-verify-hadoop-is-not-running.sh 
+[0;32mt2.daddylabs.com | success | rc=0 >>
+2854 DataNode
+3358 Jps
+3087 TaskTracker
+[0m
+[0;32mm1.daddylabs.com | success | rc=0 >>
+9125 DataNode
+9268 TaskTracker
+9539 Jps
+[0m
+[0;32mt1.daddylabs.com | success | rc=0 >>
+7480 TaskTracker
+7026 DataNode
+7874 Jps
+7288 JobTracker
+6854 NameNode
+[0m
+[0;32ms1.daddylabs.com | success | rc=0 >>
+10645 Jps
+10239 DataNode
+10374 TaskTracker
+[0m
+[0;32mt3.daddylabs.com | success | rc=0 >>
+32656 TaskTracker
+32523 DataNode
+475 Jps
+[0m
+[0;32mm3.daddylabs.com | success | rc=0 >>
+32527 TaskTracker
+32394 DataNode
+332 Jps
+[0m
+[0;32ms3.daddylabs.com | success | rc=0 >>
+9714 TaskTracker
+9573 DataNode
+9985 Jps
+[0m
+[0;32mt4.daddylabs.com | success | rc=0 >>
+3710 DataNode
+3851 TaskTracker
+4122 Jps
+[0m
+[0;32mm4.daddylabs.com | success | rc=0 >>
+16863 DataNode
+17004 TaskTracker
+17275 Jps
+[0m
+[0;32ms4.daddylabs.com | success | rc=0 >>
+4251 Jps
+3847 DataNode
+3980 TaskTracker
+[0m
+[0;32mm2.daddylabs.com | success | rc=0 >>
+10717 TaskTracker
+10988 Jps
+10574 DataNode
+[0m
+]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ./900-hadoop-allnodes-verify-hadoop-is-not-running.sh |less
+[?1049h[?1h=m2.daddylabs.com | success | rc=0 >>
+10717 TaskTracker
+11062 Jps
+10574 DataNode
+
+t3.daddylabs.com | success | rc=0 >>
+551 Jps
+32656 TaskTracker
+32523 DataNode
+
+t2.daddylabs.com | success | rc=0 >>
+2854 DataNode
+3432 Jps
+3087 TaskTracker
+
+s3.daddylabs.com | success | rc=0 >>
+10059 Jps
+9714 TaskTracker
+9573 DataNode
+
+s1.daddylabs.com | success | rc=0 >>
+10719 Jps
+10239 DataNode
+10374 TaskTracker
+
+t4.daddylabs.com | success | rc=0 >>
+4196 Jps
+3710 DataNode
+3851 TaskTracker
+
+t1.daddylabs.com | success | rc=0 >>
+7480 TaskTracker
+7026 DataNode
+7288 JobTracker
+8120 Jps
+6854 NameNode
+
+s4.daddylabs.com | success | rc=0 >>
+4333 Jps
+3847 DataNode
+3980 TaskTracker
+
+m1.daddylabs.com | success | rc=0 >>
+9125 DataNode
+9613 Jps
+9268 TaskTracker
+
+m3.daddylabs.com | success | rc=0 >>
+412 Jps
+32527 TaskTracker
+32394 DataNode
+
+:[K[Km4.daddylabs.com | success | rc=0 >>
+16863 DataNode
+17004 TaskTracker
+17349 Jps
+
+[7m(END) [27m[K[K[?1l>[?1049l]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ ls
+[0m[01;32m000-hadoop-allnodes-ssh-login-prepare.sh[0m          [01;32m330-hadoop-allnodes-give-them-a-couple-of-minutes-to-boot.sh[0m  [01;32m710-hadoop-master-verify-jobtracker-is-down.sh[0m
+[01;32m000-hadoop-allnodes-status.sh[0m                     [01;32m340-hadoop-allnodes-verify-they-are-back-up.sh[0m                [01;32m720-hadoop-slaves-verify-tasktrackers-are-down.sh[0m
+[01;32m100-hadoop-allnodes-ping.sh[0m                       [01;32m350-hadoop-allnodes-check-uptime.sh[0m                           [01;32m800-hadoop-master-stop-hdfs.sh[0m
+[01;32m110-hadoop-master-ping.sh[0m                         [01;32m400-hadoop-allnodes-remove-data.sh[0m                            [01;32m810-hadoop-master-verify-namenode-is-down.sh[0m
+[01;32m120-hadoop-slaves-ping.sh[0m                         [01;32m410-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m           [01;32m820-hadoop-slaves-verify-datanodes-are-down.sh[0m
+[01;32m200-hadoop-master-configure-masters.sh[0m            [01;32m420-hadoop-master-format-dfs.sh[0m                               [01;32m900-hadoop-allnodes-verify-hadoop-is-not-running.sh[0m
+[01;32m210-hadoop-master-configure-slaves.sh[0m             [01;32m500-hadoop-master-start-hdfs.sh[0m                               ansible_hosts
+[01;32m220-hadoop-allnodes-configure-core-site-xml.sh[0m    [01;32m510-hadoop-master-verify-namenode-is-up.sh[0m                    c
+[01;32m230-hadoop-allnodes-configure-hdfs-site-xml.sh[0m    [01;32m520-hadoop-slaves-verify-datanodes-are-up.sh[0m                  ENV
+[01;32m240-hadoop-allnodes-configure-mapred-site-xml.sh[0m  [01;32m600-hadoop-master-start-mapreduce.sh[0m                          [01;34mmultinode[0m
+[01;32m300-hadoop-allnodes-stop-hadoop.sh[0m                [01;32m610-hadoop-master-verify-jobtracker-is-up.sh[0m                  README
+[01;32m310-hadoop-allnodes-verify-hadoop-has-stopped.sh[0m  [01;32m620-hadoop-slaves-verify-tasktrackers-are-up.sh[0m               RUN
+[01;32m320-hadoop-allnodes-reboot.sh[0m                     [01;32m700-hadoop-master-stop-mapreduce.sh[0m                           TestDFSIO_results.log
+[m]0;hadoop@t1:~/ojo/hadoop[hadoop@t1 hadoop]$ cd ../terasort/
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ git put[Kll
+remote: Counting objects: 4, done.[K
+remote: Compressing objects:  50% (1/2)   [Kremote: Compressing objects: 100% (2/2)   [Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 4 (delta 2), reused 4 (delta 2), pack-reused 0[K
+Unpacking objects:  25% (1/4)   Unpacking objects:  50% (2/4)   Unpacking objects:  75% (3/4)   Unpacking objects: 100% (4/4)   Unpacking objects: 100% (4/4), done.
+From https://github.com/radiensoftware/ojo
+   7936b29..ab9c91a  master     -> origin/master
+Updating 7936b29..ab9c91a
+Fast-forward
+ terasort/terasort-faster.sh | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 terasort/terasort-faster.sh
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ls
+c  H  nohup.out  [0m[01;32mteragen-default.sh[0m  [01;32mteragen-more-maptasks.sh[0m  terasort-faster.sh  terasort.session.out
+[m]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ add[K[K[Kchmod +x terasort
+chmod: cannot access `terasort': No such file or directory
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ./[K[Kchmod +x ./terasort-faster.sh 
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ !$[K[Kcat !$
+cat ./terasort-faster.sh
+#!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
+hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar terasort -Dmapred.reduce.tasks=1000 tera-input tera-output
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop fs -ls
+Warning: $HADOOP_HOME is deprecated.
+
+Found 2 items
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 15:54 /user/hadoop/tera-input
+drwxr-xr-x   - hadoop supergroup          0 2015-06-21 15:28 /user/hadoop/tera-output
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop fs -ls tera-output[1P tera-output[1P tera-outputr tera-outputm tera-outputr tera-output
+Warning: $HADOOP_HOME is deprecated.
+
+Deleted hdfs://10.10.10.31:54310/user/hadoop/tera-output
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ hadoop fs -rmr tera-outputls[Kcat ./terasort-faster.sh[C[C[C
+#!/bin/bash
+#
+# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
+#
+
+hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar terasort -Dmapred.reduce.tasks=1000 tera-input tera-output
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ./terasort-faster.sh 
+Warning: $HADOOP_HOME is deprecated.
+
+15/06/21 16:46:56 INFO terasort.TeraSort: starting
+15/06/21 16:46:57 INFO mapred.FileInputFormat: Total input paths to process : 10000
+15/06/21 16:47:00 INFO util.NativeCodeLoader: Loaded the native-hadoop library
+15/06/21 16:47:00 WARN snappy.LoadSnappy: Snappy native library not loaded
+15/06/21 16:47:01 INFO zlib.ZlibFactory: Successfully loaded & initialized native-zlib library
+15/06/21 16:47:01 INFO compress.CodecPool: Got brand-new compressor
+Making 1000 from 100000 records
+Step size is 100.0
+15/06/21 16:47:02 INFO mapred.FileInputFormat: Total input paths to process : 10000
+15/06/21 16:47:05 INFO mapred.JobClient: Running job: job_201506211607_0001
+15/06/21 16:47:06 INFO mapred.JobClient:  map 0% reduce 0%
+15/06/21 16:47:33 INFO mapred.JobClient:  map 1% reduce 0%
+15/06/21 16:47:56 INFO mapred.JobClient:  map 2% reduce 0%
+15/06/21 16:48:19 INFO mapred.JobClient:  map 3% reduce 0%
+15/06/21 16:48:41 INFO mapred.JobClient:  map 4% reduce 0%
+15/06/21 16:49:05 INFO mapred.JobClient:  map 5% reduce 0%
+15/06/21 16:49:31 INFO mapred.JobClient:  map 6% reduce 0%
+15/06/21 16:49:54 INFO mapred.JobClient:  map 7% reduce 0%
+15/06/21 16:50:17 INFO mapred.JobClient:  map 8% reduce 0%
+15/06/21 16:50:42 INFO mapred.JobClient:  map 9% reduce 0%
+15/06/21 16:51:05 INFO mapred.JobClient:  map 10% reduce 0%
+15/06/21 16:51:28 INFO mapred.JobClient:  map 11% reduce 0%
+15/06/21 16:51:52 INFO mapred.JobClient:  map 12% reduce 0%
+15/06/21 16:52:16 INFO mapred.JobClient:  map 13% reduce 0%
+15/06/21 16:52:40 INFO mapred.JobClient:  map 14% reduce 0%
+15/06/21 16:53:04 INFO mapred.JobClient:  map 15% reduce 0%
+15/06/21 16:53:26 INFO mapred.JobClient:  map 16% reduce 0%
+15/06/21 16:53:52 INFO mapred.JobClient:  map 17% reduce 0%
+15/06/21 16:54:14 INFO mapred.JobClient:  map 18% reduce 0%
+15/06/21 16:54:39 INFO mapred.JobClient:  map 19% reduce 0%
+15/06/21 16:55:02 INFO mapred.JobClient:  map 20% reduce 0%
+15/06/21 16:55:26 INFO mapred.JobClient:  map 21% reduce 0%
+15/06/21 16:55:49 INFO mapred.JobClient:  map 22% reduce 0%
+15/06/21 16:56:13 INFO mapred.JobClient:  map 23% reduce 0%
+15/06/21 16:56:37 INFO mapred.JobClient:  map 24% reduce 0%
+15/06/21 16:57:02 INFO mapred.JobClient:  map 25% reduce 0%
+15/06/21 16:57:25 INFO mapred.JobClient:  map 26% reduce 0%
+15/06/21 16:57:52 INFO mapred.JobClient:  map 27% reduce 0%
+15/06/21 16:58:16 INFO mapred.JobClient:  map 28% reduce 0%
+15/06/21 16:58:42 INFO mapred.JobClient:  map 29% reduce 0%
+15/06/21 16:59:05 INFO mapred.JobClient:  map 30% reduce 0%
+15/06/21 16:59:29 INFO mapred.JobClient:  map 31% reduce 0%
+15/06/21 16:59:54 INFO mapred.JobClient:  map 32% reduce 0%
+15/06/21 17:00:19 INFO mapred.JobClient:  map 33% reduce 0%
+15/06/21 17:00:42 INFO mapred.JobClient:  map 34% reduce 0%
+15/06/21 17:01:06 INFO mapred.JobClient:  map 35% reduce 0%
+15/06/21 17:01:29 INFO mapred.JobClient:  map 36% reduce 0%
+15/06/21 17:01:53 INFO mapred.JobClient:  map 37% reduce 0%
+15/06/21 17:02:18 INFO mapred.JobClient:  map 38% reduce 0%
+15/06/21 17:02:42 INFO mapred.JobClient:  map 39% reduce 0%
+15/06/21 17:03:05 INFO mapred.JobClient:  map 40% reduce 0%
+15/06/21 17:03:31 INFO mapred.JobClient:  map 41% reduce 0%
+15/06/21 17:03:55 INFO mapred.JobClient:  map 42% reduce 0%
+15/06/21 17:04:19 INFO mapred.JobClient:  map 43% reduce 0%
+15/06/21 17:04:43 INFO mapred.JobClient:  map 44% reduce 0%
+15/06/21 17:05:09 INFO mapred.JobClient:  map 45% reduce 0%
+15/06/21 17:05:33 INFO mapred.JobClient:  map 46% reduce 0%
+15/06/21 17:05:57 INFO mapred.JobClient:  map 47% reduce 0%
+15/06/21 17:06:21 INFO mapred.JobClient:  map 48% reduce 0%
+15/06/21 17:06:47 INFO mapred.JobClient:  map 49% reduce 0%
+15/06/21 17:07:11 INFO mapred.JobClient:  map 50% reduce 0%
+15/06/21 17:07:34 INFO mapred.JobClient:  map 51% reduce 0%
+15/06/21 17:07:58 INFO mapred.JobClient:  map 52% reduce 0%
+15/06/21 17:08:23 INFO mapred.JobClient:  map 53% reduce 0%
+15/06/21 17:08:47 INFO mapred.JobClient:  map 54% reduce 0%
+15/06/21 17:09:11 INFO mapred.JobClient:  map 55% reduce 0%
+15/06/21 17:09:35 INFO mapred.JobClient:  map 56% reduce 0%
+15/06/21 17:09:59 INFO mapred.JobClient:  map 57% reduce 0%
+15/06/21 17:10:24 INFO mapred.JobClient:  map 58% reduce 0%
+15/06/21 17:10:48 INFO mapred.JobClient:  map 59% reduce 0%
+15/06/21 17:11:13 INFO mapred.JobClient:  map 60% reduce 0%
+15/06/21 17:11:36 INFO mapred.JobClient:  map 61% reduce 0%
+15/06/21 17:12:02 INFO mapred.JobClient:  map 62% reduce 0%
+15/06/21 17:12:26 INFO mapred.JobClient:  map 63% reduce 0%
+15/06/21 17:12:49 INFO mapred.JobClient:  map 64% reduce 0%
+15/06/21 17:13:13 INFO mapred.JobClient:  map 65% reduce 0%
+15/06/21 17:13:37 INFO mapred.JobClient:  map 66% reduce 0%
+15/06/21 17:14:01 INFO mapred.JobClient:  map 67% reduce 0%
+15/06/21 17:14:26 INFO mapred.JobClient:  map 68% reduce 0%
+15/06/21 17:14:50 INFO mapred.JobClient:  map 69% reduce 0%
+15/06/21 17:15:15 INFO mapred.JobClient:  map 70% reduce 0%
+15/06/21 17:15:39 INFO mapred.JobClient:  map 71% reduce 0%
+15/06/21 17:16:02 INFO mapred.JobClient:  map 72% reduce 0%
+15/06/21 17:16:26 INFO mapred.JobClient:  map 73% reduce 0%
+15/06/21 17:16:50 INFO mapred.JobClient:  map 74% reduce 0%
+15/06/21 17:17:14 INFO mapred.JobClient:  map 75% reduce 0%
+15/06/21 17:17:38 INFO mapred.JobClient:  map 76% reduce 0%
+15/06/21 17:18:02 INFO mapred.JobClient:  map 77% reduce 0%
+15/06/21 17:18:28 INFO mapred.JobClient:  map 78% reduce 0%
+15/06/21 17:18:52 INFO mapred.JobClient:  map 79% reduce 0%
+15/06/21 17:19:15 INFO mapred.JobClient:  map 80% reduce 0%
+15/06/21 17:19:41 INFO mapred.JobClient:  map 81% reduce 0%
+15/06/21 17:20:04 INFO mapred.JobClient:  map 82% reduce 0%
+15/06/21 17:20:29 INFO mapred.JobClient:  map 83% reduce 0%
+15/06/21 17:20:53 INFO mapred.JobClient:  map 84% reduce 0%
+15/06/21 17:21:16 INFO mapred.JobClient:  map 85% reduce 0%
+15/06/21 17:21:40 INFO mapred.JobClient:  map 86% reduce 0%
+15/06/21 17:22:05 INFO mapred.JobClient:  map 87% reduce 0%
+15/06/21 17:22:30 INFO mapred.JobClient:  map 88% reduce 0%
+15/06/21 17:22:55 INFO mapred.JobClient:  map 89% reduce 0%
+15/06/21 17:23:18 INFO mapred.JobClient:  map 90% reduce 0%
+15/06/21 17:23:42 INFO mapred.JobClient:  map 91% reduce 0%
+15/06/21 17:24:06 INFO mapred.JobClient:  map 92% reduce 0%
+15/06/21 17:24:30 INFO mapred.JobClient:  map 93% reduce 0%
+15/06/21 17:24:55 INFO mapred.JobClient:  map 94% reduce 0%
+15/06/21 17:25:26 INFO mapred.JobClient:  map 95% reduce 0%
+15/06/21 17:26:13 INFO mapred.JobClient:  map 96% reduce 0%
+15/06/21 17:27:10 INFO mapred.JobClient:  map 97% reduce 0%
+15/06/21 17:28:10 INFO mapred.JobClient:  map 98% reduce 0%
+15/06/21 17:29:38 INFO mapred.JobClient:  map 99% reduce 0%
+15/06/21 17:32:58 INFO mapred.JobClient:  map 100% reduce 0%
+15/06/21 17:33:18 INFO mapred.JobClient:  map 100% reduce 1%
+15/06/21 17:34:32 INFO mapred.JobClient:  map 100% reduce 2%
+15/06/21 17:39:36 INFO mapred.JobClient:  map 100% reduce 3%
+15/06/21 17:40:01 INFO mapred.JobClient:  map 100% reduce 4%
+15/06/21 17:44:15 INFO mapred.JobClient:  map 100% reduce 5%
+15/06/21 17:45:06 INFO mapred.JobClient:  map 100% reduce 6%
+15/06/21 17:48:47 INFO mapred.JobClient:  map 100% reduce 7%
+15/06/21 17:49:56 INFO mapred.JobClient:  map 100% reduce 8%
+15/06/21 17:53:00 INFO mapred.JobClient:  map 100% reduce 9%
+15/06/21 17:54:27 INFO mapred.JobClient:  map 100% reduce 10%
+15/06/21 17:57:51 INFO mapred.JobClient:  map 100% reduce 11%
+15/06/21 17:58:49 INFO mapred.JobClient:  map 100% reduce 12%
+15/06/21 18:02:25 INFO mapred.JobClient:  map 100% reduce 13%
+15/06/21 18:03:14 INFO mapred.JobClient:  map 100% reduce 14%
+15/06/21 18:06:33 INFO mapred.JobClient:  map 100% reduce 15%
+15/06/21 18:08:02 INFO mapred.JobClient:  map 100% reduce 16%
+15/06/21 18:10:52 INFO mapred.JobClient:  map 100% reduce 17%
+15/06/21 18:12:59 INFO mapred.JobClient:  map 100% reduce 18%
+15/06/21 18:15:28 INFO mapred.JobClient:  map 100% reduce 19%
+15/06/21 18:17:29 INFO mapred.JobClient:  map 100% reduce 20%
+15/06/21 18:20:42 INFO mapred.JobClient:  map 100% reduce 21%
+15/06/21 18:21:40 INFO mapred.JobClient:  map 100% reduce 22%
+15/06/21 18:24:33 INFO mapred.JobClient:  map 100% reduce 23%
+15/06/21 18:26:07 INFO mapred.JobClient:  map 100% reduce 24%
+15/06/21 18:28:51 INFO mapred.JobClient:  map 100% reduce 25%
+15/06/21 18:30:26 INFO mapred.JobClient:  map 100% reduce 26%
+15/06/21 18:33:33 INFO mapred.JobClient:  map 100% reduce 27%
+15/06/21 18:34:45 INFO mapred.JobClient:  map 100% reduce 28%
+15/06/21 18:38:44 INFO mapred.JobClient:  map 100% reduce 29%
+15/06/21 18:39:05 INFO mapred.JobClient:  map 100% reduce 30%
+15/06/21 18:43:10 INFO mapred.JobClient:  map 100% reduce 31%
+15/06/21 18:44:07 INFO mapred.JobClient:  map 100% reduce 32%
+15/06/21 18:47:59 INFO mapred.JobClient:  map 100% reduce 33%
+15/06/21 18:48:51 INFO mapred.JobClient:  map 100% reduce 34%
+15/06/21 18:52:27 INFO mapred.JobClient:  map 100% reduce 35%
+15/06/21 18:53:18 INFO mapred.JobClient:  map 100% reduce 36%
+15/06/21 18:56:54 INFO mapred.JobClient:  map 100% reduce 37%
+15/06/21 18:58:38 INFO mapred.JobClient:  map 100% reduce 38%
+15/06/21 19:01:33 INFO mapred.JobClient:  map 100% reduce 39%
+15/06/21 19:03:29 INFO mapred.JobClient:  map 100% reduce 40%
+15/06/21 19:05:49 INFO mapred.JobClient:  map 100% reduce 41%
+15/06/21 19:08:21 INFO mapred.JobClient:  map 100% reduce 42%
+15/06/21 19:10:23 INFO mapred.JobClient:  map 100% reduce 43%
+15/06/21 19:12:58 INFO mapred.JobClient:  map 100% reduce 44%
+15/06/21 19:15:05 INFO mapred.JobClient:  map 100% reduce 45%
+15/06/21 19:17:37 INFO mapred.JobClient:  map 100% reduce 46%
+15/06/21 19:19:18 INFO mapred.JobClient:  map 100% reduce 47%
+15/06/21 19:22:26 INFO mapred.JobClient:  map 100% reduce 48%
+15/06/21 19:23:54 INFO mapred.JobClient:  map 100% reduce 49%
+15/06/21 19:26:42 INFO mapred.JobClient:  map 100% reduce 50%
+15/06/21 19:28:13 INFO mapred.JobClient:  map 100% reduce 51%
+15/06/21 19:31:40 INFO mapred.JobClient:  map 100% reduce 52%
+15/06/21 19:32:32 INFO mapred.JobClient:  map 100% reduce 53%
+15/06/21 19:36:15 INFO mapred.JobClient:  map 100% reduce 54%
+15/06/21 19:37:30 INFO mapred.JobClient:  map 100% reduce 55%
+15/06/21 19:40:58 INFO mapred.JobClient:  map 100% reduce 56%
+15/06/21 19:42:05 INFO mapred.JobClient:  map 100% reduce 57%
+15/06/21 19:45:22 INFO mapred.JobClient:  map 100% reduce 58%
+15/06/21 19:46:40 INFO mapred.JobClient:  map 100% reduce 59%
+15/06/21 19:49:42 INFO mapred.JobClient:  map 100% reduce 60%
+15/06/21 19:51:24 INFO mapred.JobClient:  map 100% reduce 61%
+15/06/21 19:54:23 INFO mapred.JobClient:  map 100% reduce 62%
+15/06/21 19:56:08 INFO mapred.JobClient:  map 100% reduce 63%
+15/06/21 19:58:41 INFO mapred.JobClient:  map 100% reduce 64%
+15/06/21 20:00:17 INFO mapred.JobClient:  map 100% reduce 65%
+15/06/21 20:03:13 INFO mapred.JobClient:  map 100% reduce 66%
+15/06/21 20:05:19 INFO mapred.JobClient:  map 100% reduce 67%
+15/06/21 20:07:31 INFO mapred.JobClient:  map 100% reduce 68%
+15/06/21 20:10:35 INFO mapred.JobClient:  map 100% reduce 69%
+15/06/21 20:11:54 INFO mapred.JobClient:  map 100% reduce 70%
+15/06/21 20:15:28 INFO mapred.JobClient:  map 100% reduce 71%
+15/06/21 20:16:10 INFO mapred.JobClient:  map 100% reduce 72%
+15/06/21 20:20:00 INFO mapred.JobClient:  map 100% reduce 73%
+15/06/21 20:20:38 INFO mapred.JobClient:  map 100% reduce 74%
+15/06/21 20:24:25 INFO mapred.JobClient:  map 100% reduce 75%
+15/06/21 20:25:21 INFO mapred.JobClient:  map 100% reduce 76%
+15/06/21 20:28:44 INFO mapred.JobClient:  map 100% reduce 77%
+15/06/21 20:30:12 INFO mapred.JobClient:  map 100% reduce 78%
+15/06/21 20:33:01 INFO mapred.JobClient:  map 100% reduce 79%
+15/06/21 20:34:47 INFO mapred.JobClient:  map 100% reduce 80%
+15/06/21 20:37:38 INFO mapred.JobClient:  map 100% reduce 81%
+15/06/21 20:39:26 INFO mapred.JobClient:  map 100% reduce 82%
+15/06/21 20:41:48 INFO mapred.JobClient:  map 100% reduce 83%
+15/06/21 20:44:43 INFO mapred.JobClient:  map 100% reduce 84%
+15/06/21 20:46:27 INFO mapred.JobClient:  map 100% reduce 85%
+15/06/21 20:49:25 INFO mapred.JobClient:  map 100% reduce 86%
+15/06/21 20:51:13 INFO mapred.JobClient:  map 100% reduce 87%
+15/06/21 20:53:41 INFO mapred.JobClient:  map 100% reduce 88%
+15/06/21 20:55:49 INFO mapred.JobClient:  map 100% reduce 89%
+15/06/21 20:58:52 INFO mapred.JobClient:  map 100% reduce 90%
+15/06/21 21:00:04 INFO mapred.JobClient:  map 100% reduce 91%
+15/06/21 21:03:25 INFO mapred.JobClient:  map 100% reduce 92%
+15/06/21 21:04:49 INFO mapred.JobClient:  map 100% reduce 93%
+15/06/21 21:07:46 INFO mapred.JobClient:  map 100% reduce 94%
+15/06/21 21:09:13 INFO mapred.JobClient:  map 100% reduce 95%
+15/06/21 21:12:20 INFO mapred.JobClient:  map 100% reduce 96%
+15/06/21 21:13:39 INFO mapred.JobClient:  map 100% reduce 97%
+15/06/21 21:16:54 INFO mapred.JobClient:  map 100% reduce 98%
+15/06/21 21:19:01 INFO mapred.JobClient:  map 100% reduce 99%
+15/06/21 21:21:42 INFO mapred.JobClient:  map 100% reduce 100%
+15/06/21 21:21:44 INFO mapred.JobClient: Job complete: job_201506211607_0001
+15/06/21 21:21:45 INFO mapred.JobClient: Counters: 31
+15/06/21 21:21:45 INFO mapred.JobClient:   Job Counters 
+15/06/21 21:21:45 INFO mapred.JobClient:     Launched reduce tasks=1017
+15/06/21 21:21:45 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=56873595
+15/06/21 21:21:45 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+15/06/21 21:21:45 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+15/06/21 21:21:45 INFO mapred.JobClient:     Rack-local map tasks=69
+15/06/21 21:21:45 INFO mapred.JobClient:     Launched map tasks=10015
+15/06/21 21:21:45 INFO mapred.JobClient:     Data-local map tasks=9946
+15/06/21 21:21:45 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=357702923
+15/06/21 21:21:45 INFO mapred.JobClient:   File Input Format Counters 
+15/06/21 21:21:45 INFO mapred.JobClient:     Bytes Read=1000000000000
+15/06/21 21:21:45 INFO mapred.JobClient:   File Output Format Counters 
+15/06/21 21:21:45 INFO mapred.JobClient:     Bytes Written=1000000000000
+15/06/21 21:21:45 INFO mapred.JobClient:   FileSystemCounters
+15/06/21 21:21:45 INFO mapred.JobClient:     FILE_BYTES_READ=2299760436392
+15/06/21 21:21:45 INFO mapred.JobClient:     HDFS_BYTES_READ=1000001110000
+15/06/21 21:21:45 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=3238432990705
+15/06/21 21:21:45 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=1000000000000
+15/06/21 21:21:45 INFO mapred.JobClient:   Map-Reduce Framework
+15/06/21 21:21:45 INFO mapred.JobClient:     Map output materialized bytes=1020060000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Map input records=10000000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Reduce shuffle bytes=1020060000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Spilled Records=31737645893
+15/06/21 21:21:45 INFO mapred.JobClient:     Map output bytes=1000000000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Total committed heap usage (bytes)=1911907090432
+15/06/21 21:21:45 INFO mapred.JobClient:     CPU time spent (ms)=118261330
+15/06/21 21:21:45 INFO mapred.JobClient:     Map input bytes=1000000000000
+15/06/21 21:21:45 INFO mapred.JobClient:     SPLIT_RAW_BYTES=1110000
+15/06/21 21:21:45 INFO mapred.JobClient:     Combine input records=0
+15/06/21 21:21:45 INFO mapred.JobClient:     Reduce input records=10000000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Reduce input groups=4294967296
+15/06/21 21:21:45 INFO mapred.JobClient:     Combine output records=0
+15/06/21 21:21:45 INFO mapred.JobClient:     Physical memory (bytes) snapshot=2419486732288
+15/06/21 21:21:45 INFO mapred.JobClient:     Reduce output records=10000000000
+15/06/21 21:21:45 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=7025231536128
+15/06/21 21:21:45 INFO mapred.JobClient:     Map output records=10000000000
+15/06/21 21:21:45 INFO terasort.TeraSort: done
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ 
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ 
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping t1
+PING t1.daddylabs.com (10.10.10.31) 56(84) bytes of data.
+64 bytes from 10.10.10.31: icmp_seq=1 ttl=64 time=0.032 ms
+64 bytes from 10.10.10.31: icmp_seq=2 ttl=64 time=0.053 ms
+^C
+--- t1.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1165ms
+rtt min/avg/max/mdev = 0.032/0.042/0.053/0.012 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping t1[K2
+PING t2.daddylabs.com (10.10.10.32) 56(84) bytes of data.
+64 bytes from 10.10.10.32: icmp_seq=1 ttl=64 time=0.830 ms
+64 bytes from 10.10.10.32: icmp_seq=2 ttl=64 time=0.747 ms
+^C
+--- t2.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1381ms
+rtt min/avg/max/mdev = 0.747/0.788/0.830/0.050 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping t2[K3
+PING t3.daddylabs.com (10.10.10.33) 56(84) bytes of data.
+64 bytes from 10.10.10.33: icmp_seq=1 ttl=64 time=0.783 ms
+64 bytes from 10.10.10.33: icmp_seq=2 ttl=64 time=0.771 ms
+^C
+--- t3.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1302ms
+rtt min/avg/max/mdev = 0.771/0.777/0.783/0.006 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping t3[K4
+PING t4.daddylabs.com (10.10.10.34) 56(84) bytes of data.
+64 bytes from 10.10.10.34: icmp_seq=1 ttl=64 time=0.847 ms
+64 bytes from 10.10.10.34: icmp_seq=2 ttl=64 time=0.703 ms
+^C
+--- t4.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1086ms
+rtt min/avg/max/mdev = 0.703/0.775/0.847/0.072 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping t4[K[Ks1
+PING s1.daddylabs.com (10.10.10.41) 56(84) bytes of data.
+64 bytes from 10.10.10.41: icmp_seq=1 ttl=64 time=0.826 ms
+64 bytes from 10.10.10.41: icmp_seq=2 ttl=64 time=0.781 ms
+^C
+--- s1.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1063ms
+rtt min/avg/max/mdev = 0.781/0.803/0.826/0.036 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping s1[K2
+PING s2.daddylabs.com (10.10.10.42) 56(84) bytes of data.
+64 bytes from 10.10.10.42: icmp_seq=1 ttl=64 time=1.88 ms
+64 bytes from 10.10.10.42: icmp_seq=2 ttl=64 time=0.700 ms
+^C
+--- s2.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1719ms
+rtt min/avg/max/mdev = 0.700/1.292/1.885/0.593 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping s2[K3
+PING s3.daddylabs.com (10.10.10.43) 56(84) bytes of data.
+64 bytes from 10.10.10.43: icmp_seq=1 ttl=64 time=0.734 ms
+64 bytes from 10.10.10.43: icmp_seq=2 ttl=64 time=0.762 ms
+^C
+--- s3.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1063ms
+rtt min/avg/max/mdev = 0.734/0.748/0.762/0.014 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping s3[K4
+PING s4.daddylabs.com (10.10.10.44) 56(84) bytes of data.
+64 bytes from 10.10.10.44: icmp_seq=1 ttl=64 time=0.841 ms
+64 bytes from 10.10.10.44: icmp_seq=2 ttl=64 time=0.769 ms
+^C
+--- s4.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1078ms
+rtt min/avg/max/mdev = 0.769/0.805/0.841/0.036 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping s4[K5
+ping: unknown host s5
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping s5[K[Km1
+PING m1.daddylabs.com (10.10.10.51) 56(84) bytes of data.
+64 bytes from 10.10.10.51: icmp_seq=1 ttl=64 time=0.791 ms
+^C
+--- m1.daddylabs.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 942ms
+rtt min/avg/max/mdev = 0.791/0.791/0.791/0.000 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping m1[K2
+PING m2.daddylabs.com (10.10.10.52) 56(84) bytes of data.
+64 bytes from 10.10.10.52: icmp_seq=1 ttl=64 time=0.761 ms
+64 bytes from 10.10.10.52: icmp_seq=2 ttl=64 time=0.746 ms
+^C
+--- m2.daddylabs.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1064ms
+rtt min/avg/max/mdev = 0.746/0.753/0.761/0.028 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping m2[K3
+PING m3.daddylabs.com (10.10.10.53) 56(84) bytes of data.
+64 bytes from 10.10.10.53: icmp_seq=1 ttl=64 time=0.778 ms
+^C
+--- m3.daddylabs.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 927ms
+rtt min/avg/max/mdev = 0.778/0.778/0.778/0.000 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ping m3[K4
+PING m4.daddylabs.com (10.10.10.54) 56(84) bytes of data.
+64 bytes from 10.10.10.54: icmp_seq=1 ttl=64 time=0.807 ms
+^C
+--- m4.daddylabs.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 982ms
+rtt min/avg/max/mdev = 0.807/0.807/0.807/0.000 ms
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ clear
+[H[2J]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:51 ?        00:00:00 /sbin/init
+root         2     0  0 03:51 ?        00:00:00 [kthreadd]
+root         3     2  0 03:51 ?        00:00:02 [migration/0]
+root         4     2  0 03:51 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 03:51 ?        00:00:00 [stopper/0]
+root         6     2  0 03:51 ?        00:00:00 [watchdog/0]
+root         7     2  0 03:51 ?        00:00:00 [migration/1]
+root         8     2  0 03:51 ?        00:00:00 [stopper/1]
+root         9     2  0 03:51 ?        00:00:00 [ksoftirqd/1]
+root        10     2  0 03:51 ?        00:00:00 [watchdog/1]
+root        11     2  0 03:51 ?        00:00:00 [migration/2]
+root        12     2  0 03:51 ?        00:00:00 [stopper/2]
+root        13     2  0 03:51 ?        00:00:00 [ksoftirqd/2]
+root        14     2  0 03:51 ?        00:00:00 [watchdog/2]
+root        15     2  0 03:51 ?        00:00:00 [migration/3]
+root        16     2  0 03:51 ?        00:00:00 [stopper/3]
+root        17     2  0 03:51 ?        00:00:00 [ksoftirqd/3]
+root        18     2  0 03:51 ?        00:00:00 [watchdog/3]
+root        19     2  0 03:51 ?        00:00:00 [migration/4]
+root        20     2  0 03:51 ?        00:00:00 [stopper/4]
+root        21     2  0 03:51 ?        00:00:00 [ksoftirqd/4]
+root        22     2  0 03:51 ?        00:00:00 [watchdog/4]
+root        23     2  0 03:51 ?        00:00:00 [migration/5]
+root        24     2  0 03:51 ?        00:00:00 [stopper/5]
+root        25     2  0 03:51 ?        00:00:00 [ksoftirqd/5]
+root        26     2  0 03:51 ?        00:00:00 [watchdog/5]
+root        27     2  0 03:51 ?        00:00:00 [migration/6]
+root        28     2  0 03:51 ?        00:00:00 [stopper/6]
+root        29     2  0 03:51 ?        00:00:00 [ksoftirqd/6]
+root        30     2  0 03:51 ?        00:00:00 [watchdog/6]
+root        31     2  0 03:51 ?        00:00:00 [migration/7]
+root        32     2  0 03:51 ?        00:00:00 [stopper/7]
+root        33     2  0 03:51 ?        00:00:00 [ksoftirqd/7]
+root        34     2  0 03:51 ?        00:00:00 [watchdog/7]
+root        35     2  0 03:51 ?        00:00:03 [events/0]
+root        36     2  0 03:51 ?        00:00:02 [events/1]
+root        37     2  0 03:51 ?        00:00:02 [events/2]
+root        38     2  0 03:51 ?        00:00:02 [events/3]
+root        39     2  0 03:51 ?        00:00:02 [events/4]
+root        40     2  0 03:51 ?        00:00:02 [events/5]
+root        41     2  0 03:51 ?        00:00:02 [events/6]
+root        42     2  0 03:51 ?        00:00:02 [events/7]
+root        43     2  0 03:51 ?        00:00:00 [cgroup]
+root        44     2  0 03:51 ?        00:00:00 [khelper]
+root        45     2  0 03:51 ?        00:00:00 [netns]
+root        46     2  0 03:51 ?        00:00:00 [async/mgr]
+root        47     2  0 03:51 ?        00:00:00 [pm]
+root        48     2  0 03:51 ?        00:00:00 [sync_supers]
+root        49     2  0 03:51 ?        00:00:00 [bdi-default]
+root        50     2  0 03:51 ?        00:00:00 [kintegrityd/0]
+root        51     2  0 03:51 ?        00:00:00 [kintegrityd/1]
+root        52     2  0 03:51 ?        00:00:00 [kintegrityd/2]
+root        53     2  0 03:51 ?        00:00:00 [kintegrityd/3]
+root        54     2  0 03:51 ?        00:00:00 [kintegrityd/4]
+root        55     2  0 03:51 ?        00:00:00 [kintegrityd/5]
+root        56     2  0 03:51 ?        00:00:00 [kintegrityd/6]
+root        57     2  0 03:51 ?        00:00:00 [kintegrityd/7]
+root        58     2  0 03:51 ?        00:00:20 [kblockd/0]
+root        59     2  0 03:51 ?        00:00:00 [kblockd/1]
+root        60     2  0 03:51 ?        00:00:00 [kblockd/2]
+root        61     2  0 03:51 ?        00:00:00 [kblockd/3]
+root        62     2  0 03:51 ?        00:00:00 [kblockd/4]
+root        63     2  0 03:51 ?        00:00:00 [kblockd/5]
+root        64     2  0 03:51 ?        00:00:00 [kblockd/6]
+root        65     2  0 03:51 ?        00:00:00 [kblockd/7]
+root        66     2  0 03:51 ?        00:00:00 [kacpid]
+root        67     2  0 03:51 ?        00:00:00 [kacpi_notify]
+root        68     2  0 03:51 ?        00:00:00 [kacpi_hotplug]
+root        69     2  0 03:51 ?        00:00:00 [ata_aux]
+root        70     2  0 03:51 ?        00:00:00 [ata_sff/0]
+root        71     2  0 03:51 ?        00:00:00 [ata_sff/1]
+root        72     2  0 03:51 ?        00:00:00 [ata_sff/2]
+root        73     2  0 03:51 ?        00:00:00 [ata_sff/3]
+root        74     2  0 03:51 ?        00:00:00 [ata_sff/4]
+root        75     2  0 03:51 ?        00:00:00 [ata_sff/5]
+root        76     2  0 03:51 ?        00:00:00 [ata_sff/6]
+root        77     2  0 03:51 ?        00:00:00 [ata_sff/7]
+root        78     2  0 03:51 ?        00:00:00 [ksuspend_usbd]
+root        79     2  0 03:51 ?        00:00:00 [khubd]
+root        80     2  0 03:51 ?        00:00:00 [kseriod]
+root        81     2  0 03:51 ?        00:00:00 [md/0]
+root        82     2  0 03:51 ?        00:00:00 [md/1]
+root        83     2  0 03:51 ?        00:00:00 [md/2]
+root        84     2  0 03:51 ?        00:00:00 [md/3]
+root        85     2  0 03:51 ?        00:00:00 [md/4]
+root        86     2  0 03:51 ?        00:00:00 [md/5]
+root        87     2  0 03:51 ?        00:00:00 [md/6]
+root        88     2  0 03:51 ?        00:00:00 [md/7]
+root        89     2  0 03:51 ?        00:00:00 [md_misc/0]
+root        90     2  0 03:51 ?        00:00:00 [md_misc/1]
+root        91     2  0 03:51 ?        00:00:00 [md_misc/2]
+root        92     2  0 03:51 ?        00:00:00 [md_misc/3]
+root        93     2  0 03:51 ?        00:00:00 [md_misc/4]
+root        94     2  0 03:51 ?        00:00:00 [md_misc/5]
+root        95     2  0 03:51 ?        00:00:00 [md_misc/6]
+root        96     2  0 03:51 ?        00:00:00 [md_misc/7]
+root        97     2  0 03:51 ?        00:00:00 [linkwatch]
+root        99     2  0 03:51 ?        00:00:00 [khungtaskd]
+root       100     2  0 03:51 ?        00:01:23 [kswapd0]
+root       101     2  0 03:51 ?        00:00:00 [ksmd]
+root       102     2  0 03:51 ?        00:00:04 [khugepaged]
+root       103     2  0 03:51 ?        00:00:00 [aio/0]
+root       104     2  0 03:51 ?        00:00:00 [aio/1]
+root       105     2  0 03:51 ?        00:00:00 [aio/2]
+root       106     2  0 03:51 ?        00:00:00 [aio/3]
+root       107     2  0 03:51 ?        00:00:00 [aio/4]
+root       108     2  0 03:51 ?        00:00:00 [aio/5]
+root       109     2  0 03:51 ?        00:00:00 [aio/6]
+root       110     2  0 03:51 ?        00:00:00 [aio/7]
+root       111     2  0 03:51 ?        00:00:00 [crypto/0]
+root       112     2  0 03:51 ?        00:00:00 [crypto/1]
+root       113     2  0 03:51 ?        00:00:00 [crypto/2]
+root       114     2  0 03:51 ?        00:00:00 [crypto/3]
+root       115     2  0 03:51 ?        00:00:00 [crypto/4]
+root       116     2  0 03:51 ?        00:00:00 [crypto/5]
+root       117     2  0 03:51 ?        00:00:00 [crypto/6]
+root       118     2  0 03:51 ?        00:00:00 [crypto/7]
+root       126     2  0 03:51 ?        00:00:00 [kthrotld/0]
+root       127     2  0 03:51 ?        00:00:00 [kthrotld/1]
+root       128     2  0 03:51 ?        00:00:00 [kthrotld/2]
+root       129     2  0 03:51 ?        00:00:00 [kthrotld/3]
+root       130     2  0 03:51 ?        00:00:00 [kthrotld/4]
+root       131     2  0 03:51 ?        00:00:00 [kthrotld/5]
+root       132     2  0 03:51 ?        00:00:00 [kthrotld/6]
+root       133     2  0 03:51 ?        00:00:00 [kthrotld/7]
+root       135     2  0 03:51 ?        00:00:00 [kpsmoused]
+root       136     2  0 03:51 ?        00:00:00 [usbhid_resumer]
+root       137     2  0 03:51 ?        00:00:00 [deferwq]
+root       169     2  0 03:51 ?        00:00:00 [kdmremove]
+root       170     2  0 03:51 ?        00:00:00 [kstriped]
+root       197     2  0 03:51 ?        00:00:00 [i915]
+root       198     2  0 03:51 ?        00:00:00 [i915-dp]
+root       199     2  0 03:51 ?        00:00:00 [dp-mst]
+root       340     2  0 03:51 ?        00:00:00 [scsi_eh_0]
+root       341     2  0 03:51 ?        00:00:00 [scsi_eh_1]
+root       342     2  0 03:51 ?        00:00:00 [scsi_eh_2]
+root       343     2  0 03:51 ?        00:00:00 [scsi_eh_3]
+root       344     2  0 03:51 ?        00:00:00 [scsi_eh_4]
+root       345     2  0 03:51 ?        00:00:00 [scsi_eh_5]
+root       469     2  0 03:51 ?        00:00:00 [kdmflush]
+root       471     2  0 03:51 ?        00:00:00 [kdmflush]
+root       488     2  0 03:51 ?        00:00:00 [jbd2/dm-0-8]
+root       489     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root       582     1  0 03:51 ?        00:00:00 /sbin/udevd -d
+root       693     2  0 03:51 ?        00:00:00 [hd-audio0]
+root       696     2  0 03:51 ?        00:00:00 [hd-audio1]
+root      1508     2  0 03:51 ?        00:00:00 [kvm-irqfd-clean]
+root      1524     2  0 03:51 ?        00:00:00 [kdmflush]
+root      1569     2  0 03:51 ?        00:00:00 [jbd2/sda1-8]
+root      1570     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root      1571     2  0 03:51 ?        00:00:19 [jbd2/dm-2-8]
+root      1572     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root      1619     2  0 03:51 ?        00:00:00 [kauditd]
+root      1800     2  0 03:51 ?        00:00:00 [flush-253:0]
+root      1946     1  0 03:52 ?        00:00:00 auditd
+root      1976     1  0 03:52 ?        00:00:00 /sbin/rsyslogd -i /var/run/syslogd.pid -c 5
+root      1999     2  0 03:52 ?        00:00:46 [kondemand/0]
+root      2000     2  0 03:52 ?        00:00:15 [kondemand/1]
+root      2001     2  0 03:52 ?        00:00:12 [kondemand/2]
+root      2002     2  0 03:52 ?        00:00:09 [kondemand/3]
+root      2003     2  0 03:52 ?        00:00:27 [kondemand/4]
+root      2004     2  0 03:52 ?        00:00:12 [kondemand/5]
+root      2005     2  0 03:52 ?        00:00:10 [kondemand/6]
+root      2006     2  0 03:52 ?        00:00:07 [kondemand/7]
+root      2028     1  0 03:52 ?        00:00:05 irqbalance --pid=/var/run/irqbalance.pid
+rpc       2049     1  0 03:52 ?        00:00:00 rpcbind
+dbus      2152     1  0 03:52 ?        00:00:00 dbus-daemon --system
+root      2163     1  0 03:52 ?        00:00:00 NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid
+root      2170     1  0 03:52 ?        00:00:00 /usr/sbin/modem-manager
+rpcuser   2184     1  0 03:52 ?        00:00:00 rpc.statd
+root      2190  2163  0 03:52 ?        00:00:00 /sbin/dhclient -d -4 -sf /usr/libexec/nm-dhcp-client.action -pf /var/run/dhclient-em1.pid -lf /var/lib/dhclient/dhclient-292
+root      2211     1  0 03:52 ?        00:00:00 /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u -f /var/log/wpa_supplicant.log -P /var/run/wpa_sup
+root      2223     1  0 03:52 ?        00:00:00 cupsd -C /etc/cups/cupsd.conf
+root      2252     1  0 03:52 ?        00:00:00 /usr/sbin/acpid
+68        2262     1  0 03:52 ?        00:00:00 hald
+root      2263  2262  0 03:52 ?        00:00:00 hald-runner
+root      2306  2263  0 03:52 ?        00:00:00 /usr/libexec/hald-addon-generic-backlight
+root      2308  2263  0 03:52 ?        00:00:00 hald-addon-input: Listening on /dev/input/event8 /dev/input/event4 /dev/input/event0 /dev/input/event3 /dev/input/event1
+68        2311  2263  0 03:52 ?        00:00:00 hald-addon-acpi: listening on acpid socket /var/run/acpid.socket
+root      2375     1  0 03:52 ?        00:00:00 /usr/sbin/sshd
+root      2484     1  0 03:52 ?        00:00:00 /usr/libexec/postfix/master
+postfix   2494  2484  0 03:52 ?        00:00:00 qmgr -l -t fifo -u
+root      2511     1  0 03:52 ?        00:00:00 /usr/sbin/abrtd
+root      2527     1  0 03:52 ?        00:00:01 /bin/bash /usr/sbin/ksmtuned
+root      2539     1  0 03:52 ?        00:00:00 crond
+root      2553     1  0 03:52 ?        00:00:00 /usr/sbin/atd
+root      2582     1  0 03:52 ?        00:00:00 libvirtd --daemon
+root      2622     1  0 03:52 ?        00:00:00 /usr/sbin/gdm-binary -nodaemon
+root      2627     1  0 03:52 tty2     00:00:00 /sbin/mingetty /dev/tty2
+root      2629     1  0 03:52 tty3     00:00:00 /sbin/mingetty /dev/tty3
+root      2631     1  0 03:52 tty4     00:00:00 /sbin/mingetty /dev/tty4
+root      2633     1  0 03:52 tty5     00:00:00 /sbin/mingetty /dev/tty5
+root      2635     1  0 03:52 tty6     00:00:00 /sbin/mingetty /dev/tty6
+root      2651   582  0 03:52 ?        00:00:00 /sbin/udevd -d
+root      2653   582  0 03:52 ?        00:00:00 /sbin/udevd -d
+root      2718  2622  0 03:52 ?        00:00:00 /usr/libexec/gdm-simple-slave --display-id /org/gnome/DisplayManager/Display1
+root      2730  2718  0 03:52 tty1     00:00:01 /usr/bin/Xorg :0 -br -verbose -audit 4 -auth /var/run/gdm/auth-for-gdm-1suIg9/database -nolisten tcp vt1
+nobody    2747     1  0 03:52 ?        00:00:00 /usr/sbin/dnsmasq --strict-order --pid-file=/var/run/libvirt/network/default.pid --conf-file= --except-interface lo --bind-i
+root      2812     1  0 03:52 ?        00:00:00 /usr/sbin/console-kit-daemon --no-daemon
+gdm       2886     1  0 03:52 ?        00:00:00 /usr/bin/dbus-launch --exit-with-session
+gdm       2887     1  0 03:52 ?        00:00:00 /bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+gdm       2888  2718  0 03:52 ?        00:00:00 /usr/bin/gnome-session --autostart=/usr/share/gdm/autostart/LoginWindow/
+root      2891     1  0 03:52 ?        00:00:00 /usr/libexec/devkit-power-daemon
+gdm       2895     1  0 03:52 ?        00:00:00 /usr/libexec/gconfd-2
+gdm       2913  2888  0 03:52 ?        00:00:00 /usr/libexec/at-spi-registryd
+gdm       2914     1  0 03:52 ?        00:00:01 /usr/libexec/gnome-settings-daemon --gconf-prefix=/apps/gdm/simple-greeter/settings-manager-plugins
+gdm       2916     1  0 03:52 ?        00:00:00 /usr/libexec/bonobo-activation-server --ac-activate --ior-output-fd=12
+gdm       2924     1  0 03:52 ?        00:00:00 /usr/libexec/gvfsd
+gdm       2925  2888  0 03:52 ?        00:00:00 metacity
+gdm       2929  2888  0 03:52 ?        00:00:00 gnome-power-manager
+gdm       2931  2888  0 03:52 ?        00:00:00 /usr/libexec/polkit-gnome-authentication-agent-1
+root      2936     1  0 03:52 ?        00:00:00 /usr/libexec/polkit-1/polkitd
+gdm       2937  2888  0 03:52 ?        00:00:01 /usr/libexec/gdm-simple-greeter
+gdm       2951     1  0 03:52 ?        00:00:00 /usr/bin/pulseaudio --start --log-target=syslog
+rtkit     2953     1  0 03:52 ?        00:00:00 /usr/libexec/rtkit-daemon
+root      2960  2718  0 03:52 ?        00:00:00 pam: gdm-password
+root      3019  2375  0 03:53 ?        00:00:00 sshd: hadoop [priv]
+hadoop    3030  3019  0 03:53 ?        00:00:02 sshd: hadoop@pts/0
+hadoop    3031  3030  0 03:53 pts/0    00:00:00 -bash
+hadoop    6854     1  0 16:07 ?        00:01:05 /usr/java/default/bin/java -Dproc_namenode -Xmx1000m -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote -Dcom.sun
+hadoop    7026     1  1 16:07 ?        00:04:15 /usr/java/default/bin/java -Dproc_datanode -Xmx1000m -server -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote -
+hadoop    7288     1  4 16:07 ?        00:16:36 /usr/java/default/bin/java -Dproc_jobtracker -Xmx1000m -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote -Dcom.s
+hadoop    7480     1  5 16:07 ?        00:19:00 /usr/java/default/bin/java -Dproc_tasktracker -Xmx1000m -Dhadoop.log.dir=/home/hadoop/hadoop-1.2.1/libexec/../logs -Dhadoop.
+hadoop    9266  3031  0 15:26 pts/0    00:00:00 script -a terasort.session.out
+hadoop    9268  9266  0 15:26 pts/0    00:00:00 script -a terasort.session.out
+hadoop    9269  9268  0 15:26 pts/1    00:00:00 bash -i
+root     14097  2375  0 15:44 ?        00:00:00 sshd: hadoop [priv]
+hadoop   14377 14097  0 15:44 ?        00:00:00 sshd: hadoop@pts/2
+hadoop   14378 14377  0 15:44 pts/2    00:00:00 -bash
+hadoop   14455 14378  0 17:46 pts/2    00:00:00 ssh t2
+postfix  25790  2484  0 20:33 ?        00:00:00 pickup -l -t fifo -u
+root     29301     2  0 21:55 ?        00:00:00 [flush-253:2]
+root     29329  2527  0 21:57 ?        00:00:00 sleep 60
+hadoop   29335  9269  0 21:57 pts/1    00:00:00 ps -ef
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ [K[hadoop@t1 terasort]$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:51 ?        00:00:00 /sbin/init
+root         2     0  0 03:51 ?        00:00:00 [kthreadd]
+root         3     2  0 03:51 ?        00:00:02 [migration/0]
+root         4     2  0 03:51 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 03:51 ?        00:00:00 [stopper/0]
+root         6     2  0 03:51 ?        00:00:00 [watchdog/0]
+root         7     2  0 03:51 ?        00:00:00 [migration/1]
+root         8     2  0 03:51 ?        00:00:00 [stopper/1]
+root         9     2  0 03:51 ?        00:00:00 [ksoftirqd/1]
+root        10     2  0 03:51 ?        00:00:00 [watchdog/1]
+root        11     2  0 03:51 ?        00:00:00 [migration/2]
+root        12     2  0 03:51 ?        00:00:00 [stopper/2]
+root        13     2  0 03:51 ?        00:00:00 [ksoftirqd/2]
+root        14     2  0 03:51 ?        00:00:00 [watchdog/2]
+root        15     2  0 03:51 ?        00:00:00 [migration/3]
+root        16     2  0 03:51 ?        00:00:00 [stopper/3]
+root        17     2  0 03:51 ?        00:00:00 [ksoftirqd/3]
+root        18     2  0 03:51 ?        00:00:00 [watchdog/3]
+root        19     2  0 03:51 ?        00:00:00 [migration/4]
+root        20     2  0 03:51 ?        00:00:00 [stopper/4]
+root        21     2  0 03:51 ?        00:00:00 [ksoftirqd/4]
+root        22     2  0 03:51 ?        00:00:00 [watchdog/4]
+root        23     2  0 03:51 ?        00:00:00 [migration/5]
+root        24     2  0 03:51 ?        00:00:00 [stopper/5]
+root        25     2  0 03:51 ?        00:00:00 [ksoftirqd/5]
+root        26     2  0 03:51 ?        00:00:00 [watchdog/5]
+root        27     2  0 03:51 ?        00:00:00 [migration/6]
+root        28     2  0 03:51 ?        00:00:00 [stopper/6]
+root        29     2  0 03:51 ?        00:00:00 [ksoftirqd/6]
+root        30     2  0 03:51 ?        00:00:00 [watchdog/6]
+root        31     2  0 03:51 ?        00:00:00 [migration/7]
+root        32     2  0 03:51 ?        00:00:00 [stopper/7]
+root        33     2  0 03:51 ?        00:00:00 [ksoftirqd/7]
+root        34     2  0 03:51 ?        00:00:00 [watchdog/7]
+root        35     2  0 03:51 ?        00:00:03 [events/0]
+root        36     2  0 03:51 ?        00:00:02 [events/1]
+root        37     2  0 03:51 ?        00:00:02 [events/2]
+root        38     2  0 03:51 ?        00:00:02 [events/3]
+root        39     2  0 03:51 ?        00:00:02 [events/4]
+root        40     2  0 03:51 ?        00:00:02 [events/5]
+root        41     2  0 03:51 ?        00:00:02 [events/6]
+root        42     2  0 03:51 ?        00:00:02 [events/7]
+root        43     2  0 03:51 ?        00:00:00 [cgroup]
+root        44     2  0 03:51 ?        00:00:00 [khelper]
+root        45     2  0 03:51 ?        00:00:00 [netns]
+root        46     2  0 03:51 ?        00:00:00 [async/mgr]
+root        47     2  0 03:51 ?        00:00:00 [pm]
+root        48     2  0 03:51 ?        00:00:00 [sync_supers]
+root        49     2  0 03:51 ?        00:00:00 [bdi-default]
+root        50     2  0 03:51 ?        00:00:00 [kintegrityd/0]
+root        51     2  0 03:51 ?        00:00:00 [kintegrityd/1]
+root        52     2  0 03:51 ?        00:00:00 [kintegrityd/2]
+root        53     2  0 03:51 ?        00:00:00 [kintegrityd/3]
+root        54     2  0 03:51 ?        00:00:00 [kintegrityd/4]
+root        55     2  0 03:51 ?        00:00:00 [kintegrityd/5]
+root        56     2  0 03:51 ?        00:00:00 [kintegrityd/6]
+root        57     2  0 03:51 ?        00:00:00 [kintegrityd/7]
+root        58     2  0 03:51 ?        00:00:20 [kblockd/0]
+root        59     2  0 03:51 ?        00:00:00 [kblockd/1]
+root        60     2  0 03:51 ?        00:00:00 [kblockd/2]
+root        61     2  0 03:51 ?        00:00:00 [kblockd/3]
+root        62     2  0 03:51 ?        00:00:00 [kblockd/4]
+root        63     2  0 03:51 ?        00:00:00 [kblockd/5]
+root        64     2  0 03:51 ?        00:00:00 [kblockd/6]
+root        65     2  0 03:51 ?        00:00:00 [kblockd/7]
+root        66     2  0 03:51 ?        00:00:00 [kacpid]
+root        67     2  0 03:51 ?        00:00:00 [kacpi_notify]
+root        68     2  0 03:51 ?        00:00:00 [kacpi_hotplug]
+root        69     2  0 03:51 ?        00:00:00 [ata_aux]
+root        70     2  0 03:51 ?        00:00:00 [ata_sff/0]
+root        71     2  0 03:51 ?        00:00:00 [ata_sff/1]
+root        72     2  0 03:51 ?        00:00:00 [ata_sff/2]
+root        73     2  0 03:51 ?        00:00:00 [ata_sff/3]
+root        74     2  0 03:51 ?        00:00:00 [ata_sff/4]
+root        75     2  0 03:51 ?        00:00:00 [ata_sff/5]
+root        76     2  0 03:51 ?        00:00:00 [ata_sff/6]
+root        77     2  0 03:51 ?        00:00:00 [ata_sff/7]
+root        78     2  0 03:51 ?        00:00:00 [ksuspend_usbd]
+root        79     2  0 03:51 ?        00:00:00 [khubd]
+root        80     2  0 03:51 ?        00:00:00 [kseriod]
+root        81     2  0 03:51 ?        00:00:00 [md/0]
+root        82     2  0 03:51 ?        00:00:00 [md/1]
+root        83     2  0 03:51 ?        00:00:00 [md/2]
+root        84     2  0 03:51 ?        00:00:00 [md/3]
+root        85     2  0 03:51 ?        00:00:00 [md/4]
+root        86     2  0 03:51 ?        00:00:00 [md/5]
+root        87     2  0 03:51 ?        00:00:00 [md/6]
+root        88     2  0 03:51 ?        00:00:00 [md/7]
+root        89     2  0 03:51 ?        00:00:00 [md_misc/0]
+root        90     2  0 03:51 ?        00:00:00 [md_misc/1]
+root        91     2  0 03:51 ?        00:00:00 [md_misc/2]
+root        92     2  0 03:51 ?        00:00:00 [md_misc/3]
+root        93     2  0 03:51 ?        00:00:00 [md_misc/4]
+root        94     2  0 03:51 ?        00:00:00 [md_misc/5]
+root        95     2  0 03:51 ?        00:00:00 [md_misc/6]
+root        96     2  0 03:51 ?        00:00:00 [md_misc/7]
+root        97     2  0 03:51 ?        00:00:00 [linkwatch]
+root        99     2  0 03:51 ?        00:00:00 [khungtaskd]
+root       100     2  0 03:51 ?        00:01:23 [kswapd0]
+root       101     2  0 03:51 ?        00:00:00 [ksmd]
+root       102     2  0 03:51 ?        00:00:04 [khugepaged]
+root       103     2  0 03:51 ?        00:00:00 [aio/0]
+root       104     2  0 03:51 ?        00:00:00 [aio/1]
+root       105     2  0 03:51 ?        00:00:00 [aio/2]
+root       106     2  0 03:51 ?        00:00:00 [aio/3]
+root       107     2  0 03:51 ?        00:00:00 [aio/4]
+root       108     2  0 03:51 ?        00:00:00 [aio/5]
+root       109     2  0 03:51 ?        00:00:00 [aio/6]
+root       110     2  0 03:51 ?        00:00:00 [aio/7]
+root       111     2  0 03:51 ?        00:00:00 [crypto/0]
+root       112     2  0 03:51 ?        00:00:00 [crypto/1]
+root       113     2  0 03:51 ?        00:00:00 [crypto/2]
+root       114     2  0 03:51 ?        00:00:00 [crypto/3]
+root       115     2  0 03:51 ?        00:00:00 [crypto/4]
+root       116     2  0 03:51 ?        00:00:00 [crypto/5]
+root       117     2  0 03:51 ?        00:00:00 [crypto/6]
+root       118     2  0 03:51 ?        00:00:00 [crypto/7]
+root       126     2  0 03:51 ?        00:00:00 [kthrotld/0]
+root       127     2  0 03:51 ?        00:00:00 [kthrotld/1]
+root       128     2  0 03:51 ?        00:00:00 [kthrotld/2]
+root       129     2  0 03:51 ?        00:00:00 [kthrotld/3]
+root       130     2  0 03:51 ?        00:00:00 [kthrotld/4]
+root       131     2  0 03:51 ?        00:00:00 [kthrotld/5]
+root       132     2  0 03:51 ?        00:00:00 [kthrotld/6]
+root       133     2  0 03:51 ?        00:00:00 [kthrotld/7]
+root       135     2  0 03:51 ?        00:00:00 [kpsmoused]
+root       136     2  0 03:51 ?        00:00:00 [usbhid_resumer]
+root       137     2  0 03:51 ?        00:00:00 [deferwq]
+root       169     2  0 03:51 ?        00:00:00 [kdmremove]
+root       170     2  0 03:51 ?        00:00:00 [kstriped]
+root       197     2  0 03:51 ?        00:00:00 [i915]
+root       198     2  0 03:51 ?        00:00:00 [i915-dp]
+root       199     2  0 03:51 ?        00:00:00 [dp-mst]
+root       340     2  0 03:51 ?        00:00:00 [scsi_eh_0]
+root       341     2  0 03:51 ?        00:00:00 [scsi_eh_1]
+root       342     2  0 03:51 ?        00:00:00 [scsi_eh_2]
+root       343     2  0 03:51 ?        00:00:00 [scsi_eh_3]
+root       344     2  0 03:51 ?        00:00:00 [scsi_eh_4]
+root       345     2  0 03:51 ?        00:00:00 [scsi_eh_5]
+root       469     2  0 03:51 ?        00:00:00 [kdmflush]
+root       471     2  0 03:51 ?        00:00:00 [kdmflush]
+root       488     2  0 03:51 ?        00:00:00 [jbd2/dm-0-8]
+root       489     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root       582     1  0 03:51 ?        00:00:00 /sbin/udevd -d
+root       693     2  0 03:51 ?        00:00:00 [hd-audio0]
+root       696     2  0 03:51 ?        00:00:00 [hd-audio1]
+root      1508     2  0 03:51 ?        00:00:00 [kvm-irqfd-clean]
+root      1524     2  0 03:51 ?        00:00:00 [kdmflush]
+root      1569     2  0 03:51 ?        00:00:00 [jbd2/sda1-8]
+root      1570     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root      1571     2  0 03:51 ?        00:00:19 [jbd2/dm-2-8]
+root      1572     2  0 03:51 ?        00:00:00 [ext4-dio-unwrit]
+root      1619     2  0 03:51 ?        00:00:00 [kauditd]
+root      1800     2  0 03:51 ?        00:00:00 [flush-253:0]
+root      1946     1  0 03:52 ?        00:00:00 auditd
+root      1976     1  0 03:52 ?        00:00:00 /sbin/rsyslogd -i /var/ru
+root      1999     2  0 03:52 ?        00:00:46 [kondemand/0]
+root      2000     2  0 03:52 ?        00:00:15 [kondemand/1]
+root      2001     2  0 03:52 ?        00:00:12 [kondemand/2]
+root      2002     2  0 03:52 ?        00:00:09 [kondemand/3]
+root      2003     2  0 03:52 ?        00:00:27 [kondemand/4]
+root      2004     2  0 03:52 ?        00:00:12 [kondemand/5]
+root      2005     2  0 03:52 ?        00:00:10 [kondemand/6]
+root      2006     2  0 03:52 ?        00:00:07 [kondemand/7]
+root      2028     1  0 03:52 ?        00:00:05 irqbalance --pid=/var/run
+rpc       2049     1  0 03:52 ?        00:00:00 rpcbind
+dbus      2152     1  0 03:52 ?        00:00:00 dbus-daemon --system
+root      2163     1  0 03:52 ?        00:00:00 NetworkManager --pid-file
+root      2170     1  0 03:52 ?        00:00:00 /usr/sbin/modem-manager
+rpcuser   2184     1  0 03:52 ?        00:00:00 rpc.statd
+root      2190  2163  0 03:52 ?        00:00:00 /sbin/dhclient -d -4 -sf
+root      2211     1  0 03:52 ?        00:00:00 /usr/sbin/wpa_supplicant
+root      2223     1  0 03:52 ?        00:00:00 cupsd -C /etc/cups/cupsd.
+root      2252     1  0 03:52 ?        00:00:00 /usr/sbin/acpid
+68        2262     1  0 03:52 ?        00:00:00 hald
+root      2263  2262  0 03:52 ?        00:00:00 hald-runner
+root      2306  2263  0 03:52 ?        00:00:00 /usr/libexec/hald-addon-g
+root      2308  2263  0 03:52 ?        00:00:00 hald-addon-input: Listeni
+68        2311  2263  0 03:52 ?        00:00:00 hald-addon-acpi: listenin
+root      2375     1  0 03:52 ?        00:00:00 /usr/sbin/sshd
+root      2484     1  0 03:52 ?        00:00:00 /usr/libexec/postfix/mast
+postfix   2494  2484  0 03:52 ?        00:00:00 qmgr -l -t fifo -u
+root      2511     1  0 03:52 ?        00:00:00 /usr/sbin/abrtd
+root      2527     1  0 03:52 ?        00:00:01 /bin/bash /usr/sbin/ksmtu
+root      2539     1  0 03:52 ?        00:00:00 crond
+root      2553     1  0 03:52 ?        00:00:00 /usr/sbin/atd
+root      2582     1  0 03:52 ?        00:00:00 libvirtd --daemon
+root      2622     1  0 03:52 ?        00:00:00 /usr/sbin/gdm-binary -nod
+root      2627     1  0 03:52 tty2     00:00:00 /sbin/mingetty /dev/tty2
+root      2629     1  0 03:52 tty3     00:00:00 /sbin/mingetty /dev/tty3
+root      2631     1  0 03:52 tty4     00:00:00 /sbin/mingetty /dev/tty4
+root      2633     1  0 03:52 tty5     00:00:00 /sbin/mingetty /dev/tty5
+root      2635     1  0 03:52 tty6     00:00:00 /sbin/mingetty /dev/tty6
+root      2651   582  0 03:52 ?        00:00:00 /sbin/udevd -d
+root      2653   582  0 03:52 ?        00:00:00 /sbin/udevd -d
+root      2718  2622  0 03:52 ?        00:00:00 /usr/libexec/gdm-simple-s
+root      2730  2718  0 03:52 tty1     00:00:01 /usr/bin/Xorg :0 -br -ver
+nobody    2747     1  0 03:52 ?        00:00:00 /usr/sbin/dnsmasq --stric
+root      2812     1  0 03:52 ?        00:00:00 /usr/sbin/console-kit-dae
+gdm       2886     1  0 03:52 ?        00:00:00 /usr/bin/dbus-launch --ex
+gdm       2887     1  0 03:52 ?        00:00:00 /bin/dbus-daemon --fork -
+gdm       2888  2718  0 03:52 ?        00:00:00 /usr/bin/gnome-session --
+root      2891     1  0 03:52 ?        00:00:00 /usr/libexec/devkit-power
+gdm       2895     1  0 03:52 ?        00:00:00 /usr/libexec/gconfd-2
+gdm       2913  2888  0 03:52 ?        00:00:00 /usr/libexec/at-spi-regis
+gdm       2914     1  0 03:52 ?        00:00:01 /usr/libexec/gnome-settin
+gdm       2916     1  0 03:52 ?        00:00:00 /usr/libexec/bonobo-activ
+gdm       2924     1  0 03:52 ?        00:00:00 /usr/libexec/gvfsd
+gdm       2925  2888  0 03:52 ?        00:00:00 metacity
+gdm       2929  2888  0 03:52 ?        00:00:00 gnome-power-manager
+gdm       2931  2888  0 03:52 ?        00:00:00 /usr/libexec/polkit-gnome
+root      2936     1  0 03:52 ?        00:00:00 /usr/libexec/polkit-1/pol
+gdm       2937  2888  0 03:52 ?        00:00:01 /usr/libexec/gdm-simple-g
+gdm       2951     1  0 03:52 ?        00:00:00 /usr/bin/pulseaudio --sta
+rtkit     2953     1  0 03:52 ?        00:00:00 /usr/libexec/rtkit-daemon
+root      2960  2718  0 03:52 ?        00:00:00 pam: gdm-password
+root      3019  2375  0 03:53 ?        00:00:00 sshd: hadoop [priv]
+hadoop    3030  3019  0 03:53 ?        00:00:02 sshd: hadoop@pts/0
+hadoop    3031  3030  0 03:53 pts/0    00:00:00 -bash
+hadoop    6854     1  0 16:07 ?        00:01:05 /usr/java/default/bin/jav
+hadoop    7026     1  1 16:07 ?        00:04:15 /usr/java/default/bin/jav
+hadoop    7288     1  4 16:07 ?        00:16:37 /usr/java/default/bin/jav
+hadoop    7480     1  5 16:07 ?        00:19:00 /usr/java/default/bin/jav
+hadoop    9266  3031  0 15:26 pts/0    00:00:00 script -a terasort.sessio
+hadoop    9268  9266  0 15:26 pts/0    00:00:00 script -a terasort.sessio
+hadoop    9269  9268  0 15:26 pts/1    00:00:00 bash -i
+root     14097  2375  0 15:44 ?        00:00:00 sshd: hadoop [priv]
+hadoop   14377 14097  0 15:44 ?        00:00:00 sshd: hadoop@pts/2
+hadoop   14378 14377  0 15:44 pts/2    00:00:00 -bash
+hadoop   14455 14378  0 17:46 pts/2    00:00:00 ssh t2
+postfix  25790  2484  0 20:33 ?        00:00:00 pickup -l -t fifo -u
+root     29301     2  0 21:55 ?        00:00:00 [flush-253:2]
+root     29343  2527  0 21:58 ?        00:00:00 sleep 60
+hadoop   29344  9269  1 21:58 pts/1    00:00:00 ps -ef
+]0;hadoop@t1:~/ojo/terasort[hadoop@t1 terasort]$ exit
+exit
+
+Script done on Sun 21 Jun 2015 10:13:00 PM UTC
