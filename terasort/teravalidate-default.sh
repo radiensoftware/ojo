@@ -15,6 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-hadoop fs -ls  
-hadoop fs -rmr tera-input
-hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teragen -Dmapred.map.tasks=10000 -Ddfs.block.size=536870912 10000000000 tera-input
+hadoop jar ~/hadoop-1.2.1/hadoop-examples-1.2.1.jar teravalidate tera-output tera-validate
