@@ -1,0 +1,10 @@
+20150621 11 Node BigBIT
+
+[hadoop@t1 terasort]$ grep TeraSort terasort.session-20150621.txt
+15/06/21 12:20:03 INFO terasort.TeraSort: starting
+15/06/21 16:46:56 INFO terasort.TeraSort: starting
+15/06/21 21:21:45 INFO terasort.TeraSort: done
+
+Start: 16:46:56
+Done:  12:20:03
+Time:  04:26:53
