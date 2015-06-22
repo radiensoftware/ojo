@@ -16,6 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 export PATH=$HOME/ojo:$PATH
-060-ssh-key-generate.sh
-061-ssh-copy-id-localhost.sh
-062-ssh-copy-id-this-host.sh
+single/060-ssh-key-generate.sh
+single/061-ssh-copy-id-localhost.sh
+single/062-ssh-copy-id-this-host.sh
