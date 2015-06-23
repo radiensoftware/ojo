@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-cp -f bashrc          /home/hadoop/.bashrc
-cp -f hadoop-env.sh   /home/hadoop/hadoop-1.2.1/conf
-cp -f core-site.xml   /home/hadoop/hadoop-1.2.1/conf
-cp -f mapred-site.xml /home/hadoop/hadoop-1.2.1/conf
-cp -f hdfs-site.xml   /home/hadoop/hadoop-1.2.1/conf
+ETC_DIR=$HOME/ojo/etc
+cp -f $ETC_DIR/bashrc          /home/hadoop/.bashrc
+cp -f $ETC_DIR/hadoop-env.sh   /home/hadoop/hadoop-1.2.1/conf
+cp -f $ETC_DIR/core-site.xml   /home/hadoop/hadoop-1.2.1/conf
+cp -f $ETC_DIR/mapred-site.xml /home/hadoop/hadoop-1.2.1/conf
+cp -f $ETC_DIR/hdfs-site.xml   /home/hadoop/hadoop-1.2.1/conf
+mkdir -p /home/hadoop/singlenode
 mkdir -p /home/hadoop/tmp
