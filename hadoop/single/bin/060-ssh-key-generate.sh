@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+HELPER_HOME=$HOME/ojo/common
 unset SSH_ASKPASS
 unset SSH_AUTH_SOCK
 /bin/rm -f $HOME/.ssh/id_rsa
 /bin/rm -f $HOME/.ssh/id_rsa.pub
-./helper-ssh-key-generate
+$HELPER_HOME/helper-ssh-key-generate

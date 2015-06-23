@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+HELPER_HOME=$HOME/ojo/common
 unset SSH_ASKPASS
 unset SSH_AUTH_SOCK
 for ip in `./helper-my-ip-addresses`
@@ -23,7 +24,7 @@ do
 	then
 		# not localhost
 		echo "My IP Address is " $ip
-		./helper-ssh-copy-id-host $ip
+		$HELPER_HOME/helper-ssh-copy-id-host $ip
 	fi
 
 done
