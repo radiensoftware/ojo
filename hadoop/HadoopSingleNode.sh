@@ -17,16 +17,16 @@
 
 export PATH=$PATH:.
 
-single/040-rpmforge-htop-git-install.sh
-single/058-localhost-ipv6-remove.sh
-single/059-expect-package-install.sh
-single/060-ssh-key-generate.sh
-single/061-ssh-copy-id-localhost.sh
-single/062-ssh-copy-id-this-host.sh
-single/095-java-package-install.sh
-single/097-hadoop-package-install.sh
-single/100-hadoop-configuration-install.sh
-single/200-epel-repo-install.sh
-single/300-atop-install.sh
+./single/bin/040-rpmforge-htop-git-install.sh
+./single/bin/058-localhost-ipv6-remove.sh
+./single/bin/059-expect-package-install.sh
+./single/bin/060-ssh-key-generate.sh
+./single/bin/061-ssh-copy-id-localhost.sh
+./single/bin/062-ssh-copy-id-this-host.sh
+./single/bin/095-java-package-install.sh
+./single/bin/097-hadoop-package-install.sh
+./single/bin/100-hadoop-configuration-install.sh
+./single/bin/200-epel-repo-install.sh
+./single/bin/300-atop-install.sh
 
 echo "Run "exec bash" to pick up update environment variables"
