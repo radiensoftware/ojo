@@ -1,19 +1,18 @@
 #!/bin/bash
+DSTDIR=$HOME/ftp/pub/centos
+mkdir -p $DSTDIR 
 SRC=ftp.riken.jp::centos 
-DSTDIR=/home/ftp/pub/centos
 	# --exclude="6.6/updates/x86_64/Packages/java*" \
 	# --exclude="6.6/updates/x86_64/Packages/*src*" \
-	#	--exclude="6.6/isos/i386/" \
 	#	--exclude="6.6/isos/" \
-	#	--exclude="6.6/os/i386/" \
-	#	--exclude="6.6/xen4/" \
-	#	--exclude="6.5" \
 rsync -avzH --progress \
 	--delete \
 	--exclude="6.6/centosplus/i386/" \
 	--exclude="6.6/centosplus/x86_64/" \
+	--exclude="6.6/isos/i386/" \
+	--exclude="6.6/os/i386/" \
 	--exclude="6.6/updates/i386/" \
-	--include="6.5/" \
+	--exclude="6.6/xen4/" \
 	--include="6.6/" \
 	--include="RPM-GPG-KEY-CentOS-6" \
 		--exclude="2" \
@@ -56,6 +55,7 @@ rsync -avzH --progress \
 		--exclude="6.2" \
 		--exclude="6.3" \
 		--exclude="6.4" \
+		--exclude="6.5" \
 		--exclude="7/" \
 		--exclude="7.0.1406/" \
 		--exclude="7.1.1503/" \
