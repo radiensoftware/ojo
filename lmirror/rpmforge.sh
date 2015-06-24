@@ -16,15 +16,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 SRC=rsync://ftp.riken.jp/repoforge/
 DSTDIR=$HOME/ftp/repoforge
+# /usr/bin/rsync -vai4CH --safe-links --delay-updates 
 mkdir -p $DSTDIR
 /usr/bin/flock -w 60 /var/lock/4EaSk6DZXtow \
-/usr/bin/rsync -vai4CH --safe-links --delay-updates \
+/usr/bin/rsync \
+	-avzH \
+	--progress \
 	--delete \
 	--exclude="redhat/el2.1/*" \
 	--exclude="redhat/el3/*" \
 	--exclude="redhat/el4/*" \
 	--exclude="redhat/el5/*" \
 	--exclude="redhat/el6/en/i386/*" \
+	--exclude="redhat/el7/" \
+	--exclude="source/" \
 	$SRC \
 	$DSTDIR
 
