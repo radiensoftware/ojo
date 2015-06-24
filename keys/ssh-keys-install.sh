@@ -18,7 +18,7 @@
 
 cat *.pub >> ~/.ssh/authorized_keys
 cat *.pub >> ~/.ssh/authorized_keys2
-chmod 600 ~/.ssh/authorized_keys[2]
+chmod 600 ~/.ssh/authorized_keys*
 ls -l ~/.ssh
 chmod 700 ~/.ssh
 ls -ld ~/.ssh
