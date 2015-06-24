@@ -1,0 +1,757 @@
+Script started on Wed 24 Jun 2015 09:17:12 PM UTC
+[dinesh@gateway ganglia]$ sudo yum install gl[Kanl[Kglia gangla[Kia-gmet[K[K[K[K[K[K[K[K[K[K[K[K
+Loaded plugins: fastestmirror
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * epel: ftp.cuhk.edu.hk
+ * rpmforge: mir01.syntis.net
+Resolving Dependencies
+--> Running transaction check
+---> Package ganglia.x86_64 0:3.7.1-1.el6 will be installed
+--> Processing Dependency: libconfuse.so.0()(64bit) for package: ganglia-3.7.1-1.el6.x86_64
+--> Running transaction check
+---> Package libconfuse.x86_64 0:2.7-4.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch            Version                Repository     Size
+================================================================================
+Installing:
+ ganglia             x86_64          3.7.1-1.el6            epel           88 k
+Installing for dependencies:
+ libconfuse          x86_64          2.7-4.el6              epel           79 k
+
+Transaction Summary
+================================================================================
+Install       2 Package(s)
+
+Total download size: 167 k
+Installed size: 815 k
+Is this ok [y/N]: Y
+Downloading Packages:
+(1/2): ganglia-3.7.1-1 (14%) 27% [===         ]  0.0 B/s |  24 kB     --:-- ETA (1/2): ganglia-3.7.1-1 (30%) 57% [======-     ]  44 kB/s |  51 kB     00:00 ETA (1/2): ganglia-3.7.1-1.el6.x86_64.rpm                    |  88 kB     00:00     
+(2/2): libconfuse-2.7-4.el6.x86_64.rpm                   |  79 kB     00:00     
+--------------------------------------------------------------------------------
+Total                                            26 kB/s | 167 kB     00:06     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : libconfuse-2.7-4.el6.x86_64 [                              ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [###                           ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [########                      ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [############                  ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [#################             ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [#####################         ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [######################        ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [#######################       ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [########################      ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [#########################     ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [##########################    ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [###########################   ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [############################  ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64 [############################# ] 1/2  Installing : libconfuse-2.7-4.el6.x86_64                                  1/2 
+  Installing : ganglia-3.7.1-1.el6.x86_64 [                               ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [##                             ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [#####                          ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [########                       ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [##########                     ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [###########                    ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [##############                 ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [################               ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [###################            ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [########################       ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [###########################    ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64 [############################## ] 2/2  Installing : ganglia-3.7.1-1.el6.x86_64                                   2/2 
+  Verifying  : ganglia-3.7.1-1.el6.x86_64                                   1/2 
+  Verifying  : libconfuse-2.7-4.el6.x86_64                                  2/2 
+
+Installed:
+  ganglia.x86_64 0:3.7.1-1.el6                                                  
+
+Dependency Installed:
+  libconfuse.x86_64 0:2.7-4.el6                                                 
+
+Complete!
+[dinesh@gateway ganglia]$ sudo yum install ganglia [K[K[K[K[K[K[Kga[K[Kanglia-gmod[Knd
+Loaded plugins: fastestmirror
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * epel: ftp.cuhk.edu.hk
+ * rpmforge: mir01.syntis.net
+Resolving Dependencies
+--> Running transaction check
+---> Package ganglia-gmond.x86_64 0:3.7.1-1.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package               Arch           Version                Repository    Size
+================================================================================
+Installing:
+ ganglia-gmond         x86_64         3.7.1-1.el6            epel          77 k
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 77 k
+Installed size: 177 k
+Is this ok [y/N]: Y
+Downloading Packages:
+ganglia-gmond-3.7.1-1.el6 32% [====-          ]  0.0 B/s |  25 kB     --:-- ETA ganglia-gmond-3.7.1-1.el6 68% [==========     ]  46 kB/s |  53 kB     00:00 ETA ganglia-gmond-3.7.1-1.el6.x86_64.rpm                     |  77 kB     00:00     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : ganglia-gmond-3.7.1-1.el6.x8 [                             ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [#                            ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [####                         ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [#######                      ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [#################            ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [##########################   ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [###########################  ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x8 [############################ ] 1/1  Installing : ganglia-gmond-3.7.1-1.el6.x86_64                             1/1 
+  Verifying  : ganglia-gmond-3.7.1-1.el6.x86_64                             1/1 
+
+Installed:
+  ganglia-gmond.x86_64 0:3.7.1-1.el6                                            
+
+Complete!
+[dinesh@gateway ganglia]$ ls[K[Kls
+ganglia.server.out  ganglia.session.out  t1.gmond.conf
+[dinesh@gateway ganglia]$ cp t1.gn[Kmod[Kd[Knd.conf gate[K[K[K1.gmod[Knd.conf
+[dinesh@gateway ganglia]$ vi g1.gmond.conf 
+7[?47h[27m[24m[0m[H[J[25;1H"g1.gmond.conf" 379L, 8790C[1;1H/* This configuration is as close to 2.5.x default behavior as possible
+   The values closely match ./gmond/metric.h definitions in 2.5.x */
+globals {
+  daemonize = yes
+  setuid = yes
+  user = ganglia
+  debug_level = 0
+  max_udp_msg_len = 1472
+  mute = no
+  deaf = no
+  allow_extra_data = yes
+  host_dmax = 86400 /*secs. Expires (removes from web interface) hosts in 1 day
+*/
+  host_tmax = 20 /*secs */
+  cleanup_threshold = 300 /*secs */
+  gexec = no
+  # By default gmond will use reverse DNS resolution when displaying your hostna[18;1Hme
+  # Uncommeting following value will override that value.
+  override_hostname = "t1.bit.daddylabs.com" # DINESH
+  # If you are not using multicast this value should be set to something other t[22;1Hhan 0.
+  # Otherwise if you restart aggregator gmond you will get empty graphs. 60 seco[24;1Hnds is reasonable[1;1H[25;1H[K[25;1H/t1[20;24H"g[25;1H[K[25;1H:w"g1.gmond.conf" 379L, 8790C written[20;24H[21;24H[23;24H
+
+
+[24;1H  send_metadata_interval = 0 /*secs */[24;24H
+
+[24;1H
+
+[24;1H}
+
+[24;1H
+
+[24;1H/*
+
+[24;1H * The cluster attributes specified will be used as part of the <CLUSTER>[24;24H
+
+[24;1H * tag that will wrap all hosts collected by this instance.[24;24H
+
+[24;1H */
+
+[24;1Hcluster {
+
+[24;2H name = "Cloud Lab at BIT"
+
+[24;2H owner = "AUT"[1;1H[2M[23;2H latlong = "10.6578 N, 78.7431 E"
+  url = "http://gateway.bit.daddylabs.com"[23;24H[24;24H
+
+[24;1H}
+
+[24;1H
+
+[24;1H/* The host section describes attributes of the host, like the location */[24;24H[1;1H[2M[23;1Hhost {
+  location = "Cloud Lab, C Block, BIT Campus, AUT"[23;6H[24;24H
+
+[24;1H}
+
+[24;1H[1;1H[2M[23;1H/* Feel free to specify as many udp_send_channels as you like.  Gmond
+   used to only support having a single channel */[23;24H[24;24H[1;1H[2M[23;1Hudp_send_channel {
+  #bind_hostname = yes # Highly recommended, soon to be default.[23;18H[24;24H
+
+[24;23H # This option tells gmond to use a source address[24;24H
+
+[24;23H # that resolves to the machine's hostname.  Without[24;24H
+
+[24;23H # this, the metrics may appear to come from any[24;24H
+
+[24;23H # interface and the DNS names associated with[24;24H
+
+[24;23H # those IPs will be used to create the RRDs.[24;24H
+
+[24;2H mcast_join = 239.2.11.71
+
+[24;2H port = 8649
+
+[24;2H ttl = 1
+
+[24;1H}
+:w"g1.gmond.conf" 379L, 8790C written[24;1H[25;1H[K[25;1H:x[25;1H[K[25;1H[2J[?47l8[dinesh@gateway ganglia]$ sudo vi /etc/hosts
+7[?47h[27m[24m[0m[H[J[25;1H"/etc/hosts" 19L, 566C[1;1H127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1[8C localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+10.10.10.10     gateway
+
+10.10.10.31     t1.daddylabs.com t1
+10.10.10.32     t2.daddylabs.com t2
+10.10.10.33     t3.daddylabs.com t3
+10.10.10.34     t4.daddylabs.com t4
+
+10.10.10.41     s1.daddylabs.com s1
+10.10.10.42     s2.daddylabs.com s2
+10.10.10.43     s3.daddylabs.com s3
+10.10.10.44     s4.daddylabs.com s4
+
+10.10.10.51     m1.daddylabs.com m1
+10.10.10.52     m2.daddylabs.com m2
+10.10.10.53     m3.daddylabs.com m3
+10.10.10.54     m4.daddylabs.com m4
+[1m[34m~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [24;1H~                                                                               [1;1H
+
+
+
+[4;1H[0m10.10.10.10     g[25;1H[1m-- INSERT --[0m[25;14H[K[4;18H[K[4;18Hg11..d[4;20H[K[4;20H.bbiitt..ddaadddyyllaabbss..ccoom[25;1H[K[4;36H
+[6;35H[25;1H:%s/.daddy/.bin.[25;16H[K[25;16H[25;15H[K[25;15Ht.daddy/g13 substitutions on 13 lines[4;23H.bit.daddylabs.com[6;19H.bit.daddylabs.com t1[7;19H.bit.daddylabs.com t2[8;19H.bit.daddylabs.com t3[9;19H.bit.daddylabs.com t4[11;19H.bit.daddylabs.com s1[12;19H.bit.daddylabs.com s2[13;19H.bit.daddylabs.com s3[14;19H.bit.daddylabs.com s4[16;19H.bit.daddylabs.com m1[17;19H.bit.daddylabs.com m2[18;19H.bit.daddylabs.com m3[19;19H.bit.daddylabs.com m4[25;1H[K[25;1H:w"/etc/hosts" 19L, 631C written[19;1H[18;1H[17;1H[16;1H[15;1H[14;1H[13;1H[12;1H[11;1H[10;1H[9;1H[8;1H[7;1H[6;1H[5;1H[4;1H10.10.10.10     g1.bit..daddylabs.com[4;37H[K[4;24H[25;1H[K[25;1H:w"/etc/hosts" 19L, 627C written[4;24H[25;1H[1m-- INSERT --[0m[25;14H[K[4;37H  gg1[25;1H[K[4;39H[25;1H:w"/etc/hosts" 19L, 630C written[4;39H[25;1H[K[25;1H:x[25;1H[K[25;1H[2J[?47l8[dinesh@gateway ganglia]$ git add g1.gmond.conf .[K
+[dinesh@gateway ganglia]$ s[Ksudo diff /etc/ganl[Kglia/gmond.conf g1.gmond.conf 
+18c18
+<   # override_hostname = "mywebserver.domain.com"
+---
+>   override_hostname = "g1.bit.daddylabs.com" # DINESH
+30,33c30,33
+<   name = "unspecified"
+<   owner = "unspecified"
+<   latlong = "unspecified"
+<   url = "unspecified"
+---
+>   name = "Cloud Lab at BIT"
+>   owner = "AUT"
+>   latlong = "10.6578 N, 78.7431 E"
+>   url = "http://gateway.bit.daddylabs.com"
+38c38
+<   location = "unspecified"
+---
+>   location = "Cloud Lab, C Block, BIT Campus, AUT" 
+[dinesh@gateway ganglia]$ cp [K[K[Ksudo cp g1.gmond.conf /etc/na[K[Kganglia/gmond.conf 
+[dinesh@gateway ganglia]$ yum install[K[K[K[K[K[K[K[K[K[K[Ksudo yum install ganglia [K-gem[Km[K[Kmetad
+Loaded plugins: fastestmirror
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * epel: ftp.cuhk.edu.hk
+ * rpmforge: mir01.syntis.net
+Resolving Dependencies
+--> Running transaction check
+---> Package ganglia-gmetad.x86_64 0:3.7.1-1.el6 will be installed
+--> Processing Dependency: librrd.so.4()(64bit) for package: ganglia-gmetad-3.7.1-1.el6.x86_64
+--> Running transaction check
+---> Package rrdtool.x86_64 0:1.3.8-7.el6 will be installed
+--> Processing Dependency: dejavu-sans-mono-fonts for package: rrdtool-1.3.8-7.el6.x86_64
+--> Processing Dependency: dejavu-lgc-sans-mono-fonts for package: rrdtool-1.3.8-7.el6.x86_64
+--> Running transaction check
+---> Package dejavu-lgc-sans-mono-fonts.noarch 0:2.30-2.el6 will be installed
+--> Processing Dependency: dejavu-fonts-common = 2.30-2.el6 for package: dejavu-lgc-sans-mono-fonts-2.30-2.el6.noarch
+---> Package dejavu-sans-mono-fonts.noarch 0:2.30-2.el6 will be installed
+--> Running transaction check
+---> Package dejavu-fonts-common.noarch 0:2.30-2.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                         Arch        Version            Repository
+                                                                           Size
+================================================================================
+Installing:
+ ganglia-gmetad                  x86_64      3.7.1-1.el6        epel       52 k
+Installing for dependencies:
+ dejavu-fonts-common             noarch      2.30-2.el6         base       59 k
+ dejavu-lgc-sans-mono-fonts      noarch      2.30-2.el6         base      393 k
+ dejavu-sans-mono-fonts          noarch      2.30-2.el6         base      450 k
+ rrdtool                         x86_64      1.3.8-7.el6        base      293 k
+
+Transaction Summary
+================================================================================
+Install       5 Package(s)
+
+Total download size: 1.2 M
+Installed size: 2.9 M
+Is this ok [y/N]: Y
+Downloading Packages:
+(1/5): dejavu-fonts-common-2.30-2.el6.noarch.rpm         |  59 kB     00:00     
+(2/5): dejavu-lgc-sans-mono-fonts-2.30-2.el6.noarch.rpm  | 393 kB     00:00     
+(3/5): dejavu-sans-mono-fonts-2.30-2.el6.noarch.rpm      | 450 kB     00:00     
+(4/5): ganglia-gmetad- (75%) 69% [========    ]  0.0 B/s |  36 kB     --:-- ETA (4/5): ganglia-gmetad-3.7.1-1.el6.x86_64.rpm             |  52 kB     00:00     
+(5/5): rrdtool-1.3.8-7.el6.x86_64.rpm                    | 293 kB     00:00     
+--------------------------------------------------------------------------------
+Total                                           210 kB/s | 1.2 MB     00:05     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : dejavu-fonts-common-2.30-2.e [                             ] 1/5  Installing : dejavu-fonts-common-2.30-2.e [#                            ] 1/5  Installing : dejavu-fonts-common-2.30-2.e [#################            ] 1/5  Installing : dejavu-fonts-common-2.30-2.e [########################     ] 1/5  Installing : dejavu-fonts-common-2.30-2.e [############################ ] 1/5  Installing : dejavu-fonts-common-2.30-2.el6.noarch                        1/5 
+  Installing : dejavu-sans-mono-fonts-2.30- [                             ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#                            ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [###                          ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#####                        ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [######                       ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [########                     ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#########                    ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [###########                  ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#############                ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [###############              ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#################            ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [###################          ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [####################         ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [######################       ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#######################      ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [#########################    ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [###########################  ] 2/5  Installing : dejavu-sans-mono-fonts-2.30- [############################ ] 2/5  Installing : dejavu-sans-mono-fonts-2.30-2.el6.noarch                     2/5 
+  Installing : dejavu-lgc-sans-mono-fonts-2 [                             ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [##                           ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [###                          ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [#####                        ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [#######                      ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [#########                    ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [###########                  ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [#############                ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [###############              ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [#################            ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [###################          ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [####################         ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [######################       ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [########################     ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [##########################   ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2 [############################ ] 3/5  Installing : dejavu-lgc-sans-mono-fonts-2.30-2.el6.noarch                 3/5 
+  Installing : rrdtool-1.3.8-7.el6.x86_64 [                               ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [##                             ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [####                           ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#####                          ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [########                       ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [##########                     ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#############                  ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [##############                 ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#################              ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [####################           ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#######################        ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [########################       ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#########################      ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [##########################     ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [###########################    ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [############################   ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [#############################  ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64 [############################## ] 4/5  Installing : rrdtool-1.3.8-7.el6.x86_64                                   4/5 
+  Installing : ganglia-gmetad-3.7.1-1.el6.x [                             ] 5/5  Installing : ganglia-gmetad-3.7.1-1.el6.x [##                           ] 5/5  Installing : ganglia-gmetad-3.7.1-1.el6.x [###################          ] 5/5  Installing : ganglia-gmetad-3.7.1-1.el6.x [############################ ] 5/5  Installing : ganglia-gmetad-3.7.1-1.el6.x86_64                            5/5 
+  Verifying  : rrdtool-1.3.8-7.el6.x86_64                                   1/5 
+  Verifying  : dejavu-sans-mono-fonts-2.30-2.el6.noarch                     2/5 
+  Verifying  : dejavu-lgc-sans-mono-fonts-2.30-2.el6.noarch                 3/5 
+  Verifying  : ganglia-gmetad-3.7.1-1.el6.x86_64                            4/5 
+  Verifying  : dejavu-fonts-common-2.30-2.el6.noarch                        5/5 
+
+Installed:
+  ganglia-gmetad.x86_64 0:3.7.1-1.el6                                           
+
+Dependency Installed:
+  dejavu-fonts-common.noarch 0:2.30-2.el6                                       
+  dejavu-lgc-sans-mono-fonts.noarch 0:2.30-2.el6                                
+  dejavu-sans-mono-fonts.noarch 0:2.30-2.el6                                    
+  rrdtool.x86_64 0:1.3.8-7.el6                                                  
+
+Complete!
+[dinesh@gateway ganglia]$ vi [K[K[Kls
+g1.gmond.conf  ganglia.server.out  ganglia.session.out  t1.gmond.conf
+[dinesh@gateway ganglia]$ sudo yu [Km install ganglia-web
+Loaded plugins: fastestmirror
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * epel: free.nchc.org.tw
+ * rpmforge: mir01.syntis.net
+Resolving Dependencies
+--> Running transaction check
+---> Package ganglia-web.x86_64 0:3.6.2-1.el6 will be installed
+--> Processing Dependency: php-gd for package: ganglia-web-3.6.2-1.el6.x86_64
+--> Processing Dependency: php-ZendFramework for package: ganglia-web-3.6.2-1.el6.x86_64
+--> Running transaction check
+---> Package php-ZendFramework.noarch 0:1.12.13-1.el6 will be installed
+--> Processing Dependency: php-xml for package: php-ZendFramework-1.12.13-1.el6.noarch
+--> Processing Dependency: php-process for package: php-ZendFramework-1.12.13-1.el6.noarch
+--> Processing Dependency: php-bcmath for package: php-ZendFramework-1.12.13-1.el6.noarch
+---> Package php-gd.x86_64 0:5.3.3-40.el6_6 will be installed
+--> Running transaction check
+---> Package php-bcmath.x86_64 0:5.3.3-40.el6_6 will be installed
+---> Package php-process.x86_64 0:5.3.3-40.el6_6 will be installed
+---> Package php-xml.x86_64 0:5.3.3-40.el6_6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                 Arch         Version               Repository     Size
+================================================================================
+Installing:
+ ganglia-web             x86_64       3.6.2-1.el6           epel          2.2 M
+Installing for dependencies:
+ php-ZendFramework       noarch       1.12.13-1.el6         epel          4.1 M
+ php-bcmath              x86_64       5.3.3-40.el6_6        updates        37 k
+ php-gd                  x86_64       5.3.3-40.el6_6        updates       109 k
+ php-process             x86_64       5.3.3-40.el6_6        updates        42 k
+ php-xml                 x86_64       5.3.3-40.el6_6        updates       106 k
+
+Transaction Summary
+================================================================================
+Install       6 Package(s)
+
+Total download size: 6.6 M
+Installed size: 47 M
+Is this ok [y/N]: Y
+Downloading Packages:
+(1/6): ganglia-web-3.6 (0%)  2% [             ]  0.0 B/s |  60 kB     --:-- ETA (1/6): ganglia-web-3.6 (2%)  6% [-            ] 121 kB/s | 147 kB     00:17 ETA (1/6): ganglia-web-3.6 (4%) 13% [=-           ] 143 kB/s | 303 kB     00:13 ETA (1/6): ganglia-web-3.6 (8%) 24% [===          ] 185 kB/s | 562 kB     00:09 ETA (1/6): ganglia-web-3.6 (14%) 44% [=====       ] 259 kB/s | 1.0 MB     00:04 ETA (1/6): ganglia-web-3.6 (26%) 77% [=========   ] 394 kB/s | 1.7 MB     00:01 ETA (1/6): ganglia-web-3.6.2-1.el6.x86_64.rpm                | 2.2 MB     00:02     
+(2/6): php-ZendFramewo (57%) 37% [====-       ]  0.0 B/s | 1.5 MB     --:-- ETA (2/6): php-ZendFramework-1.12.13-1.el6.noarch.rpm        | 4.1 MB     00:00     
+(3/6): php-bcmath-5.3.3-40.el6_6.x86_64.rpm              |  37 kB     00:00     
+(4/6): php-gd-5.3.3-40.el6_6.x86_64.rpm                  | 109 kB     00:00     
+(5/6): php-process-5.3.3-40.el6_6.x86_64.rpm             |  42 kB     00:00     
+(6/6): php-xml-5.3.3-40.el6_6.x86_64.rpm                 | 106 kB     00:00     
+--------------------------------------------------------------------------------
+Total                                           802 kB/s | 6.6 MB     00:08     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : php-process-5.3.3-40.el6_6.x [                             ] 1/6  Installing : php-process-5.3.3-40.el6_6.x [############                 ] 1/6  Installing : php-process-5.3.3-40.el6_6.x [###################          ] 1/6  Installing : php-process-5.3.3-40.el6_6.x [#######################      ] 1/6  Installing : php-process-5.3.3-40.el6_6.x [############################ ] 1/6  Installing : php-process-5.3.3-40.el6_6.x86_64                            1/6 
+  Installing : php-gd-5.3.3-40.el6_6.x86_64 [                             ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64 [#####                        ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64 [###########                  ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64 [#################            ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64 [######################       ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64 [############################ ] 2/6  Installing : php-gd-5.3.3-40.el6_6.x86_64                                 2/6 
+  Installing : php-xml-5.3.3-40.el6_6.x86_6 [                             ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [######                       ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [###########                  ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [###############              ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [##################           ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [#####################        ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [#########################    ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_6 [############################ ] 3/6  Installing : php-xml-5.3.3-40.el6_6.x86_64                                3/6 
+  Installing : php-bcmath-5.3.3-40.el6_6.x8 [                             ] 4/6  Installing : php-bcmath-5.3.3-40.el6_6.x8 [############################ ] 4/6  Installing : php-bcmath-5.3.3-40.el6_6.x86_64                             4/6 
+  Installing : php-ZendFramework-1.12.13-1. [                             ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#                            ] 5/6  Installing : php-ZendFramework-1.12.13-1. [##                           ] 5/6  Installing : php-ZendFramework-1.12.13-1. [###                          ] 5/6  Installing : php-ZendFramework-1.12.13-1. [####                         ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#####                        ] 5/6  Installing : php-ZendFramework-1.12.13-1. [######                       ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#######                      ] 5/6  Installing : php-ZendFramework-1.12.13-1. [########                     ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#########                    ] 5/6  Installing : php-ZendFramework-1.12.13-1. [##########                   ] 5/6  Installing : php-ZendFramework-1.12.13-1. [###########                  ] 5/6  Installing : php-ZendFramework-1.12.13-1. [############                 ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#############                ] 5/6  Installing : php-ZendFramework-1.12.13-1. [##############               ] 5/6  Installing : php-ZendFramework-1.12.13-1. [###############              ] 5/6  Installing : php-ZendFramework-1.12.13-1. [################             ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#################            ] 5/6  Installing : php-ZendFramework-1.12.13-1. [##################           ] 5/6  Installing : php-ZendFramework-1.12.13-1. [###################          ] 5/6  Installing : php-ZendFramework-1.12.13-1. [####################         ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#####################        ] 5/6  Installing : php-ZendFramework-1.12.13-1. [######################       ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#######################      ] 5/6  Installing : php-ZendFramework-1.12.13-1. [########################     ] 5/6  Installing : php-ZendFramework-1.12.13-1. [#########################    ] 5/6  Installing : php-ZendFramework-1.12.13-1. [##########################   ] 5/6  Installing : php-ZendFramework-1.12.13-1. [###########################  ] 5/6  Installing : php-ZendFramework-1.12.13-1. [############################ ] 5/6  Installing : php-ZendFramework-1.12.13-1.el6.noarch                       5/6 
+  Installing : ganglia-web-3.6.2-1.el6.x86_ [                             ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#                            ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [##                           ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [###                          ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [####                         ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#####                        ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [######                       ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#######                      ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [########                     ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#########                    ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [##########                   ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [###########                  ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [############                 ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#############                ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [##############               ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [###############              ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [################             ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#################            ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [##################           ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [###################          ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [####################         ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#####################        ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [######################       ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#######################      ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [########################     ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [#########################    ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [##########################   ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [###########################  ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_ [############################ ] 6/6  Installing : ganglia-web-3.6.2-1.el6.x86_64                               6/6 
+  Verifying  : php-bcmath-5.3.3-40.el6_6.x86_64                             1/6 
+  Verifying  : php-xml-5.3.3-40.el6_6.x86_64                                2/6 
+  Verifying  : ganglia-web-3.6.2-1.el6.x86_64                               3/6 
+  Verifying  : php-gd-5.3.3-40.el6_6.x86_64                                 4/6 
+  Verifying  : php-ZendFramework-1.12.13-1.el6.noarch                       5/6 
+  Verifying  : php-process-5.3.3-40.el6_6.x86_64                            6/6 
+
+Installed:
+  ganglia-web.x86_64 0:3.6.2-1.el6                                              
+
+Dependency Installed:
+  php-ZendFramework.noarch 0:1.12.13-1.el6  php-bcmath.x86_64 0:5.3.3-40.el6_6  
+  php-gd.x86_64 0:5.3.3-40.el6_6            php-process.x86_64 0:5.3.3-40.el6_6 
+  php-xml.x86_64 0:5.3.3-40.el6_6          
+
+Complete!
+[dinesh@gateway ganglia]$ sduo[K[K[Kudo vi /etc/httpd/h[Kconf/httpd.conf 
+7[?47h[27m[24m[0m[H[J[25;1H"/etc/httpd/conf/httpd.conf" 1009L, 34418C[1;1H#
+# This is the main Apache server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.2/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.2/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# The configuration directives are grouped into three basic sections:
+#  1. Directives that control the operation of the Apache server process as a
+#     whole (the 'global environment').
+#  2. Directives that define the parameters of the 'main' or 'default' server,
+#     which responds to requests that aren't handled by a virtual host.
+#     These directives also provide default values for the settings
+#     of all virtual hosts.
+#  3. Settings for virtual hosts, which allow Web requests to be sent to
+#     different IP addresses or hostnames and have them handled by the
+#     same Apache server process.
+#[1;1H[25;1H[K[25;1H/ServerName[27m[24m[0m[H[J[1;1H# virtual host being defined.
+#
+
+#
+# ServerAdmin: Your address, where problems with the server should be
+# e-mailed.  This address appears on some server-generated pages, such
+# as error documents.  e.g. admin@your-domain.com
+#
+ServerAdmin root@localhost
+
+#
+# ServerName gives the name and port that the server uses to identify itself.
+# This can often be determined automatically, but we recommend you specify
+# it explicitly to prevent problems during startup.
+#
+# If this is not set to valid DNS name for your host, server-generated
+# redirections will not work.  See also the UseCanonicalName directive.
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+# You will have to access it by its address anyway, and this will make
+# redirections work in a sensible way.
+#
+#ServerName www.example.com:80[12;3H
+# 
+# 
+
+# 
+# 
+
+# 
+# 
+# 
+
+#S
+
+
+[24;1H#
+
+[24;1H# UseCanonicalName: Determines how Apache constructs self-referencing# 
+
+[24;1H# URLs and the SERVER_NAME and SERVER_PORT variables.# 
+
+[24;1H# When set "Off", Apache will use the Hostname and Port supplied# [23;3H[22;3H[21;1H[20;1H[19;3H[25;1H[1m-- INSERT --[0m[24;1H[K[20;1H[L[25;1H[1m-- INSERT --[20;1H[0mSSeerrvveerrNNaamme  ggaatteewwaayy..bbiigg.[20;23H[K[20;23H[20;22H[K[20;22Hitt..ddaaddddyyddllabbs..coomm::880[25;1H[K[20;40H[25;1H:w"/etc/httpd/conf/httpd.conf" 1010L, 34459C written[20;40H[25;1H[K[25;1H:x[25;1H[K[25;1H[2J[?47l8[dinesh@gateway ganglia]$ sudo vi /etc/httpd/conf/ganglia.conf
+7[?47h[27m[24m[0m[H[J[25;1H"/etc/httpd/conf/ganglia.conf" [New File][2;1H[1m[34m~                                                                               [3;1H~                                                                               [4;1H~                                                                               [5;1H~                                                                               [6;1H~                                                                               [7;1H~                                                                               [8;1H~                                                                               [9;1H~                                                                               [10;1H~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [24;1H~                                                                               [1;1H[0m[25;1H[K[25;1H:q[25;1H[K[25;1H[2J[?47l8[dinesh@gateway ganglia]$ let [K[K[K[Kvi /etc/httpd/ga[K[K[K[K[K[K[K[Kganglia.[K/gang[K[K[K[K
+conf.d/      conf.php     gmetad.conf  gmond.conf   
+[dinesh@gateway ganglia]$ vi /etc/ganglia/
+conf.d/      conf.php     gmetad.conf  gmond.conf   
+[dinesh@gateway ganglia]$ vi /etc/ganglia/m[Kgmetad.conf 
+7[?47h[27m[24m[0m[H[J[25;1H"/etc/ganglia/gmetad.conf" [readonly] 240L, 9827C[1;1H# This is an example of a Ganglia Meta Daemon configuration file
+#[15C http://ganglia.sourceforge.net/
+#
+#
+#-------------------------------------------------------------------------------[6;1H# Setting the debug_level to 1 will keep daemon in the forground and
+# show only error messages. Setting this value higher than 1 will make
+# gmetad output debugging information and stay in the foreground.
+# default: 0
+# debug_level 10
+#
+#-------------------------------------------------------------------------------[13;1H# What to monitor. The most important section of this file.
+#
+# The data_source tag specifies either a cluster or a grid to
+# monitor. If we detect the source is a cluster, we will maintain a complete
+# set of RRD databases for it, which can be used to create historical
+# graphs of the metrics. If the source is a grid (it comes from another gmetad),[19;1H# we will only maintain summary RRDs for it.
+#
+# Format:
+# data_source "my cluster" [polling interval] address1:port addreses2:port ...
+#
+# The keyword 'data_source' must immediately be followed by a unique[1;1H[25;1H[K[25;1H/All[27m[24m[0m[H[J[1;1H#-------------------------------------------------------------------------------[2;1H# Scalability mode. If on, we summarize over downstream grids, and respect
+# authority tags. If off, we take on 2.5.0-era behavior: we do not wrap our outp[4;1Hut
+# in <GRID></GRID> tags, we ignore all <GRID> tags we see, and always assume
+# we are the "authority" on data source feeds. This approach does not scale to
+# large groups of clusters, but is provided for backwards compatibility.
+# default: on
+# scalable off
+#
+#-------------------------------------------------------------------------------[12;1H# The name of this Grid. All the data sources above will be wrapped in a GRID
+# tag with this name.
+# default: unspecified
+# gridname "MyGrid"
+#
+#-------------------------------------------------------------------------------[18;1H# The authority URL for this grid. Used by other gmetads to locate graphs
+# for our data sources. Generally points to a ganglia/
+# website on this machine.
+# default: "http://hostname/ganglia/",
+#   where hostname is the name of this machine, as defined by gethostname().
+# authority "http://mycluster.org/newprefix/"
+#[12;26H[25;1H/All[1m[31msearch hit BOTTOM, continuing at TOP[12;26H[0m[25;1H/All[25;5H[K[25;1H[1m[31msearch hit BOTTOM, continuing at TOP[12;26H[27m[24m[0m[H[J[1;1H# This is an example of a Ganglia Meta Daemon configuration file
+#[15C http://ganglia.sourceforge.net/
+#
+#
+#-------------------------------------------------------------------------------[6;1H# Setting the debug_level to 1 will keep daemon in the forground and
+# show only error messages. Setting this value higher than 1 will make
+# gmetad output debugging information and stay in the foreground.
+# default: 0
+# debug_level 10
+#
+#-------------------------------------------------------------------------------[13;1H# What to monitor. The most important section of this file.
+#
+# The data_source tag specifies either a cluster or a grid to
+# monitor. If we detect the source is a cluster, we will maintain a complete
+# set of RRD databases for it, which can be used to create historical
+# graphs of the metrics. If the source is a grid (it comes from another gmetad),[19;1H# we will only maintain summary RRDs for it.
+#
+# Format:
+# data_source "my cluster" [polling interval] address1:port addreses2:port ...
+#
+# The keyword 'data_source' must immediately be followed by a unique[1;1H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[24;1H# string which identifies the source, then an optional polling interval in
+
+[24;1H# seconds. The source will be polled at this interval on average.
+
+[24;1H# If the polling interval is omitted, 15sec is asssumed.
+
+[24;1H#
+
+[24;1H# If you choose to set the polling interval to something other than the default,[24;1H
+
+[24;1H# note that the web frontend determines a host as down if its TN value is less
+
+[24;1H# than 4 * TMAX (20sec by default).  Therefore, if you set the polling interval
+
+[24;1H# to something around or greater than 80sec, this will cause the frontend to
+
+[24;1H# incorrectly display hosts as down even though they are not.
+
+[24;1H#
+
+[24;1H# A list of machines which service the data source follows, in the
+
+[24;1H# format ip:port, or name:port. If a port is not specified then 8649
+
+[24;1H# (the default gmond port) is assumed.
+
+[24;1H# default: There is no default value
+
+[24;1H#
+
+[24;1H# data_source "my cluster" 10 localhost  my.machine.edu:8649  1.2.3.5:8655
+
+[24;1H# data_source "my grid" 50 1.3.4.7:8655 grid.org:8651 grid-backup.org:8651
+
+[24;1H# data_source "another source" 1.3.4.7:8655  1.3.4.8
+
+[24;1H
+
+[24;1Hdata_source "my cluster" localhost
+
+[24;1H
+
+[24;1H#[27m[24m[0m[H[J[1;1H#
+# The keyword 'data_source' must immediately be followed by a unique
+# string which identifies the source, then an optional polling interval in
+# seconds. The source will be polled at this interval on average.
+# If the polling interval is omitted, 15sec is asssumed.
+#
+# If you choose to set the polling interval to something other than the default,[8;1H# note that the web frontend determines a host as down if its TN value is less
+# than 4 * TMAX (20sec by default).  Therefore, if you set the polling interval
+# to something around or greater than 80sec, this will cause the frontend to
+# incorrectly display hosts as down even though they are not.
+#
+# A list of machines which service the data source follows, in the
+# format ip:port, or name:port. If a port is not specified then 8649
+# (the default gmond port) is assumed.
+# default: There is no default value
+#
+# data_source "my cluster" 10 localhost  my.machine.edu:8649  1.2.3.5:8655
+# data_source "my grid" 50 1.3.4.7:8655 grid.org:8651 grid-backup.org:8651
+# data_source "another source" 1.3.4.7:8655  1.3.4.8
+
+data_source "my cluster" localhost
+
+#[23;1H
+
+
+[24;1H# Round-Robin Archives
+
+[24;1H# You can specify custom Round-Robin archives here (defaults are listed below)
+
+[24;1H#[1;1H[2M[23;1H# Old Default RRA: Keep 1 hour of metrics at 15 second resolution. 1 day at 6 mi[24;1Hnute[23;1H[1;1H[2M[23;1H# RRAs "RRA:AVERAGE:0.5:1:244" "RRA:AVERAGE:0.5:24:244" "RRA:AVERAGE:0.5:168:244[24;1H" "RRA:AVERAGE:0.5:672:244" \[23;1H
+
+
+[24;1H#      "RRA:AVERAGE:0.5:5760:374"
+
+[24;1H# New Default RRA[1;1H[2M[23;1H# Keep 5856 data points at 15 second resolution assuming 15 second (default) pol[24;1Hling. That's 1 day[23;1H
+
+
+[24;1H# Two weeks of data points at 1 minute resolution (average)[1;1H[2M[23;1H#RRAs "RRA:AVERAGE:0.5:1:5856" "RRA:AVERAGE:0.5:4:20160" "RRA:AVERAGE:0.5:40:527[24;1H04"[23;1H
+
+
+[24;1H
+
+[24;1H#
+
+[24;1H#-------------------------------------------------------------------------------[24;1H
+
+[24;1H# Scalability mode. If on, we summarize over downstream grids, and respect[1;1H[2M[23;1H# authority tags. If off, we take on 2.5.0-era behavior: we do not wrap our outp[24;1Hut[23;1H
+
+
+[24;1H# in <GRID></GRID> tags, we ignore all <GRID> tags we see, and always assume
+
+[24;1H# we are the "authority" on data source feeds. This approach does not scale to
+
+[24;1H# large groups of clusters, but is provided for backwards compatibility.
+
+[24;1H# default: on
+
+[24;1H# scalable off
+
+[24;1H#
+
+[24;1H#-------------------------------------------------------------------------------[24;1H[1;1H[2M[23;1H# The name of this Grid. All the data sources above will be wrapped in a GRID
+# tag with this name.[23;1H
+[1;1H[2M[23;1H# default: unspecified
+# gridname "MyGrid"[23;1H
+
+
+[24;1H#
+
+[24;1H#-------------------------------------------------------------------------------[24;1H[1;1H[2M[23;1H# The authority URL for this grid. Used by other gmetads to locate graphs
+# for our data sources. Generally points to a ganglia/[23;1H
+
+
+[24;1H# website on this machine.[1;1H[2M[23;1H# default: "http://hostname/ganglia/",
+#   where hostname is the name of this machine, as defined by gethostname().[23;1H
+
+
+[24;1H# authority "http://mycluster.org/newprefix/"
+
+[24;1H#
+
+[24;1H#-------------------------------------------------------------------------------[24;1H
+
+[24;1H# List of machines this gmetad will share XML with. Localhost[1;1H[2M[23;1H# is always trusted.
+# default: There is no default value[23;1H
+
+
+[24;1H# trusted_hosts 127.0.0.1 169.229.50.165 my.gmetad.org
+
+[24;1H#
+
+[24;1H#-------------------------------------------------------------------------------[24;1H
+
+[24;1H# If you want any host which connects to the gmetad XML to receive[27m[24m[0m[H[J[1;1H#-------------------------------------------------------------------------------[2;1H# If you want any host which connects to the gmetad XML to receive
+# data, then set this value to "on"
+# default: off
+# all_trusted on
+#
+#-------------------------------------------------------------------------------[8;1H# If you don't want gmetad to setuid then set this to off
+# default: on
+# setuid off
+#
+#-------------------------------------------------------------------------------[13;1H# User gmetad will setuid to (defaults to "nobody")
+# default: "nobody"
+setuid_username ganglia
+#
+#-------------------------------------------------------------------------------[18;1H# Umask to apply to created rrd files and grid directory structure
+# default: 0 (files are public)
+# umask 022
+#
+#-------------------------------------------------------------------------------[23;1H# The port gmetad will answer requests for XML
+# default: 8651[1;1H[27m[24m[0m[H[J[1;1H# The port gmetad will answer requests for XML
+# default: 8651
+# xml_port 8651
+#
+#-------------------------------------------------------------------------------[6;1H# The port gmetad will answer queries for XML. This facility allows
+# simple subtree and summation views of the XML tree.
+# default: 8652
+# interactive_port 8652
+#
+#-------------------------------------------------------------------------------[12;1H# The number of threads answering XML requests
+# default: 4
+# server_threads 10
+#
+#-------------------------------------------------------------------------------[17;1H# Where gmetad stores its round-robin databases
+# default: "/var/lib/ganglia/rrds"
+# rrd_rootdir "/some/other/place"
+#
+#-------------------------------------------------------------------------------[22;1H# List of metric prefixes this gmetad will not summarize at cluster or grid leve[23;1Hl.
+# default: There is no default value[1;1H[27m[24m[0m[H[J[1;1H# List of metric prefixes this gmetad will not summarize at cluster or grid leve[2;1Hl.
+# default: There is no default value
+# unsummarized_metrics diskstat CPU
+#
+#-------------------------------------------------------------------------------[7;1H# Prevent gmetad from generating summaries for sFlow VM metrics
+# default: off
+# unsummarized_sflow_vm_metrics on
+#
+#-------------------------------------------------------------------------------[12;1H# In earlier versions of gmetad, hostnames were handled in a case
+# sensitive manner
+# If your hostname directories have been renamed to lower case,
+# set this option to 0 to disable backward compatibility.
+# From version 3.2, backwards compatibility will be disabled by default.
+# default: 1   (for gmetad < 3.2)
+# default: 0   (for gmetad >= 3.2)
+case_sensitive_hostnames 0
+
+#-------------------------------------------------------------------------------[22;1H# It is now possible to export all the metrics collected by gmetad directly to
+# graphite by setting the following attributes.
+#[1;1H[27m[24m[0m[H[J[1;1H# graphite by setting the following attributes.
+#
+# The hostname or IP address of the Graphite server
+# default: unspecified
+# carbon_server "my.graphite.box"
+#
+# The port and protocol on which Graphite is listening
+# default: 2003
+# carbon_port 2003
+#
+# default: tcp
+# carbon_protocol udp
+#
+# **Deprecated in favor of graphite_path** A prefix to prepend to the
+# metric names exported by gmetad. Graphite uses dot-
+# separated paths to organize and refer to metrics.
+# default: unspecified
+# graphite_prefix "datacenter1.gmetad"
+#
+# A user-definable graphite path. Graphite uses dot-
+# separated paths to organize and refer to metrics.
+# For reverse compatibility graphite_prefix will be prepended to this
+# path, but this behavior should be considered deprecated.
+# This path may include 3 variables that will be replaced accordingly:[1;1H[25;1H:q[25;1H[K[25;1H[2J[?47l8[dinesh@gateway ganglia]$ service gmo[K[K[K[K[K[K[K[K[K[K[Ksudo service gmod [K[Knd start
+Starting GANGLIA gmond: [60G[[0;32m  OK  [0;39m]
+[dinesh@gateway ganglia]$ sudo service gmetad start
+Starting GANGLIA gmetad: [60G[[0;32m  OK  [0;39m]
+[dinesh@gateway ganglia]$ sudo service httpd restart
+Stopping httpd: [60G[[0;32m  OK  [0;39m]
+Starting httpd: [60G[[0;32m  OK  [0;39m]
+[dinesh@gateway ganglia]$ 
+[dinesh@gateway ganglia]$ cd /etc/
+[dinesh@gateway etc]$ sudo [K[K[K[K[Kexit
+exit
+
+Script done on Wed 24 Jun 2015 09:27:58 PM UTC
