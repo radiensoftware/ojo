@@ -20,5 +20,5 @@ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8
 sudo yum --enablerepo=epel -y install nrpe nagios-plugins
 # sudo yum --enablerepo=epel -y list nagios-plugins\*
 grep "allowed_hosts=" /etc/nagios/nrpe.cfg 
-sudo sed -i 's/^allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1,10.10.10.10/g' /etc/nagios/nrpe.cfg
+sudo sed -i 's/^allowed_hosts=127.0.0.1[ ]*$/allowed_hosts=127.0.0.1,10.10.10.10/g' /etc/nagios/nrpe.cfg
 grep "allowed_hosts=" /etc/nagios/nrpe.cfg
