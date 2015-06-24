@@ -16,9 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-cat *.pub >> ~/.ssh/authorized_keys
-cat *.pub >> ~/.ssh/authorized_keys2
-chmod 600 ~/.ssh/authorized_keys*
-ls -l ~/.ssh
-chmod 700 ~/.ssh
-ls -ld ~/.ssh
+/bin/rm -f  $HOME/.ssh/authorized_keys
+/bin/rm -f  $HOME/.ssh/authorized_keys2
+
+cat *.pub > $HOME/.ssh/authorized_keys
+cat *.pub > $HOME/.ssh/authorized_keys2
+chmod 600    $HOME/.ssh/authorized_keys*
+chmod 700 $HOME/.ssh
+ls -l     $HOME/.ssh
+ls -ld    $HOME/.ssh
+# Refer http://www.firedaemon.com/blog/passwordless-root-ssh-public-key-authentication-on-centos-6
+restorecon -R -v $HOME/.ssh
