@@ -7,6 +7,10 @@ SRC=ftp.riken.jp::centos
 	#	--exclude="6.6/isos/" \
 rsync -avzH --progress \
 	--delete \
+	--exclude="6.6/SCL/" \
+	--exclude="6.6/cloud/" \
+	--exclude="6.6/fasttrack/" \
+	--exclude="6.6/isos/" \
 	--exclude="6.6/centosplus/i386/" \
 	--exclude="6.6/centosplus/x86_64/" \
 	--exclude="6.6/isos/i386/" \
