@@ -1,34 +1,19 @@
 #!/bin/bash
-#
-# Copyright 2015. Dinesh Thirumurthy. All Rights Reserved.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 SRC=ftp.riken.jp::centos 
-DSTDIR=/var/ftp/pub/centos
+DSTDIR=/home/ftp/pub/centos
 	# --exclude="6.6/updates/x86_64/Packages/java*" \
 	# --exclude="6.6/updates/x86_64/Packages/*src*" \
 	#	--exclude="6.6/isos/i386/" \
 	#	--exclude="6.6/isos/" \
 	#	--exclude="6.6/os/i386/" \
-	#	--exclude="6.6/updates/i386" \
 	#	--exclude="6.6/xen4/" \
+	#	--exclude="6.5" \
 rsync -avzH --progress \
 	--delete \
-	--include="6.6/os/" \
-	--include="6.6/updates/" \
-	--include="6.6/contrib/" \
+	--exclude="6.6/centosplus/i386/" \
+	--exclude="6.6/centosplus/x86_64/" \
+	--exclude="6.6/updates/i386/" \
+	--include="6.5/" \
 	--include="6.6/" \
 	--include="RPM-GPG-KEY-CentOS-6" \
 		--exclude="2" \
@@ -71,7 +56,6 @@ rsync -avzH --progress \
 		--exclude="6.2" \
 		--exclude="6.3" \
 		--exclude="6.4" \
-		--exclude="6.5" \
 		--exclude="7/" \
 		--exclude="7.0.1406/" \
 		--exclude="7.1.1503/" \
