@@ -21,7 +21,8 @@
 
 cat *.pub > $HOME/.ssh/authorized_keys
 cat *.pub > $HOME/.ssh/authorized_keys2
-chmod 600    $HOME/.ssh/authorized_keys*
+chmod 644    $HOME/.ssh/authorized_keys*
+chmod 644    $HOME/.ssh/known_hosts
 chmod 700 $HOME/.ssh
 ls -l     $HOME/.ssh
 ls -ld    $HOME/.ssh
