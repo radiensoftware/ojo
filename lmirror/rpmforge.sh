@@ -14,14 +14,18 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-/usr/bin/flock -w 60 /var/lock/4EaSk6DZXtow /usr/bin/rsync -vai4CH --safe-links --delay-updates \
+SRC=rsync://ftp.riken.jp/repoforge/
+DSTDIR=$HOME/ftp/repoforge
+mkdir -p $DSTDIR
+/usr/bin/flock -w 60 /var/lock/4EaSk6DZXtow \
+/usr/bin/rsync -vai4CH --safe-links --delay-updates \
 	--delete \
 	--exclude="redhat/el2.1/*" \
 	--exclude="redhat/el3/*" \
 	--exclude="redhat/el4/*" \
 	--exclude="redhat/el5/*" \
 	--exclude="redhat/el6/en/i386/*" \
-	rsync://ftp.riken.jp/repoforge/ repoforge
+	$SRC \
+	$DSTDIR
 
 
