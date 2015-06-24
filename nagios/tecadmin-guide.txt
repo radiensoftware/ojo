@@ -1,0 +1,105 @@
+January 2015
+
+How to Install Nagios 4.0.8 (Monitoring Server) on CentOS, Red Hat & Fedora
+Written by Rahul
+Monitoring Tools 38 Comments
+
+Nagios is the most popular, open source, powerful monitoring system. It enables organizations to identify and resolve IT infrastructure problems before they affect critical business processes. Nagios has capability of monitoring application, services, entire IT infrastructure.
+
+nagios-core
+
+This is Part-1 of complete article How to Setup Nagios Monitoring Server with NagiosQL on CentOS/RHEL 6/5, In this part you will find the steps to setup Nagios Monitoring Server on CentOS, Redhat and Fedora systems.
+Step 1: Install Required Packages and Dependencies
+
+We assume that you have fresh installed CentOS, Red hat or Fedora systems, So our first requirement is to install Apache and PHP first. Use the following commands to complete it. You can find detailed LAMP setup instruction here.
+Install Packages:
+
+# yum install httpd php php-cli gcc glibc glibc-common gd gd-devel net-snmp
+
+Start Services:
+
+# service httpd start
+
+Step 2: Setup User Accounts
+
+Now create a new nagios user account and setup a password to this account
+
+# useradd nagios
+# passwd nagios
+
+Now create a groud for nagios setup ÎéÎínagcmdÎéÎí and add nagios user to this group. Also add nagios user in apache group.
+
+# groupadd nagcmd
+# usermod -a -G nagcmd nagios
+# usermod -a -G nagcmd apache
+
+Step 3: Install Nagios Core Service
+
+After installing required dependencies and adding user accounts. Lets start with Nagios core installation. Download latest nagios core service from official site.
+
+# cd /opt/
+# wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.8.tar.gz
+# tar xzf nagios-4.0.8.tar.gz
+# cd nagios-4.0.8
+# ./configure --with-command-group=nagcmd
+# make all
+# make install
+# make install-init
+# make install-config
+# make install-commandmode
+
+Now use below command to setup apache configuration for Nagios installation.
+
+# make install-webconf
+
+Step 4: Configure Apache Authentication
+
+We need to setup apache authentication for user nagiosadmin. Do not change this username. else you would required more changes in configuration.
+
+# htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+Now restart Apache service to make the new settings take effect.
+
+# service httpd restart
+
+Step 5: Install Nagios Plugins
+
+After installing and configuring Nagios core service, Download latest nagios-plugins source and install using following commands.
+
+# cd /opt
+# wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+# tar xzf nagios-plugins-2.0.3.tar.gz
+# cd nagios-plugins-2.0.3
+
+Now compile and install nagios plugins
+
+# ./configure --with-nagios-user=nagios --with-nagios-group=nagios
+# make
+# make install
+
+Step 6: Verify and Start Nagios
+
+Use the following commands to verify nagios install and start nagios core service.
+
+# /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+# service nagios start
+
+Also configure nagios service to start on system start
+
+# chkconfig --add nagios
+# chkconfig nagios on
+
+Step 7: Access Nagios in Web Browser
+
+Nagios creates its own apache configuration file /etc/httpd/conf.d/nagios.conf. There are no need to make any changes to it. Simply open below url in browser.
+[change domain name with your domain or ip]
+
+ http://svr1.tecadmin.net/nagios/
+
+Prompting for Apache Authentication Password ÎíÎñ
+nagios-web-interface-login
+
+Nagios After login screen ÎíÎñ
+nagios-web-interface
+
+Now you have successfully installed and configured Nagios core service in your system. Now go to article install NagiosQL3 web interface for managing Nagios.
